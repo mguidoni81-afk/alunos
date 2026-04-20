@@ -44,7 +44,6 @@ SHORTLIST_PATH = ROOT / "dashboard_state" / "shortlist.csv"
 MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
 NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
 SEED_MANUAL_YEAR_PATH = ROOT / "dashboard" / "manual_contest_years_seed.csv"
-APP_PASSWORD = "flamengo"
 APP_BUILD = "build 2026-04-20 / calibrated-score-radar-polish"
 
 PROXIMITY_PRESET_NAME = "Quem esta mais perto"
@@ -806,28 +805,7 @@ def top_controls(
 
 
 def require_password() -> bool:
-    if st.session_state.get("authenticated", False):
-        return True
-
-    st.markdown(
-        """
-        <div class="acr-login">
-            <div class="acr-section-title">Acesso restrito</div>
-            Digite a senha para entrar no scout.
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    with st.form("login_form", clear_on_submit=False):
-        password = st.text_input("Senha", type="password")
-        submitted = st.form_submit_button("Entrar", use_container_width=True)
-        if submitted:
-            if password == APP_PASSWORD:
-                st.session_state["authenticated"] = True
-                st.rerun()
-            st.error("Senha incorreta.")
-    return False
+    return True
 
 
 def compute_views(
