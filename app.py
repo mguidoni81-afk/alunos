@@ -522,6 +522,17 @@ def format_number(value: int | float | None) -> str:
     return f"{int(value):,}".replace(",", ".")
 
 
+def format_vacancy_delta(value: int | float | None, compact: bool = False) -> str:
+    if value is None or pd.isna(value):
+        return "Sem corte"
+    value_int = int(value)
+    if value_int < 0:
+        return f"Dentro {abs(value_int)}" if compact else f"Dentro por {abs(value_int)}"
+    if value_int == 0:
+        return "Na linha"
+    return f"Faltam {value_int}" if compact else f"Faltam {value_int} pos."
+
+
 def band_count(entity_table: pd.DataFrame, band_name: str) -> int:
     if entity_table.empty or "best_band" not in entity_table.columns:
         return 0
@@ -703,7 +714,7 @@ def top_controls(
         help="Limita o radar a colocacoes mais competitivas. Quanto menor, mais quente fica o filtro.",
     )
 
-    filter_row = st.columns([1.65, 1.05, 1.05, 1.55], gap="small")
+    filter_row = st.columns([1.45, 1.0, 1.0, 1.25, 1.15], gap="small")
     selected_years = filter_row[0].multiselect(
         "Anos dos concursos",
         available_years,
@@ -726,7 +737,12 @@ def top_controls(
         1,
         help="Exige um minimo de aparicoes do aluno em concursos. Zero deixa entrar todo mundo.",
     )
-    selected_radar_labels = filter_row[3].multiselect(
+    focus_without_breakthrough = filter_row[3].toggle(
+        "So quase entrando",
+        value=False,
+        help="Mostra so alunos que ainda nao ficaram nas vagas nem foram nomeados, mas aparecem perto das vagas em varios concursos.",
+    )
+    selected_radar_labels = filter_row[4].multiselect(
         "Colunas do radar detalhado",
         [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Distancia das vagas imediatas", "Score calibrado", "Concursos"}],
         default=["Ano do concurso", "Colocacao", "Distancia da nomeacao", "Sinais fortes", "Perfil temporal", "Historico calibrado"],
@@ -756,6 +772,25 @@ def top_controls(
         filtered_opportunities = filtered_opportunities[~filtered_opportunities["named"]]
 
     filtered_students = students[students["identity_key"].isin(filtered_opportunities["identity_key"].unique().tolist())].copy()
+    if focus_without_breakthrough:
+        near_counts = (
+            filtered_opportunities[
+                filtered_opportunities["delta_to_immediate_vacancies"].between(1, 30, inclusive="both")
+            ]
+            .groupby("identity_key")["contest_value"]
+            .nunique()
+            .reset_index(name="near_contest_count")
+        )
+        filtered_students = filtered_students.merge(near_counts, on="identity_key", how="left")
+        filtered_students["near_contest_count"] = filtered_students["near_contest_count"].fillna(0)
+        filtered_students = filtered_students[
+            filtered_students["named_count"].fillna(0).eq(0)
+            & filtered_students["inside_vacancies_count"].fillna(0).eq(0)
+            & filtered_students["near_contest_count"].ge(2)
+        ].copy()
+        filtered_opportunities = filtered_opportunities[
+            filtered_opportunities["identity_key"].isin(filtered_students["identity_key"].tolist())
+        ]
 
     filter_summary = [
         f"Rank % ate {max_rank_percentile:.0%}",
@@ -770,6 +805,8 @@ def top_controls(
         filter_summary.append(f"Fez {min_other_results}+ concursos")
     if exclude_current_named:
         filter_summary.append("Exclui nomeados")
+    if focus_without_breakthrough:
+        filter_summary.append("So quase entrando")
 
     return selected_snapshot, filtered_opportunities, filtered_students, PROXIMITY_PRESET_NAME, current_view, filter_summary, selected_radar_columns
 
@@ -1150,6 +1187,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         <div class="acr-note">
             Use a matrix para comparar rapidamente os top alunos contra um conjunto pequeno de concursos relevantes.
             Clique no nome do aluno para abrir o perfil e no bloco do concurso para abrir o detalhe daquele ranking.
+            Quando a coluna de vagas ficar negativa, isso quer dizer que o aluno esta dentro das vagas imediatas observadas.
         </div>
         """,
         unsafe_allow_html=True,
@@ -1338,18 +1376,18 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
             cell_color = band_bg_color(cell_label)
             contest_link = f"?view=Concurso&contest={quote_plus(str(contest_value))}"
             ranking = escape(str(row.get("ranking_text", "")))
-            delta = escape(format_number(row.get("delta_to_immediate_vacancies")))
+            delta_text = escape(format_vacancy_delta(row.get("delta_to_immediate_vacancies"), compact=(cell_mode == "Compacta")))
             cell_class = "acr-contest-cell acr-contest-compact" if cell_mode == "Compacta" else "acr-contest-cell"
             cell_body = (
                 f"{escape(cell_label)}"
                 f'<span class="acr-contest-sub">{ranking}</span>'
-                f'<span class="acr-contest-sub">Vagas {delta}</span>'
+                f'<span class="acr-contest-sub">{delta_text}</span>'
             )
             if cell_mode == "Compacta":
                 cell_body = (
                     f"{ranking}"
                     f'<span class="acr-contest-sub">{escape(cell_label)}</span>'
-                    f'<span class="acr-contest-sub">V {delta}</span>'
+                    f'<span class="acr-contest-sub">{delta_text}</span>'
                 )
             html.append(
                 "<td>"
