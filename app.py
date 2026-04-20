@@ -47,40 +47,21 @@ SEED_MANUAL_YEAR_PATH = ROOT / "dashboard" / "manual_contest_years_seed.csv"
 APP_PASSWORD = "flamengo"
 APP_BUILD = "build 2026-04-20 / calibrated-score-radar-polish"
 
+PROXIMITY_PRESET_NAME = "Quem esta mais perto"
 PROXIMITY_PRESETS = {
-    "Quem esta mais perto": DEFAULT_PROXIMITY_WEIGHTS,
-    "Mais pronto para abordagem": {
-        **DEFAULT_PROXIMITY_WEIGHTS,
-        "rank_percentile": 1.3,
-        "delta_to_last_named": 1.4,
-        "delta_to_last_inside": 0.8,
-        "history_elsewhere": 1.2,
-        "contest_count": 0.8,
-        "nomination_link": 0.3,
-        "recent_activity": 0.9,
-        "recent_competitiveness": 1.5,
-        "recent_named_penalty": 3.2,
-        "stale_peak_penalty": 1.5,
-        "already_named_penalty": 3.0,
-    },
+    PROXIMITY_PRESET_NAME: DEFAULT_PROXIMITY_WEIGHTS,
 }
 
 SHORTLIST_STATUS = ["novo", "revisar", "prioridade", "contatar", "em conversa", "convertido", "descartado"]
 SHORTLIST_PRIORITY = ["alta", "media", "baixa"]
-TIME_HORIZONS = {
-    "Todo o historico": None,
-    "Ultimos 2 anos": 2,
-    "Ultimos 3 anos": 3,
-    "Ultimos 5 anos": 5,
-}
-
 RADAR_COLUMN_OPTIONS = {
     "Faixa": "best_band",
     "Estado recente": "entity_status",
     "Concurso principal": "best_contest_name",
     "Ano do concurso": "best_contest_year",
     "Colocacao": "best_ranking_text",
-    "Dist. corte": "best_delta_current",
+    "Distancia das vagas imediatas": "best_delta_current",
+    "Distancia da nomeacao": "best_named_delta_current",
     "Rank %": "best_rank_percentile_current",
     "Score calibrado": "calibrated_radar_score",
     "Radar atual": "entity_proximity_score",
@@ -95,13 +76,13 @@ RADAR_COLUMN_OPTIONS = {
 }
 
 BAND_COLOR_MAP = {
-    "Acima do corte": "#c94f2d",
-    "Muito perto": "#e07a24",
-    "Perto": "#d7a229",
-    "Monitorar": "#4c7ea8",
-    "Forte sinal": "#5d8fb8",
-    "Ja nomeado": "#7f8d98",
-    "Sem faixa": "#c9d3dc",
+    "Acima do corte": "#6f8f61",
+    "Muito perto": "#a66a43",
+    "Perto": "#c09a5b",
+    "Monitorar": "#9b8f7a",
+    "Forte sinal": "#8d9a67",
+    "Ja nomeado": "#a79e95",
+    "Sem faixa": "#d8d0c6",
 }
 
 
@@ -157,11 +138,12 @@ def inject_styles() -> None:
         }
         .acr-matrix-wrap {
             overflow-x: auto;
-            border: 1px solid #dce6ef;
+            border: 1px solid #e2d8ca;
             border-radius: 18px;
-            background: #0f1722;
+            background: linear-gradient(180deg, #fffdf9 0%, #f7f1e8 100%);
             padding: 0.35rem;
             margin-top: 0.5rem;
+            box-shadow: 0 12px 28px rgba(78, 52, 28, 0.08);
         }
         .acr-matrix-toolbar {
             padding: 0.75rem 0.85rem 0.45rem 0.85rem;
@@ -208,10 +190,10 @@ def inject_styles() -> None:
             background: rgba(247, 250, 252, 0.55);
         }
         .acr-radar-row-acima-do-corte td {
-            border-left: 3px solid #c94f2d;
+            border-left: 3px solid #6f8f61;
         }
         .acr-radar-row-muito-perto td {
-            border-left: 3px solid #e07a24;
+            border-left: 3px solid #a66a43;
         }
         .acr-rank-pill {
             display: inline-flex;
@@ -251,58 +233,58 @@ def inject_styles() -> None:
             border-spacing: 0;
             min-width: 980px;
             width: 100%;
-            color: #eef4fb;
+            color: #3f3428;
             font-size: 0.82rem;
         }
         .acr-matrix th,
         .acr-matrix td {
             padding: 0.55rem 0.6rem;
-            border-right: 1px solid rgba(255,255,255,0.06);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-right: 1px solid #eadfce;
+            border-bottom: 1px solid #efe5d8;
             vertical-align: middle;
             white-space: nowrap;
         }
         .acr-matrix tbody tr:hover td {
-            background-color: rgba(255,255,255,0.035);
+            background-color: #faf4ec;
         }
         .acr-matrix thead th {
             position: sticky;
             top: 0;
             z-index: 2;
-            background: #111a27;
+            background: #f2eadf;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             font-size: 0.72rem;
-            color: #9fb3c9;
+            color: #7d654d;
         }
         .acr-matrix .group-head {
-            background: #0d1521;
-            color: #7fa1c2;
+            background: #eadfcf;
+            color: #6e563f;
             font-weight: 700;
             text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid #e2d4c2;
         }
         .acr-matrix .sticky-col {
             position: sticky;
             left: 0;
             z-index: 3;
-            background: #111a27;
+            background: #f7f1e8;
         }
         .acr-matrix .sticky-col-2 {
             position: sticky;
             left: 52px;
             z-index: 3;
-            background: #111a27;
+            background: #f7f1e8;
         }
         .acr-rank-col {
             width: 52px;
             text-align: center;
-            color: #8fa4ba;
+            color: #7e6954;
             font-weight: 700;
         }
         .acr-student-link,
         .acr-contest-link {
-            color: #f4f8fd !important;
+            color: #4f3f2f !important;
             text-decoration: none;
             font-weight: 700;
         }
@@ -539,12 +521,12 @@ def band_count(entity_table: pd.DataFrame, band_name: str) -> int:
 
 def band_bg_color(label: str) -> str:
     mapping = {
-        "Acima do corte": "#ffddcf",
-        "Muito perto": "#ffe6cf",
-        "Perto": "#fff0c9",
-        "Monitorar": "#dcecff",
-        "Forte sinal": "#d5e7fb",
-        "Ja nomeado": "#d9dfe5",
+        "Acima do corte": "#dfe9d7",
+        "Muito perto": "#eddccd",
+        "Perto": "#f2e6cf",
+        "Monitorar": "#ebe3d6",
+        "Forte sinal": "#e5ead8",
+        "Ja nomeado": "#ece7e1",
     }
     return mapping.get(label, "#edf2f6")
 
@@ -633,7 +615,7 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
                 <div class="acr-list-title">{row.get("display_name", "")}</div>
                 <div class="acr-list-subtitle">{row.get("best_contest_name", "")}</div>
                 <div>{badge_html}</div>
-                <div class="acr-list-subtitle">Distancia do corte: {delta} | Score calibrado: {row.get("calibrated_radar_score", row.get("entity_proximity_score", 0)):.2f}</div>
+                <div class="acr-list-subtitle">Distancia das vagas imediatas: {delta} | Score calibrado: {row.get("calibrated_radar_score", row.get("entity_proximity_score", 0)):.2f}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -677,64 +659,89 @@ def top_controls(
 ) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str], list[str]]:
     opportunities = prepared["opportunities"]
     students = prepared["students"]
-    reference_year = get_reference_year(prepared)
+    available_years = sorted(
+        {int(year) for year in opportunities["contest_year"].dropna().astype(int).tolist()},
+        reverse=True,
+    )
+    default_years = st.session_state.get("selected_years", available_years)
+    default_years = [year for year in default_years if year in available_years] or available_years
 
     st.markdown('<div class="acr-toolbar">', unsafe_allow_html=True)
-    row = st.columns([1.6, 1.05, 1.05, 0.95, 0.95, 0.9])
-    selected_snapshot = row[0].selectbox("Snapshot", snapshot_ids, index=snapshot_ids.index(selected_snapshot))
-    proximity_preset = row[1].selectbox("Preset", list(PROXIMITY_PRESETS.keys()), index=0)
-    horizon_label = row[2].selectbox("Horizonte", list(TIME_HORIZONS.keys()), index=0)
-    ui_mode = row[3].segmented_control("Modo", ["Simples", "Avancado"], default="Simples")
-    exclude_current_named = row[4].toggle("Excluir nomeados", value=True, help="Ligado foca em quem ainda pode passar.")
-    show_compact_help = row[5].toggle("Ajuda curta", value=False, help="Mostra lembretes breves sobre o efeito dos filtros.")
+    nav_row = st.columns([1.3, 1.3, 0.9, 1.0], gap="small")
+    current_view = nav_row[0].segmented_control(
+        "Area",
+        ["Radar", "Aluno", "Concurso", "Ajustes", "Qualidade"],
+        default=st.session_state.get("current_view", "Radar"),
+        help="Escolha a area de trabalho principal do scout.",
+    )
+    selected_snapshot = nav_row[1].selectbox(
+        "Base de dados",
+        snapshot_ids,
+        index=snapshot_ids.index(selected_snapshot),
+        help="Escolhe qual coleta salva em output sera usada como base do radar.",
+    )
+    exclude_current_named = nav_row[2].toggle(
+        "Excluir nomeados",
+        value=True,
+        help="Quando ligado, tira do radar os alunos que ja aparecem marcados como nomeados no recorte atual.",
+    )
+    max_rank_percentile = nav_row[3].slider(
+        "Rank % max",
+        0.01,
+        1.0,
+        0.20,
+        0.01,
+        help="Limita o radar a colocacoes mais competitivas. Quanto menor, mais quente fica o filtro.",
+    )
 
-    horizon_years = TIME_HORIZONS[horizon_label]
-    include_unknown_default = horizon_years is None
-    extra_cols = st.columns([1.5, 1, 1, 1.1, 0.9])
-    selected_families = extra_cols[0].multiselect(
-        "Familias",
-        sorted(opportunities["contest_family"].dropna().unique().tolist()),
-        default=[],
-        placeholder="Todas",
+    filter_row = st.columns([1.65, 1.05, 1.05, 1.55], gap="small")
+    selected_years = filter_row[0].multiselect(
+        "Anos dos concursos",
+        available_years,
+        default=default_years,
+        help="Seleciona exatamente quais anos de concurso entram na analise. Isso substitui o horizonte fixo.",
     )
-    max_rank_percentile = extra_cols[1].slider("Rank % max", 0.01, 1.0, 0.20, 0.01)
-    max_delta_named = extra_cols[2].slider("Dist. corte", 1, 500, 100, 1)
-    min_other_results = extra_cols[3].slider("Fez tb min", 0, 250, 0)
-    include_unknown_years = extra_cols[4].toggle(
-        "Sem ano",
-        value=include_unknown_default,
-        help="Quando ligado com horizonte ativo, concursos antigos sem ano detectado podem voltar para o radar.",
+    max_delta_named = filter_row[1].slider(
+        "Distancia das vagas imediatas",
+        0,
+        500,
+        100,
+        1,
+        help="Mede quantas posicoes separam o aluno do ultimo colocado dentro das vagas imediatas observadas.",
     )
-    if show_compact_help:
-        st.caption(
-            f"Horizonte usa o ano inferido do concurso. Referencia atual: {reference_year}. "
-            "Diminuir rank % e dist. corte deixa o radar mais quente."
-        )
-    if horizon_years is not None and include_unknown_years:
-        st.warning("Concursos sem ano identificado estao entrando no filtro. Isso pode trazer itens antigos.")
-    selected_radar_columns = []
-    if ui_mode == "Avancado":
-        selected_radar_labels = st.multiselect(
-            "Colunas extras do radar",
-            [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Dist. corte", "Score", "Concursos"}],
-            default=["Ano do concurso", "Colocacao", "Sinais fortes", "Perfil temporal"],
-            help="Escolha quais colunas adicionais quer ver na tabela principal.",
-        )
-        selected_radar_columns = [RADAR_COLUMN_OPTIONS[label] for label in selected_radar_labels]
+    min_other_results = filter_row[2].slider(
+        "Quantidade de concursos feitos",
+        0,
+        250,
+        0,
+        1,
+        help="Exige um minimo de aparicoes do aluno em concursos. Zero deixa entrar todo mundo.",
+    )
+    selected_radar_labels = filter_row[3].multiselect(
+        "Colunas do radar detalhado",
+        [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Distancia das vagas imediatas", "Score calibrado", "Concursos"}],
+        default=["Ano do concurso", "Colocacao", "Distancia da nomeacao", "Sinais fortes", "Perfil temporal", "Historico calibrado"],
+        help="Personaliza as colunas extras do ranking detalhado sem mexer na ordenacao principal.",
+    )
+    selected_radar_columns = [RADAR_COLUMN_OPTIONS[label] for label in selected_radar_labels]
+    st.caption(
+        "Base de dados escolhe a coleta. Anos dos concursos controla exatamente o recorte temporal. "
+        "Rank % max corta colocacoes menos competitivas. Distancia das vagas imediatas olha apenas a folga em relacao "
+        "ao ultimo colocado dentro das vagas. Quantidade de concursos feitos funciona como minimo de historico do aluno."
+    )
     st.markdown("</div>", unsafe_allow_html=True)
 
     filtered_opportunities = opportunities.copy()
-    filtered_opportunities = apply_time_horizon(
-        filtered_opportunities,
-        horizon_years,
-        include_unknown_years,
-        reference_year,
-    )
-    if selected_families:
-        filtered_opportunities = filtered_opportunities[filtered_opportunities["contest_family"].isin(selected_families)]
+    if selected_years:
+        filtered_opportunities = filtered_opportunities[
+            filtered_opportunities["contest_year"].fillna(-1).astype(int).isin(selected_years)
+        ]
     filtered_opportunities = filtered_opportunities[filtered_opportunities["rank_percentile"].fillna(1).le(max_rank_percentile)]
     filtered_opportunities = filtered_opportunities[filtered_opportunities["other_results_count"].fillna(0).ge(min_other_results)]
-    eligible_gap = filtered_opportunities["delta_to_last_named"].isna() | filtered_opportunities["delta_to_last_named"].le(max_delta_named)
+    eligible_gap = (
+        filtered_opportunities["delta_to_immediate_vacancies"].isna()
+        | filtered_opportunities["delta_to_immediate_vacancies"].le(max_delta_named)
+    )
     filtered_opportunities = filtered_opportunities[eligible_gap]
     if exclude_current_named:
         filtered_opportunities = filtered_opportunities[~filtered_opportunities["named"]]
@@ -742,20 +749,20 @@ def top_controls(
     filtered_students = students[students["identity_key"].isin(filtered_opportunities["identity_key"].unique().tolist())].copy()
 
     filter_summary = [
-        horizon_label,
-        proximity_preset,
         f"Rank % ate {max_rank_percentile:.0%}",
-        f"Corte ate {max_delta_named} pos.",
+        f"Vagas imediatas ate {max_delta_named} pos.",
     ]
-    filter_summary.append("Sem ano fora" if not include_unknown_years else "Sem ano dentro")
-    if selected_families:
-        filter_summary.append(f"{len(selected_families)} familias")
+    if selected_years:
+        if len(selected_years) <= 4:
+            filter_summary.append("Anos " + ", ".join(map(str, sorted(selected_years))))
+        else:
+            filter_summary.append(f"{len(selected_years)} anos")
     if min_other_results > 0:
-        filter_summary.append(f"Fez tb >= {min_other_results}")
+        filter_summary.append(f"Fez {min_other_results}+ concursos")
     if exclude_current_named:
         filter_summary.append("Exclui nomeados")
 
-    return selected_snapshot, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary, selected_radar_columns
+    return selected_snapshot, filtered_opportunities, filtered_students, PROXIMITY_PRESET_NAME, current_view, filter_summary, selected_radar_columns
 
 
 def require_password() -> bool:
@@ -822,7 +829,7 @@ def render_primary_metrics(prepared: dict[str, pd.DataFrame], entity_table: pd.D
         (
             "Muito perto",
             format_number(band_count(entity_table, "Muito perto")),
-            "Perfis mais quentes do recorte atual, ja muito proximos do corte observado.",
+            "Perfis mais quentes do recorte atual, ja muito proximos das vagas imediatas observadas.",
         ),
         (
             "Monitorar",
@@ -1008,6 +1015,63 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
         st.info("Nenhum aluno atende aos filtros atuais.")
         return
 
+    toolbar = st.columns([1.3, 1.05, 1.05, 0.9], gap="small")
+    search_text = toolbar[0].text_input(
+        "Buscar aluno no radar",
+        value="",
+        key="radar_search_text",
+        placeholder="Digite parte do nome",
+        help="Filtra o radar detalhado por nome do aluno.",
+    )
+    selected_bands = toolbar[1].multiselect(
+        "Faixas",
+        ["Acima do corte", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"],
+        default=[],
+        key="radar_band_filter",
+        help="Restringe o ranking detalhado a uma ou mais faixas de proximidade.",
+    )
+    radar_sort = toolbar[2].selectbox(
+        "Ordenar radar por",
+        ["Score calibrado", "Mais perto das vagas", "Mais recentes", "Historico calibrado"],
+        index=0,
+        key="radar_sort_mode",
+        help="Escolhe o foco da ordenacao do radar detalhado.",
+    )
+    row_limit = toolbar[3].slider(
+        "Linhas",
+        20,
+        200,
+        80,
+        10,
+        key="radar_row_limit",
+        help="Controla quantas linhas aparecem no ranking detalhado.",
+    )
+
+    working = entity_table.copy()
+    if search_text.strip():
+        query = search_text.strip().lower()
+        working = working[working["display_name"].str.lower().str.contains(query, na=False)]
+    if selected_bands:
+        working = working[working["best_band"].isin(selected_bands)]
+    if radar_sort == "Mais perto das vagas":
+        working = working.sort_values(
+            ["best_delta_current", "calibrated_radar_score", "recent_2y_contest_count"],
+            ascending=[True, False, False],
+            na_position="last",
+        )
+    elif radar_sort == "Mais recentes":
+        working = working.sort_values(
+            ["recent_2y_contest_count", "recent_2y_best_rank_percentile", "calibrated_radar_score"],
+            ascending=[False, True, False],
+            na_position="last",
+        )
+    elif radar_sort == "Historico calibrado":
+        working = working.sort_values(
+            ["score", "calibrated_radar_score", "best_delta_current"],
+            ascending=[False, False, True],
+            na_position="last",
+        )
+
     simple_columns = [
         "display_name",
         "best_band",
@@ -1026,7 +1090,7 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
     ]
     columns = simple_columns if ui_mode == "Simples" else simple_columns + default_advanced + selected_radar_columns
     columns = list(dict.fromkeys([column for column in columns if column in entity_table.columns]))
-    display_rows = entity_table[columns].head(18 if ui_mode == "Simples" else 80).copy()
+    display_rows = working[columns].head(row_limit).copy()
     html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr>']
     html.append("<th>#</th>")
     for column in columns:
@@ -1081,30 +1145,57 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         """,
         unsafe_allow_html=True,
     )
-
-    default_top_n = 10 if ui_mode == "Simples" else 16
-    default_contest_n = 5 if ui_mode == "Simples" else 7
-    toolbar_row = st.columns([0.9, 1.1, 1.2, 1.1, 1.4], gap="small")
-    top_n = toolbar_row[0].slider("Top alunos", 6, 30, default_top_n, 1, key="matrix_top_n")
-    sort_mode = toolbar_row[1].selectbox(
-        "Ordenar por",
-        ["Score", "Mais perto do corte", "Mais quentes"],
-        index=0,
-        key="matrix_sort",
+    available_years = sorted(
+        {int(year) for year in scored_opportunities["contest_year"].dropna().astype(int).tolist()},
+        reverse=True,
     )
-    cell_mode = toolbar_row[2].segmented_control(
+    default_matrix_years = available_years[:2] if len(available_years) > 2 else available_years
+    sort_specs = {
+        "Score calibrado": ("calibrated_radar_score", False),
+        "Mais recentes": ("recent_2y_contest_count", False),
+        "Melhor resultado recente": ("recent_2y_best_rank_percentile", True),
+        "Mais perto das vagas": ("best_delta_current", True),
+        "Historico calibrado": ("score", False),
+    }
+
+    toolbar_row = st.columns([0.8, 1.1, 1.1, 1.1, 1.2, 1.2], gap="small")
+    top_n = toolbar_row[0].slider(
+        "Top alunos",
+        10,
+        200,
+        30,
+        5,
+        key="matrix_top_n",
+        help="Define quantos alunos entram na matrix comparativa.",
+    )
+    sort_primary = toolbar_row[1].selectbox(
+        "Ordenacao principal",
+        list(sort_specs.keys()),
+        index=0,
+        key="matrix_sort_primary",
+        help="Primeiro criterio de ordenacao do ranking dos alunos.",
+    )
+    sort_secondary = toolbar_row[2].selectbox(
+        "Ordenacao secundaria",
+        list(sort_specs.keys()),
+        index=1,
+        key="matrix_sort_secondary",
+        help="Segundo criterio de ordenacao para privilegiar resultados recentes junto com o score.",
+    )
+    cell_mode = toolbar_row[3].segmented_control(
         "Visual",
         ["Compacta", "Detalhada"],
-        default="Compacta" if ui_mode == "Simples" else "Detalhada",
+        default="Detalhada",
         key="matrix_cell_mode",
     )
-    preset_mode = toolbar_row[3].selectbox(
-        "Concursos",
-        ["Mais relevantes", "Mais quentes", "Escolha manual"],
-        index=0,
-        key="matrix_preset",
+    matrix_years = toolbar_row[4].multiselect(
+        "Anos da matrix",
+        available_years,
+        default=default_matrix_years,
+        key="matrix_years",
+        help="Primeiro escolha os anos; depois a lista de concursos abaixo mostra apenas esses anos.",
     )
-    student_search = toolbar_row[4].text_input(
+    student_search = toolbar_row[5].text_input(
         "Buscar aluno na matrix",
         value="",
         key="matrix_student_search",
@@ -1116,18 +1207,16 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         query = student_search.strip().lower()
         working_entities = working_entities[working_entities["display_name"].str.lower().str.contains(query, na=False)]
 
-    if sort_mode == "Mais perto do corte":
-        working_entities = working_entities.sort_values(
-            ["best_delta_current", "calibrated_radar_score", "entity_proximity_score"],
-            ascending=[True, False],
-            na_position="last",
-        )
-    elif sort_mode == "Mais quentes":
-        working_entities = working_entities.sort_values(
-            ["best_band", "calibrated_radar_score", "entity_proximity_score"],
-            ascending=[True, False],
-            na_position="last",
-        )
+    sort_columns: list[str] = []
+    sort_ascending: list[bool] = []
+    for label in [sort_primary, sort_secondary]:
+        column, ascending = sort_specs[label]
+        if column not in sort_columns:
+            sort_columns.append(column)
+            sort_ascending.append(ascending)
+    sort_columns.extend(["entity_proximity_score", "contest_count"])
+    sort_ascending.extend([False, False])
+    working_entities = working_entities.sort_values(sort_columns, ascending=sort_ascending, na_position="last")
 
     top_entities = working_entities.head(top_n).copy()
     if top_entities.empty:
@@ -1136,39 +1225,39 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
 
     selected_keys = top_entities["identity_key"].tolist()
     matrix_scope = scored_opportunities[scored_opportunities["identity_key"].isin(selected_keys)].copy()
+    if matrix_years:
+        matrix_scope = matrix_scope[matrix_scope["contest_year"].fillna(-1).astype(int).isin(matrix_years)]
+    if matrix_scope.empty:
+        st.info("Nenhum concurso aparece na matrix para os anos escolhidos.")
+        return
 
     contest_stats = (
-        matrix_scope.groupby(["contest_value", "contest_name"], dropna=False)
+        matrix_scope.groupby(["contest_value", "contest_name", "contest_year"], dropna=False)
         .agg(
             appearances=("identity_key", "nunique"),
             avg_score=("proximity_score", "mean"),
             hot_count=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
         )
         .reset_index()
-        .sort_values(["appearances", "hot_count", "avg_score", "contest_name"], ascending=[False, False, False, True])
+        .sort_values(["contest_year", "hot_count", "avg_score", "appearances", "contest_name"], ascending=[False, False, False, False, True])
     )
-    if preset_mode == "Mais quentes":
-        contest_stats = contest_stats.sort_values(["hot_count", "avg_score", "appearances"], ascending=[False, False, False])
-    default_contests = contest_stats.head(default_contest_n)
+    default_contests = contest_stats.head(8)
     contest_options = contest_stats.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
     default_labels = default_contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
-    if preset_mode == "Escolha manual":
-        selected_labels = st.multiselect(
-            "Concursos em coluna",
-            contest_options,
-            default=default_labels,
-            key="matrix_contests",
-            help="Escolha os concursos que viram colunas no ranking matrix.",
-        )
-    else:
-        selected_labels = default_labels
+    selected_labels = st.multiselect(
+        "Concursos em coluna",
+        contest_options,
+        default=default_labels,
+        key="matrix_contests",
+        help="Depois de escolher os anos, selecione quais concursos viram colunas na matrix.",
+    )
     if not selected_labels:
         selected_labels = default_labels
     selected_values = [label.rsplit("[", 1)[-1].rstrip("]") for label in selected_labels]
 
     matrix_opps = (
         matrix_scope[matrix_scope["contest_value"].astype(str).isin(selected_values)]
-        .sort_values(["identity_key", "proximity_score", "delta_to_last_named"], ascending=[True, False, True], na_position="last")
+        .sort_values(["identity_key", "proximity_score", "delta_to_immediate_vacancies"], ascending=[True, False, True], na_position="last")
         .drop_duplicates(subset=["identity_key", "contest_value"], keep="first")
     )
 
@@ -1201,7 +1290,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         "<th>Faixa</th>",
         "<th>Estado</th>",
         "<th>Score</th>",
-        "<th>Dist.</th>",
+        "<th>Vagas</th>",
         "<th>2 anos</th>",
         "<th>Nom. 2 anos</th>",
         "<th>Perfil</th>",
@@ -1234,24 +1323,24 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         for contest_value in selected_values:
             row = entity_by_contest.get(str(contest_value))
             if row is None:
-                html.append('<td style="background:#162231;color:#6f8296;">-</td>')
+                html.append('<td style="background:#f6f1ea;color:#947f69;">-</td>')
                 continue
             cell_label = str(row.get("near_pass_band", ""))
             cell_color = band_bg_color(cell_label)
             contest_link = f"?view=Concurso&contest={quote_plus(str(contest_value))}"
             ranking = escape(str(row.get("ranking_text", "")))
-            delta = escape(format_number(row.get("delta_to_last_named")))
+            delta = escape(format_number(row.get("delta_to_immediate_vacancies")))
             cell_class = "acr-contest-cell acr-contest-compact" if cell_mode == "Compacta" else "acr-contest-cell"
             cell_body = (
                 f"{escape(cell_label)}"
                 f'<span class="acr-contest-sub">{ranking}</span>'
-                f'<span class="acr-contest-sub">Delta {delta}</span>'
+                f'<span class="acr-contest-sub">Vagas {delta}</span>'
             )
             if cell_mode == "Compacta":
                 cell_body = (
                     f"{ranking}"
                     f'<span class="acr-contest-sub">{escape(cell_label)}</span>'
-                    f'<span class="acr-contest-sub">D {delta}</span>'
+                    f'<span class="acr-contest-sub">V {delta}</span>'
                 )
             html.append(
                 "<td>"
@@ -1277,13 +1366,49 @@ def main_entity_tab(
 ) -> None:
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
+    st.markdown(
+        """
+        <div class="acr-note">
+            Leitura principal das faixas: <strong>Acima do corte</strong> significa que o aluno ja esta dentro das
+            vagas imediatas observadas. <strong>Ja nomeado</strong> so aparece quando existe marcacao explicita de nomeacao
+            na base ou nos ajustes manuais.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     render_primary_metrics(prepared, entity_table)
-    upper_left, upper_right = st.columns([1.15, 1], gap="large")
-    with upper_left:
-        st.markdown("### Destaques imediatos")
-        render_top_entity_cards(entity_table, limit=5 if ui_mode == "Avancado" else 4)
-    with upper_right:
-        render_calibration_panel(score_calibration, ui_mode)
+    st.markdown("### Destaques imediatos")
+    highlight_controls = st.columns([1.05, 0.95], gap="small")
+    highlight_limit = highlight_controls[0].slider(
+        "Quantos destaques mostrar",
+        4,
+        12,
+        6,
+        1,
+        key="highlight_limit",
+        help="Controla quantos alunos aparecem nos destaques quentes.",
+    )
+    highlight_mode = highlight_controls[1].selectbox(
+        "Destacar por",
+        ["Score calibrado", "Mais recentes", "Mais perto das vagas"],
+        index=0,
+        key="highlight_mode",
+        help="Escolhe o foco dos cards de destaque.",
+    )
+    highlight_entities = entity_table.copy()
+    if highlight_mode == "Mais recentes":
+        highlight_entities = highlight_entities.sort_values(
+            ["recent_2y_contest_count", "recent_2y_best_rank_percentile", "calibrated_radar_score"],
+            ascending=[False, True, False],
+            na_position="last",
+        )
+    elif highlight_mode == "Mais perto das vagas":
+        highlight_entities = highlight_entities.sort_values(
+            ["best_delta_current", "calibrated_radar_score"],
+            ascending=[True, False],
+            na_position="last",
+        )
+    render_top_entity_cards(highlight_entities, limit=highlight_limit)
 
     render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
 
@@ -1291,8 +1416,9 @@ def main_entity_tab(
     st.markdown(
         """
         <div class="acr-note">
-            O ranking abaixo ja mistura a proximidade atual com o score calibrado pelo historico. Assim, um bom
-            resultado antigo pesa menos quando o aluno nao sustenta competitividade recente ou ja aparece nomeado depois.
+            Melhorias ativas no radar detalhado: busca por aluno, filtro por faixa, ordenacao customizavel,
+            limite de linhas e colunas extras personalizaveis. O ranking mistura a proximidade atual com o score
+            calibrado pelo historico, reduzindo o peso de picos antigos sem sustentacao recente.
         </div>
         """,
         unsafe_allow_html=True,
@@ -1306,7 +1432,7 @@ def main_entity_tab(
         render_top_contests_panel(entity_table, scored_opportunities)
 
     if ui_mode == "Avancado":
-        with st.expander("Ver grafico avancado de proximidade ao corte"):
+        with st.expander("Ver grafico avancado de proximidade as vagas"):
             scatter = entity_table.head(250).copy()
             if not scatter.empty:
                 fig_scatter = px.scatter(
@@ -1323,10 +1449,12 @@ def main_entity_tab(
                 fig_scatter.update_layout(
                     height=430,
                     margin=dict(l=8, r=8, t=12, b=8),
-                    xaxis_title="Distancia do corte",
+                    xaxis_title="Distancia das vagas imediatas",
                     yaxis_title="Rank percentual",
                 )
                 st.plotly_chart(fig_scatter, use_container_width=True)
+
+    render_calibration_panel(score_calibration, ui_mode)
 
 
 def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataFrame, ui_mode: str) -> None:
@@ -1366,7 +1494,7 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
         + detail_card("Faixa principal", str(selected_entity.get("best_band", "")))
         + detail_card("Estado recente", str(selected_entity.get("entity_status", "")))
         + detail_card("Concurso principal", str(selected_entity.get("best_contest_name", "")))
-        + detail_card("Distancia do corte", format_number(selected_entity.get("best_delta_current")))
+        + detail_card("Distancia das vagas imediatas", format_number(selected_entity.get("best_delta_current")))
         + detail_card("Perfil temporal", str(selected_entity.get("recency_profile", "")))
         + detail_card("Ultimo ano nomeado", format_number(selected_entity.get("latest_named_year")))
         + detail_card("Concursos nos ultimos 2 anos", format_number(selected_entity.get("recent_2y_contest_count")))
@@ -1395,7 +1523,7 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
         )
     with summary_right:
         top_contests = (
-            opp_rows.sort_values(["proximity_score", "delta_to_last_named"], ascending=[False, True], na_position="last")
+            opp_rows.sort_values(["proximity_score", "delta_to_immediate_vacancies"], ascending=[False, True], na_position="last")
             .head(8)
             .copy()
         )
@@ -1406,7 +1534,7 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
                 y="contest_name",
                 color="near_pass_band",
                 orientation="h",
-                text="delta_to_last_named",
+                text="delta_to_immediate_vacancies",
                 color_discrete_map=BAND_COLOR_MAP,
             )
             fig.update_layout(
@@ -1426,6 +1554,7 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
         "contest_year",
         "near_pass_band",
         "ranking_text",
+        "delta_to_immediate_vacancies",
         "delta_to_last_named",
         "rank_percentile",
         "proximity_score",
@@ -1439,12 +1568,12 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
             "contest_year",
             "near_pass_band",
             "ranking_text",
-            "delta_to_last_named",
+            "delta_to_immediate_vacancies",
             "proximity_score",
         ]
 
     pretty_rows = opp_rows.sort_values(
-        ["proximity_score", "delta_to_last_named", "contest_year"],
+        ["proximity_score", "delta_to_immediate_vacancies", "contest_year"],
         ascending=[False, True, False],
         na_position="last",
     )
@@ -1458,7 +1587,8 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
             "contest_year": st.column_config.NumberColumn("Ano", format="%d"),
             "near_pass_band": st.column_config.TextColumn("Faixa", width="small"),
             "ranking_text": st.column_config.TextColumn("Colocacao", width="medium"),
-            "delta_to_last_named": st.column_config.NumberColumn("Dist. corte"),
+            "delta_to_immediate_vacancies": st.column_config.NumberColumn("Vagas imediatas"),
+            "delta_to_last_named": st.column_config.NumberColumn("Dist. nomeacao"),
             "rank_percentile": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
             "proximity_score": st.column_config.NumberColumn("Score", format="%.2f"),
             "student_named_elsewhere": st.column_config.NumberColumn("Nomeado fora"),
@@ -1517,6 +1647,29 @@ def contest_detail_tab(prepared: dict[str, pd.DataFrame]) -> None:
     metrics[2].metric("Nomeados", format_number(selected_row.get("named_count")))
     metrics[3].metric("Dentro das vagas", format_number(selected_row.get("inside_vacancies_count")))
 
+    with st.expander("Ajustar nomeacao deste concurso"):
+        st.caption(
+            "Se voce informar a ultima posicao nomeada, o sistema entende que todas as posicoes anteriores tambem foram nomeadas."
+        )
+        with st.form(f"contest_nomination_override_{contest_value}"):
+            last_named_position = st.number_input(
+                "Ultimo nomeado manual",
+                min_value=1,
+                max_value=10000,
+                value=max(int(selected_row.get("named_count", 0) or 1), 1),
+                step=1,
+            )
+            submitted_named = st.form_submit_button("Salvar indicador de nomeacao")
+            if submitted_named:
+                upsert_nomination_override(
+                    NOMINATION_OVERRIDE_PATH,
+                    str(selected_row["contest_value"]),
+                    str(selected_row["contest_name"]),
+                    int(last_named_position),
+                )
+                st.cache_data.clear()
+                st.success("Indicador salvo. Recarregue a pagina para ver o radar refletindo esse ajuste.")
+
     left, right = st.columns([1.3, 1], gap="large")
     with left:
         st.dataframe(
@@ -1539,7 +1692,7 @@ def contest_detail_tab(prepared: dict[str, pd.DataFrame]) -> None:
                 "ranking_text": st.column_config.TextColumn("Colocacao", width="medium"),
                 "named": st.column_config.CheckboxColumn("Nomeado"),
                 "inside_vacancies": st.column_config.CheckboxColumn("Dentro"),
-                "other_results_count": st.column_config.NumberColumn("Fez tb"),
+                "other_results_count": st.column_config.NumberColumn("Concursos cruzados"),
                 "final_score": st.column_config.NumberColumn("Nota", format="%.2f"),
             },
         )
@@ -1837,12 +1990,14 @@ def main() -> None:
     if selected_snapshot not in snapshot_ids:
         selected_snapshot = snapshot_ids[0]
     prepared = load_prepared_snapshot(selected_snapshot)
-    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary, selected_radar_columns = top_controls(
+    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, current_view, filter_summary, selected_radar_columns = top_controls(
         snapshot_ids,
         selected_snapshot,
         prepared,
     )
+    ui_mode = "Avancado"
     st.session_state["ui_mode_current"] = ui_mode
+    st.session_state["current_view"] = current_view
     if selected_snapshot_new != selected_snapshot:
         st.session_state["selected_snapshot"] = selected_snapshot_new
         st.rerun()
@@ -1855,13 +2010,6 @@ def main() -> None:
         score_calibration,
     )
 
-    st.markdown('<div class="acr-nav">', unsafe_allow_html=True)
-    current_view = st.segmented_control(
-        "Area",
-        ["Radar", "Aluno", "Concurso", "Ajustes", "Qualidade"],
-        default=st.session_state.get("current_view", "Radar"),
-        key="current_view",
-    )
     current_query_view = read_query_value("view")
     if current_query_view != current_view:
         st.query_params.clear()
@@ -1870,7 +2018,6 @@ def main() -> None:
             st.query_params["student"] = st.session_state["selected_entity_name"]
         if current_view == "Concurso" and st.session_state.get("selected_contest_value"):
             st.query_params["contest"] = st.session_state["selected_contest_value"]
-    st.markdown("</div>", unsafe_allow_html=True)
 
     if current_view == "Radar":
         main_entity_tab(

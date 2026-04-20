@@ -115,8 +115,8 @@ def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) ->
 def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, float]) -> pd.DataFrame:
     scored = opportunities.copy()
     rank_percentile = _series_or_default(scored, "rank_percentile", 1.0)
+    delta_to_immediate_vacancies = _series_or_default(scored, "delta_to_immediate_vacancies", pd.NA)
     delta_to_last_named = _series_or_default(scored, "delta_to_last_named", pd.NA)
-    delta_to_last_inside = _series_or_default(scored, "delta_to_last_inside", pd.NA)
     student_named_elsewhere = _series_or_default(scored, "student_named_elsewhere", 0)
     student_inside_elsewhere = _series_or_default(scored, "student_inside_elsewhere", 0)
     contest_count = _series_or_default(scored, "contest_count", 0)
@@ -130,14 +130,14 @@ def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, f
 
     scored["metric_rank_percentile"] = 1 - rank_percentile.clip(lower=0, upper=1).fillna(1)
 
-    positive_named_gap = delta_to_last_named.where(delta_to_last_named > 0)
-    scored["metric_delta_to_last_named"] = 1 - (positive_named_gap.fillna(9999).clip(upper=100) / 100.0)
-    scored.loc[delta_to_last_named.le(0).fillna(False), "metric_delta_to_last_named"] = 1.0
+    positive_vacancy_gap = delta_to_immediate_vacancies.where(delta_to_immediate_vacancies > 0)
+    scored["metric_delta_to_last_named"] = 1 - (positive_vacancy_gap.fillna(9999).clip(upper=100) / 100.0)
+    scored.loc[delta_to_immediate_vacancies.le(0).fillna(False), "metric_delta_to_last_named"] = 1.0
     scored["metric_delta_to_last_named"] = scored["metric_delta_to_last_named"].clip(lower=0, upper=1)
 
-    positive_inside_gap = delta_to_last_inside.where(delta_to_last_inside > 0)
-    scored["metric_delta_to_last_inside"] = 1 - (positive_inside_gap.fillna(9999).clip(upper=50) / 50.0)
-    scored.loc[delta_to_last_inside.le(0).fillna(False), "metric_delta_to_last_inside"] = 1.0
+    positive_named_gap = delta_to_last_named.where(delta_to_last_named > 0)
+    scored["metric_delta_to_last_inside"] = 1 - (positive_named_gap.fillna(9999).clip(upper=50) / 50.0)
+    scored.loc[delta_to_last_named.le(0).fillna(False), "metric_delta_to_last_inside"] = 1.0
     scored["metric_delta_to_last_inside"] = scored["metric_delta_to_last_inside"].clip(lower=0, upper=1)
 
     scored["metric_history_elsewhere"] = _log_norm(
@@ -170,8 +170,8 @@ def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, f
 
     scored["proximity_breakdown"] = (
         "rank_pct=" + scored["metric_rank_percentile"].round(2).astype(str)
-        + " | gap_named=" + scored["metric_delta_to_last_named"].round(2).astype(str)
-        + " | gap_inside=" + scored["metric_delta_to_last_inside"].round(2).astype(str)
+        + " | gap_vagas=" + scored["metric_delta_to_last_named"].round(2).astype(str)
+        + " | gap_nomeacao=" + scored["metric_delta_to_last_inside"].round(2).astype(str)
         + " | hist=" + scored["metric_history_elsewhere"].round(2).astype(str)
         + " | contests=" + scored["metric_contest_count"].round(2).astype(str)
         + " | recent_act=" + scored["metric_recent_activity"].round(2).astype(str)
@@ -181,7 +181,7 @@ def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, f
     )
 
     return scored.sort_values(
-        ["proximity_score", "delta_to_last_named", "rank_percentile"],
+        ["proximity_score", "delta_to_immediate_vacancies", "rank_percentile"],
         ascending=[False, True, True],
         na_position="last",
     ).reset_index(drop=True)

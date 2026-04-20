@@ -460,21 +460,26 @@ def build_opportunity_table(candidates: pd.DataFrame, students: pd.DataFrame) ->
     opportunities["delta_to_last_inside"] = opportunities["delta_to_last_inside"].where(
         opportunities["ranking_position"].notna() & opportunities["last_inside_rank"].notna()
     )
+    opportunities["delta_to_immediate_vacancies"] = opportunities["delta_to_last_inside"].where(
+        opportunities["delta_to_last_inside"].notna(),
+        opportunities["delta_to_last_named"],
+    )
     opportunities["is_open_opportunity"] = ~opportunities["named"]
     opportunities["is_near_named_cutoff"] = opportunities["delta_to_last_named"].between(1, 30, inclusive="both")
-    opportunities["is_near_inside_cutoff"] = opportunities["delta_to_last_inside"].between(1, 20, inclusive="both")
+    opportunities["is_near_inside_cutoff"] = opportunities["delta_to_immediate_vacancies"].between(1, 20, inclusive="both")
     opportunities["near_pass_band"] = "Monitorar"
     opportunities.loc[opportunities["named"], "near_pass_band"] = "Já nomeado"
     opportunities.loc[
-        opportunities["is_open_opportunity"] & opportunities["delta_to_last_named"].le(0),
+        opportunities["is_open_opportunity"]
+        & (opportunities["inside_vacancies"] | opportunities["delta_to_immediate_vacancies"].le(0)),
         "near_pass_band",
     ] = "Acima do corte"
     opportunities.loc[
-        opportunities["is_open_opportunity"] & opportunities["delta_to_last_named"].between(1, 30, inclusive="both"),
+        opportunities["is_open_opportunity"] & opportunities["delta_to_immediate_vacancies"].between(1, 30, inclusive="both"),
         "near_pass_band",
     ] = "Perto"
     opportunities.loc[
-        opportunities["is_open_opportunity"] & opportunities["delta_to_last_named"].between(1, 10, inclusive="both"),
+        opportunities["is_open_opportunity"] & opportunities["delta_to_immediate_vacancies"].between(1, 10, inclusive="both"),
         "near_pass_band",
     ] = "Muito perto"
     opportunities.loc[
@@ -504,6 +509,7 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
         "contest_value": "",
         "rank_percentile": 1.0,
         "delta_to_last_named": pd.NA,
+        "delta_to_immediate_vacancies": pd.NA,
         "student_named_elsewhere": 0,
         "student_inside_elsewhere": 0,
         "latest_seen_year": 0,
@@ -541,7 +547,7 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
 
     best_rows = (
         working.sort_values(
-            ["identity_key", "proximity_score", "delta_to_last_named", "rank_percentile"],
+            ["identity_key", "proximity_score", "delta_to_immediate_vacancies", "rank_percentile"],
             ascending=[True, False, True, True],
             na_position="last",
         )
@@ -564,7 +570,7 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
             avg_proximity_score=("proximity_score", "mean"),
             max_proximity_score=("proximity_score", "max"),
             best_rank_percentile_any=("rank_percentile", "min"),
-            best_delta_to_last_named=("delta_to_last_named", "min"),
+            best_delta_to_last_named=("delta_to_immediate_vacancies", "min"),
             student_named_elsewhere_max=("student_named_elsewhere", "max"),
             student_inside_elsewhere_max=("student_inside_elsewhere", "max"),
             latest_seen_year=("latest_seen_year", "max"),
@@ -596,6 +602,7 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
                 "ranking_text",
                 "ranking_position",
                 "rank_percentile",
+                "delta_to_immediate_vacancies",
                 "delta_to_last_named",
                 "delta_to_last_inside",
                 "proximity_breakdown",
@@ -611,7 +618,8 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
                 "ranking_text": "best_ranking_text",
                 "ranking_position": "best_ranking_position",
                 "rank_percentile": "best_rank_percentile_current",
-                "delta_to_last_named": "best_delta_current",
+                "delta_to_immediate_vacancies": "best_delta_current",
+                "delta_to_last_named": "best_named_delta_current",
                 "delta_to_last_inside": "best_inside_delta_current",
                 "proximity_breakdown": "best_proximity_breakdown",
                 "proximity_score": "best_proximity_score",
