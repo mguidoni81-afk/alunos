@@ -37,6 +37,7 @@ OUTPUT_DIR = ROOT / "output"
 SHORTLIST_PATH = ROOT / "dashboard_state" / "shortlist.csv"
 MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
 NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
+APP_PASSWORD = "flamengo"
 
 STUDENT_SCORE_PRESETS = {
     "Equilibrado": DEFAULT_WEIGHTS,
@@ -86,7 +87,7 @@ TIME_HORIZONS = {
 st.set_page_config(
     page_title="Scout dos proximos aprovados pela Base do Aprovado",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 
@@ -94,16 +95,31 @@ def inject_styles() -> None:
     st.markdown(
         """
         <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+        [data-testid="collapsedControl"] {
+            display: none;
+        }
         .block-container {
-            padding-top: 1.4rem;
-            padding-bottom: 2rem;
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+        }
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.4rem;
+        }
+        .stTabs [data-baseweb="tab"] {
+            height: 2.6rem;
+            border-radius: 999px;
+            padding: 0 0.95rem;
+            background: #f3f6f9;
         }
         .acr-note {
-            padding: 0.9rem 1rem;
+            padding: 0.8rem 0.95rem;
             border: 1px solid #dbe4f0;
             border-radius: 14px;
             background: #f8fbff;
-            margin-bottom: 0.9rem;
+            margin-bottom: 0.75rem;
         }
         .acr-soft {
             padding: 0.9rem 1rem;
@@ -111,12 +127,19 @@ def inject_styles() -> None:
             background: #f5f7fb;
             border: 1px solid #e7ecf3;
         }
+        .acr-toolbar {
+            padding: 0.9rem 1rem 0.55rem 1rem;
+            border: 1px solid #dce6ef;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+            margin: 0.2rem 0 1rem 0;
+        }
         .acr-hero {
-            padding: 1.1rem 1.2rem;
+            padding: 0.95rem 1rem;
             border-radius: 18px;
             background: linear-gradient(135deg, #f7fbff 0%, #eef6ff 100%);
             border: 1px solid #dbe8f4;
-            margin-bottom: 1rem;
+            margin-bottom: 0.7rem;
         }
         .acr-section-title {
             margin-top: 0.1rem;
@@ -140,12 +163,12 @@ def inject_styles() -> None:
             font-size: 0.84rem;
         }
         .acr-kpi {
-            padding: 1rem;
+            padding: 0.9rem 0.95rem;
             border-radius: 16px;
             border: 1px solid #e5ebf2;
             background: #ffffff;
-            min-height: 128px;
-            margin-bottom: 0.8rem;
+            min-height: 116px;
+            margin-bottom: 0.55rem;
         }
         .acr-kpi-label {
             color: #5c6f82;
@@ -164,11 +187,11 @@ def inject_styles() -> None:
             font-size: 0.84rem;
         }
         .acr-list-card {
-            padding: 0.85rem 0.95rem;
+            padding: 0.75rem 0.9rem;
             border-radius: 14px;
             border: 1px solid #e4ebf3;
             background: #fff;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.45rem;
         }
         .acr-list-title {
             font-weight: 700;
@@ -194,6 +217,14 @@ def inject_styles() -> None:
         .acr-badge-warm { background: #fff6df; color: #8a5d00; border-color: #eed89d; }
         .acr-badge-cool { background: #edf6ff; color: #24517a; border-color: #cfe1f4; }
         .acr-badge-muted { background: #f3f5f7; color: #536473; border-color: #dce3e8; }
+        .acr-login {
+            max-width: 460px;
+            padding: 1.1rem 1.1rem 0.95rem 1.1rem;
+            border-radius: 18px;
+            border: 1px solid #dce6ef;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+            margin: 2rem auto 0 auto;
+        }
         </style>
         """,
         unsafe_allow_html=True,
@@ -226,11 +257,6 @@ def load_prepared_snapshot(snapshot_id: str) -> dict[str, pd.DataFrame]:
 def load_history() -> dict[str, pd.DataFrame]:
     history = load_all_snapshots_history(OUTPUT_DIR)
     return prepare_history_frames(history)
-
-
-def explain_caption(show: bool, text: str) -> None:
-    if show:
-        st.sidebar.caption(text)
 
 
 def get_reference_year(prepared: dict[str, pd.DataFrame]) -> int:
@@ -315,57 +341,49 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
         )
 
 
-def sidebar_controls(prepared: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, pd.DataFrame, str, str, list[str]]:
+def top_controls(
+    snapshot_ids: list[str],
+    selected_snapshot: str,
+    prepared: dict[str, pd.DataFrame],
+) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str]]:
     opportunities = prepared["opportunities"]
     students = prepared["students"]
-
-    explain_controls = st.sidebar.toggle("Explicar ajustes", value=True)
-    ui_mode = st.sidebar.radio("Modo de visualizacao", ["Simples", "Avancado"], index=0)
-    explain_caption(explain_controls, "Simples destaca leitura executiva. Avancado deixa mais contexto tecnico visivel.")
-
-    st.sidebar.header("Objetivo")
-    proximity_preset = st.sidebar.selectbox("Preset principal", list(PROXIMITY_PRESETS.keys()), index=0)
-    explain_caption(explain_controls, "Troca a logica base do ranking. Um preset mais agressivo sobe quem parece mais perto do corte.")
-
-    st.sidebar.header("Janela de analise")
     reference_year = get_reference_year(prepared)
-    horizon_label = st.sidebar.selectbox("Horizonte temporal", list(TIME_HORIZONS.keys()), index=0)
+
+    st.markdown('<div class="acr-toolbar">', unsafe_allow_html=True)
+    row = st.columns([1.6, 1.05, 1.05, 0.95, 0.95, 0.9])
+    selected_snapshot = row[0].selectbox("Snapshot", snapshot_ids, index=snapshot_ids.index(selected_snapshot))
+    proximity_preset = row[1].selectbox("Preset", list(PROXIMITY_PRESETS.keys()), index=0)
+    horizon_label = row[2].selectbox("Horizonte", list(TIME_HORIZONS.keys()), index=0)
+    ui_mode = row[3].segmented_control("Modo", ["Simples", "Avancado"], default="Simples")
+    exclude_current_named = row[4].toggle("Excluir nomeados", value=True, help="Ligado foca em quem ainda pode passar.")
+    show_compact_help = row[5].toggle("Ajuda curta", value=False, help="Mostra lembretes breves sobre o efeito dos filtros.")
+
     horizon_years = TIME_HORIZONS[horizon_label]
     include_unknown_default = horizon_years is None
-    include_unknown_years = st.sidebar.checkbox(
-        "Incluir concursos sem ano identificavel",
-        value=include_unknown_default,
-        help="Quando ligado com horizonte de tempo ativo, concursos antigos sem ano detectado podem voltar para o radar.",
-    )
-    explain_caption(
-        explain_controls,
-        f"O horizonte usa o ano inferido do concurso. Referencia atual: {reference_year}. Diminuir o horizonte foca no desempenho recente.",
-    )
-    if horizon_years is not None and include_unknown_years:
-        st.sidebar.warning("Concursos sem ano identificado estao entrando no filtro. Isso pode trazer itens antigos.")
-
-    st.sidebar.header("Filtros principais")
-    selected_families = st.sidebar.multiselect(
-        "Familias de concurso",
+    extra_cols = st.columns([1.5, 1, 1, 1.1, 0.9])
+    selected_families = extra_cols[0].multiselect(
+        "Familias",
         sorted(opportunities["contest_family"].dropna().unique().tolist()),
         default=[],
+        placeholder="Todas",
     )
-    explain_caption(explain_controls, "Adicionar familias estreita o radar. Remover familias amplia a base analisada.")
-
-    max_rank_percentile = st.sidebar.slider("Rank percentual maximo", 0.01, 1.0, 0.20, 0.01)
-    explain_caption(
-        explain_controls,
-        "Diminuir deixa so alunos mais bem colocados em cada concurso. Aumentar abre a analise para perfis mais distantes do topo.",
+    max_rank_percentile = extra_cols[1].slider("Rank % max", 0.01, 1.0, 0.20, 0.01)
+    max_delta_named = extra_cols[2].slider("Dist. corte", 1, 500, 100, 1)
+    min_other_results = extra_cols[3].slider("Fez tb min", 0, 250, 0)
+    include_unknown_years = extra_cols[4].toggle(
+        "Sem ano",
+        value=include_unknown_default,
+        help="Quando ligado com horizonte ativo, concursos antigos sem ano detectado podem voltar para o radar.",
     )
-
-    max_delta_named = st.sidebar.slider("Maxima distancia ate o ultimo nomeado", 1, 500, 100, 1)
-    explain_caption(explain_controls, "Diminuir aproxima o radar do corte atual. Aumentar inclui oportunidades menos quentes.")
-
-    min_other_results = st.sidebar.slider("Minimo de resultados cruzados", 0, 250, 0)
-    explain_caption(explain_controls, "Aumentar exige historico mais denso em outros rankings. Diminuir deixa entrar perfis com menos rastros.")
-
-    exclude_current_named = st.sidebar.checkbox("Excluir ja nomeados no concurso atual", value=True)
-    explain_caption(explain_controls, "Ligado foca em quem ainda pode passar. Desligado inclui tambem quem ja foi nomeado.")
+    if show_compact_help:
+        st.caption(
+            f"Horizonte usa o ano inferido do concurso. Referencia atual: {reference_year}. "
+            "Diminuir rank % e dist. corte deixa o radar mais quente."
+        )
+    if horizon_years is not None and include_unknown_years:
+        st.warning("Concursos sem ano identificado estao entrando no filtro. Isso pode trazer itens antigos.")
+    st.markdown("</div>", unsafe_allow_html=True)
 
     filtered_opportunities = opportunities.copy()
     filtered_opportunities = apply_time_horizon(
@@ -399,7 +417,32 @@ def sidebar_controls(prepared: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, p
     if exclude_current_named:
         filter_summary.append("Exclui nomeados")
 
-    return filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary
+    return selected_snapshot, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary
+
+
+def require_password() -> bool:
+    if st.session_state.get("authenticated", False):
+        return True
+
+    st.markdown(
+        """
+        <div class="acr-login">
+            <div class="acr-section-title">Acesso restrito</div>
+            Digite a senha para entrar no scout.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    with st.form("login_form", clear_on_submit=False):
+        password = st.text_input("Senha", type="password")
+        submitted = st.form_submit_button("Entrar", use_container_width=True)
+        if submitted:
+            if password == APP_PASSWORD:
+                st.session_state["authenticated"] = True
+                st.rerun()
+            st.error("Senha incorreta.")
+    return False
 
 
 def compute_views(
@@ -520,34 +563,35 @@ def main_entity_tab(
     filter_summary: list[str],
 ) -> None:
     st.subheader("Quem esta proximo de passar?")
-    st.markdown(
-        """
-        <div class="acr-hero">
-            <div class="acr-section-title">Radar principal</div>
-            A leitura agora acontece em camadas. Primeiro o recorte ativo, depois os nomes mais quentes,
-            e so depois o detalhe tecnico.
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
     render_filter_chips(filter_summary)
     render_primary_metrics(prepared, entity_table)
 
-    left, right = st.columns([1.8, 1.2])
+    left, right = st.columns([1.65, 1.35], gap="large")
     with left:
-        st.markdown("### Top alunos do recorte atual")
+        st.markdown("### Top alunos do recorte")
         radar_table(entity_table, ui_mode)
     with right:
         band_counts = entity_table["best_band"].fillna("Sem faixa").value_counts().reset_index()
         band_counts.columns = ["faixa", "count"]
+        band_order = ["Acima do corte", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado", "Sem faixa"]
+        band_counts["faixa"] = pd.Categorical(band_counts["faixa"], categories=band_order, ordered=True)
+        band_counts = band_counts.sort_values("faixa")
         fig_band = px.bar(
             band_counts,
-            x="faixa",
-            y="count",
+            x="count",
+            y="faixa",
             color="faixa",
-            title="Distribuicao por faixa",
+            orientation="h",
+            text="count",
         )
-        fig_band.update_layout(showlegend=False, height=360, margin=dict(l=10, r=10, t=50, b=10))
+        fig_band.update_layout(
+            showlegend=False,
+            height=290,
+            margin=dict(l=8, r=8, t=12, b=8),
+            xaxis_title="Entidades",
+            yaxis_title="",
+        )
+        fig_band.update_traces(textposition="outside", cliponaxis=False)
         st.plotly_chart(fig_band, use_container_width=True)
 
         st.markdown("#### Leitura rapida")
@@ -565,15 +609,19 @@ def main_entity_tab(
                     color="best_band",
                     hover_name="display_name",
                     hover_data=["best_contest_name", "strong_signal_count", "very_strong_signal_count"],
-                    title="Entidades por proximidade ao corte",
                 )
                 fig_scatter.update_yaxes(autorange="reversed")
+                fig_scatter.update_layout(
+                    height=430,
+                    margin=dict(l=8, r=8, t=12, b=8),
+                    xaxis_title="Distancia do corte",
+                    yaxis_title="Rank percentual",
+                )
                 st.plotly_chart(fig_scatter, use_container_width=True)
 
 
 def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataFrame, ui_mode: str) -> None:
     st.subheader("Aluno")
-    st.caption("O detalhe individual fica concentrado aqui para o radar principal ficar mais limpo.")
 
     if entity_table.empty:
         st.info("Nenhum aluno atende aos filtros atuais.")
@@ -674,7 +722,7 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
 
 
 def timeline_tab(history: dict[str, pd.DataFrame], entity_table: pd.DataFrame) -> None:
-    st.subheader("Linha do tempo")
+    st.subheader("Evolucao")
     candidates_history = history["candidates_history"]
     if candidates_history.empty or candidates_history["snapshot_id"].nunique() < 2:
         st.info(
@@ -699,6 +747,7 @@ def timeline_tab(history: dict[str, pd.DataFrame], entity_table: pd.DataFrame) -
         title="Evolucao de posicao por snapshot",
     )
     fig.update_yaxes(autorange="reversed")
+    fig.update_layout(height=420, margin=dict(l=8, r=8, t=18, b=8), xaxis_title="", yaxis_title="Posicao")
     st.plotly_chart(fig, use_container_width=True)
     st.dataframe(
         rows[
@@ -931,20 +980,31 @@ def roadmap_tab() -> None:
 def main() -> None:
     inject_styles()
     st.title("Scout dos proximos aprovados pela Base do Aprovado")
-    st.caption("Pergunta central: quem esta proximo de passar?")
+    st.caption("Radar para enxergar quem esta realmente chegando perto da aprovacao.")
+    if not require_password():
+        return
 
     snapshot_ids = list_snapshots()
     if not snapshot_ids:
         st.error(f"Nenhum snapshot compativel foi encontrado em {OUTPUT_DIR}.")
         return
 
-    selected_snapshot = st.sidebar.selectbox("Snapshot", snapshot_ids, index=0)
+    selected_snapshot = st.session_state.get("selected_snapshot", snapshot_ids[0])
+    if selected_snapshot not in snapshot_ids:
+        selected_snapshot = snapshot_ids[0]
     prepared = load_prepared_snapshot(selected_snapshot)
     history = load_history()
-    filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary = sidebar_controls(prepared)
+    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary = top_controls(
+        snapshot_ids,
+        selected_snapshot,
+        prepared,
+    )
+    if selected_snapshot_new != selected_snapshot:
+        st.session_state["selected_snapshot"] = selected_snapshot_new
+        st.rerun()
     entity_table, scored_opportunities = compute_views(prepared, filtered_opportunities, filtered_students, proximity_preset)
 
-    tabs = st.tabs(["Radar Principal", "Aluno", "Timeline", "Operacao", "Ajustes", "Qualidade", "Proximo Nivel"])
+    tabs = st.tabs(["Radar", "Aluno", "Evolucao", "Operacao", "Ajustes", "Qualidade", "Proximo Nivel"])
     with tabs[0]:
         main_entity_tab(prepared, entity_table, ui_mode, filter_summary)
     with tabs[1]:
