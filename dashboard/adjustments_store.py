@@ -112,13 +112,26 @@ def apply_manual_adjustments(
     candidates = prepared["candidates"].copy()
 
     if not manual_years.empty:
-        year_map = (
+        by_value = (
             manual_years.dropna(subset=["contest_value", "manual_year"])
             .drop_duplicates(subset=["contest_value"], keep="last")
             .set_index("contest_value")["manual_year"]
         )
-        contest_pages["contest_year"] = contest_pages["contest_value"].map(year_map).combine_first(contest_pages["contest_year"])
-        candidates["contest_year"] = candidates["contest_value"].map(year_map).combine_first(candidates["contest_year"])
+        by_name = (
+            manual_years.dropna(subset=["contest_name", "manual_year"])
+            .drop_duplicates(subset=["contest_name"], keep="last")
+            .set_index("contest_name")["manual_year"]
+        )
+        contest_pages["contest_year"] = (
+            contest_pages["contest_value"].map(by_value)
+            .combine_first(contest_pages["contest_name"].map(by_name))
+            .combine_first(contest_pages["contest_year"])
+        )
+        candidates["contest_year"] = (
+            candidates["contest_value"].map(by_value)
+            .combine_first(candidates["contest_name"].map(by_name))
+            .combine_first(candidates["contest_year"])
+        )
 
     if not nomination_overrides.empty:
         latest_overrides = nomination_overrides.dropna(subset=["contest_value", "last_named_position"]).drop_duplicates(

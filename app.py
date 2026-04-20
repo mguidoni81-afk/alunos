@@ -39,8 +39,9 @@ OUTPUT_DIR = ROOT / "output"
 SHORTLIST_PATH = ROOT / "dashboard_state" / "shortlist.csv"
 MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
 NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
+SEED_MANUAL_YEAR_PATH = ROOT / "dashboard" / "manual_contest_years_seed.csv"
 APP_PASSWORD = "flamengo"
-APP_BUILD = "build 2026-04-20 / 11873da"
+APP_BUILD = "build 2026-04-20 / radar-links-manual-years"
 
 STUDENT_SCORE_PRESETS = {
     "Equilibrado": DEFAULT_WEIGHTS,
@@ -179,6 +180,54 @@ def inject_styles() -> None:
             border-radius: 16px;
             background: #fbfdff;
             margin: 0.5rem 0 0.65rem 0;
+        }
+        .acr-radar-wrap {
+            overflow-x: auto;
+            border: 1px solid #e2eaf2;
+            border-radius: 16px;
+            background: #fff;
+            margin-top: 0.4rem;
+        }
+        table.acr-radar {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 920px;
+        }
+        .acr-radar th, .acr-radar td {
+            padding: 0.7rem 0.75rem;
+            border-bottom: 1px solid #edf1f5;
+            white-space: nowrap;
+            vertical-align: middle;
+            font-size: 0.84rem;
+        }
+        .acr-radar th {
+            background: #f8fafc;
+            color: #667b90;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.72rem;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .acr-radar tr:hover td {
+            background: #fafcff;
+        }
+        .acr-link {
+            color: #19324b !important;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .acr-link:hover {
+            text-decoration: underline;
+        }
+        .acr-mini-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
         }
         .acr-matrix-legend {
             display: flex;
@@ -413,9 +462,11 @@ def load_prepared_snapshot(snapshot_id: str) -> dict[str, pd.DataFrame]:
     snapshot = snapshots[snapshot_id]
     frames = load_snapshot_frames(snapshot)
     prepared = prepare_snapshot_data(frames)
+    seed_manual_years = pd.read_csv(SEED_MANUAL_YEAR_PATH) if SEED_MANUAL_YEAR_PATH.exists() else pd.DataFrame()
+    manual_years = pd.concat([seed_manual_years, load_manual_years(MANUAL_YEAR_PATH)], ignore_index=True, sort=False)
     prepared = apply_manual_adjustments(
         prepared,
-        load_manual_years(MANUAL_YEAR_PATH),
+        manual_years,
         load_nomination_overrides(NOMINATION_OVERRIDE_PATH),
     )
     prepared["students"] = build_student_table(prepared["candidates"])
@@ -594,6 +645,11 @@ def compact_contest_label(value: str) -> str:
         return text
     short = " ".join(tokens[:3])
     return short[:18].strip()
+
+
+def column_display_label(column_name: str) -> str:
+    inverse = {value: key for key, value in RADAR_COLUMN_OPTIONS.items()}
+    return inverse.get(column_name, column_name.replace("_", " ").title())
 
 
 def top_controls(
@@ -800,27 +856,43 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
     ]
     columns = simple_columns if ui_mode == "Simples" else simple_columns + default_advanced + selected_radar_columns
     columns = list(dict.fromkeys([column for column in columns if column in entity_table.columns]))
+    display_rows = entity_table[columns].head(18 if ui_mode == "Simples" else 80).copy()
+    html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr>']
+    html.append("<th>#</th>")
+    for column in columns:
+        html.append(f"<th>{escape(column_display_label(column))}</th>")
+    html.append("</tr></thead><tbody>")
 
-    st.dataframe(
-        entity_table[columns].head(20 if ui_mode == "Simples" else 120),
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "display_name": st.column_config.TextColumn("Aluno", width="medium"),
-            "best_band": st.column_config.TextColumn("Faixa", width="small"),
-            "entity_proximity_score": st.column_config.NumberColumn("Score", format="%.2f"),
-            "best_delta_current": st.column_config.NumberColumn("Dist. corte"),
-            "best_rank_percentile_current": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
-            "contest_count": st.column_config.NumberColumn("Concursos"),
-            "entity_status": st.column_config.TextColumn("Estado recente", width="medium"),
-            "best_contest_name": st.column_config.TextColumn("Concurso principal", width="large"),
-            "best_contest_year": st.column_config.NumberColumn("Ano", format="%d"),
-            "strong_signal_count": st.column_config.NumberColumn("Sinais fortes"),
-            "very_strong_signal_count": st.column_config.NumberColumn("Muito fortes"),
-            "recent_2y_contest_count": st.column_config.NumberColumn("Conc. 2 anos"),
-            "recent_2y_named_count": st.column_config.NumberColumn("Nom. 2 anos"),
-        },
-    )
+    for idx, (_, row) in enumerate(display_rows.iterrows(), start=1):
+        html.append("<tr>")
+        html.append(f"<td>{idx}</td>")
+        for column in columns:
+            value = row.get(column, "")
+            if column == "display_name":
+                label = escape(str(value))
+                href = f"?view=Aluno&student={quote_plus(str(value))}"
+                cell = f'<a class="acr-link" href="{href}">{label}</a>'
+            elif column == "best_contest_name":
+                label = escape(str(value))
+                href = f"?view=Concurso&contest={quote_plus(str(row.get('best_contest_value', '')))}"
+                cell = f'<a class="acr-link" href="{href}">{label}</a>'
+            elif column == "best_band":
+                cell = (
+                    f'<span class="acr-mini-badge" style="background:{band_bg_color(str(value))};color:#19324b;">'
+                    f"{escape(str(value))}</span>"
+                )
+            elif column == "entity_proximity_score":
+                cell = f"{float(value):.2f}" if pd.notna(value) else "N/A"
+            elif column in {"best_rank_percentile_current"}:
+                cell = f"{float(value) * 100:.1f}%" if pd.notna(value) else "N/A"
+            elif column in {"best_delta_current", "contest_count", "best_contest_year", "strong_signal_count", "very_strong_signal_count", "recent_2y_contest_count", "recent_2y_named_count", "alias_count"}:
+                cell = escape(format_number(value))
+            else:
+                cell = escape(str(value))
+            html.append(f"<td>{cell}</td>")
+        html.append("</tr>")
+    html.append("</tbody></table></div>")
+    st.markdown("".join(html), unsafe_allow_html=True)
 
 
 def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.DataFrame, ui_mode: str) -> None:
@@ -1036,52 +1108,58 @@ def main_entity_tab(
     render_primary_metrics(prepared, entity_table)
     render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
 
-    left, right = st.columns([1.65, 1.35], gap="large")
-    with left:
-        st.markdown("### Tabela do radar")
-        radar_table(entity_table, ui_mode, selected_radar_columns)
-    with right:
-        band_counts = entity_table["best_band"].fillna("Sem faixa").value_counts().reset_index()
-        band_counts.columns = ["faixa", "count"]
-        band_order = ["Acima do corte", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado", "Sem faixa"]
-        band_counts["faixa"] = pd.Categorical(band_counts["faixa"], categories=band_order, ordered=True)
-        band_counts = band_counts.sort_values("faixa")
-        fig_band = px.bar(
-            band_counts,
-            x="count",
-            y="faixa",
-            color="faixa",
-            orientation="h",
-            text="count",
-            color_discrete_map=BAND_COLOR_MAP,
-        )
-        fig_band.update_layout(
-            showlegend=False,
-            height=290,
-            margin=dict(l=8, r=8, t=12, b=8),
-            xaxis_title="Entidades",
-            yaxis_title="",
-        )
-        fig_band.update_traces(textposition="outside", cliponaxis=False)
-        st.plotly_chart(fig_band, use_container_width=True)
+    st.markdown("### Radar detalhado")
+    radar_table(entity_table, ui_mode, selected_radar_columns)
 
-        hottest = entity_table[entity_table["best_band"].isin(["Acima do corte", "Muito perto"])].head(12)
-        st.markdown("#### Destaques quentes")
+    lower_left, lower_right = st.columns([1.2, 1], gap="large")
+    with lower_left:
+        st.markdown("### Concursos que mais aparecem no top")
+        top_contests = (
+            scored_opportunities[scored_opportunities["identity_key"].isin(entity_table.head(20)["identity_key"])]
+            .groupby(["contest_value", "contest_name"], dropna=False)
+            .agg(
+                alunos=("identity_key", "nunique"),
+                media_score=("proximity_score", "mean"),
+                quentes=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
+            )
+            .reset_index()
+            .sort_values(["alunos", "quentes", "media_score"], ascending=[False, False, False])
+            .head(12)
+        )
+        if not top_contests.empty:
+            top_contests["abrir"] = top_contests.apply(
+                lambda row: f"?view=Concurso&contest={quote_plus(str(row['contest_value']))}", axis=1
+            )
+            html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr><th>Concurso</th><th>Alunos</th><th>Quentes</th><th>Score medio</th></tr></thead><tbody>']
+            for _, row in top_contests.iterrows():
+                html.append(
+                    "<tr>"
+                    f'<td><a class="acr-link" href="{row["abrir"]}">{escape(str(row["contest_name"]))}</a></td>'
+                    f"<td>{int(row['alunos'])}</td>"
+                    f"<td>{int(row['quentes'])}</td>"
+                    f"<td>{float(row['media_score']):.2f}</td>"
+                    "</tr>"
+                )
+            html.append("</tbody></table></div>")
+            st.markdown("".join(html), unsafe_allow_html=True)
+
+    with lower_right:
+        st.markdown("### Leitura do recorte")
+        hottest = entity_table[entity_table["best_band"].isin(["Acima do corte", "Muito perto"])].head(8)
         if hottest.empty:
             st.info("Nenhum aluno esta em Muito perto ou Acima do corte neste recorte.")
         else:
-            st.dataframe(
-                hottest[["display_name", "best_band", "best_contest_name", "best_delta_current", "entity_status"]],
-                use_container_width=True,
-                hide_index=True,
-                column_config={
-                    "display_name": st.column_config.TextColumn("Aluno", width="medium"),
-                    "best_band": st.column_config.TextColumn("Faixa", width="small"),
-                    "best_contest_name": st.column_config.TextColumn("Concurso", width="large"),
-                    "best_delta_current": st.column_config.NumberColumn("Dist. corte"),
-                    "entity_status": st.column_config.TextColumn("Estado", width="medium"),
-                },
-            )
+            hot_html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr><th>Aluno</th><th>Faixa</th><th>Concurso</th></tr></thead><tbody>']
+            for _, row in hottest.iterrows():
+                hot_html.append(
+                    "<tr>"
+                    f'<td><a class="acr-link" href="?view=Aluno&student={quote_plus(str(row["display_name"]))}">{escape(str(row["display_name"]))}</a></td>'
+                    f'<td><span class="acr-mini-badge" style="background:{band_bg_color(str(row["best_band"]))};color:#19324b;">{escape(str(row["best_band"]))}</span></td>'
+                    f'<td><a class="acr-link" href="?view=Concurso&contest={quote_plus(str(row["best_contest_value"]))}">{escape(str(row["best_contest_name"]))}</a></td>'
+                    "</tr>"
+                )
+            hot_html.append("</tbody></table></div>")
+            st.markdown("".join(hot_html), unsafe_allow_html=True)
 
     if ui_mode == "Avancado":
         with st.expander("Ver grafico avancado de proximidade ao corte"):
