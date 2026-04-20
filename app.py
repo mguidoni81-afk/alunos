@@ -1426,7 +1426,6 @@ def main_entity_tab(
 ) -> None:
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
-    render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
     st.markdown(
         """
         <div class="acr-note">
@@ -1458,6 +1457,8 @@ def main_entity_tab(
         render_band_context(entity_table)
     with lower_right:
         render_top_contests_panel(entity_table, scored_opportunities)
+
+    render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
 
     if ui_mode == "Avancado":
         with st.expander("Ver grafico avancado de proximidade as vagas"):
