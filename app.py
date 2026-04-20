@@ -244,11 +244,19 @@ def sidebar_controls(prepared: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, p
     st.sidebar.header("Janela de analise")
     reference_year = get_reference_year(prepared)
     horizon_label = st.sidebar.selectbox("Horizonte temporal", list(TIME_HORIZONS.keys()), index=0)
-    include_unknown_years = st.sidebar.checkbox("Incluir concursos sem ano identificavel", value=True)
+    horizon_years = TIME_HORIZONS[horizon_label]
+    include_unknown_default = horizon_years is None
+    include_unknown_years = st.sidebar.checkbox(
+        "Incluir concursos sem ano identificavel",
+        value=include_unknown_default,
+        help="Quando ligado com horizonte de tempo ativo, concursos antigos sem ano detectado podem voltar para o radar.",
+    )
     explain_caption(
         explain_controls,
         f"O horizonte usa o ano inferido do concurso. Referencia atual: {reference_year}. Diminuir o horizonte foca no desempenho recente.",
     )
+    if horizon_years is not None and include_unknown_years:
+        st.sidebar.warning("Concursos sem ano identificado estao entrando no filtro. Isso pode trazer itens antigos.")
 
     st.sidebar.header("Filtros principais")
     selected_families = st.sidebar.multiselect(
@@ -276,7 +284,7 @@ def sidebar_controls(prepared: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, p
     filtered_opportunities = opportunities.copy()
     filtered_opportunities = apply_time_horizon(
         filtered_opportunities,
-        TIME_HORIZONS[horizon_label],
+        horizon_years,
         include_unknown_years,
         reference_year,
     )
@@ -297,6 +305,7 @@ def sidebar_controls(prepared: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, p
         f"Rank % ate {max_rank_percentile:.0%}",
         f"Corte ate {max_delta_named} pos.",
     ]
+    filter_summary.append("Sem ano fora" if not include_unknown_years else "Sem ano dentro")
     if selected_families:
         filter_summary.append(f"{len(selected_families)} familias")
     if min_other_results > 0:
