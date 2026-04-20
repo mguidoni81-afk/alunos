@@ -1033,7 +1033,12 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
         st.info("Nenhum aluno atende aos filtros atuais.")
         return
 
-    toolbar = st.columns([1.25, 1.0, 1.0, 0.8, 1.6], gap="small")
+    available_radar_years = sorted(
+        {int(year) for year in entity_table["best_contest_year"].dropna().astype(int).tolist()},
+    )
+    default_min_year = available_radar_years[0] if available_radar_years else 2026
+
+    toolbar = st.columns([1.15, 0.95, 0.95, 0.85, 0.95, 1.55], gap="small")
     search_text = toolbar[0].text_input(
         "Buscar aluno no radar",
         value="",
@@ -1064,7 +1069,14 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
         key="radar_row_limit",
         help="Controla quantas linhas aparecem no ranking detalhado.",
     )
-    selected_radar_labels = toolbar[4].multiselect(
+    min_analysis_year = toolbar[4].selectbox(
+        "Ano minimo",
+        available_radar_years if available_radar_years else [2026],
+        index=0,
+        key="radar_min_analysis_year",
+        help="Mostra no radar detalhado apenas alunos cujo melhor contexto atual cai desse ano em diante.",
+    )
+    selected_radar_labels = toolbar[5].multiselect(
         "Colunas do radar detalhado",
         [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Distancia das vagas imediatas", "Score calibrado", "Concursos"}],
         default=["Ano do concurso", "Colocacao", "Distancia da nomeacao", "Sinais fortes", "Perfil temporal", "Historico calibrado"],
@@ -1079,6 +1091,8 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
         working = working[working["display_name"].str.lower().str.contains(query, na=False)]
     if selected_bands:
         working = working[working["best_band"].isin(selected_bands)]
+    if available_radar_years:
+        working = working[working["best_contest_year"].fillna(-1).astype(int).ge(int(min_analysis_year))]
     if radar_sort == "Mais perto das vagas":
         working = working.sort_values(
             ["best_delta_current", "calibrated_radar_score", "recent_2y_contest_count"],
