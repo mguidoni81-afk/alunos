@@ -83,6 +83,34 @@ TIME_HORIZONS = {
     "Ultimos 5 anos": 5,
 }
 
+RADAR_COLUMN_OPTIONS = {
+    "Faixa": "best_band",
+    "Estado recente": "entity_status",
+    "Concurso principal": "best_contest_name",
+    "Ano do concurso": "best_contest_year",
+    "Colocacao": "best_ranking_text",
+    "Dist. corte": "best_delta_current",
+    "Rank %": "best_rank_percentile_current",
+    "Score": "entity_proximity_score",
+    "Concursos": "contest_count",
+    "Sinais fortes": "strong_signal_count",
+    "Sinais muito fortes": "very_strong_signal_count",
+    "Aliases": "alias_count",
+    "Concursos 2 anos": "recent_2y_contest_count",
+    "Nomeacoes 2 anos": "recent_2y_named_count",
+    "Perfil temporal": "recency_profile",
+}
+
+BAND_COLOR_MAP = {
+    "Acima do corte": "#c94f2d",
+    "Muito perto": "#e07a24",
+    "Perto": "#d7a229",
+    "Monitorar": "#4c7ea8",
+    "Forte sinal": "#5d8fb8",
+    "Ja nomeado": "#7f8d98",
+    "Sem faixa": "#c9d3dc",
+}
+
 
 st.set_page_config(
     page_title="Scout dos proximos aprovados pela Base do Aprovado",
@@ -133,6 +161,9 @@ def inject_styles() -> None:
             border-radius: 18px;
             background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
             margin: 0.2rem 0 1rem 0;
+        }
+        .acr-nav {
+            padding: 0.4rem 0 0.6rem 0;
         }
         .acr-hero {
             padding: 0.95rem 1rem;
@@ -193,6 +224,16 @@ def inject_styles() -> None:
             background: #fff;
             margin-bottom: 0.45rem;
         }
+        .acr-list-card-hot {
+            border-color: #f0b19a;
+            background: linear-gradient(180deg, #fffaf7 0%, #fff2ec 100%);
+            box-shadow: 0 6px 16px rgba(201, 79, 45, 0.08);
+        }
+        .acr-list-card-very-hot {
+            border-color: #ef9b72;
+            background: linear-gradient(180deg, #fff8f2 0%, #ffeade 100%);
+            box-shadow: 0 8px 18px rgba(224, 122, 36, 0.12);
+        }
         .acr-list-title {
             font-weight: 700;
             color: #162739;
@@ -213,10 +254,33 @@ def inject_styles() -> None:
             margin-bottom: 0.28rem;
             border: 1px solid transparent;
         }
-        .acr-badge-hot { background: #fff0ea; color: #a24522; border-color: #f2c0ae; }
+        .acr-badge-hot { background: #fff0ea; color: #9b3d1c; border-color: #efb79d; }
+        .acr-badge-very-hot { background: #ffe7db; color: #a14b11; border-color: #eea877; }
         .acr-badge-warm { background: #fff6df; color: #8a5d00; border-color: #eed89d; }
         .acr-badge-cool { background: #edf6ff; color: #24517a; border-color: #cfe1f4; }
         .acr-badge-muted { background: #f3f5f7; color: #536473; border-color: #dce3e8; }
+        .acr-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.7rem;
+            margin: 0.7rem 0 0.9rem 0;
+        }
+        .acr-detail-card {
+            padding: 0.85rem 0.95rem;
+            border-radius: 14px;
+            background: #fff;
+            border: 1px solid #e4ebf3;
+        }
+        .acr-detail-label {
+            font-size: 0.82rem;
+            color: #60758a;
+            margin-bottom: 0.2rem;
+        }
+        .acr-detail-value {
+            font-size: 1rem;
+            color: #162739;
+            font-weight: 600;
+        }
         .acr-login {
             max-width: 460px;
             padding: 1.1rem 1.1rem 0.95rem 1.1rem;
@@ -305,7 +369,9 @@ def render_filter_chips(items: list[str]) -> None:
 
 
 def badge_class(label: str) -> str:
-    if label in {"Muito perto", "Acima do corte", "Ativo e competitivo"}:
+    if label == "Acima do corte":
+        return "acr-badge-very-hot"
+    if label in {"Muito perto", "Ativo e competitivo"}:
         return "acr-badge-hot"
     if label in {"Perto", "Acompanhar"}:
         return "acr-badge-warm"
@@ -314,10 +380,23 @@ def badge_class(label: str) -> str:
     return "acr-badge-muted"
 
 
+def open_entity_view(display_name: str) -> None:
+    st.session_state["selected_entity_name"] = display_name
+    st.session_state["current_view"] = "Aluno"
+    st.rerun()
+
+
+def open_contest_view(contest_value: str, contest_name: str) -> None:
+    st.session_state["selected_contest_value"] = str(contest_value)
+    st.session_state["selected_contest_name"] = contest_name
+    st.session_state["current_view"] = "Concurso"
+    st.rerun()
+
+
 def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
     if entity_table.empty:
         return
-    for _, row in entity_table.head(limit).iterrows():
+    for idx, row in entity_table.head(limit).iterrows():
         badges = [
             row.get("best_band", ""),
             row.get("entity_status", ""),
@@ -328,9 +407,14 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
             if label
         )
         delta = format_number(row.get("best_delta_current"))
+        card_class = "acr-list-card"
+        if row.get("best_band") == "Acima do corte":
+            card_class += " acr-list-card-very-hot"
+        elif row.get("best_band") == "Muito perto":
+            card_class += " acr-list-card-hot"
         st.markdown(
             f"""
-            <div class="acr-list-card">
+            <div class="{card_class}">
                 <div class="acr-list-title">{row.get("display_name", "")}</div>
                 <div class="acr-list-subtitle">{row.get("best_contest_name", "")}</div>
                 <div>{badge_html}</div>
@@ -339,13 +423,27 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
             """,
             unsafe_allow_html=True,
         )
+        action_cols = st.columns([1, 1], gap="small")
+        if action_cols[0].button(str(row.get("display_name", "")), key=f"open_entity_card_{idx}", use_container_width=True):
+            open_entity_view(str(row.get("display_name", "")))
+        if action_cols[1].button(str(row.get("best_contest_name", "")), key=f"open_contest_card_{idx}", use_container_width=True):
+            open_contest_view(str(row.get("best_contest_value", "")), str(row.get("best_contest_name", "")))
+
+
+def detail_card(label: str, value: str) -> str:
+    return (
+        '<div class="acr-detail-card">'
+        f'<div class="acr-detail-label">{label}</div>'
+        f'<div class="acr-detail-value">{value}</div>'
+        "</div>"
+    )
 
 
 def top_controls(
     snapshot_ids: list[str],
     selected_snapshot: str,
     prepared: dict[str, pd.DataFrame],
-) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str]]:
+) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str], list[str]]:
     opportunities = prepared["opportunities"]
     students = prepared["students"]
     reference_year = get_reference_year(prepared)
@@ -383,6 +481,15 @@ def top_controls(
         )
     if horizon_years is not None and include_unknown_years:
         st.warning("Concursos sem ano identificado estao entrando no filtro. Isso pode trazer itens antigos.")
+    selected_radar_columns = []
+    if ui_mode == "Avancado":
+        selected_radar_labels = st.multiselect(
+            "Colunas extras do radar",
+            [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Dist. corte", "Score", "Concursos"}],
+            default=["Ano do concurso", "Colocacao", "Sinais fortes", "Perfil temporal"],
+            help="Escolha quais colunas adicionais quer ver na tabela principal.",
+        )
+        selected_radar_columns = [RADAR_COLUMN_OPTIONS[label] for label in selected_radar_labels]
     st.markdown("</div>", unsafe_allow_html=True)
 
     filtered_opportunities = opportunities.copy()
@@ -417,7 +524,7 @@ def top_controls(
     if exclude_current_named:
         filter_summary.append("Exclui nomeados")
 
-    return selected_snapshot, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary
+    return selected_snapshot, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary, selected_radar_columns
 
 
 def require_password() -> bool:
@@ -510,48 +617,51 @@ def render_primary_metrics(prepared: dict[str, pd.DataFrame], entity_table: pd.D
             unsafe_allow_html=True,
         )
 
-    with st.expander("Ver contexto tecnico da base"):
-        metric_card_columns(prepared, entity_table)
+    if st.session_state.get("ui_mode_current") == "Avancado":
+        with st.expander("Ver contexto tecnico da base"):
+            metric_card_columns(prepared, entity_table)
 
 
-def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
+def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns: list[str]) -> None:
     if entity_table.empty:
         st.info("Nenhum aluno atende aos filtros atuais.")
         return
 
-    base_columns = [
+    simple_columns = [
         "display_name",
         "best_band",
         "entity_status",
         "best_contest_name",
         "best_delta_current",
-        "best_rank_percentile_current",
         "entity_proximity_score",
-        "contest_count",
     ]
-    advanced_columns = [
+    default_advanced = [
+        "contest_count",
+        "best_rank_percentile_current",
         "best_contest_year",
         "best_ranking_text",
-        "strong_signal_count",
-        "very_strong_signal_count",
-        "alias_count",
-        "recent_2y_contest_count",
-        "recent_2y_named_count",
-        "recency_profile",
     ]
-    columns = base_columns if ui_mode == "Simples" else base_columns + advanced_columns
+    columns = simple_columns if ui_mode == "Simples" else simple_columns + default_advanced + selected_radar_columns
+    columns = list(dict.fromkeys([column for column in columns if column in entity_table.columns]))
 
     st.dataframe(
-        entity_table[columns].head(25 if ui_mode == "Simples" else 100),
+        entity_table[columns].head(20 if ui_mode == "Simples" else 120),
         use_container_width=True,
         hide_index=True,
         column_config={
+            "display_name": st.column_config.TextColumn("Aluno", width="medium"),
+            "best_band": st.column_config.TextColumn("Faixa", width="small"),
             "entity_proximity_score": st.column_config.NumberColumn("Score", format="%.2f"),
             "best_delta_current": st.column_config.NumberColumn("Dist. corte"),
             "best_rank_percentile_current": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
             "contest_count": st.column_config.NumberColumn("Concursos"),
             "entity_status": st.column_config.TextColumn("Estado recente", width="medium"),
             "best_contest_name": st.column_config.TextColumn("Concurso principal", width="large"),
+            "best_contest_year": st.column_config.NumberColumn("Ano", format="%d"),
+            "strong_signal_count": st.column_config.NumberColumn("Sinais fortes"),
+            "very_strong_signal_count": st.column_config.NumberColumn("Muito fortes"),
+            "recent_2y_contest_count": st.column_config.NumberColumn("Conc. 2 anos"),
+            "recent_2y_named_count": st.column_config.NumberColumn("Nom. 2 anos"),
         },
     )
 
@@ -561,6 +671,7 @@ def main_entity_tab(
     entity_table: pd.DataFrame,
     ui_mode: str,
     filter_summary: list[str],
+    selected_radar_columns: list[str],
 ) -> None:
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
@@ -569,7 +680,9 @@ def main_entity_tab(
     left, right = st.columns([1.65, 1.35], gap="large")
     with left:
         st.markdown("### Top alunos do recorte")
-        radar_table(entity_table, ui_mode)
+        render_top_entity_cards(entity_table, limit=4 if ui_mode == "Simples" else 6)
+        st.markdown("### Tabela do radar")
+        radar_table(entity_table, ui_mode, selected_radar_columns)
     with right:
         band_counts = entity_table["best_band"].fillna("Sem faixa").value_counts().reset_index()
         band_counts.columns = ["faixa", "count"]
@@ -583,6 +696,7 @@ def main_entity_tab(
             color="faixa",
             orientation="h",
             text="count",
+            color_discrete_map=BAND_COLOR_MAP,
         )
         fig_band.update_layout(
             showlegend=False,
@@ -594,8 +708,23 @@ def main_entity_tab(
         fig_band.update_traces(textposition="outside", cliponaxis=False)
         st.plotly_chart(fig_band, use_container_width=True)
 
-        st.markdown("#### Leitura rapida")
-        render_top_entity_cards(entity_table)
+        hottest = entity_table[entity_table["best_band"].isin(["Acima do corte", "Muito perto"])].head(12)
+        st.markdown("#### Destaques quentes")
+        if hottest.empty:
+            st.info("Nenhum aluno esta em Muito perto ou Acima do corte neste recorte.")
+        else:
+            st.dataframe(
+                hottest[["display_name", "best_band", "best_contest_name", "best_delta_current", "entity_status"]],
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "display_name": st.column_config.TextColumn("Aluno", width="medium"),
+                    "best_band": st.column_config.TextColumn("Faixa", width="small"),
+                    "best_contest_name": st.column_config.TextColumn("Concurso", width="large"),
+                    "best_delta_current": st.column_config.NumberColumn("Dist. corte"),
+                    "entity_status": st.column_config.TextColumn("Estado", width="medium"),
+                },
+            )
 
     if ui_mode == "Avancado":
         with st.expander("Ver grafico avancado de proximidade ao corte"):
@@ -609,6 +738,7 @@ def main_entity_tab(
                     color="best_band",
                     hover_name="display_name",
                     hover_data=["best_contest_name", "strong_signal_count", "very_strong_signal_count"],
+                    color_discrete_map=BAND_COLOR_MAP,
                 )
                 fig_scatter.update_yaxes(autorange="reversed")
                 fig_scatter.update_layout(
@@ -627,15 +757,17 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
         st.info("Nenhum aluno atende aos filtros atuais.")
         return
 
-    selected_name = st.selectbox("Selecione um aluno", entity_table["display_name"].tolist())
+    selector_left, selector_right = st.columns([1.6, 1])
+    options = entity_table["display_name"].tolist()
+    default_name = st.session_state.get("selected_entity_name", options[0])
+    if default_name not in options:
+        default_name = options[0]
+    selected_name = selector_left.selectbox("Selecione um aluno", options, index=options.index(default_name))
+    st.session_state["selected_entity_name"] = selected_name
     selected_entity = entity_table[entity_table["display_name"] == selected_name].iloc[0]
     opp_rows = scored_opportunities[scored_opportunities["identity_key"] == selected_entity["identity_key"]].copy()
-
-    cols = st.columns(4)
-    cols[0].metric("Faixa principal", selected_entity.get("best_band", ""))
-    cols[1].metric("Concurso principal", selected_entity.get("best_contest_name", ""))
-    cols[2].metric("Dist. do corte", format_number(selected_entity.get("best_delta_current")))
-    cols[3].metric("Estado recente", selected_entity.get("entity_status", ""))
+    contest_count = int(selected_entity.get("contest_count", 0) or 0)
+    selector_right.metric("Concursos no radar", format_number(contest_count))
 
     st.markdown(
         f"""
@@ -650,63 +782,115 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
         unsafe_allow_html=True,
     )
 
-    tab1, tab2, tab3 = st.tabs(["Resumo", "Concursos do aluno", "Leitura tecnica"])
-    with tab1:
-        left, right = st.columns([1.3, 1])
-        with left:
-            st.write(f"**Familias em que aparece:** {selected_entity.get('families', '')}")
-            st.write(f"**Aliases:** {selected_entity.get('alias_names', '')}")
-            st.write(f"**Estado recente:** {selected_entity.get('entity_status', '')}")
-            st.write(f"**Perfil temporal:** {selected_entity.get('recency_profile', '')}")
-            st.write(f"**Ultimo ano visto:** {format_number(selected_entity.get('latest_seen_year'))}")
-            st.write(f"**Ultimo ano nomeado:** {format_number(selected_entity.get('latest_named_year'))}")
-            st.write(
-                f"**Sinais fortes:** {int(selected_entity.get('strong_signal_count', 0) or 0)} | "
-                f"**Sinais muito fortes:** {int(selected_entity.get('very_strong_signal_count', 0) or 0)}"
-            )
-        with right:
-            st.write(f"**Concursos nos ultimos 2 anos:** {format_number(selected_entity.get('recent_2y_contest_count'))}")
-            st.write(f"**Nomeacoes nos ultimos 2 anos:** {format_number(selected_entity.get('recent_2y_named_count'))}")
-            st.write(f"**Melhor rank % recente:** {selected_entity.get('recent_2y_best_rank_percentile', 1):.2f}")
-            st.write(f"**Anos desde melhor resultado:** {format_number(selected_entity.get('years_since_best_result'))}")
-            if pd.notna(selected_entity.get("score")):
-                st.caption(selected_entity.get("score_breakdown", ""))
-            st.caption(selected_entity.get("best_proximity_breakdown", ""))
+    st.markdown(
+        '<div class="acr-detail-grid">'
+        + detail_card("Faixa principal", str(selected_entity.get("best_band", "")))
+        + detail_card("Estado recente", str(selected_entity.get("entity_status", "")))
+        + detail_card("Concurso principal", str(selected_entity.get("best_contest_name", "")))
+        + detail_card("Distancia do corte", format_number(selected_entity.get("best_delta_current")))
+        + detail_card("Perfil temporal", str(selected_entity.get("recency_profile", "")))
+        + detail_card("Ultimo ano nomeado", format_number(selected_entity.get("latest_named_year")))
+        + detail_card("Concursos nos ultimos 2 anos", format_number(selected_entity.get("recent_2y_contest_count")))
+        + detail_card("Nomeacoes nos ultimos 2 anos", format_number(selected_entity.get("recent_2y_named_count")))
+        + "</div>",
+        unsafe_allow_html=True,
+    )
 
-    with tab2:
-        columns = [
+    summary_left, summary_right = st.columns([1.15, 1], gap="large")
+    with summary_left:
+        st.markdown("### Visao consolidada")
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    ["Familias", selected_entity.get("families", "")],
+                    ["Aliases", selected_entity.get("alias_names", "")],
+                    ["Sinais fortes", format_number(selected_entity.get("strong_signal_count"))],
+                    ["Sinais muito fortes", format_number(selected_entity.get("very_strong_signal_count"))],
+                    ["Melhor rank % recente", f"{selected_entity.get('recent_2y_best_rank_percentile', 1):.2f}"],
+                    ["Anos desde melhor resultado", format_number(selected_entity.get("years_since_best_result"))],
+                ],
+                columns=["Indicador", "Valor"],
+            ),
+            use_container_width=True,
+            hide_index=True,
+        )
+    with summary_right:
+        top_contests = (
+            opp_rows.sort_values(["proximity_score", "delta_to_last_named"], ascending=[False, True], na_position="last")
+            .head(8)
+            .copy()
+        )
+        if not top_contests.empty:
+            fig = px.bar(
+                top_contests.sort_values("proximity_score", ascending=True),
+                x="proximity_score",
+                y="contest_name",
+                color="near_pass_band",
+                orientation="h",
+                text="delta_to_last_named",
+                color_discrete_map=BAND_COLOR_MAP,
+            )
+            fig.update_layout(
+                height=290,
+                margin=dict(l=8, r=8, t=12, b=8),
+                xaxis_title="Score de proximidade",
+                yaxis_title="",
+                legend_title="Faixa",
+            )
+            fig.update_traces(texttemplate="Δ %{text}", textposition="outside", cliponaxis=False)
+            st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown("### Concursos do aluno")
+    table_columns = [
+        "contest_name",
+        "contest_family",
+        "contest_year",
+        "near_pass_band",
+        "ranking_text",
+        "delta_to_last_named",
+        "rank_percentile",
+        "proximity_score",
+        "student_named_elsewhere",
+        "student_inside_elsewhere",
+    ]
+    if ui_mode == "Simples":
+        table_columns = [
             "contest_name",
             "contest_family",
             "contest_year",
             "near_pass_band",
-            "proximity_score",
             "ranking_text",
             "delta_to_last_named",
-            "rank_percentile",
-            "student_named_elsewhere",
-            "student_inside_elsewhere",
+            "proximity_score",
         ]
-        if ui_mode == "Simples":
-            columns = [
-                "contest_name",
-                "contest_family",
-                "contest_year",
-                "near_pass_band",
-                "ranking_text",
-                "delta_to_last_named",
-            ]
 
-        st.dataframe(
-            opp_rows[columns],
-            use_container_width=True,
-            hide_index=True,
-            column_config={
-                "proximity_score": st.column_config.NumberColumn("Score", format="%.2f"),
-                "rank_percentile": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
-            },
-        )
+    pretty_rows = opp_rows.sort_values(
+        ["proximity_score", "delta_to_last_named", "contest_year"],
+        ascending=[False, True, False],
+        na_position="last",
+    )
+    st.dataframe(
+        pretty_rows[table_columns],
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "contest_name": st.column_config.TextColumn("Concurso", width="large"),
+            "contest_family": st.column_config.TextColumn("Familia", width="small"),
+            "contest_year": st.column_config.NumberColumn("Ano", format="%d"),
+            "near_pass_band": st.column_config.TextColumn("Faixa", width="small"),
+            "ranking_text": st.column_config.TextColumn("Colocacao", width="medium"),
+            "delta_to_last_named": st.column_config.NumberColumn("Dist. corte"),
+            "rank_percentile": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
+            "proximity_score": st.column_config.NumberColumn("Score", format="%.2f"),
+            "student_named_elsewhere": st.column_config.NumberColumn("Nomeado fora"),
+            "student_inside_elsewhere": st.column_config.NumberColumn("Dentro fora"),
+        },
+    )
 
-    with tab3:
+    with st.expander("Ver leitura tecnica"):
+        if pd.notna(selected_entity.get("score")):
+            st.caption(selected_entity.get("score_breakdown", ""))
+        st.caption(selected_entity.get("best_proximity_breakdown", ""))
         st.dataframe(
             opp_rows[
                 [
@@ -719,6 +903,85 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
             use_container_width=True,
             hide_index=True,
         )
+
+
+def contest_detail_tab(prepared: dict[str, pd.DataFrame]) -> None:
+    st.subheader("Concurso")
+    contests = prepared["contest_pages"].copy()
+    candidates = prepared["candidates"].copy()
+    if contests.empty:
+        st.info("Nenhum concurso disponivel neste snapshot.")
+        return
+
+    selected_contest_value = st.session_state.get("selected_contest_value")
+    default_index = 0
+    if selected_contest_value is not None:
+        matches = contests.index[contests["contest_value"].astype(str).eq(str(selected_contest_value))].tolist()
+        if matches:
+            default_index = matches[0]
+
+    option_labels = contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
+    selected_label = st.selectbox("Selecione um concurso", option_labels, index=default_index)
+    selected_row = contests.loc[
+        contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).eq(selected_label)
+    ].iloc[0]
+    contest_value = str(selected_row["contest_value"])
+    st.session_state["selected_contest_value"] = contest_value
+    st.session_state["selected_contest_name"] = str(selected_row["contest_name"])
+
+    contest_candidates = candidates[candidates["contest_value"].astype(str).eq(contest_value)].copy()
+    contest_candidates = contest_candidates.sort_values("ranking_position", na_position="last")
+
+    metrics = st.columns(4)
+    metrics[0].metric("Ano", format_number(selected_row.get("contest_year")))
+    metrics[1].metric("Candidatos", format_number(selected_row.get("candidates_count")))
+    metrics[2].metric("Nomeados", format_number(selected_row.get("named_count")))
+    metrics[3].metric("Dentro das vagas", format_number(selected_row.get("inside_vacancies_count")))
+
+    left, right = st.columns([1.3, 1], gap="large")
+    with left:
+        st.dataframe(
+            contest_candidates[
+                [
+                    "ranking_position",
+                    "name",
+                    "ranking_text",
+                    "named",
+                    "inside_vacancies",
+                    "other_results_count",
+                    "final_score",
+                ]
+            ],
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "ranking_position": st.column_config.NumberColumn("Posicao"),
+                "name": st.column_config.TextColumn("Aluno", width="medium"),
+                "ranking_text": st.column_config.TextColumn("Colocacao", width="medium"),
+                "named": st.column_config.CheckboxColumn("Nomeado"),
+                "inside_vacancies": st.column_config.CheckboxColumn("Dentro"),
+                "other_results_count": st.column_config.NumberColumn("Fez tb"),
+                "final_score": st.column_config.NumberColumn("Nota", format="%.2f"),
+            },
+        )
+    with right:
+        top_slice = contest_candidates.head(20).copy()
+        if not top_slice.empty:
+            fig = px.bar(
+                top_slice.sort_values("ranking_position", ascending=False),
+                x="ranking_position",
+                y="name",
+                color="named",
+                orientation="h",
+            )
+            fig.update_layout(
+                height=520,
+                margin=dict(l=8, r=8, t=12, b=8),
+                xaxis_title="Posicao",
+                yaxis_title="",
+                legend_title="Nomeado",
+            )
+            st.plotly_chart(fig, use_container_width=True)
 
 
 def timeline_tab(history: dict[str, pd.DataFrame], entity_table: pd.DataFrame) -> None:
@@ -993,32 +1256,36 @@ def main() -> None:
     if selected_snapshot not in snapshot_ids:
         selected_snapshot = snapshot_ids[0]
     prepared = load_prepared_snapshot(selected_snapshot)
-    history = load_history()
-    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary = top_controls(
+    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary, selected_radar_columns = top_controls(
         snapshot_ids,
         selected_snapshot,
         prepared,
     )
+    st.session_state["ui_mode_current"] = ui_mode
     if selected_snapshot_new != selected_snapshot:
         st.session_state["selected_snapshot"] = selected_snapshot_new
         st.rerun()
     entity_table, scored_opportunities = compute_views(prepared, filtered_opportunities, filtered_students, proximity_preset)
 
-    tabs = st.tabs(["Radar", "Aluno", "Evolucao", "Operacao", "Ajustes", "Qualidade", "Proximo Nivel"])
-    with tabs[0]:
-        main_entity_tab(prepared, entity_table, ui_mode, filter_summary)
-    with tabs[1]:
+    st.markdown('<div class="acr-nav">', unsafe_allow_html=True)
+    current_view = st.segmented_control(
+        "Area",
+        ["Radar", "Aluno", "Concurso", "Ajustes", "Qualidade"],
+        default=st.session_state.get("current_view", "Radar"),
+        key="current_view",
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    if current_view == "Radar":
+        main_entity_tab(prepared, entity_table, ui_mode, filter_summary, selected_radar_columns)
+    elif current_view == "Aluno":
         entity_detail_tab(entity_table, scored_opportunities, ui_mode)
-    with tabs[2]:
-        timeline_tab(history, entity_table)
-    with tabs[3]:
-        shortlist_tab(entity_table)
-    with tabs[4]:
+    elif current_view == "Concurso":
+        contest_detail_tab(prepared)
+    elif current_view == "Ajustes":
         adjustments_tab(prepared)
-    with tabs[5]:
+    else:
         quality_tab(prepared)
-    with tabs[6]:
-        roadmap_tab()
 
 
 if __name__ == "__main__":
