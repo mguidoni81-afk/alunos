@@ -16,6 +16,10 @@ from dashboard.adjustments_store import (
     upsert_manual_year,
     upsert_nomination_override,
 )
+from dashboard.calibration import (
+    blend_entity_with_student_backtest,
+    calibrate_student_score_weights,
+)
 from dashboard.data_loader import discover_snapshots, load_all_snapshots_history, load_snapshot_frames
 from dashboard.scoring import (
     DEFAULT_PROXIMITY_WEIGHTS,
@@ -41,24 +45,7 @@ MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
 NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
 SEED_MANUAL_YEAR_PATH = ROOT / "dashboard" / "manual_contest_years_seed.csv"
 APP_PASSWORD = "flamengo"
-APP_BUILD = "build 2026-04-20 / radar-links-manual-years"
-
-STUDENT_SCORE_PRESETS = {
-    "Equilibrado": DEFAULT_WEIGHTS,
-    "Comercial": {
-        **DEFAULT_WEIGHTS,
-        "contest_count": 1.4,
-        "named_count": 0.6,
-        "inside_vacancies_count": 1.0,
-        "best_rank_percentile": 1.7,
-        "top_10_count": 1.2,
-        "top_50_count": 0.8,
-        "other_results_total": 1.0,
-        "contest_family_count": 0.7,
-        "nomination_link_count": 0.6,
-        "named_history_penalty": 0.8,
-    },
-}
+APP_BUILD = "build 2026-04-20 / calibrated-score-radar-polish"
 
 PROXIMITY_PRESETS = {
     "Quem esta mais perto": DEFAULT_PROXIMITY_WEIGHTS,
@@ -95,7 +82,9 @@ RADAR_COLUMN_OPTIONS = {
     "Colocacao": "best_ranking_text",
     "Dist. corte": "best_delta_current",
     "Rank %": "best_rank_percentile_current",
-    "Score": "entity_proximity_score",
+    "Score calibrado": "calibrated_radar_score",
+    "Radar atual": "entity_proximity_score",
+    "Historico calibrado": "score",
     "Concursos": "contest_count",
     "Sinais fortes": "strong_signal_count",
     "Sinais muito fortes": "very_strong_signal_count",
@@ -184,9 +173,10 @@ def inject_styles() -> None:
         .acr-radar-wrap {
             overflow-x: auto;
             border: 1px solid #e2eaf2;
-            border-radius: 16px;
-            background: #fff;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
             margin-top: 0.4rem;
+            box-shadow: 0 10px 26px rgba(15, 23, 34, 0.04);
         }
         table.acr-radar {
             width: 100%;
@@ -198,11 +188,11 @@ def inject_styles() -> None:
             border-bottom: 1px solid #edf1f5;
             white-space: nowrap;
             vertical-align: middle;
-            font-size: 0.84rem;
+            font-size: 0.83rem;
         }
         .acr-radar th {
-            background: #f8fafc;
-            color: #667b90;
+            background: #f7fafc;
+            color: #698095;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             font-size: 0.72rem;
@@ -212,7 +202,28 @@ def inject_styles() -> None:
             z-index: 1;
         }
         .acr-radar tr:hover td {
-            background: #fafcff;
+            background: #f9fbfe;
+        }
+        .acr-radar tr:nth-child(even) td {
+            background: rgba(247, 250, 252, 0.55);
+        }
+        .acr-radar-row-acima-do-corte td {
+            border-left: 3px solid #c94f2d;
+        }
+        .acr-radar-row-muito-perto td {
+            border-left: 3px solid #e07a24;
+        }
+        .acr-rank-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            padding: 0 0.45rem;
+            border-radius: 999px;
+            background: #eef3f8;
+            color: #25445f;
+            font-weight: 700;
         }
         .acr-link {
             color: #19324b !important;
@@ -379,6 +390,7 @@ def inject_styles() -> None:
             border: 1px solid #e4ebf3;
             background: #fff;
             margin-bottom: 0.45rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 34, 0.03);
         }
         .acr-list-card-hot {
             border-color: #f0b19a;
@@ -486,7 +498,13 @@ def get_reference_year(prepared: dict[str, pd.DataFrame]) -> int:
     current_year = datetime.now().year
     if years.empty:
         return current_year
-    return max(int(years.max()), current_year)
+    return int(years.max())
+
+
+@st.cache_data(show_spinner=True)
+def load_score_calibration(snapshot_id: str, candidates: pd.DataFrame) -> dict[str, object]:
+    del snapshot_id
+    return calibrate_student_score_weights(candidates)
 
 
 def apply_time_horizon(
@@ -615,7 +633,7 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
                 <div class="acr-list-title">{row.get("display_name", "")}</div>
                 <div class="acr-list-subtitle">{row.get("best_contest_name", "")}</div>
                 <div>{badge_html}</div>
-                <div class="acr-list-subtitle">Distancia do corte: {delta} | Score: {row.get("entity_proximity_score", 0):.2f}</div>
+                <div class="acr-list-subtitle">Distancia do corte: {delta} | Score calibrado: {row.get("calibrated_radar_score", row.get("entity_proximity_score", 0)):.2f}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -770,15 +788,13 @@ def compute_views(
     filtered_opportunities: pd.DataFrame,
     filtered_students: pd.DataFrame,
     proximity_preset: str,
+    score_calibration: dict[str, object],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     scored_opportunities = compute_opportunity_scores(filtered_opportunities, PROXIMITY_PRESETS[proximity_preset])
     entity_table = build_entity_proximity_table(scored_opportunities)
-    scored_students = compute_student_scores(filtered_students, STUDENT_SCORE_PRESETS["Equilibrado"])
-    entity_table = entity_table.merge(
-        scored_students[["identity_key", "score", "score_breakdown"]],
-        on="identity_key",
-        how="left",
-    )
+    calibrated_weights = score_calibration.get("weights", DEFAULT_WEIGHTS) if score_calibration else DEFAULT_WEIGHTS
+    scored_students = compute_student_scores(filtered_students, calibrated_weights)
+    entity_table = blend_entity_with_student_backtest(entity_table, scored_students)
     return entity_table, scored_opportunities
 
 
@@ -835,6 +851,158 @@ def render_primary_metrics(prepared: dict[str, pd.DataFrame], entity_table: pd.D
             metric_card_columns(prepared, entity_table)
 
 
+def render_calibration_panel(calibration: dict[str, object], ui_mode: str) -> None:
+    st.markdown("### Como o score aprende")
+    st.markdown(
+        """
+        <div class="acr-note">
+            O modelo olha um ano do passado, monta o ranking teorico dos alunos naquele momento e mede
+            quem realmente virou nomeado nos anos seguintes. Esse ciclo repete ano a ano para calibrar o peso
+            dos sinais que mais antecipam nomeacao futura.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    yearly = calibration.get("yearly", pd.DataFrame())
+    metric_lift = calibration.get("metric_lift", pd.DataFrame())
+    if yearly.empty:
+        st.info("Ainda nao ha anos suficientes para calibrar o score historicamente.")
+        return
+
+    usable = yearly[yearly["usable_for_calibration"].fillna(False)].copy()
+    source = usable if not usable.empty else yearly.copy()
+    avg_base = float(source.get("base_lift_at_50", pd.Series(dtype=float)).fillna(0).mean()) if "base_lift_at_50" in source.columns else 0.0
+    avg_cal = float(source.get("calibrated_lift_at_50", pd.Series(dtype=float)).fillna(0).mean()) if "calibrated_lift_at_50" in source.columns else 0.0
+    avg_delta = float(source.get("delta_precision_at_50", pd.Series(dtype=float)).fillna(0).mean()) if "delta_precision_at_50" in source.columns else 0.0
+    top_driver = (
+        metric_lift[metric_lift["raw_signal"].fillna(0).gt(0)].head(1)["weight_key"].iloc[0]
+        if not metric_lift.empty and metric_lift["raw_signal"].fillna(0).gt(0).any()
+        else "Sem driver dominante"
+    )
+
+    card_cols = st.columns(3)
+    card_cols[0].metric("Anos usados", format_number(len(usable)), help="Anos com amostra suficiente de nomeacoes futuras para treinar.")
+    card_cols[1].metric("Lift medio top 50", f"{avg_cal:.1f}x", help="Quanto o top 50 calibrado supera a taxa base de nomeacao futura.")
+    card_cols[2].metric("Ganho medio", f"{avg_delta:.1%}", help="Melhora media de precisao do top 50 em relacao ao score base.")
+
+    if top_driver != "Sem driver dominante":
+        st.caption(f"Driver historico mais forte: `{top_driver}`")
+
+    if ui_mode == "Avancado":
+        with st.expander("Ver backtest por ano"):
+            year_view = yearly.copy()
+            visible_columns = [
+                "anchor_year",
+                "future_cutoff_year",
+                "future_named_count",
+                "base_rate",
+                "base_precision_at_50",
+                "calibrated_precision_at_50",
+                "delta_precision_at_50",
+                "usable_for_calibration",
+            ]
+            visible_columns = [column for column in visible_columns if column in year_view.columns]
+            st.dataframe(
+                year_view[visible_columns].sort_values("anchor_year"),
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "anchor_year": st.column_config.NumberColumn("Ano observado", format="%d"),
+                    "future_cutoff_year": st.column_config.NumberColumn("Olha ate", format="%d"),
+                    "future_named_count": st.column_config.NumberColumn("Nomeados futuros"),
+                    "base_rate": st.column_config.ProgressColumn("Taxa base", min_value=0.0, max_value=1.0),
+                    "base_precision_at_50": st.column_config.ProgressColumn("Base top 50", min_value=0.0, max_value=1.0),
+                    "calibrated_precision_at_50": st.column_config.ProgressColumn("Calibrado top 50", min_value=0.0, max_value=1.0),
+                    "delta_precision_at_50": st.column_config.NumberColumn("Ganho", format="%.1%%"),
+                    "usable_for_calibration": st.column_config.CheckboxColumn("Usado"),
+                },
+            )
+            if not metric_lift.empty:
+                lift_cols = [column for column in ["weight_key", "positive_mean", "negative_mean", "raw_signal"] if column in metric_lift.columns]
+                st.dataframe(
+                    metric_lift[lift_cols].head(8),
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config={
+                        "weight_key": st.column_config.TextColumn("Sinal"),
+                        "positive_mean": st.column_config.NumberColumn("Media nomeados", format="%.3f"),
+                        "negative_mean": st.column_config.NumberColumn("Media nao nomeados", format="%.3f"),
+                        "raw_signal": st.column_config.NumberColumn("Separacao", format="%.3f"),
+                    },
+                )
+
+
+def render_band_context(entity_table: pd.DataFrame) -> None:
+    st.markdown("### Temperatura do recorte")
+    if entity_table.empty:
+        st.info("Sem entidades para resumir no recorte atual.")
+        return
+
+    order = ["Acima do corte", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"]
+    counts = (
+        entity_table["best_band"]
+        .fillna("Sem faixa")
+        .value_counts()
+        .rename_axis("Faixa")
+        .reset_index(name="Alunos")
+    )
+    counts["ordem"] = counts["Faixa"].map({label: idx for idx, label in enumerate(order)}).fillna(len(order))
+    counts = counts.sort_values(["ordem", "Alunos"], ascending=[True, False])
+    fig = px.bar(
+        counts,
+        x="Alunos",
+        y="Faixa",
+        orientation="h",
+        color="Faixa",
+        color_discrete_map=BAND_COLOR_MAP,
+        text="Alunos",
+    )
+    fig.update_layout(
+        height=290,
+        margin=dict(l=8, r=8, t=10, b=8),
+        showlegend=False,
+        xaxis_title="Alunos",
+        yaxis_title="",
+    )
+    fig.update_traces(textposition="outside", cliponaxis=False)
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_top_contests_panel(entity_table: pd.DataFrame, scored_opportunities: pd.DataFrame) -> None:
+    st.markdown("### Concursos que concentram os sinais")
+    top_contests = (
+        scored_opportunities[scored_opportunities["identity_key"].isin(entity_table.head(25)["identity_key"])]
+        .groupby(["contest_value", "contest_name"], dropna=False)
+        .agg(
+            alunos=("identity_key", "nunique"),
+            media_score=("proximity_score", "mean"),
+            quentes=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
+        )
+        .reset_index()
+        .sort_values(["quentes", "alunos", "media_score"], ascending=[False, False, False])
+        .head(10)
+    )
+    if top_contests.empty:
+        st.info("Sem concursos com sinal forte no recorte atual.")
+        return
+    top_contests["abrir"] = top_contests.apply(
+        lambda row: f"?view=Concurso&contest={quote_plus(str(row['contest_value']))}",
+        axis=1,
+    )
+    html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr><th>Concurso</th><th>Quentes</th><th>Alunos</th><th>Score medio</th></tr></thead><tbody>']
+    for _, row in top_contests.iterrows():
+        html.append(
+            "<tr>"
+            f'<td><a class="acr-link" href="{row["abrir"]}">{escape(str(row["contest_name"]))}</a></td>'
+            f"<td>{int(row['quentes'])}</td>"
+            f"<td>{int(row['alunos'])}</td>"
+            f"<td>{float(row['media_score']):.2f}</td>"
+            "</tr>"
+        )
+    html.append("</tbody></table></div>")
+    st.markdown("".join(html), unsafe_allow_html=True)
+
+
 def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns: list[str]) -> None:
     if entity_table.empty:
         st.info("Nenhum aluno atende aos filtros atuais.")
@@ -846,9 +1014,11 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
         "entity_status",
         "best_contest_name",
         "best_delta_current",
-        "entity_proximity_score",
+        "calibrated_radar_score",
     ]
     default_advanced = [
+        "entity_proximity_score",
+        "score",
         "contest_count",
         "best_rank_percentile_current",
         "best_contest_year",
@@ -864,8 +1034,9 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
     html.append("</tr></thead><tbody>")
 
     for idx, (_, row) in enumerate(display_rows.iterrows(), start=1):
-        html.append("<tr>")
-        html.append(f"<td>{idx}</td>")
+        row_band = str(row.get("best_band", ""))
+        html.append(f'<tr class="acr-radar-row-{escape(row_band.lower().replace(" ", "-"))}">')
+        html.append(f'<td><span class="acr-rank-pill">{idx}</span></td>')
         for column in columns:
             value = row.get(column, "")
             if column == "display_name":
@@ -881,7 +1052,7 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
                     f'<span class="acr-mini-badge" style="background:{band_bg_color(str(value))};color:#19324b;">'
                     f"{escape(str(value))}</span>"
                 )
-            elif column == "entity_proximity_score":
+            elif column in {"calibrated_radar_score", "entity_proximity_score", "score"}:
                 cell = f"{float(value):.2f}" if pd.notna(value) else "N/A"
             elif column in {"best_rank_percentile_current"}:
                 cell = f"{float(value) * 100:.1f}%" if pd.notna(value) else "N/A"
@@ -947,13 +1118,13 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
 
     if sort_mode == "Mais perto do corte":
         working_entities = working_entities.sort_values(
-            ["best_delta_current", "entity_proximity_score"],
+            ["best_delta_current", "calibrated_radar_score", "entity_proximity_score"],
             ascending=[True, False],
             na_position="last",
         )
     elif sort_mode == "Mais quentes":
         working_entities = working_entities.sort_values(
-            ["best_band", "entity_proximity_score"],
+            ["best_band", "calibrated_radar_score", "entity_proximity_score"],
             ascending=[True, False],
             na_position="last",
         )
@@ -1050,7 +1221,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
                 f'<td class="sticky-col-2"><a class="acr-student-link" href="{student_link}">{escape(student_name)}</a></td>',
                 f'<td style="background:{band_bg_color(str(entity.get("best_band", "")))};color:#182635;font-weight:700;">{escape(str(entity.get("best_band", "")))}</td>',
                 f'<td>{escape(str(entity.get("entity_status", "")))}</td>',
-                f'<td>{float(entity.get("entity_proximity_score", 0)):.1f}</td>',
+                f'<td>{float(entity.get("calibrated_radar_score", entity.get("entity_proximity_score", 0))):.2f}</td>',
                 f'<td>{escape(format_number(entity.get("best_delta_current")))}</td>',
                 f'<td>{escape(format_number(entity.get("recent_2y_contest_count")))}</td>',
                 f'<td>{escape(format_number(entity.get("recent_2y_named_count")))}</td>',
@@ -1099,6 +1270,7 @@ def main_entity_tab(
     prepared: dict[str, pd.DataFrame],
     entity_table: pd.DataFrame,
     scored_opportunities: pd.DataFrame,
+    score_calibration: dict[str, object],
     ui_mode: str,
     filter_summary: list[str],
     selected_radar_columns: list[str],
@@ -1106,60 +1278,32 @@ def main_entity_tab(
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
     render_primary_metrics(prepared, entity_table)
+    upper_left, upper_right = st.columns([1.15, 1], gap="large")
+    with upper_left:
+        st.markdown("### Destaques imediatos")
+        render_top_entity_cards(entity_table, limit=5 if ui_mode == "Avancado" else 4)
+    with upper_right:
+        render_calibration_panel(score_calibration, ui_mode)
+
     render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
 
     st.markdown("### Radar detalhado")
+    st.markdown(
+        """
+        <div class="acr-note">
+            O ranking abaixo ja mistura a proximidade atual com o score calibrado pelo historico. Assim, um bom
+            resultado antigo pesa menos quando o aluno nao sustenta competitividade recente ou ja aparece nomeado depois.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     radar_table(entity_table, ui_mode, selected_radar_columns)
 
-    lower_left, lower_right = st.columns([1.2, 1], gap="large")
+    lower_left, lower_right = st.columns([1, 1], gap="large")
     with lower_left:
-        st.markdown("### Concursos que mais aparecem no top")
-        top_contests = (
-            scored_opportunities[scored_opportunities["identity_key"].isin(entity_table.head(20)["identity_key"])]
-            .groupby(["contest_value", "contest_name"], dropna=False)
-            .agg(
-                alunos=("identity_key", "nunique"),
-                media_score=("proximity_score", "mean"),
-                quentes=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
-            )
-            .reset_index()
-            .sort_values(["alunos", "quentes", "media_score"], ascending=[False, False, False])
-            .head(12)
-        )
-        if not top_contests.empty:
-            top_contests["abrir"] = top_contests.apply(
-                lambda row: f"?view=Concurso&contest={quote_plus(str(row['contest_value']))}", axis=1
-            )
-            html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr><th>Concurso</th><th>Alunos</th><th>Quentes</th><th>Score medio</th></tr></thead><tbody>']
-            for _, row in top_contests.iterrows():
-                html.append(
-                    "<tr>"
-                    f'<td><a class="acr-link" href="{row["abrir"]}">{escape(str(row["contest_name"]))}</a></td>'
-                    f"<td>{int(row['alunos'])}</td>"
-                    f"<td>{int(row['quentes'])}</td>"
-                    f"<td>{float(row['media_score']):.2f}</td>"
-                    "</tr>"
-                )
-            html.append("</tbody></table></div>")
-            st.markdown("".join(html), unsafe_allow_html=True)
-
+        render_band_context(entity_table)
     with lower_right:
-        st.markdown("### Leitura do recorte")
-        hottest = entity_table[entity_table["best_band"].isin(["Acima do corte", "Muito perto"])].head(8)
-        if hottest.empty:
-            st.info("Nenhum aluno esta em Muito perto ou Acima do corte neste recorte.")
-        else:
-            hot_html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr><th>Aluno</th><th>Faixa</th><th>Concurso</th></tr></thead><tbody>']
-            for _, row in hottest.iterrows():
-                hot_html.append(
-                    "<tr>"
-                    f'<td><a class="acr-link" href="?view=Aluno&student={quote_plus(str(row["display_name"]))}">{escape(str(row["display_name"]))}</a></td>'
-                    f'<td><span class="acr-mini-badge" style="background:{band_bg_color(str(row["best_band"]))};color:#19324b;">{escape(str(row["best_band"]))}</span></td>'
-                    f'<td><a class="acr-link" href="?view=Concurso&contest={quote_plus(str(row["best_contest_value"]))}">{escape(str(row["best_contest_name"]))}</a></td>'
-                    "</tr>"
-                )
-            hot_html.append("</tbody></table></div>")
-            st.markdown("".join(hot_html), unsafe_allow_html=True)
+        render_top_contests_panel(entity_table, scored_opportunities)
 
     if ui_mode == "Avancado":
         with st.expander("Ver grafico avancado de proximidade ao corte"):
@@ -1702,7 +1846,14 @@ def main() -> None:
     if selected_snapshot_new != selected_snapshot:
         st.session_state["selected_snapshot"] = selected_snapshot_new
         st.rerun()
-    entity_table, scored_opportunities = compute_views(prepared, filtered_opportunities, filtered_students, proximity_preset)
+    score_calibration = load_score_calibration(selected_snapshot_new, prepared["candidates"])
+    entity_table, scored_opportunities = compute_views(
+        prepared,
+        filtered_opportunities,
+        filtered_students,
+        proximity_preset,
+        score_calibration,
+    )
 
     st.markdown('<div class="acr-nav">', unsafe_allow_html=True)
     current_view = st.segmented_control(
@@ -1722,7 +1873,15 @@ def main() -> None:
     st.markdown("</div>", unsafe_allow_html=True)
 
     if current_view == "Radar":
-        main_entity_tab(prepared, entity_table, scored_opportunities, ui_mode, filter_summary, selected_radar_columns)
+        main_entity_tab(
+            prepared,
+            entity_table,
+            scored_opportunities,
+            score_calibration,
+            ui_mode,
+            filter_summary,
+            selected_radar_columns,
+        )
     elif current_view == "Aluno":
         entity_detail_tab(entity_table, scored_opportunities, ui_mode)
     elif current_view == "Concurso":

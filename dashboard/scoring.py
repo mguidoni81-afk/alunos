@@ -15,6 +15,10 @@ DEFAULT_WEIGHTS = {
     "other_results_total": 0.6,
     "contest_family_count": 0.5,
     "nomination_link_count": 0.3,
+    "recent_2y_contest_count": 0.8,
+    "recent_2y_best_rank_percentile": 1.2,
+    "recent_2y_top_50_count": 0.9,
+    "stale_peak_penalty": 0.8,
     "named_history_penalty": 0.0,
 }
 
@@ -49,18 +53,29 @@ def _series_or_default(frame: pd.DataFrame, column: str, default: float | int | 
     return pd.Series([default] * len(frame), index=frame.index)
 
 
-def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) -> pd.DataFrame:
+def build_student_metric_frame(students: pd.DataFrame) -> pd.DataFrame:
     scored = students.copy()
-    scored["metric_contest_count"] = _log_norm(scored["contest_count"])
-    scored["metric_named_count"] = _log_norm(scored["named_count"])
-    scored["metric_inside_count"] = _log_norm(scored["inside_vacancies_count"])
-    scored["metric_top_10_count"] = _log_norm(scored["top_10_count"])
-    scored["metric_top_50_count"] = _log_norm(scored["top_50_count"])
-    scored["metric_other_results_total"] = _log_norm(scored["other_results_total"])
-    scored["metric_contest_family_count"] = _log_norm(scored["contest_family_count"])
-    scored["metric_nomination_link_count"] = _log_norm(scored["nomination_link_count"])
-    scored["metric_best_rank_percentile"] = 1 - scored["best_rank_percentile"].clip(lower=0, upper=1).fillna(1)
-    scored["metric_named_history_penalty"] = _log_norm(scored["named_count"])
+    scored["metric_contest_count"] = _log_norm(_series_or_default(scored, "contest_count", 0))
+    scored["metric_named_count"] = _log_norm(_series_or_default(scored, "named_count", 0))
+    scored["metric_inside_count"] = _log_norm(_series_or_default(scored, "inside_vacancies_count", 0))
+    scored["metric_top_10_count"] = _log_norm(_series_or_default(scored, "top_10_count", 0))
+    scored["metric_top_50_count"] = _log_norm(_series_or_default(scored, "top_50_count", 0))
+    scored["metric_other_results_total"] = _log_norm(_series_or_default(scored, "other_results_total", 0))
+    scored["metric_contest_family_count"] = _log_norm(_series_or_default(scored, "contest_family_count", 0))
+    scored["metric_nomination_link_count"] = _log_norm(_series_or_default(scored, "nomination_link_count", 0))
+    scored["metric_recent_2y_contest_count"] = _log_norm(_series_or_default(scored, "recent_2y_contest_count", 0))
+    scored["metric_recent_2y_top_50_count"] = _log_norm(_series_or_default(scored, "recent_2y_top_50_count", 0))
+    scored["metric_best_rank_percentile"] = 1 - _series_or_default(scored, "best_rank_percentile", 1).clip(lower=0, upper=1).fillna(1)
+    scored["metric_recent_2y_best_rank_percentile"] = 1 - _series_or_default(
+        scored, "recent_2y_best_rank_percentile", 1
+    ).clip(lower=0, upper=1).fillna(1)
+    scored["metric_named_history_penalty"] = _log_norm(_series_or_default(scored, "named_count", 0))
+    scored["metric_stale_peak_penalty"] = _series_or_default(scored, "stale_peak_flag", False).astype(int)
+    return scored
+
+
+def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) -> pd.DataFrame:
+    scored = build_student_metric_frame(students)
 
     scored["score"] = (
         scored["metric_contest_count"] * weights["contest_count"]
@@ -72,6 +87,10 @@ def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) ->
         + scored["metric_other_results_total"] * weights["other_results_total"]
         + scored["metric_contest_family_count"] * weights["contest_family_count"]
         + scored["metric_nomination_link_count"] * weights["nomination_link_count"]
+        + scored["metric_recent_2y_contest_count"] * weights["recent_2y_contest_count"]
+        + scored["metric_recent_2y_best_rank_percentile"] * weights["recent_2y_best_rank_percentile"]
+        + scored["metric_recent_2y_top_50_count"] * weights["recent_2y_top_50_count"]
+        - scored["metric_stale_peak_penalty"] * weights["stale_peak_penalty"]
         - scored["metric_named_history_penalty"] * weights["named_history_penalty"]
     )
 
@@ -85,6 +104,10 @@ def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) ->
         + " | other=" + scored["metric_other_results_total"].round(2).astype(str)
         + " | families=" + scored["metric_contest_family_count"].round(2).astype(str)
         + " | nom_link=" + scored["metric_nomination_link_count"].round(2).astype(str)
+        + " | recent2y=" + scored["metric_recent_2y_contest_count"].round(2).astype(str)
+        + " | recent_pct=" + scored["metric_recent_2y_best_rank_percentile"].round(2).astype(str)
+        + " | recent_top50=" + scored["metric_recent_2y_top_50_count"].round(2).astype(str)
+        + " | stale_pen=" + scored["metric_stale_peak_penalty"].round(2).astype(str)
     )
     return scored.sort_values(["score", "contest_count", "best_rank"], ascending=[False, False, True]).reset_index(drop=True)
 

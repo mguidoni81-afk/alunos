@@ -86,7 +86,7 @@ def _reference_year(series: pd.Series) -> int:
     current_year = datetime.now().year
     if known.empty:
         return current_year
-    return max(int(known.max()), current_year)
+    return int(known.max())
 
 
 def _apply_text_cleanup(df: pd.DataFrame, columns: Iterable[str]) -> pd.DataFrame:
@@ -205,8 +205,12 @@ def prepare_snapshot_data(frames: dict[str, pd.DataFrame]) -> dict[str, pd.DataF
     }
 
 
-def build_student_table(candidates: pd.DataFrame) -> pd.DataFrame:
-    reference_year = _reference_year(candidates["contest_year"])
+def build_student_table(
+    candidates: pd.DataFrame,
+    reference_year_override: int | None = None,
+    lightweight: bool = False,
+) -> pd.DataFrame:
+    reference_year = reference_year_override if reference_year_override is not None else _reference_year(candidates["contest_year"])
     recent_2y_min = reference_year - 2 + 1
     recent_3y_min = reference_year - 3 + 1
     grouped = candidates.groupby("identity_key", dropna=False)
@@ -237,27 +241,6 @@ def build_student_table(candidates: pd.DataFrame) -> pd.DataFrame:
         quota_category_count=("quota_category", "nunique"),
     ).reset_index()
 
-    sample_contests = (
-        candidates.sort_values(["identity_key", "ranking_position"], na_position="last")
-        .groupby("identity_key")["contest_name"]
-        .apply(lambda series: " | ".join(series.dropna().astype(str).head(5)))
-        .reset_index(name="sample_contests")
-    )
-    sample_families = (
-        candidates.groupby("identity_key")["contest_family"]
-        .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
-        .reset_index(name="families")
-    )
-    quota_mix = (
-        candidates.groupby("identity_key")["quota_category"]
-        .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
-        .reset_index(name="quota_mix")
-    )
-    alias_names = (
-        candidates.groupby("identity_key")["name"]
-        .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
-        .reset_index(name="alias_names")
-    )
     latest_years = (
         candidates.groupby("identity_key")["contest_year"]
         .max()
@@ -303,16 +286,45 @@ def build_student_table(candidates: pd.DataFrame) -> pd.DataFrame:
     )
 
     students = (
-        summary.merge(sample_contests, on="identity_key", how="left")
-        .merge(sample_families, on="identity_key", how="left")
-        .merge(quota_mix, on="identity_key", how="left")
-        .merge(alias_names, on="identity_key", how="left")
-        .merge(latest_years, on="identity_key", how="left")
+        summary.merge(latest_years, on="identity_key", how="left")
         .merge(latest_named_years, on="identity_key", how="left")
         .merge(recent_2y_summary, on="identity_key", how="left")
         .merge(recent_3y_summary, on="identity_key", how="left")
         .merge(best_rows, on="identity_key", how="left")
     )
+    if lightweight:
+        students["sample_contests"] = ""
+        students["families"] = ""
+        students["quota_mix"] = ""
+        students["alias_names"] = students["display_name"]
+    else:
+        sample_contests = (
+            candidates.sort_values(["identity_key", "ranking_position"], na_position="last")
+            .groupby("identity_key")["contest_name"]
+            .apply(lambda series: " | ".join(series.dropna().astype(str).head(5)))
+            .reset_index(name="sample_contests")
+        )
+        sample_families = (
+            candidates.groupby("identity_key")["contest_family"]
+            .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
+            .reset_index(name="families")
+        )
+        quota_mix = (
+            candidates.groupby("identity_key")["quota_category"]
+            .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
+            .reset_index(name="quota_mix")
+        )
+        alias_names = (
+            candidates.groupby("identity_key")["name"]
+            .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
+            .reset_index(name="alias_names")
+        )
+        students = (
+            students.merge(sample_contests, on="identity_key", how="left")
+            .merge(sample_families, on="identity_key", how="left")
+            .merge(quota_mix, on="identity_key", how="left")
+            .merge(alias_names, on="identity_key", how="left")
+        )
 
     students["best_rank"] = students["best_rank"].fillna(999999)
     students["median_rank"] = students["median_rank"].fillna(999999)
