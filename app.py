@@ -676,7 +676,7 @@ def top_controls(
     snapshot_ids: list[str],
     selected_snapshot: str,
     prepared: dict[str, pd.DataFrame],
-) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str], list[str]]:
+) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str]]:
     opportunities = ensure_opportunity_columns(prepared["opportunities"])
     students = prepared["students"]
     available_years = sorted(
@@ -714,7 +714,7 @@ def top_controls(
         help="Limita o radar a colocacoes mais competitivas. Quanto menor, mais quente fica o filtro.",
     )
 
-    filter_row = st.columns([1.45, 1.0, 1.0, 1.25, 1.15], gap="small")
+    filter_row = st.columns([1.8, 1.1, 1.1, 1.15], gap="small")
     selected_years = filter_row[0].multiselect(
         "Anos dos concursos",
         available_years,
@@ -742,17 +742,11 @@ def top_controls(
         value=False,
         help="Mostra so alunos que ainda nao ficaram nas vagas nem foram nomeados, mas aparecem perto das vagas em varios concursos.",
     )
-    selected_radar_labels = filter_row[4].multiselect(
-        "Colunas do radar detalhado",
-        [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Distancia das vagas imediatas", "Score calibrado", "Concursos"}],
-        default=["Ano do concurso", "Colocacao", "Distancia da nomeacao", "Sinais fortes", "Perfil temporal", "Historico calibrado"],
-        help="Personaliza as colunas extras do ranking detalhado sem mexer na ordenacao principal.",
-    )
-    selected_radar_columns = [RADAR_COLUMN_OPTIONS[label] for label in selected_radar_labels]
     st.caption(
         "Base de dados escolhe a coleta. Anos dos concursos controla exatamente o recorte temporal. "
         "Rank % max corta colocacoes menos competitivas. Distancia das vagas imediatas olha apenas a folga em relacao "
-        "ao ultimo colocado dentro das vagas. Quantidade de concursos feitos funciona como minimo de historico do aluno."
+        "ao ultimo colocado dentro das vagas. Quantidade de concursos feitos funciona como minimo de historico do aluno. "
+        "O filtro So quase entrando mostra perfis que ainda nao romperam para vagas, mas acumulam proximidade."
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -808,7 +802,7 @@ def top_controls(
     if focus_without_breakthrough:
         filter_summary.append("So quase entrando")
 
-    return selected_snapshot, filtered_opportunities, filtered_students, PROXIMITY_PRESET_NAME, current_view, filter_summary, selected_radar_columns
+    return selected_snapshot, filtered_opportunities, filtered_students, PROXIMITY_PRESET_NAME, current_view, filter_summary
 
 
 def require_password() -> bool:
@@ -1056,12 +1050,12 @@ def render_top_contests_panel(entity_table: pd.DataFrame, scored_opportunities: 
     st.markdown("".join(html), unsafe_allow_html=True)
 
 
-def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns: list[str]) -> None:
+def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
     if entity_table.empty:
         st.info("Nenhum aluno atende aos filtros atuais.")
         return
 
-    toolbar = st.columns([1.3, 1.05, 1.05, 0.9], gap="small")
+    toolbar = st.columns([1.25, 1.0, 1.0, 0.8, 1.6], gap="small")
     search_text = toolbar[0].text_input(
         "Buscar aluno no radar",
         value="",
@@ -1092,6 +1086,14 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
         key="radar_row_limit",
         help="Controla quantas linhas aparecem no ranking detalhado.",
     )
+    selected_radar_labels = toolbar[4].multiselect(
+        "Colunas do radar detalhado",
+        [label for label in RADAR_COLUMN_OPTIONS.keys() if label not in {"Faixa", "Estado recente", "Concurso principal", "Distancia das vagas imediatas", "Score calibrado", "Concursos"}],
+        default=["Ano do concurso", "Colocacao", "Distancia da nomeacao", "Sinais fortes", "Perfil temporal", "Historico calibrado"],
+        key="radar_columns_picker",
+        help="Personaliza as colunas extras do radar detalhado. Esses controles afetam apenas a tabela abaixo.",
+    )
+    selected_radar_columns = [RADAR_COLUMN_OPTIONS[label] for label in selected_radar_labels]
 
     working = entity_table.copy()
     if search_text.strip():
@@ -1291,10 +1293,22 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
     default_contests = contest_stats.head(8)
     contest_options = contest_stats.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
     default_labels = default_contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
+    matrix_year_signature = "|".join(map(str, matrix_years)) if matrix_years else "all"
+    valid_options = set(contest_options)
+    previous_signature = st.session_state.get("matrix_contests_year_signature")
+    current_selected = st.session_state.get("matrix_contests", default_labels)
+    if not isinstance(current_selected, list):
+        current_selected = default_labels
+    current_selected = [label for label in current_selected if label in valid_options]
+    if not current_selected:
+        current_selected = default_labels
+    if previous_signature != matrix_year_signature:
+        st.session_state["matrix_contests_year_signature"] = matrix_year_signature
+        st.session_state["matrix_contests"] = current_selected
     selected_labels = st.multiselect(
         "Concursos em coluna",
         contest_options,
-        default=default_labels,
+        default=st.session_state.get("matrix_contests", default_labels),
         key="matrix_contests",
         help="Depois de escolher os anos, selecione quais concursos viram colunas na matrix.",
     )
@@ -1409,7 +1423,6 @@ def main_entity_tab(
     score_calibration: dict[str, object],
     ui_mode: str,
     filter_summary: list[str],
-    selected_radar_columns: list[str],
 ) -> None:
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
@@ -1431,13 +1444,14 @@ def main_entity_tab(
         """
         <div class="acr-note">
             Melhorias ativas no radar detalhado: busca por aluno, filtro por faixa, ordenacao customizavel,
-            limite de linhas e colunas extras personalizaveis. O ranking mistura a proximidade atual com o score
+            limite de linhas e colunas extras personalizaveis. Esses controles ficam juntos aqui embaixo para nao
+            competir com a matrix. O ranking mistura a proximidade atual com o score
             calibrado pelo historico, reduzindo o peso de picos antigos sem sustentacao recente.
         </div>
         """,
         unsafe_allow_html=True,
     )
-    radar_table(entity_table, ui_mode, selected_radar_columns)
+    radar_table(entity_table, ui_mode)
 
     lower_left, lower_right = st.columns([1, 1], gap="large")
     with lower_left:
@@ -2107,7 +2121,7 @@ def main() -> None:
     if selected_snapshot not in snapshot_ids:
         selected_snapshot = snapshot_ids[0]
     prepared = load_prepared_snapshot(selected_snapshot)
-    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, current_view, filter_summary, selected_radar_columns = top_controls(
+    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, current_view, filter_summary = top_controls(
         snapshot_ids,
         selected_snapshot,
         prepared,
@@ -2144,7 +2158,6 @@ def main() -> None:
             score_calibration,
             ui_mode,
             filter_summary,
-            selected_radar_columns,
         )
     elif current_view == "Aluno":
         entity_detail_tab(entity_table, scored_opportunities, ui_mode)
