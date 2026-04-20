@@ -690,7 +690,7 @@ def top_controls(
     nav_row = st.columns([1.3, 1.3, 0.9, 1.0], gap="small")
     current_view = nav_row[0].segmented_control(
         "Area",
-        ["Radar", "Aluno", "Concurso", "Ajustes", "Qualidade"],
+        ["Radar", "Aluno", "Concurso", "Ajustes", "Concursos", "Qualidade"],
         default=st.session_state.get("current_view", "Radar"),
         help="Escolha a area de trabalho principal do scout.",
     )
@@ -1956,6 +1956,109 @@ def adjustments_tab(prepared: dict[str, pd.DataFrame]) -> None:
         st.dataframe(nomination_overrides.sort_values("updated_at", ascending=False), use_container_width=True, hide_index=True)
 
 
+def contest_listing_tab(prepared: dict[str, pd.DataFrame], scored_opportunities: pd.DataFrame) -> None:
+    st.subheader("Listagem de concursos")
+    st.caption("Aqui voce enxerga o universo de concursos do recorte atual, com sinais de corte, vagas e calor no radar.")
+
+    contest_pages = prepared["contest_pages"].copy()
+    opportunity_scope = ensure_opportunity_columns(scored_opportunities)
+    grouped_scope = (
+        opportunity_scope.groupby(["contest_value", "contest_name"], dropna=False)
+        .agg(
+            alunos_no_recorte=("identity_key", "nunique"),
+            linhas_no_recorte=("contest_value", "count"),
+            quentes=("near_pass_band", lambda s: s.isin(["Nas vagas", "Muito perto"]).sum()),
+            nas_vagas=("near_pass_band", lambda s: s.eq("Nas vagas").sum()),
+            melhor_delta_vagas=("delta_to_immediate_vacancies", "min"),
+            nomeados_no_recorte=("named", "sum"),
+        )
+        .reset_index()
+    )
+    listing = contest_pages.merge(grouped_scope, on=["contest_value", "contest_name"], how="left")
+    for column in ["alunos_no_recorte", "linhas_no_recorte", "quentes", "nas_vagas", "nomeados_no_recorte"]:
+        listing[column] = listing[column].fillna(0).astype(int)
+
+    controls = st.columns([1.5, 0.9, 0.9], gap="small")
+    search = controls[0].text_input(
+        "Buscar concurso",
+        value="",
+        placeholder="Digite parte do nome",
+        help="Filtra a listagem pelo nome do concurso.",
+    )
+    only_with_signal = controls[1].toggle(
+        "So com sinal",
+        value=False,
+        help="Quando ligado, mostra apenas concursos que tem pelo menos um aluno quente no recorte atual.",
+    )
+    sort_mode = controls[2].selectbox(
+        "Ordenar por",
+        ["Mais quentes", "Mais recentes", "Maior recorte"],
+        index=0,
+        help="Define a leitura principal da listagem.",
+    )
+
+    working = listing.copy()
+    if search.strip():
+        query = search.strip().lower()
+        working = working[working["contest_name"].str.lower().str.contains(query, na=False)]
+    if only_with_signal:
+        working = working[working["quentes"].gt(0)]
+
+    if sort_mode == "Mais recentes":
+        working = working.sort_values(
+            ["contest_year", "quentes", "alunos_no_recorte", "contest_name"],
+            ascending=[False, False, False, True],
+            na_position="last",
+        )
+    elif sort_mode == "Maior recorte":
+        working = working.sort_values(
+            ["alunos_no_recorte", "quentes", "contest_year", "contest_name"],
+            ascending=[False, False, False, True],
+            na_position="last",
+        )
+    else:
+        working = working.sort_values(
+            ["quentes", "nas_vagas", "contest_year", "alunos_no_recorte", "contest_name"],
+            ascending=[False, False, False, False, True],
+            na_position="last",
+        )
+
+    if working.empty:
+        st.info("Nenhum concurso apareceu com os filtros atuais.")
+        return
+
+    html = ['<div class="acr-radar-wrap"><table class="acr-radar"><thead><tr>']
+    headers = [
+        "Concurso",
+        "Ano",
+        "Alunos no recorte",
+        "Quentes",
+        "Nas vagas",
+        "Melhor delta vagas",
+        "Nomeados base",
+        "Dentro vagas base",
+    ]
+    for header in headers:
+        html.append(f"<th>{escape(header)}</th>")
+    html.append("</tr></thead><tbody>")
+    for _, row in working.head(300).iterrows():
+        href = f"?view=Concurso&contest={quote_plus(str(row['contest_value']))}"
+        html.append(
+            "<tr>"
+            f'<td><a class="acr-link" href="{href}">{escape(str(row["contest_name"]))}</a></td>'
+            f"<td>{format_number(row.get('contest_year'))}</td>"
+            f"<td>{format_number(row.get('alunos_no_recorte'))}</td>"
+            f"<td>{format_number(row.get('quentes'))}</td>"
+            f"<td>{format_number(row.get('nas_vagas'))}</td>"
+            f"<td>{escape(format_vacancy_delta(row.get('melhor_delta_vagas')))}</td>"
+            f"<td>{format_number(row.get('named_count'))}</td>"
+            f"<td>{format_number(row.get('inside_vacancies_count'))}</td>"
+            "</tr>"
+        )
+    html.append("</tbody></table></div>")
+    st.markdown("".join(html), unsafe_allow_html=True)
+
+
 def roadmap_tab() -> None:
     st.subheader("Proximo nivel")
     improvements = [
@@ -2049,6 +2152,8 @@ def main() -> None:
         contest_detail_tab(prepared)
     elif current_view == "Ajustes":
         adjustments_tab(prepared)
+    elif current_view == "Concursos":
+        contest_listing_tab(prepared, scored_opportunities)
     else:
         quality_tab(prepared)
 
