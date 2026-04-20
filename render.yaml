@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: alunos-consultoria-ranking
+    runtime: docker
+    plan: starter
+    autoDeploy: true

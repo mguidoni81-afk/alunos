@@ -1,0 +1,1001 @@
+name,objective_score,discursive_score,title_score,final_score,ranking_text,ranking_position,named,inside_vacancies,delta_to_last_named,other_results_count,named_in_other_contests,inside_vacancies_in_other_contests,other_results_summary
+Alexandre Cunningham Gmyterco,122.0,14.0,3.0,139.0,1º(Ampla),1,True,False,-346,8,1,2,44º SEFAZ SC 21 | 100º TCE PR | 10º MP PR 24 | 2096º SEFAZ MG | 27º ALEP | 24º ALEP | 97º ISS Cuiaba | 125º ISS Porto Alegre 25
+Gabriel Melo Nunes,122.4,13.8,0.0,136.2,2º(Ampla),2,True,False,-345,10,0,0,5º SEAD PI | 18º SEFAZ PI 25 | 90º SEFAZ PI 25 | 625º SEFAZ SP 2025 | 81º TSE Unificado | 813º SEFAZ MG | 218º ISS Rio de Janeiro | 156º CVM | 67º ISS Cuiaba | 104º ISS Porto Alegre 25
+Gabriel Tostes Bianco,121.2,15.0,0.0,136.2,3º(Ampla),3,True,False,-344,2,2,2,6º ISS Rio de Janeiro | 1º ISS Macaé
+Gabriel Mendonça Santana,122.8,13.0,0.0,135.8,4º(Ampla),4,True,False,-343,2,0,1,17º SEFAZ SP 2025 | 25º ISS Cuiaba
+Vinícius Consolin Smarzaro,117.8,14.7,3.0,135.5,5º(Ampla),5,True,False,-342,0,0,0,
+Emílio César Weba Filho,118.8,13.3,3.0,135.1,6º(Ampla),6,True,False,-341,17,3,4,1º SEFAZ PI 25 | 1º SEFAZ PI 25 | 16º ISS Jaboatao dos Guararapes | 6º ISS Valinhos | 19º SEFAZ RJ 2025 | 67º SEFAZ AL 19 | 1º ISS Mossoro | 36º ISS Aracaju | 8º SEFAZ MG | 20º CGE SC | 79º Senado | 174º ISS Guarulhos | 4º ISS Porto Alegre | 21º ISS Campinas | 4º ISS Sao Bernardo do Campo | 27º ISS Osasco | 14º ISS Cuiaba
+Rafael Della Giustina Basilone Leite,119.8,14.8,0.0,134.6,7º(Ampla),7,True,False,-340,3,1,0,10º ISS Florianopolis | 258º CGE SC | 5º ISS Criciúma
+Gabriel Cirino Samy,119.6,14.5,0.0,134.1,8º(Ampla),8,True,False,-339,6,3,1,39º SEFAZ SC 21 | 52º ISS Aracaju | 80º ISS Itajai | 422º SEFAZ MG | 48º ALEP | 2º ISS Porto Alegre 25
+Bruna Mancuzo De Almeida,117.0,14.0,3.0,134.0,9º(Ampla),9,True,False,-338,2,0,0,618º SEFAZ SP 2025 | 5º ISS Porto Alegre 25
+Matheus Henrique Formighieri,121.4,12.0,0.0,133.4,10º(Ampla),10,True,False,-337,5,1,3,20º SEFAZ SP 2025 | 145º TRT 12 SC | 14º PRF | 336º RFB | 5º CAGE RS
+Alexandre Lopo De Macêdo,118.6,14.0,0.0,132.6,11º(Ampla),11,True,False,-336,4,0,1,38º SEFAZ AC | 886º RFB | 152º SEFAZ MT | 97º ISS Porto Alegre 25
+Raphael Camargo Paixao,118.4,14.0,0.0,132.4,12º(Ampla),12,True,False,-335,5,1,1,85º SEFAZ MA | 27º SEFAZ SP 2025 | 705º SEFAZ RS 18 | 814º RFB | 72º CAGE RS
+Marcelo Shiosawa Kimura,118.0,14.2,0.0,132.2,13º(Ampla),13,True,False,-334,1,0,1,78º SEFAZ SP 2025
+Rodolfo Minoru Abe,120.2,12.0,0.0,132.2,14º(Ampla),14,True,False,-333,5,3,2,612º SEFAZ AM 22 | 13º SEFAZ AM 22 | 19º SEFAZ AM 22 | 464º SEFAZ BA 22 | 173º SEFAZ MG
+Ludmila Carvalho Neves,113.6,13.6,5.0,132.2,15º(Ampla),15,True,False,-332,3,2,1,28º SEFAZ SC 21 | 1º CNU | 328º SEFAZ MG
+Marcelo Rodrigo De Farias,117.8,14.3,0.0,132.1,16º(Ampla),16,True,False,-331,5,0,0,740º SEFAZ SC 21 | 240º SEFAZ RS TEC 18 | 499º SEFAZ MG | 9º ISS Criciúma | 18º ISS Porto Alegre 25
+Jonadas Pires De Souza,116.6,15.0,0.0,131.6,17º(Ampla),17,True,False,-330,6,0,1,36º SEFAZ AC | 313º ISS Belo Horizonte | 769º SEFAZ MG | 39º SEFAZ MT | 267º ISS Rio de Janeiro | 7º ISS Cuiaba
+Luísa Teixeira Battistetti Porto,118.0,13.5,0.0,131.5,18º(Ampla),18,True,False,-329,2,0,0,22º ISS Florianopolis | 70º ISS Cuiaba
+Alan Gustavo Dinis Pereira,116.6,14.7,0.0,131.3,19º(Ampla),19,True,False,-328,2,0,0,9º ISS Florianopolis | 357º RFB
+Luis Guilherme Fonseca Franco,118.8,12.5,0.0,131.3,20º(Ampla),20,True,False,-327,0,0,0,
+Vitor Nogueira De Sousa Leal,116.0,14.7,0.0,130.7,21º(Ampla),21,True,False,-326,2,0,1,16º SEFAZ PI 25 | 29º SEFAZ PI 25
+Yuri Fernando Barbosa Torres,117.8,12.9,0.0,130.7,22º(Ampla),22,True,False,-325,7,0,0,60º SEFAZ PI 25 | 903º SEFAZ RS 18 | 6º ANM Ag. Nac. Mineracao | 53º Banco Central | 93º ISS Uberlandia | 164º CAGE RS | 31º STN
+Caio Vinicius Martins Goncalves,116.4,14.0,0.0,130.4,23º(Ampla),23,True,False,-324,5,0,0,68º SEFAZ AC | 2084º SEFAZ MG | 4º TRF 3 23 | 61º CGE MS | 224º ISS Cuiaba
+Ricardo Durso Marcal,117.6,12.8,0.0,130.4,24º(Ampla),24,True,False,-323,11,1,1,18º SEFAZ RJ 25 | 17º SEFAZ AC | 85º SUSEP | 13º ISS Ribeirao Preto | 8º ISS Ribeirao das Neves | 1580º SEFAZ MG | 130º ISS Rio de Janeiro | 26º Camara BH | 160º Camara BH | 5º ISS Sao José dos Campos | 6º ISS Cuiaba
+Franslaine Ferreira De Sales,116.8,13.5,0.0,130.3,25º(Ampla),25,True,False,-322,10,1,0,21º SEFAZ SP 2025 | 15º ISS Ribeirao Preto | 302º AL MG | 616º SEFAZ MG | 1007º MPMG 2022 | 150º ISS Rio de Janeiro | 15º ISS Sao Bernardo do Campo | 348º ISS Belo Horizonte | 86º MPU 25 | 11º ISS Londrina
+Pedro Henrique Carvalho Ferreira,115.6,14.4,0.0,130.0,26º(Ampla),26,True,False,-321,7,1,1,186º TCE SP 25 | 160º SEFAZ RJ 25 | 536º DPF | 827º ISS Uberlandia | 353º RFB | 99º CAGE RS | 497º ISS Osasco
+Italo Siqueira Rodrigues,114.8,15.0,0.0,129.8,27º(Ampla),27,True,False,-320,7,0,0,532º SEFAZ SP 2025 | 60º ISS Uberlândia 25 | 162º ISS Ribeirao Preto | 370º SEFAZ MG | 70º SEFAZ MT | 2º ISS Uberaba | 16º ISS Cuiaba
+Henrique Itiro Ikeoka,115.0,14.5,0.0,129.5,28º(Ampla),28,True,False,-319,2,0,1,24º CAGE RS | 3º ALEP
+Mariana Della Valentina,117.2,12.3,0.0,129.5,29º(Ampla),29,True,False,-318,5,2,2,8º PRF | 12º DPF | 597º SEFAZ MG | 49º SEFAZ MT | 169º ISS Rio de Janeiro
+Daniel Augusto Marques Magalhaes,115.0,14.4,0.0,129.4,30º(Ampla),30,True,False,-317,4,1,0,48º ISS Mossoro | 2877º SEFAZ MG | 6º ISS Sao José dos Campos | 7º STN
+Arthur Medeiros Brandão Florêncio,115.4,14.0,0.0,129.4,31º(Ampla),31,True,False,-316,6,1,1,159º SEFAZ SC 21 | 191º SEFAZ RR | 4º SEFAZ AC | 160º SEFAZ PE Apoio | 236º SEFAZ AM 22 | 408º SEFAZ MG
+Raphael Machado Ferreira Da Costa,116.8,12.5,0.0,129.3,32º(Afro),32,True,False,-315,2,0,0,2538º SEFAZ MG | 25º ISS Rio de Janeiro
+Túlio De Sousa Castro,114.4,14.8,0.0,129.2,33º(Ampla),33,True,False,-314,4,0,0,352º SEFAZ AM 22 | 573º SEFAZ MG | 219º ISS Rio de Janeiro | 58º ISS Cuiaba
+Arthur Marques Octaviano Almeida,116.2,12.8,0.0,129.0,34º(Ampla),34,True,False,-313,9,1,0,222º ISS Ribeirao Preto | 431º SEFAZ MG | 129º ISS Belo Horizonte | 85º SEFAZ MT | 245º ISS Rio de Janeiro | 40º ISS Sao Bernardo do Campo | 2º ISS Sao José dos Campos | 12º ISS Cuiaba | 101º ISS Porto Alegre 25
+Geovani Francisco De Souza,114.0,15.0,0.0,129.0,35º(Ampla),35,True,False,-312,1,0,0,183º SEFAZ SP 2025
+Regis De Castro Becker,115.4,13.3,0.0,128.7,36º(Ampla),36,True,False,-311,2,0,0,49º CAGE RS | 11º ISS Porto Alegre 25
+Ayrton De Araújo Barbosa Do Espírito Santo,114.6,14.0,0.0,128.6,37º(Afro),37,True,False,-310,5,0,0,13º SEFAZ PI 25 | 33º ISS Jaboatao dos Guararapes | 12º SEFAZ RJ 25 | 12º SEFAZ RJ 25 | 99º ISS Rio de Janeiro
+Felipe Gaertner Nedel,115.2,13.4,0.0,128.6,38º(Ampla),38,True,False,-309,3,0,0,26º ISS Florianopolis | 461º RFB | 11º ISS Criciúma
+Victor Xavier Vidal,116.6,12.0,0.0,128.6,39º(Ampla),39,True,False,-308,1,0,0,89º ISS Criciúma
+Anderson Martins Mirabile,114.6,13.8,0.0,128.4,40º(Ampla),40,True,False,-307,5,1,1,92º SEFAZ AP | 70º TRE PB | 474º RFB | 54º ISS Rio de Janeiro | 118º ISS Porto Alegre 25
+Arthur Menegardo Corona,114.4,14.0,0.0,128.4,41º(Ampla),41,True,False,-306,2,0,0,14º ISS Ribeirao Preto | 2221º SEFAZ MG
+Caio Cesar De Oliveira Nascimento,114.4,13.8,0.0,128.2,42º(Ampla),42,True,False,-305,2,0,0,1388º SEFAZ MG | 106º CAGE RS
+Tárik Kaiel Machado Cardoso,111.2,14.0,3.0,128.2,43º(Ampla),43,True,False,-304,1,0,0,258º STN
+Luiz Guilherme Mercurio De Souza Melo,114.4,13.7,0.0,128.1,44º(Ampla),44,True,False,-303,8,0,0,1059º SEFAZ SP 2025 | 5º ISS Itatiba | 72º ISS Suzano | 69º ISS Sao Caetano do Sul | 92º ISS Ribeirao Preto | 2159º SEFAZ MG | 175º ISS Sao Bernardo do Campo | 192º ISS Osasco
+João Gabriel Santiago Silva,117.0,11.0,0.0,128.0,45º(Ampla),45,True,False,-302,1,0,0,98º SEFAZ SE 25
+Felipe Campopiano Nakashima,115.2,12.5,0.0,127.7,46º(Ampla),46,True,False,-301,4,0,1,38º SEFAZ SP 2025 | 11º SEFAZ RJ 25 | 291º TSE Unificado | 377º TSE Unificado
+Gustav De Alencar Borst,116.4,11.3,0.0,127.7,47º(Ampla),47,True,False,-300,2,0,0,208º SEFAZ SP 2025 | 14º ISS Itatiba
+João Marcos Lopes Almeida,114.8,12.9,0.0,127.7,48º(Ampla),48,True,False,-299,5,0,0,32º ISS Jaboatao dos Guararapes | 24º ISS Ribeirao das Neves | 168º SEFAZ AM 22 | 346º SEFAZ MG | 98º ISS Porto Alegre 25
+José Ramos De Almeida Neto,112.6,15.0,0.0,127.6,49º(Ampla),49,True,False,-298,3,0,0,36º ISS Jaboatao dos Guararapes | 37º SEFAZ SE 25 | 1358º SEFAZ MG
+Joel Florêncio Santos Junior,115.2,12.3,0.0,127.5,50º(Ampla),50,True,False,-297,1,1,1,11º SEFAZ SC 21
+Henrique Gouveia Perroni,113.4,14.0,0.0,127.4,51º(Ampla),51,True,False,-296,4,0,1,66º ISS Ribeirao Preto | 1269º SEFAZ MG | 5º ISS Sao Bernardo do Campo | 54º ISS Sao José dos Campos
+Bruno Lopes De Abreu,113.0,14.3,0.0,127.3,52º(Ampla),52,True,False,-295,8,1,1,28º ISS Jaboatao dos Guararapes | 36º CNMP | 1º TJ GO | 337º SEFAZ MG | 80º CAGE RS | 11º Camara dos Deputados Consultor | 32º ISS Cuiaba | 84º ISS Porto Alegre 25
+Gabriel Oliveira De Souza Vicente,112.6,14.5,0.0,127.1,53º(Ampla),53,True,False,-294,6,0,1,17º SEFAZ SP 2025 | 40º SEFAZ RJ 25 | 40º SEFAZ RJ 25 | 166º ISS Rio de Janeiro | 61º ISS Betim | 202º ISS Cuiaba
+Matheus Da Silva Domingos,112.0,15.0,0.0,127.0,54º(Ampla),54,True,False,-293,4,0,0,74º SEFAZ PI 25 | 135º SEFAZ RJ 25 | 135º DPF 25 | 107º Manaus SEMAD EDUCAÇÃO
+André Augusto Kaviatkovski,114.6,12.3,0.0,126.9,55º(Ampla),55,True,False,-292,0,0,0,
+Lais Fatima Camintia,112.4,14.5,0.0,126.9,56º(Ampla),56,True,False,-291,0,0,0,
+Levy Guyss Nascimento,113.0,13.8,0.0,126.8,57º(Ampla),57,True,False,-290,4,2,1,256º SEFAZ SC 21 | 16º ISS Pinhais | 229º SEFAZ MG | 35º SEFAZ MT
+Flavio Lessa Martins,113.8,12.8,0.0,126.6,58º(Ampla),58,True,False,-289,2,1,1,369º SEFAZ SP 2025 | 224º DPF
+Edson Ferreira Campos,112.0,14.5,0.0,126.5,59º(Ampla),59,True,False,-288,4,0,1,18º SEFAZ AC | 9º SEFAZ SE 25 | 73º ISS Ribeirao Preto | 1659º SEFAZ MG
+Larissa Daiana Gomes,116.4,10.1,0.0,126.5,60º(Ampla),60,True,False,-287,3,2,2,59º SEFAZ PI 25 | 84º DPF | 179º PRF
+Gabriela Magalski Rubin,112.6,13.8,0.0,126.4,61º(Ampla),61,True,False,-286,3,0,0,93º TCE RS 25 | 52º TJ RS 2025 | 859º RFB
+Marcus Vinícius Aquino Oliveira,115.4,11.0,0.0,126.4,62º(Ampla),62,True,False,-285,1,0,0,12º EMBRAPA
+Alderio Gerarde Borges Junior,111.4,14.9,0.0,126.3,63º(Afro),63,True,False,-284,12,0,0,10º SEFAZ RJ 25 | 10º SEFAZ RJ 25 | 5º ISS Corumba | 39º ISS Ribeirao Preto | 1110º SEFAZ MG | 57º ISS Campos dos Goytacazes | 6º APO RJ | 71º SMF RJ | 18º ISS Rio de Janeiro | 45º ISS Cuiaba | 29º ISS Porto Alegre 25 | 4º ISS Porto Alegre 25
+Bruno Carvalho Ramos,112.2,14.0,0.0,126.2,64º(Ampla),64,True,False,-283,1,0,0,185º TC DF
+João Paulo De Lima Martins,112.0,14.0,0.0,126.0,65º(Afro),65,True,False,-282,11,0,0,1º ANM Ag. Nac. Mineracao | 300º TRF 6 | 718º TRF 6 | 14º TRF 6 | 4º TRF 6 | 361º AL MG | 1337º SEFAZ MG | 23º SEFAZ MT | 111º ISS Rio de Janeiro | 117º ISS Porto Alegre 25 | 13º ISS Porto Alegre 25
+Aldo Miro De Medeiros,109.0,12.0,5.0,126.0,66º(Ampla),66,True,False,-281,1,0,0,64º SEFAZ PI 25
+Hebert Yoshihiro Gonda,113.4,12.6,0.0,126.0,67º(Ampla),67,True,False,-280,4,0,0,368º SEFAZ SP 2025 | 105º SEFAZ AC | 440º RFB | 6º ISS Porto Alegre 25
+Lucas Guedes Pedrosa,111.0,15.0,0.0,126.0,68º(Ampla),68,True,False,-279,6,0,0,73º CGM Joao Pessoa | 21º ISS Fortaleza | 347º SEFAZ MG | 116º CAGE RS | 79º ISS SP | 48º ISS Porto Alegre 25
+Natália Carvalho Araújo,113.8,12.2,0.0,126.0,69º(Ampla),69,True,False,-278,4,2,0,99º SEFAZ SC 21 | 15º SEFAZ AM 22 | 38º SEFAZ MT | 136º ISS Cuiaba
+Anderson Chan Tam,111.4,14.5,0.0,125.9,70º(Ampla),70,True,False,-277,3,0,0,152º PF 2018 | 1313º SEFAZ MG | 303º ISS Porto Alegre 25
+Fernando Batoqui França,111.4,14.5,0.0,125.9,71º(Ampla),71,True,False,-276,3,0,1,25º SEFAZ SP 2025 | 139º CGU | 360º RFB
+Carlos Eduardo Pereira Parente,114.8,11.0,0.0,125.8,72º(Ampla),72,True,False,-275,16,1,0,286º SEFAZ SC 21 | 1243º SEFAZ SP 2025 | 62º TCE SP 25 | 21º TCE SP 25 | 29º ISS Florianopolis | 48º TCE MG 25 | 141º MPO | 423º TSE Unificado | 56º ISS Belo Horizonte | 46º ISS Ribeirao Preto | 6º ISS Ouro Preto | 984º AL MG | 684º SEFAZ MG | 96º ISS Rio de Janeiro | 48º ISS Cuiaba | 41º TRF 1 24
+Carlos Magno Pinto Monteiro,110.8,15.0,0.0,125.8,73º(Ampla),73,True,False,-274,4,0,0,204º SEFAZ SP 2025 | 307º SEFAZ PI 25 | 88º SEFAZ SE 25 | 211º SEFAZ RJ 25
+Mauro De Oliveira Neto,110.2,14.0,1.5,125.7,74º(Ampla),74,True,False,-273,3,0,0,679º SEFAZ MG | 40º ISS Uberlandia | 71º CGE MS
+Guilherme Vidal Vieira Guerra,110.6,15.0,0.0,125.6,75º(Ampla),75,True,False,-272,3,0,1,2º SEFAZ SP 2025 | 7º ISS Florianopolis | 509º TRF 2
+Hiago Moreira Perdigão,114.2,11.3,0.0,125.5,76º(Ampla),76,True,False,-271,2,0,0,1275º DPF 25 | 85º MPU 25
+Lucas Sabatoski,113.0,12.5,0.0,125.5,77º(Ampla),77,True,False,-270,0,0,0,
+Gabriel Fernandes Santos,110.4,15.0,0.0,125.4,78º(Ampla),78,True,False,-269,3,0,1,32º SEFAZ SP 2025 | 70º SEFAZ RJ 25 | 65º ISS Nova Iguaçu
+João Marcos Pereira Rodrigues,110.8,14.5,0.0,125.3,79º(Ampla),79,True,False,-268,1,0,0,73º ISS Porto Alegre 25
+Ronaldo Dos Santos Raizer,110.2,12.1,3.0,125.3,80º(Ampla),80,True,False,-267,2,0,0,506º SEFAZ SC 21 | 636º RFB
+Flávio Alan Russo,113.2,12.0,0.0,125.2,81º(Ampla),81,True,False,-266,0,0,0,
+Mário Otávio Lacerda E Miranda,112.8,12.4,0.0,125.2,82º(Ampla),82,True,False,-265,4,0,1,104º SEFAZ SP 2025 | 46º SEFAZ SE 25 | 24º ISS Cuiaba | 65º ISS Porto Alegre 25
+Gabriel Souza Begnini Machado,111.6,13.5,0.0,125.1,83º(Ampla),83,True,False,-264,2,0,0,191º ISS Ribeirao Preto | 456º SEFAZ MG
+Wilkson Fontes Gonçalves,113.4,11.7,0.0,125.1,84º(Ampla),84,True,False,-263,6,0,0,374º SEFAZ PI 25 | 160º SEFAZ RR | 696º SEFAZ AM 22 | 845º SEFAZ MG | 61º ISS Cuiaba | 1º TRF 1 24
+Leandro Cunha De Vasconcelos,111.0,14.0,0.0,125.0,85º(Pcd),85,False,False,-262,4,0,0,410º SEFAZ PE | 761º SEFAZ AM 22 | 373º SEFAZ MG | 167º ISS Cuiaba
+Jonathan José Cordeiro Da Silva,112.8,12.2,0.0,125.0,86º(Ampla),86,True,False,-261,4,1,0,1120º SEFAZ MG | 25º ISS Belo Horizonte | 295º ISS Rio de Janeiro | 43º ISS Cuiaba
+Alexandre Dantas De Carvalho Feitosa,110.4,14.5,0.0,124.9,87º(Ampla),87,True,False,-260,6,1,0,60º SEFAZ SE 25 | 1042º DPF 25 | 262º SEFAZ BA 22 | 2758º SEFAZ MG | 744º ISS Rio de Janeiro | 74º ISS Porto Alegre 25
+Bruna Cristina Amorim,105.4,14.5,5.0,124.9,88º(Ampla),88,True,False,-259,3,0,0,1153º SEFAZ SP 2025 | 1009º SEFAZ MG | 127º ISS Rio de Janeiro
+Lucas De Souza Marques,110.2,14.7,0.0,124.9,89º(Ampla),89,True,False,-258,9,1,0,619º SEFAZ SC 21 | 16º SEFAZ SE 25 | 9º ISS Mossoro | 131º ISS Fortaleza | 997º DPF 25 | 623º SEFAZ BA 22 | 377º SEFAZ MG | 63º CAGE RS | 375º ISS Rio de Janeiro
+Tácio Moura De Souza Almeida,112.6,12.2,0.0,124.8,90º(Ampla),90,False,False,-257,1,0,0,578º ISS Rio de Janeiro
+Uallas Marcelo Trindade,110.8,14.0,0.0,124.8,91º(Ampla),91,False,False,-256,2,0,0,572º SEFAZ MG | 92º ISS Sao Bernardo do Campo
+Isabela Faria Santos Monteiro,109.2,12.5,3.0,124.7,92º(Ampla),92,False,False,-255,2,0,1,70º SEFAZ SP 2025 | 2352º SEFAZ MG
+Rodrigo Dos Reis Daros,111.2,13.5,0.0,124.7,93º(Ampla),93,False,False,-254,4,0,0,989º SEFAZ MG | 366º ISS Rio de Janeiro | 29º ISS Criciúma | 30º ISS Porto Alegre 25
+Bruno Augusto Bastiani,109.8,11.8,3.0,124.6,94º(Pcd),94,False,False,-253,1,0,0,28º SEFAZ SP 2025
+Lucas Stauffer Costa,110.2,14.4,0.0,124.6,95º(Ampla),95,False,False,-252,6,0,0,91º SEFAZ AC | 83º SEFAZ AL 19 | 226º SEFAZ AM 22 | 366º SEFAZ MG | 26º ISS Serra ES | 541º ISS Rio de Janeiro
+Gunnar Pimentel Manjud Maluf,112.2,12.4,0.0,124.6,96º(Ampla),96,False,False,-251,8,0,2,16º SEFAZ SP 2025 | 69º SEFAZ AP | 254º SEFAZ RR | 106º SEFAZ AC | 217º SEFAZ AM 22 | 682º SEFAZ MG | 86º DATAPREV 2024 | 126º ISS Porto Alegre 25
+Nikolas Hartmann Do Amaral,112.2,12.4,0.0,124.6,97º(Ampla),97,False,False,-250,10,0,1,486º SEFAZ SP 2025 | 33º ISS Florianopolis | 501º SEFAZ RR | 416º SEFAZ RJ 25 | 61º ISS Ribeirao Preto | 325º SEFAZ AM 22 | 686º SEFAZ MG | 186º SEFAZ MT | 6º ISS Nova Iguaçu | 115º ISS Porto Alegre 25
+Átila Mendonça Araújo Cavalcante,111.0,13.5,0.0,124.5,98º(Ampla),98,False,False,-249,9,0,1,89º SEFAZ SP 2025 | 27º SEFAZ PI 25 | 127º SEFAZ PI 25 | 119º ISS Mossoro | 140º SEFAZ AC | 289º TSE Unificado | 651º ISS Ribeirao Preto | 117º CGE SP 25 | 167º ISS Porto Alegre 25
+Kevim Iochims,112.0,12.5,0.0,124.5,99º(Ampla),99,False,False,-248,3,0,0,341º SEFAZ SP 2025 | 838º DPF 25 | 57º CAGE RS
+Luiza Araújo Cordeiro,112.4,12.0,0.0,124.4,100º(Ampla),100,False,False,-247,5,1,0,69º AL MG | 257º ISS Ribeirao Preto | 1427º SEFAZ MG | 104º MPMG 2022 | 37º ISS Porto Alegre 25
+Kalita Francisco,112.4,11.9,0.0,124.3,101º(Ampla),101,False,False,-246,4,0,0,185º SEFAZ SP 2025 | 15º CGU | 24º CGU | 514º SEFAZ MG
+Lucas Siqueira Baumgartner,111.6,12.7,0.0,124.3,102º(Ampla),102,False,False,-245,2,1,0,48º SEFAZ PR Agente Fazendario | 72º ISS Londrina
+Danilo Da Silva Toniato,107.0,14.2,3.0,124.2,103º(Pcd),103,False,False,-244,2,0,0,3º SEFAZ PI 25 | 162º ISS Cuiaba
+Alessandro Rain Schmidt,111.2,13.0,0.0,124.2,104º(Ampla),104,True,False,-243,3,0,0,652º SEFAZ SP 2025 | 2757º SEFAZ MG | 159º ISS Porto Alegre 25
+Larissa Duarte Fonseca Rocha,107.2,14.0,3.0,124.2,105º(Ampla),105,False,False,-242,8,1,1,76º SEFAZ SP 2025 | 93º SEFAZ RJ 25 | 246º SMF RJ | 1433º TRF 2 | 53º ISS Rio de Janeiro | 182º ISS Sao Bernardo do Campo | 72º ISS Nova Iguaçu | 20º ISS Macaé
+Leonardo Bittencourt De Souza,111.4,12.8,0.0,124.2,106º(Ampla),106,False,False,-241,14,0,1,429º SEFAZ SC 21 | 53º SEFAZ SP 2025 | 317º TRT 12 SC | 141º DPE SC 2025 | 116º TRF 4 | 116º TRF 4 2025 | 290º ISS Itajai | 81º ISS Itajai | 78º TRF 4 2026 | 414º TRF 4 2026 | 806º RFB | 265º ALESC | 13º ISS Criciúma | 135º ISS Porto Alegre 25
+Ricardo Gonchorowski Garcia,109.4,14.8,0.0,124.2,107º(Ampla),107,False,False,-240,13,3,4,46º SEFAZ SP 2025 | 17º SEFAZ SC 21 | 9º SEFA PA | 1º ISS Florianopolis | 79º TCE PR | 16º ISS Joinville | 11º ISS Itajai | 28º ISS Itajai | 30º ISS Uberlandia | 512º RFB | 129º SEFAZ MT | 64º ISS Campinas | 56º ISS Cuiaba
+Vinicius Amadeu Santana,109.4,14.8,0.0,124.2,108º(Ampla),108,False,False,-239,5,3,1,70º SEFAZ SC 21 | 131º ISS Curitiba | 73º SEFAZ AM 22 | 249º SEFAZ MG | 24º ISS Maua
+Fabricia Luzia De Almeida,109.6,14.5,0.0,124.1,109º(Ampla),109,False,False,-238,3,0,0,589º SEFAZ MG | 425º ISS Rio de Janeiro | 40º ISS Cuiaba
+Itacy Rodovalho De Alencar Neto,112.0,12.1,0.0,124.1,110º(Ampla),110,False,False,-237,3,0,0,274º SEFAZ SP 2025 | 965º ISS Rio de Janeiro | 300º ISS Porto Alegre 25
+Leonardo Moraes Pereira,110.6,13.5,0.0,124.1,111º(Ampla),111,False,False,-236,2,1,2,137º SEFAZ SP 2025 | 17º DPF
+Alexandre Minari Bozko,111.2,12.8,0.0,124.0,112º(Ampla),112,False,False,-235,5,0,0,312º SEFAZ SP 2025 | 23º ISS Florianopolis | 23º SEFAZ PR Agente Fazendario | 24º CGE SP 25 | 140º CAGE RS
+Caique Lopes Dos Santos,111.0,13.0,0.0,124.0,113º(Ampla),113,False,False,-234,2,0,0,308º SEFAZ SP 2025 | 428º RFB
+Diorges Batista Da Silva,110.0,14.0,0.0,124.0,114º(Ampla),114,False,False,-233,6,0,1,20º SEFAZ PI 25 | 455º SEFAZ SC 21 | 22º SEFAZ PI 25 | 41º SEFAZ AC | 1165º SEFAZ MG | 16º TJ MA
+Julia Alves Fraga De Araujo,112.0,12.0,0.0,124.0,115º(Ampla),115,False,False,-232,6,0,0,376º SEFAZ SP 2025 | 258º SEFAZ RS TEC 18 | 2524º SEFAZ MG | 93º CAGE RS | 185º ISS Guarulhos | 174º ISS Porto Alegre 25
+Lucca Nascimento Maia,111.4,12.5,0.0,123.9,116º(Ampla),116,False,False,-231,2,0,0,604º SEFAZ SP 2025 | 144º SEFAZ AC
+Igor De Paula Moraes,111.0,12.8,0.0,123.8,117º(Afro),117,True,False,-230,8,0,1,703º SEFAZ SP 2025 | 3249º SEFAZ RJ 25 | 714º SEFAZ RJ 25 | 216º ISS Ribeirao Preto | 27º ISS Campos dos Goytacazes | 20º ISS Nova Iguaçu | 282º ISS Porto Alegre 25 | 24º ISS Porto Alegre 25
+Felipe Gomes Aleva,112.0,11.8,0.0,123.8,118º(Ampla),118,False,False,-229,6,2,3,124º SEFAZ SP 2025 | 84º SEFAZ SE 25 | 536º PC DF 24 | 435º PRF | 621º DPF | 269º ISS Porto Alegre 25
+Guilherme Dattoli Cirigliano Cortes,111.8,12.0,0.0,123.8,119º(Ampla),119,False,False,-228,3,0,1,337º SEFAZ SP 2025 | 176º ISS Rio de Janeiro | 2º ISS Nova Iguaçu
+Thiago Bernardes Tokiyoshi,112.2,11.4,0.0,123.6,120º(Ampla),120,False,False,-227,8,2,2,56º SEFAZ SP 2025 | 5º ISS Jaboatao dos Guararapes | 816º PRF | 144º ISS Ribeirao Preto | 2647º SEFAZ MG | 52º ISS Rio de Janeiro | 26º ISS Porto Alegre 25 | 3º ISS Porto Alegre 25
+Christian Txai Andrade Siegl,109.2,14.3,0.0,123.5,121º(Ampla),121,False,False,-226,5,2,1,495º SEFAZ RS 18 | 18º SEFAZ AL 19 | 47º SEFAZ DF | 73º ISS Porto Alegre | 98º ISS Itajai
+Felipe Leiro Almeida,111.0,12.5,0.0,123.5,122º(Ampla),122,False,False,-225,4,0,0,221º SEFAZ SP 2025 | 665º ISS Ribeirao Preto | 289º ISS Sao Bernardo do Campo | 94º ISS Porto Alegre 25
+Leonardo Aragão Chaves,111.0,12.5,0.0,123.5,123º(Ampla),123,False,False,-224,3,0,0,1137º SEFAZ SP 2025 | 778º RFB | 392º ISS Rio de Janeiro
+Ana Luiza Ferron Zanella,112.6,10.8,0.0,123.4,124º(Ampla),124,False,False,-223,6,2,2,26º SEFAZ SP 2025 | 293º SEFAZ RJ 25 | 30º SEFAZ DF | 99º CGU | 110º SEFAZ MG | 102º CAGE RS
+Lucas Martins Borguetti,108.4,15.0,0.0,123.4,125º(Ampla),125,False,False,-222,9,1,1,2º SEFAZ SP 2025 | 26º SEFAZ SE 25 | 86º ISS Ribeirao Preto | 224º SEFAZ BA 22 | 1306º SEFAZ MG | 61º SEFAZ MT | 285º ISS Rio de Janeiro | 31º ISS Sao Bernardo do Campo | 65º ISS Sao José dos Campos
+Luiz Henrique Salonski Da Silva Junior,109.4,14.0,0.0,123.4,126º(Ampla),126,False,False,-221,7,0,1,678º SEFAZ SP 2025 | 43º SEFAZ PR Agente Fazendario | 221º TSE Unificado | 181º Câmara dos Deputados 2025 NS | 97º ALESC | 13º MPU 25 | 10º ALEP
+Renata Hiromi Kitamura,108.4,15.0,0.0,123.4,127º(Ampla),127,True,False,-220,11,2,0,102º SEFAZ SC 21 | 755º SEFAZ SP 2025 | 854º SEFAZ RS 18 | 560º SEFAZ RS TEC 18 | 1536º DPF | 655º Petrobras | 63º ISS Itajai | 74º ISS Itajai | 63º ISS Curitiba | 84º CGE SC | 88º ISS Campinas
+Romário Macedo Veloso,111.0,12.3,0.0,123.3,128º(Afro),128,False,False,-219,11,1,0,30º SEFAZ PI 25 | 223º SEFAZ SP 2025 | 1º TCE SP 25 | 241º TCE SP 25 | 49º TC DF | 61º SEFAZ AC | 126º ISS Ribeirao Preto | 72º SEFAZ AM 22 | 2166º SEFAZ MG | 3º CVM | 73º ISS Cuiaba
+Nivaldo Luciano Barbosa Zumba,109.8,13.5,0.0,123.3,129º(Ampla),129,False,False,-218,5,0,0,334º SEFAZ SP 2025 | 215º SEFAZ RS TEC 18 | 398º SEFAZ MG | 89º ISS Rio de Janeiro | 136º ISS Porto Alegre 25
+Arthur Felipe Boza,108.6,11.6,3.0,123.2,130º(Ampla),130,False,False,-217,6,0,0,21º MPC SC | 3166º SEFAZ MG | 194º SEFAZ MT | 62º APO RJ | 62º SMF RJ | 207º ISS Rio de Janeiro
+Gabriel Taiatele Lustoza,112.0,11.1,0.0,123.1,131º(Ampla),131,False,False,-216,2,1,0,1123º SEFAZ SP 2025 | 90º ISS Londrina
+Claudir Ewerton Costa Junior,108.6,14.4,0.0,123.0,132º(Afro),132,False,False,-215,6,0,0,8º SEFAZ PI 25 | 363º SEFAZ RR | 161º ISS Ribeirao Preto | 979º SEFAZ MG | 32º ISS Rio de Janeiro | 176º ISS Cuiaba
+Erick Ribas Correa,109.2,13.8,0.0,123.0,133º(Ampla),133,False,False,-214,1,0,0,488º SEFAZ SP 2025
+Lucas Mendonça Reis,108.0,15.0,0.0,123.0,134º(Ampla),134,False,False,-213,5,0,0,519º SEFAZ SP 2025 | 312º ISS Ribeirao Preto | 6º ISS Uberlândia 25 | 273º ALEGO | 111º ISS Cuiaba
+Juliano Luiz Abrahao,112.0,11.0,0.0,123.0,135º(Ampla),135,False,False,-212,8,2,0,100º SEFAZ SC 21 | 124º SEFAZ PI 25 | 250º SEFAZ RR | 845º SEFAZ RS 18 | 49º ISS Itajai | 38º ISS Curitiba | 504º SEFAZ AM 22 | 12º ISS Porto Alegre 25
+Mateus Van Hombeeck,109.0,12.5,1.5,123.0,136º(Ampla),136,False,False,-211,5,2,0,184º SEFAZ RJ 25 | 43º SEFAZ RR | 17º SEFAZ AM 22 | 483º SEFAZ MG | 136º ISS Rio de Janeiro
+Frederico Lagemann,104.8,13.1,5.0,122.9,137º(Ampla),137,False,False,-210,1,0,0,2257º SEFAZ SP 2025
+Jorge Washington Oliveira De Morais,110.2,12.7,0.0,122.9,138º(Ampla),138,False,False,-209,1,0,1,13º SEFAZ SP 2025
+Aline Barbara Scariotto,109.8,13.0,0.0,122.8,139º(Ampla),139,False,False,-208,6,0,0,997º SEFAZ SP 2025 | 1176º SEFAZ RS TEC 18 | 107º SEFAZ RJ 25 | 1520º SEFAZ MG | 16º ISS Nova Iguaçu | 17º ISS Criciúma
+Caetano Batalha Santos,108.8,14.0,0.0,122.8,140º(Ampla),140,False,False,-207,5,0,0,586º EMBRAPA | 609º SEFAZ SP 2025 | 488º SEFAZ MG | 479º ISS Rio de Janeiro | 100º ISS Cuiaba
+Marcio Kenji Ionekura Junior,109.0,13.8,0.0,122.8,141º(Ampla),141,False,False,-206,3,0,0,514º SEFAZ PE | 1498º SEFAZ SP 2025 | 2294º SEFAZ MG
+Vanessa De Araújo Dechen,109.8,13.0,0.0,122.8,142º(Ampla),142,False,False,-205,3,0,0,2º ISS Biguaçu | 69º ISS Criciúma | 9º ISS Porto Alegre 25
+Lucas Marcolongo Gomes Cortat,108.6,14.1,0.0,122.7,143º(Ampla),143,False,False,-204,6,1,1,974º SEFAZ RS TEC 18 | 682º PC DF 24 | 6º DPF | 1941º PRF | 94º ISS Muriau | 203º ISS Rio de Janeiro
+Matheus Henrique Chrisóstomo Rossi,110.2,12.5,0.0,122.7,144º(Ampla),144,False,False,-203,2,0,0,36º TCE PR | 3º TSE Unificado
+Jose Luiz Simette Estephanes,107.8,14.8,0.0,122.6,145º(Ampla),145,False,False,-202,2,0,0,644º SEFAZ SP 2025 | 40º SEFAZ MT
+Juliana Farias Araujo,107.6,12.0,3.0,122.6,146º(Ampla),146,False,False,-201,10,1,0,23º SEFAZ SE 25 | 47º SEFAZ AC | 18º ANM Ag. Nac. Mineracao | 110º MPO | 12º ANM Ag. Nac. Mineracao | 2358º PRF | 66º SEFAZ BA 22 | 576º SEFAZ MG | 175º ISS Rio de Janeiro | 24º ISS Porto Alegre 25
+Luis Affonso Rodrigues Dresch,108.8,13.7,0.0,122.5,147º(Ampla),147,False,False,-200,6,1,0,591º SEFAZ SC 21 | 174º SEFAZ AC | 199º ISS Ribeirao Preto | 344º SEFAZ MG | 245º ISS Cuiaba | 141º ISS Porto Alegre 25
+Renan Cirilo Feitoza Epaminondas,108.2,14.3,0.0,122.5,148º(Ampla),148,False,False,-199,4,0,0,860º SEFAZ SP 2025 | 38º SEFAZ AL 21 | 539º SEFAZ MG | 263º ISS Petrolina
+Claudio Chiba Kawasaki,110.0,12.5,0.0,122.5,149º(Ampla),149,False,False,-198,9,2,0,176º TRF 3 | 472º SEFAZ SP 2025 | 898º SEFAZ AM 22 | 611º SEFAZ BA 22 | 957º SEFAZ MG | 70º ISS Sao Bernardo do Campo | 11º Camara Municipal SP | 13º CÂMARA MUNICIPAL DE SÃO PAULO 2023 | 35º ISS Porto Alegre 25
+Wanderley Audi Soares Pimentel,110.4,12.0,0.0,122.4,150º(Ampla),150,False,False,-197,4,0,1,358º SEFAZ SP 2025 | 3º SEFAZ SE 25 | 131º PF 2018 | 1084º SEFAZ MG
+Danielli Da Silveira Cruz Franca,109.8,12.5,0.0,122.3,151º(Ampla),151,False,False,-196,2,0,0,99º SEFAZ PI 25 | 127º ISS Cuiaba
+Giovanni Leandro De Souza,108.8,13.5,0.0,122.3,152º(Ampla),152,False,False,-195,7,1,0,734º SEFAZ SP 2025 | 4º ISS Florianopolis | 165º SEFAZ AC | 15º CGE SP 25 | 59º RFB | 40º CAGE RS | 112º ISS Rio de Janeiro
+Filipe Gonçalves Costa,108.0,14.2,0.0,122.2,153º(Ampla),153,False,False,-194,4,0,0,41º TCE SP 25 | 31º SEFAZ RJ | 384º SEFAZ RJ 25 | 1751º SEFAZ MG
+Guilherme Pontes De Miranda Soares De Souz,111.8,10.4,0.0,122.2,154º(Ampla),154,False,False,-193,0,0,0,
+David Brandt Junior,109.8,12.3,0.0,122.1,155º(Ampla),155,False,False,-192,7,0,0,83º TRT 12 SC | 1091º SEFAZ SP 2025 | 404º TRT 12 SC | 1192º SEFAZ RS TEC 18 | 849º TSE Unificado | 834º RFB | 126º MPU 25
+Flávio Vinícius Ferreira,111.2,10.9,0.0,122.1,156º(Ampla),156,False,False,-191,3,0,0,784º SEFAZ SP 2025 | 494º SEFAZ MG | 82º ISS Cuiaba
+Luiz Fernando Pereira Do Prado,109.6,12.5,0.0,122.1,157º(Ampla),157,False,False,-190,2,1,1,2º SEFAZ SP 2025 | 1º TRT 2 SP
+Adriel Augusto Queiroz,107.0,15.0,0.0,122.0,158º(Ampla),158,False,False,-189,7,1,1,63º SEFAZ MA | 132º SEFAZ PI 25 | 814º SEFAZ SP 2025 | 4º SEFAZ RR | 48º SEFAZ RJ 25 | 151º SEFAZ MT | 101º ISS Cuiaba
+Fernando Oliveira Schmitt,109.2,12.8,0.0,122.0,159º(Ampla),159,False,False,-188,5,0,1,136º TRT 12 SC | 45º SEFAZ SP 2025 | 119º SEFAZ RJ 25 | 1797º SEFAZ MG | 278º ISS Rio de Janeiro
+Leonardo Yassuo Nakaya Mori,110.2,11.8,0.0,122.0,160º(Ampla),160,False,False,-187,5,0,0,530º SEFAZ SP 2025 | 21º ISS Florianopolis | 12º ISS Biguaçu | 180º CAGE RS | 296º ISS Porto Alegre 25
+Valter Pilares Junior,110.2,11.8,0.0,122.0,161º(Ampla),161,False,False,-186,7,0,0,434º SEFAZ SP 2025 | 540º SEFAZ RS 18 | 939º TCE PE 17 | 821º SEFAZ MG | 6º ISS Santos | 809º ISS Guarulhos | 178º ISS Campinas
+Felipe Tabosa Santos Silveira Moraes,109.4,12.5,0.0,121.9,162º(Ampla),162,False,False,-185,3,0,0,266º SEFAZ SP 2025 | 170º SEFAZ PI 25 | 85º ISS Mossoro
+Heitor Diogo De Oliveira Borges,109.6,12.3,0.0,121.9,163º(Ampla),163,False,False,-184,4,0,1,1002º SEFAZ SP 2025 | 42º SEFAZ AC | 1511º SEFAZ MG | 517º ISS Rio de Janeiro
+Claudinei Francisco Cecilio,106.8,15.0,0.0,121.8,164º(Ampla),164,False,False,-183,1,0,0,15º TCE PR
+Matheus Scanavachi Belentani,109.4,12.4,0.0,121.8,165º(Ampla),165,False,False,-182,4,0,0,61º SEFAZ PI 25 | 232º SEFAZ SP 2025 | 16º ISS Ribeirao Preto | 52º ISS Porto Alegre 25
+Flávio Aguiar Mota,108.8,13.0,0.0,121.8,166º(Ampla),166,False,False,-181,7,0,1,104º SEFAZ PI 25 | 638º SEFAZ SP 2025 | 59º ISS Fortaleza | 14º SEFAZ AC | 65º SEFAZ SE 25 | 310º SEFAZ AM 22 | 704º RFB
+Glaucio Benedito Raminhos De Melo,108.8,12.9,0.0,121.7,167º(Afro),167,False,False,-180,5,1,0,30º ISS Fortaleza | 236º ISS Ribeirao Preto | 751º SEFAZ MG | 122º ISS Rio de Janeiro | 80º ISS Cuiaba
+Hugo Sousa Da Silva,109.4,12.2,0.0,121.6,168º(Pcd),168,False,False,-179,10,0,1,1º SEFAZ SP 2025 | 14º TRT 2 SP | 1º SEFAZ SE 25 | 1º SEFAZ SE 25 | 2150º SERPRO | 75º STM | 2º STM | 27º TSE Unificado | 7º BNDES | 2º CVM
+Leone Carvalho Da Silva Sevirino,109.6,12.0,0.0,121.6,169º(Afro),169,False,False,-178,3,0,0,276º SEFAZ SP 2025 | 1606º DPF | 382º DPF 25
+Vitor Hugo Uchoa Pires Tavares,107.0,14.6,0.0,121.6,170º(Afro),170,False,False,-177,5,0,0,61º SEFAZ PI 25 | 562º SEFAZ RJ 25 | 95º SEFAZ RJ 25 | 77º SEFAZ RS 18 | 149º ISS Rio de Janeiro
+Lucas Brito Nóbrega,107.8,13.8,0.0,121.6,171º(Ampla),171,False,False,-176,4,1,0,87º SEFAZ PI 25 | 160º SEFAZ SP 2025 | 2º ISS Jaboatao dos Guararapes | 45º ISS Porto Alegre 25
+Mateus Carvalho De Medeiros,107.8,13.8,0.0,121.6,172º(Ampla),172,False,False,-175,3,0,0,298º SEFAZ RJ 25 | 3º ISS Mossoro | 376º DPF 25
+Renato Brigido Santiago Melo,110.6,11.0,0.0,121.6,173º(Ampla),173,False,False,-174,10,0,0,553º SEFAZ SP 2025 | 55º SEFAZ SE 25 | 98º ISS Uberlândia 25 | 105º ISS Belo Horizonte | 19º SEFAZ PE Apoio | 649º SEFAZ MG | 598º CGE SP 25 | 614º ISS Rio de Janeiro | 338º ISS Cuiaba | 210º ISS Porto Alegre 25
+Raffaello Segregio Storino,106.6,15.0,0.0,121.6,174º(Ampla),174,False,False,-173,5,0,0,602º SEFAZ SP 2025 | 159º ISS Ribeirao Preto | 275º SEFAZ AM 22 | 777º SEFAZ MG | 137º ISS Porto Alegre 25
+Barbara Trindade De Aguiar Norões,108.6,13.0,0.0,121.6,175º(Ampla),175,False,False,-172,9,0,0,172º SEFAZ SP 2025 | 1º CONAB | 155º SEFAZ AC | 24º SEFAZ PR Agente Fazendario | 768º SEFAZ AM 22 | 20º ISS Maua | 1160º RFB | 616º ISS Rio de Janeiro | 20º ISS Cuiaba
+Bruno Augusto De Castilho Guilhermino,109.0,12.5,0.0,121.5,176º(Ampla),176,False,False,-171,9,1,0,596º SEFAZ SP 2025 | 149º SEFAZ RJ 25 | 1249º SEFAZ MG | 189º CAGE RS | 63º ISS Rio de Janeiro | 24º ISS Nova Iguaçu | 81º ISS Cuiaba | 46º ISS Porto Alegre 25 | 7º ISS Macaé
+Gilmar Alexandre Guedes Júnior,107.0,11.5,3.0,121.5,177º(Ampla),177,False,False,-170,2,0,0,29º ISS Fortaleza | 905º RFB
+Dyego Arantes Marinho Silva,107.0,14.5,0.0,121.5,178º(Ampla),178,False,False,-169,7,2,0,81º SEFAZ SC 21 | 103º ISS S.J. Rio Preto | 741º SEFAZ RS 18 | 44º ISS Curitiba | 408º SEFAZ AM 22 | 81º SEFAZ ES | 85º ISS Itajai
+Paola Cristine Dagostin,109.2,12.3,0.0,121.5,179º(Ampla),179,False,False,-168,10,1,0,5º ISS Biguaçu | 41º SEFAZ PR Agente Fazendario | 905º SEFAZ RS TEC 18 | 780º SEFAZ RS 18 | 661º ISS Itajai | 209º ISS Itajai | 725º ISS Guarulhos | 36º ISS Sao José dos Campos | 20º ISS Londrina | 329º ISS Porto Alegre 25
+Thalison Felipe Rossa Trombetta,108.4,13.0,0.0,121.4,180º(Ampla),180,False,False,-167,1,0,0,168º SEFAZ SP 2025
+Leon Cader Drumond Silveira,106.8,14.5,0.0,121.3,181º(Ampla),181,False,False,-166,2,1,1,84º SEFAZ MA | 61º SEFAZ SP 2025
+Murilo Ferreira Santos,106.8,14.5,0.0,121.3,182º(Ampla),182,False,False,-165,3,0,0,1183º SEFAZ SP 2025 | 341º CONAB | 2849º SEFAZ MG
+Pedro Henrique Braz Silva,108.8,12.5,0.0,121.3,183º(Ampla),183,False,False,-164,8,0,0,988º SEFAZ SP 2025 | 14º CODEVASF | 14º CODEVASF | 61º DPF 25 | 2º TSE Unificado | 11º ALEGO | 55º TCE GO 23 | 55º TCE GO 24
+Jose Victor De Almeida Silva,110.2,11.1,0.0,121.3,184º(Ampla),184,False,False,-163,8,1,1,159º SEFAZ AP | 1434º SEFAZ SP 2025 | 256º SEFAZ PE | 47º SEFAZ AP | 297º SEFAZ RJ 25 | 56º SEFAZ AC | 505º SEFAZ AM 22 | 1124º SEFAZ MG
+Flávia Vieira Da Silva Cagiani,109.0,12.2,0.0,121.2,185º(Ampla),185,False,False,-162,0,0,0,
+Guilherme Matheus De Oliveira Aragão,107.8,13.4,0.0,121.2,186º(Ampla),186,False,False,-161,11,1,0,261º SEFAZ PI 25 | 87º SEFAZ SP 2025 | 111º TCE SP 25 | 52º CGE RJ | 699º SEFAZ RR | 67º SEFAZ RJ 25 | 194º SEFAZ AM 22 | 490º SEFAZ MG | 434º ISS Rio de Janeiro | 76º ISS Nova Iguaçu | 11º ISS Cuiaba
+Tiago Queiroga Gazaniga De Assis,109.4,11.8,0.0,121.2,187º(Ampla),187,False,False,-160,11,2,1,522º SEFAZ SP 2025 | 61º SEFAZ SC 21 | 118º ISS Aracaju | 153º SEFAZ RR | 49º DPF | 95º ISS Muriau | 105º SEFAZ AM 22 | 46º ISS Governador Valadares | 392º SEFAZ MG | 96º ISS Uberlandia | 218º ISS Osasco
+João Pedro Teixeira Coelho,109.6,11.5,0.0,121.1,188º(Ampla),188,False,False,-159,4,0,1,66º CGM SP | 107º SEFAZ SP 2025 | 9º CGE SP 25 | 166º MPU 25
+Maycon Vinícius Moreto Marcos,108.8,12.3,0.0,121.1,189º(Ampla),189,False,False,-158,3,0,0,1013º SEFAZ SP 2025 | 687º RFB | 319º ISS Rio de Janeiro
+Willian Ajpert,107.6,13.5,0.0,121.1,190º(Ampla),190,False,False,-157,7,1,1,49º SEFAZ SC 21 | 661º SEFAZ SP 2025 | 164º SEFAZ AC | 606º ISS Uberlandia | 103º SEFAZ MT | 335º ISS Rio de Janeiro | 169º ISS Cuiaba
+Breno Yukihiro Yamasaki Sakaguti,108.8,12.2,0.0,121.0,191º(Ampla),191,False,False,-156,1,0,1,101º SEFAZ SP 2025
+Ricardo Teles Fonteneles,106.0,15.0,0.0,121.0,192º(Ampla),192,False,False,-155,3,0,0,953º SEFAZ SP 2025 | 1057º SEFAZ MG | 208º ISS Porto Alegre 25
+Lucas Flávio Batalha De Lima,106.2,14.8,0.0,121.0,193º(Ampla),193,False,False,-154,5,0,0,529º SEFAZ SP 2025 | 332º SEFAZ AM 22 | 2439º SEFAZ MG | 491º RFB | 969º ISS Rio de Janeiro
+Adriano Cavalcante Da Silva,106.4,11.4,3.0,120.8,194º(Pcd),194,False,False,-153,6,1,0,8º SEFAZ SC 21 | 1120º SEFAZ AM 22 | 564º ISS Cuiaba | 2º ISS Criciúma | 350º ISS Porto Alegre 25 | 11º ISS Porto Alegre 25
+Nicolas Reinhardt,109.8,11.0,0.0,120.8,195º(Ampla),195,False,False,-152,4,0,0,110º CGM SP | 431º SEFAZ SP 2025 | 618º SEFAZ MG | 596º CGE SP 25
+Daniel Mendonça Carvalho,109.6,11.1,0.0,120.7,196º(Ampla),196,False,False,-151,3,0,1,98º SEFAZ SP 2025 | 56º SEFAZ RJ 25 | 117º ISS Ribeirao Preto
+Hauryson Silva Albuquerque,106.2,14.5,0.0,120.7,197º(Ampla),197,False,False,-150,3,0,0,612º SEFAZ SP 2025 | 132º ISS Mossoro | 83º ISS Cuiaba
+Alexandre Porto Alegre Da Fonseca,106.2,14.5,0.0,120.7,198º(Ampla),198,False,False,-149,10,1,0,540º SEFAZ SC 21 | 685º SEFAZ SP 2025 | 128º SEFAZ BA 22 | 847º SEFAZ MG | 355º TJ RJ 2026 | 52º TRF 2 | 148º ISS Rio de Janeiro | 145º ISS Belo Horizonte | 77º PGM RJ | 63º ISS Cuiaba
+Mayco Martins Santos,105.6,15.0,0.0,120.6,199º(Afro),199,False,False,-148,3,0,1,9º PF 2018 | 420º SEFAZ MG | 106º ISS Rio de Janeiro
+David Araújo Magalhães,107.6,13.0,0.0,120.6,200º(Ampla),200,False,False,-147,2,0,0,179º SEFAZ SP 2025 | 405º SEFAZ MG
+Edilton Luiz Dos Santos,108.6,12.0,0.0,120.6,201º(Ampla),201,False,False,-146,3,0,0,732º SEFAZ SP 2025 | 1000º SEFAZ MG | 111º ISS Porto Alegre 25
+Flavio Gobetti Suzuki,106.6,14.0,0.0,120.6,202º(Ampla),202,False,False,-145,2,0,0,892º SEFAZ SP 2025 | 61º ISS Criciúma
+Guilherme Gomes Dos Santos,108.8,11.8,0.0,120.6,203º(Ampla),203,False,False,-144,10,1,1,520º SEFAZ SP 2025 | 15º ISS Florianopolis | 12º SEFAZ PR Agente Fazendario | 84º ISS Ribeirao Preto | 6388º ALERJ 2025 | 3º ISS Campos dos Goytacazes | 2715º Manaus SEMAD EDUCAÇÃO | 11243º UFRJ 2025 | 163º ISS Sao Bernardo do Campo | 8º ISS Araras
+Luciano Lourenço Oliveira,107.6,13.0,0.0,120.6,204º(Ampla),204,False,False,-143,2,0,0,723º SEFAZ RS 18 | 505º RFB
+Matheus Wiillian de Oliveira Luciano,109.6,11.0,0.0,120.6,205º(Ampla),205,False,False,-142,0,0,0,
+Daniel Amaro De Almeida,107.2,13.3,0.0,120.5,206º(Ampla),206,False,False,-141,6,0,0,85º SEFAZ SP 2025 | 377º SEFAZ RJ 25 | 26º SEFAZ PR Agente Fazendario | 2º SEFAZ PR Agente Fazendario | 374º RFB | 316º ISS Guarulhos
+Diogo Ferreira Pires,108.0,12.5,0.0,120.5,207º(Ampla),207,False,False,-140,8,0,1,140º SEFAZ SP 2025 | 74º SEFAZ RJ | 139º SEFAZ RJ 25 | 2º SEFAZ PR Agente Fazendario | 413º DPF 25 | 115º ALERJ 2025 | 248º TJ RJ 2026 | 83º ISS Nova Iguaçu
+Leonardo Dos Santos Nascimento,107.6,12.8,0.0,120.4,208º(Afro),208,True,False,-139,6,1,0,637º SEFAZ SP 2025 | 1218º SEFAZ MG | 611º ISS Rio de Janeiro | 34º CVM | 96º ISS Porto Alegre 25 | 8º ISS Porto Alegre 25
+Fabricio Luis Kerber,107.6,12.8,0.0,120.4,209º(Ampla),209,False,False,-138,2,0,0,474º SEFAZ SC 21 | 3º SEFAZ PR Agente Fazendario
+João Pedro Carvalho De Lima,107.4,13.0,0.0,120.4,210º(Ampla),210,False,False,-137,7,0,0,720º SEFAZ SP 2025 | 36º SEFAZ SE 25 | 96º SEFAZ RJ 25 | 2522º SEFAZ MG | 78º ISS Rio de Janeiro | 51º ISS Nova Iguaçu | 184º ISS Porto Alegre 25
+João Pedro Macêdo De Santana,106.4,14.0,0.0,120.4,211º(Ampla),211,False,False,-136,4,0,1,31º SEFAZ PI 25 | 132º SEFAZ SP 2025 | 72º ISS Cuiaba | 53º ISS Porto Alegre 25
+Lucas José Santos Vasconcelos,108.8,11.6,0.0,120.4,212º(Ampla),212,False,False,-135,9,1,0,110º SEFAZ PI 25 | 45º SEFAZ SE 25 | 79º SEFAZ RJ 25 | 5º ISS Mossoro | 15º TSE Unificado | 419º SEFAZ BA 22 | 4º CNU | 14º TRF 5 24 | 7º CVM
+Tales Ariel Cerutti Monteiro,105.6,14.8,0.0,120.4,213º(Ampla),213,False,False,-134,3,0,0,201º SEFAZ SP 2025 | 8º ISS Florianopolis | 313º ISS Porto Alegre 25
+Victor Hugo Diniz Cavalcante,106.6,13.8,0.0,120.4,214º(Ampla),214,False,False,-133,12,2,0,393º SEFAZ SP 2025 | 37º ISS Jaboatao dos Guararapes | 30º SEFAZ SE 25 | 42º ISS Mossoro | 196º SEFAZ BA 22 | 388º SEFAZ MG | 68º ISS SP | 170º SEFAZ MT | 215º ISS Rio de Janeiro | 40º MPU 25 | 185º CVM | 87º ISS Porto Alegre 25
+Jaqueline Cristina Santana De Alencar,105.4,15.0,0.0,120.4,215º(Ampla),215,False,False,-132,7,1,0,704º SEFAZ SP 2025 | 11º ISS Ribeirao Preto | 1429º SEFAZ MG | 25º ISS Sao Bernardo do Campo | 28º ISS Sao José dos Campos | 12º ISS Londrina | 85º ISS Porto Alegre 25
+Iasmin Nolasco De Lima,109.8,10.5,0.0,120.3,216º(Ampla),216,False,False,-131,5,0,0,742º SEFAZ SP 2025 | 324º TCE RS 25 | 22º TSE Unificado | 963º RFB | 176º ISS Porto Alegre 25
+Lukas Carvalho Leitão,106.8,13.5,0.0,120.3,217º(Ampla),217,False,False,-130,9,0,0,763º SEFAZ SP 2025 | 289º SEFAZ RJ 25 | 24º CNU | 964º RFB | 726º ALERJ 2025 | 617º ALERJ 2025 | 264º ISS Rio de Janeiro | 100º ISS Nova Iguaçu | 12º ISS Nova Iguaçu
+Pedro Pompeo Pistelli Ferreira,104.0,11.3,5.0,120.3,218º(Ampla),218,False,False,-129,1,0,0,248º SEFAZ SP 2025
+Camila De Sousa Ramos,107.8,12.4,0.0,120.2,219º(Ampla),219,False,False,-128,5,0,0,131º MP PE 2019 | 219º PGE PE | 1392º TCE PE 17 | 88º TCE PE 25 | 216º ISS Rio de Janeiro
+Felipe Da Silva Feltrin,104.2,13.0,3.0,120.2,220º(Ampla),220,False,False,-127,9,1,0,265º SEFAZ SP 2025 | 9º TRF 4 | 15º TCE RS 25 | 37º STM | 471º TSE Unificado | 1232º SEFAZ MG | 1º TRF 4 2026 | 9º TRF 4 2026 | 180º MPU 25
+Gabriel Vieira De Melo Faeirstein,105.2,15.0,0.0,120.2,221º(Ampla),221,False,False,-126,9,1,0,211º SEFAZ PE | 208º SEFAZ PI 25 | 349º TRT 6 PE | 204º TCE PE 25 | 208º TCE PE 25 | 149º SEFAZ BA 22 | 2280º SEFAZ MG | 209º ISS Rio de Janeiro | 29º STN
+Gustavo Da Silva Oliveira,108.8,11.4,0.0,120.2,222º(Ampla),222,False,False,-125,6,2,0,373º SEFAZ SC 21 | 202º TRF 3 | 19º AGSUS RIO DOCE 2026 | 498º TSE Unificado | 62º ISS GUARUJA | 897º SEFAZ MG
+Jose Francisco Gomes,108.2,12.0,0.0,120.2,223º(Ampla),223,False,False,-124,10,0,0,1342º SEFAZ SP 2025 | 266º SEFAZ PI 25 | 96º ISS Mossoro | 101º ISS Fortaleza | 2404º SEFAZ RJ 25 | 94º SEFAZ RJ 25 | 89º CNU | 133º ISS Guarulhos | 30º ISS Sobral | 68º DATAPREV 2024
+Bruno Assumpção Gomes Da Silva,106.6,10.5,3.0,120.1,224º(Ampla),224,False,False,-123,3,2,2,199º SEFAZ SP 2025 | 863º PRF | 9º DPF
+Marcelo Junior De Oliveira,108.6,11.5,0.0,120.1,225º(Ampla),225,False,False,-122,8,1,0,960º SEFAZ SP 2025 | 92º SEFAZ SE 25 | 24º TSE Unificado | 33º TSE Unificado | 649º SEFAZ BA 22 | 817º SEFAZ MG | 55º CAGE RS | 309º ISS Rio de Janeiro
+Priscila Paropato Camargo E Almeida,105.6,14.5,0.0,120.1,226º(Ampla),226,False,False,-121,13,1,0,178º TCE SP 25 | 6º TCE SP 25 | 128º TRF 6 | 165º ISS Ribeirao Preto | 317º AL MG | 174º ISS Belo Horizonte | 7º ISS Ribeirao das Neves | 506º SEFAZ MG | 174º ISS Rio de Janeiro | 20º CGM Belo Horizonte | 19º CVM | 29º ISS Cuiaba | 11º TRF 1 24
+Maicon Rodrigo Razzoto Da Silva,109.0,11.0,0.0,120.0,227º(Afro),227,False,False,-120,3,0,0,45º TRT 12 SC | 94º CGE SC | 117º RFB
+Isadora Queiroz Ferreira Barata,106.0,14.0,0.0,120.0,228º(Ampla),228,False,False,-119,3,0,0,189º SEFAZ SP 2025 | 597º RFB | 221º ISS Porto Alegre 25
+José Luis Modena,105.0,12.0,3.0,120.0,229º(Ampla),229,False,False,-118,4,0,0,28º TCE RS 25 | 15º TCE PR | 21º SEFAZ PR Agente Fazendario | 26º CVM
+Ulisses Timbó Barbosa,108.2,11.8,0.0,120.0,230º(Ampla),230,False,False,-117,4,0,0,354º SEFAZ SP 2025 | 94º SEFAZ RJ 25 | 7º SEFAZ SE 25 | 240º ISS Rio de Janeiro
+Daniel Augusto Costa Maldonado,104.4,13.9,1.5,119.8,231º(Ampla),231,False,False,-116,11,1,1,76º ISS Mossoro | 207º TCE RS 25 | 167º ISS Ribeirao Preto | 165º ISS Ouro Branco | 2º ISS Sao Caetano do Sul | 48º ISS Ouro Preto | 2928º SEFAZ MG | 33º ISS Sao José dos Campos | 56º ISS Nova Iguaçu | 148º ISS Cuiaba | 17º ISS Macaé
+Juliana De Albuquerque Silveira,105.2,14.5,0.0,119.7,232º(Ampla),232,False,False,-115,6,1,0,90º SEFAZ PI 25 | 10º ISS Jaboatao dos Guararapes | 659º SEFAZ MG | 82º SEFAZ MT | 122º ISS Rio de Janeiro | 27º ISS Cuiaba
+Alexandre Ramos Magnavita De Souza,106.6,13.0,0.0,119.6,233º(Ampla),233,False,False,-114,4,2,1,42º SEFAZ SC 21 | 3º ISS Florianopolis | 134º SEFAZ AL 19 | 978º SEFAZ RS 18
+Bartolomeu Francisco Novaes Neto,106.6,13.0,0.0,119.6,234º(Ampla),234,False,False,-113,7,0,0,538º SEFAZ SP 2025 | 100º TCE SP 25 | 189º TCE PE 25 | 38º TCE PE 25 | 73º CGE SP 25 | 129º CAGE RS | 223º ISS Porto Alegre 25
+Evandro Rosal Pádua,106.6,13.0,0.0,119.6,235º(Ampla),235,False,False,-112,7,0,0,21º SEFAZ PI 25 | 142º SEFAZ PI 25 | 149º SEFAZ SP 2025 | 121º ISS Fortaleza | 161º SEFAZ AC | 3553º SEFAZ MG | 166º ISS Porto Alegre 25
+Luiz Henrique Amorim De Jesus Junior,106.8,12.8,0.0,119.6,236º(Ampla),236,False,False,-111,4,1,1,48º TCE MG 25 | 169º SEFAZ RJ 25 | 42º DPF | 397º SEFAZ MG
+Vanessa De Matos Pacheco,105.6,14.0,0.0,119.6,237º(Ampla),237,False,False,-110,2,0,1,60º SEFAZ SP 2025 | 97º SEFAZ AC
+Daniel Jony Da Silva Ormond,106.0,13.5,0.0,119.5,238º(Ampla),238,False,False,-109,4,0,0,2245º SEFAZ SP 2025 | 64º ISS Florianopolis | 1º SUSEP | 76º ISS Criciúma
+Filipe Lauria Zambenedetti,106.2,13.3,0.0,119.5,239º(Ampla),239,False,False,-108,11,1,0,2º SEFAZ SE 25 | 37º ISS Ribeirao Preto | 86º SEFAZ BA 22 | 72º CNU | 993º RFB | 55º MPU 25 | 31º MPU 25 | 9º CRP Bahia | 1º CRP Bahia | 33º TRF 1 24 | 97º TRF 1 24
+Carlos Filipe Ferreira De Souza,105.4,14.0,0.0,119.4,240º(Ampla),240,False,False,-107,8,0,2,129º SEFAZ SP 2025 | 237º TCE SP 25 | 38º SEFAZ SE 25 | 2º SEFAZ RJ | 23º SEFAZ AC | 13º SEFAZ RJ 25 | 159º CGE SP 25 | 235º ISS Sao Bernardo do Campo
+Mariana De Almeida Cruz,106.4,13.0,0.0,119.4,241º(Ampla),241,False,False,-106,4,0,0,217º SEFAZ MG | 436º CGE SC | 380º RFB | 17º TJ RJ 2026
+Mônica Da Silva Figueiredo,107.6,11.8,0.0,119.4,242º(Ampla),242,False,False,-105,4,0,0,617º SEFAZ SP 2025 | 223º SEFAZ RS TEC 18 | 118º CAGE RS | 108º ISS Porto Alegre 25
+Ramon Baston Olympio,107.4,12.0,0.0,119.4,243º(Ampla),243,False,False,-104,7,0,1,103º SEFAZ SP 2025 | 16º ISS Florianopolis | 53º ISS Ribeirao Preto | 167º ISS Uberlandia | 557º SEFAZ MG | 260º ISS Guarulhos | 18º ISS Sao José dos Campos
+Vinicius Leonardo Gadioli Da Silva,103.8,12.5,3.0,119.3,244º(Ampla),244,False,False,-103,3,0,0,705º SEFAZ SP 2025 | 2º CNU | 1869º SEFAZ MG
+Davi Antoniel Filipi Cardoso,104.2,15.0,0.0,119.2,245º(Afro),245,True,False,-102,0,0,0,
+Lucas Pinto Neves Ângelo Rocha,107.2,12.0,0.0,119.2,246º(Ampla),246,False,False,-101,0,0,0,
+Tairini Joyce Pimenta De Oliveira,107.4,11.8,0.0,119.2,247º(Ampla),247,False,False,-100,3,0,0,177º SEFAZ SP 2025 | 855º ISS Rio de Janeiro | 29º ISS Nova Iguaçu
+Fernando Mattoso De Azevedo,105.2,14.0,0.0,119.2,248º(Ampla),248,False,False,-99,9,0,0,216º SEFAZ SP 2025 | 51º SEFAZ RJ 25 | 21º ISS Ribeirao Preto | 518º SEFAZ AM 22 | 922º SEFAZ MG | 32º ISS Campos dos Goytacazes | 173º ISS Rio de Janeiro | 54º ISS Sao Bernardo do Campo | 122º ISS Porto Alegre 25
+Rômulo Dos Santos Valente,108.6,10.5,0.0,119.1,249º(Afro),249,False,False,-98,8,0,0,74º SEFAZ SP 2025 | 749º SEFAZ RJ 25 | 133º SEFAZ RJ 25 | 396º DPF 25 | 77º DPF 25 | 69º ISS Campos dos Goytacazes | 6º ISS Nova Iguaçu | 2º ISS Macaé
+Allisson Augusto Zamboni,105.0,14.0,0.0,119.0,250º(Ampla),250,False,False,-97,3,1,1,1713º SEFAZ SP 2025 | 985º PRF | 25º ISS Itajai
+Camilla De Fatima Portela Gurnacki Bueno,106.0,13.0,0.0,119.0,251º(Ampla),251,False,False,-96,2,0,0,464º SEFAZ SP 2025 | 402º SEFAZ MG
+Lauro Perret Soares,106.0,13.0,0.0,119.0,252º(Ampla),252,False,False,-95,6,0,0,672º SEFAZ SP 2025 | 121º SEFAZ RJ 25 | 212º ISS Ribeirao Preto | 3690º SEFAZ MG | 675º ISS Rio de Janeiro | 53º ISS Nova Iguaçu
+Virginio Athan Costa,107.2,11.8,0.0,119.0,253º(Ampla),253,False,False,-94,4,0,0,57º SEFAZ AC | 309º SEFAZ RR | 1646º SEFAZ MG | 287º ISS Rio de Janeiro
+Carlos Eduardo De Souza,105.6,13.4,0.0,119.0,254º(Ampla),254,False,False,-93,6,0,0,19º SEFAZ SP 2025 | 368º TJ MG 22 | 100º SEFAZ AC | 192º AL MG | 15359º UFRJ 2025 | 22º ISS Cuiaba
+Lucas De Paula Lima,104.2,14.7,0.0,118.9,255º(Afro),255,False,False,-92,21,0,0,173º DPE SP | 19º SEFAZ PI 25 | 79º TRT 12 SC | 1º TCE MS 2025 | 1º SEFAZ SE 25 | 1º SEFAZ SE 25 | 17º TCE RS 25 | 3º TCE RS 25 | 60º TSE Unificado | 215º TSE Unificado | 19º TCE PE 25 | 44º TCE PE 25 | 11º TCE PE 25 | 1177º MPMG 2022 | 9º TJ RJ 2026 | 1071º TJ RJ 2026 | 1º TRF 3 23 | 4º TRF 3 23 | 1º TRF 3 23 | 1º CVM | 6º STN
+Leonardo Augusto Oliva Ramos,105.0,13.9,0.0,118.9,256º(Ampla),256,False,False,-91,4,0,0,261º SEFAZ SP 2025 | 33º TRT 12 SC | 73º SEFAZ MT | 18º ISS Criciúma
+Natássia Pena Leite,105.6,13.3,0.0,118.9,257º(Ampla),257,False,False,-90,7,0,0,626º SEFAZ SP 2025 | 20º ISS Varginha | 302º TCE SP 25 | 215º TCE SP 25 | 203º ISS Ribeirao Preto | 1210º SEFAZ MG | 11º ISS Sao Bernardo do Campo
+William Pereira De Carvalho,106.6,12.3,0.0,118.9,258º(Ampla),258,False,False,-89,28,2,0,190º SEFAZ SP 2025 | 264º SEFAZ PI 25 | 16º CFM | 271º SEFAZ RJ 25 | 9º TCE PR | 51º CG DF | 50º SEPLAD DF | 236º CG DF | 552º SEPLAD DF | 4º TCE ES SECONT | 60º TC DF | 86º ISS Fortaleza | 1º ANATEL | 12º TSE Unificado | 136º TCE PE 25 | 191º TCE PE 25 | 8º TJDFT 2022 | 32º BNDES | 1318º SEFAZ MG | 105º TCM SP 20 | 41º CGE SC | 145º CAGE RS | 241º ISS Rio de Janeiro | 117º ISS Cuiaba | 1º TCE RR | 2º TRF 1 24 | 3º TRF 1 24 | 29º EPE ENERGÉTICA
+Andre Ricardo Dos Reis,107.4,11.4,0.0,118.8,259º(Ampla),259,False,False,-88,3,0,0,831º SEFAZ SP 2025 | 851º SEFAZ MG | 266º ISS Rio de Janeiro
+Luis Henrique Kamke,106.8,12.0,0.0,118.8,260º(Ampla),260,False,False,-87,2,0,0,468º TRE SP 2016 | 85º TRE SP 2016
+Rodrigo Pereira De Araujo,107.0,11.8,0.0,118.8,261º(Ampla),261,False,False,-86,2,0,0,463º SEFAZ SP 2025 | 562º ISS Rio de Janeiro
+Domingos Fabio Ribeiro,103.8,15.0,0.0,118.8,262º(Ampla),262,False,False,-85,11,1,0,495º SEFAZ SC 21 | 12º SEFAZ SP 2025 | 71º SEFAZ AC | 272º ISS Ribeirao Preto | 469º SEFAZ AM 22 | 1542º SEFAZ MG | 66º ISS Diadema | 166º Prefeitura São Paulo | 139º ISS Sao Bernardo do Campo | 165º ISS Porto Alegre 25 | 46º SEFAZ RR
+Rafael Cesar Sassiotti Pinto,103.8,15.0,0.0,118.8,263º(Ampla),263,False,False,-84,3,0,0,707º SEFAZ SP 2025 | 8º ANM Ag. Nac. Mineracao | 604º SEFAZ MG
+Bruna Rodrigues Linck,103.2,12.5,3.0,118.7,264º(Ampla),264,False,False,-83,8,1,0,1182º SEFAZ SP 2025 | 42º ISS Florianopolis | 27º TCE RS 25 | 70º CAGE RS | 2º MP RS | 112º ISS Cuiaba | 10º ISS Criciúma | 64º ISS Porto Alegre 25
+Elismar Costa Coelho,107.2,11.5,0.0,118.7,265º(Ampla),265,False,False,-82,5,2,1,1119º SEFAZ SP 2025 | 638º PRF | 308º SEFAZ BA 22 | 376º RFB | 182º ISS Petrolina
+Luiz Guilherme Melo Machado Filho,106.2,12.5,0.0,118.7,266º(Ampla),266,False,False,-81,7,0,0,300º SEFAZ PI 25 | 655º SEFAZ SP 2025 | 104º SEFAZ SE 25 | 182º SEFAZ AC | 41º ISS Mossoro | 14º ISS Cuiaba | 112º ISS Porto Alegre 25
+Mateus Grossi Algayer,106.2,12.5,0.0,118.7,267º(Ampla),267,False,False,-80,7,0,2,108º SEFAZ SP 2025 | 181º SEFAZ RJ 25 | 28º SEFAZ AC | 226º MPO | 416º RFB | 138º ALESC | 50º ISS Criciúma
+Sander Lisboa Silva,107.2,11.5,0.0,118.7,268º(Ampla),268,False,False,-79,3,0,0,1081º SEFAZ SP 2025 | 1094º SEFAZ MG | 160º ISS Porto Alegre 25
+William Alves Tavares,103.2,12.5,3.0,118.7,269º(Ampla),269,False,False,-78,2,0,0,1404º SEFAZ SP 2025 | 2977º SEFAZ MG
+Augusto Luiz Oliveira Rosa Araujo,106.0,12.7,0.0,118.7,270º(Ampla),270,False,False,-77,7,1,0,106º SEFAZ SE 25 | 210º ISS Ribeirao Preto | 166º SEFAZ AM 22 | 517º SEFAZ BA 22 | 1023º SEFAZ MG | 411º ISS Petrolina | 15º ISS Cuiaba
+Glauberson De Almada Vanderley,104.6,14.0,0.0,118.6,271º(Afro),271,False,False,-76,6,1,2,3º SEFAZ AC | 3º SEFAZ RJ 25 | 3º SEFAZ RJ 25 | 141º ISS Ribeirao Preto | 27º ISS Rio de Janeiro | 3º ISS Sao Bernardo do Campo
+Thiago Dos Santos Mota,106.0,12.6,0.0,118.6,272º(Afro),272,False,False,-75,6,0,0,274º SEFAZ SP 2025 | 206º SEFAZ AC | 698º SEFAZ RJ 25 | 124º SEFAZ RJ 25 | 84º ISS Campos dos Goytacazes | 31º ISS Nova Iguaçu
+Bruno Arai Seque,104.6,14.0,0.0,118.6,273º(Ampla),273,False,False,-74,3,0,1,14º SEFAZ SP 2025 | 41º SEFAZ SE 25 | 928º RFB
+Juliana Barboza Do Nascimento,102.6,13.0,3.0,118.6,274º(Ampla),274,False,False,-73,7,0,0,804º SEFAZ SP 2025 | 49º SEFAZ RJ 25 | 217º SEFAZ AC | 131º CGM RIO | 119º CGM RJ | 391º RFB | 249º ISS Rio de Janeiro
+Maria Luiza Ramos Malheiros,105.6,13.0,0.0,118.6,275º(Ampla),275,False,False,-72,9,2,0,966º SEFAZ SP 2025 | 35º ISS Dourados | 10º ISS SANTOS | 52º ISS Ribeirao Preto | 9º ISS Joinville | 825º ISS Uberlandia | 866º RFB | 36º ISS Sao Bernardo do Campo | 54º TCM SP 20
+Pedro Braga Rosa Demier,106.6,12.0,0.0,118.6,276º(Ampla),276,False,False,-71,7,0,0,727º SEFAZ SP 2025 | 83º SEFAZ RJ 25 | 314º ISS Ribeirao Preto | 412º SEFAZ MG | 149º ISS Rio de Janeiro | 57º ISS Sao Bernardo do Campo | 13º ISS Nova Iguaçu
+Philipp Westphal Kelbert,106.6,12.0,0.0,118.6,277º(Ampla),277,False,False,-70,1,0,0,147º SEFAZ SP 2025
+Artur Henrique Alencar Cabral,108.0,10.5,0.0,118.5,278º(Ampla),278,False,False,-69,8,1,0,858º SEFAZ SP 2025 | 25º CFM | 345º CG DF | 321º SEPLAD DF | 2º STJ | 2º AGSUS SUS 2025 | 20º TJ RN 23 | 41º MPU 25
+Caio César Lima Lacerda Ferreira,104.0,11.5,3.0,118.5,279º(Ampla),279,False,False,-68,6,0,2,385º SEFAZ PE | 13º SEFAZ PE Apoio | 4º ISS Garanhuns | 74º SEFAZ PE Apoio | 772º SEFAZ BA 22 | 2310º SEFAZ MG
+Eduardo Lise Gerhardt,106.2,12.3,0.0,118.5,280º(Ampla),280,False,False,-67,5,0,0,161º SEFAZ RS 17 | 24º ISS Joinville | 79º CGE SC | 51º CAGE RS | 8º ISS Criciúma
+Eduardo Palma Coelho,107.6,10.9,0.0,118.5,281º(Ampla),281,False,False,-66,8,0,0,301º SEFAZ SP 2025 | 74º ISS Ribeirao Preto | 2316º SEFAZ MG | 171º ISS Uberlandia | 260º ISS Rio de Janeiro | 16º ISS Uberlândia 25 | 141º ISS Sao Bernardo do Campo | 39º ISS Nova Iguaçu
+Elias Eduardo Silva,106.6,11.9,0.0,118.5,282º(Ampla),282,False,False,-65,3,0,0,25º ISS Ribeirao das Neves | 2933º SEFAZ MG | 212º ISS Serra ES
+Marcelo Gomes De Lima,106.0,12.5,0.0,118.5,283º(Ampla),283,False,False,-64,6,0,1,10º SEFAZ PI 25 | 118º SEFAZ PI 25 | 244º SEFAZ SP 2025 | 671º SEFAZ MG | 80º ISS Sao Bernardo do Campo | 53º ISS Cuiaba
+Thiago Badia Piccinini,106.0,12.5,0.0,118.5,284º(Ampla),284,False,False,-63,5,1,0,146º SEFAZ SC 21 | 908º SEFAZ SP 2025 | 2382º PRF | 425º ISS Ribeirao Preto | 24º TRF 2
+Henrique Sella Kerst,106.2,12.2,0.0,118.4,285º(Ampla),285,False,False,-62,3,0,1,2367º SEFAZ SP 2025 | 384º SEFAZ SC 21 | 230º RFB
+Olisses Dalpra Baggio,106.4,12.0,0.0,118.4,286º(Ampla),286,False,False,-61,3,0,0,24º TCE PR | 6º TSE Unificado | 18º MP PR 24
+Vinícius Felippe Feitosa Armando,107.0,11.3,0.0,118.3,287º(Afro),287,False,False,-60,10,2,0,101º SEFA PA | 439º SEFAZ SP 2025 | 187º SEFAZ RJ 25 | 28º SEFAZ RJ 25 | 125º SEFAZ RR | 2º ISS Aracaju | 3º ISS Paulinia | 271º SEFAZ AM 22 | 2127º SEFAZ MG | 150º SEFAZ ES
+Patricia Lima De Almeida,103.8,14.5,0.0,118.3,288º(Ampla),288,False,False,-59,5,1,0,6º SEFAZ SE 25 | 406º SEFAZ BA 22 | 1061º SEFAZ MG | 282º ISS Rio de Janeiro | 24º TRF 1 24
+Jackson Araújo Pequeno,107.2,11.1,0.0,118.3,289º(Ampla),289,False,False,-58,12,1,0,1889º SEFAZ SP 2025 | 457º SEFAZ RR | 1009º SEFAZ RS 18 | 8º TSE Unificado | 27º TSE Unificado | 493º TJ GO | 316º SEFAZ AM 22 | 1216º SEFAZ MG | 7º CORE GO | 563º ALEGO | 155º ISS Cuiaba | 2º TRF 1 24
+Lenilson José De Oliveira Vieira,105.8,12.4,0.0,118.2,290º(Afro),290,False,False,-57,4,0,1,4º SEFAZ PI 25 | 3980º PRF | 2256º SEFAZ MG | 812º ISS Rio de Janeiro
+Fábio Ribeiro Kliemann,103.2,15.0,0.0,118.2,291º(Ampla),291,False,False,-56,6,1,0,156º SEFAZ SP 2025 | 48º ISS Florianopolis | 63º TCE RS 25 | 7º TJ RS 2025 | 43º ISS Criciúma | 91º ISS Porto Alegre 25
+Marco Antonio Beltrao Pamplona Junior,103.4,14.8,0.0,118.2,292º(Ampla),292,False,False,-55,4,0,0,309º SEFAZ SP 2025 | 492º ISS Ribeirao Preto | 486º ISS Sao Bernardo do Campo | 261º ISS Porto Alegre 25
+Matheus Laini Garcia,104.4,13.8,0.0,118.2,293º(Ampla),293,False,False,-54,6,0,0,554º SEFAZ SC 21 | 1358º SEFAZ SP 2025 | 467º ISS Ribeirao Preto | 658º SEFAZ AM 22 | 951º SEFAZ MG | 78º ISS Uberlândia 25
+Rafael Gobbis Arantes,107.0,11.2,0.0,118.2,294º(Ampla),294,False,False,-53,5,1,0,105º SEFAZ SC 21 | 321º SEFAZ AM 22 | 864º SEFAZ MG | 48º CAGE RS | 8º TCE RR
+Vincius Vendramini Silva Cardoso,106.0,12.2,0.0,118.2,295º(Ampla),295,False,False,-52,2,0,0,181º SEFAZ AM 22 | 522º SEFAZ MG
+Sabrina Utri,106.2,12.0,0.0,118.2,296º(Ampla),296,False,False,-51,6,0,0,3º TRF 4 | 18º SEFAZ PR Agente Fazendario | 3º TSE Unificado | 12º MP PR 24 | 3º TRF 4 2026 | 3º TRF 4 2026
+Alexandre Silva Freitas,103.6,14.5,0.0,118.1,297º(Ampla),297,False,False,-50,4,1,1,263º SEFAZ SP 2025 | 100º DPF | 329º ISS Itajai | 60º ISS Porto Alegre 25
+Michel Esteves Ubaldo,107.6,10.5,0.0,118.1,298º(Ampla),298,False,False,-49,1,0,0,364º SEFAZ SP 2025
+Willian José Marques Costa,104.8,13.3,0.0,118.1,299º(Ampla),299,False,False,-48,9,1,0,322º SEFAZ SC 21 | 53º ISS Florianopolis | 776º SEFAZ RS TEC 18 | 119º TCE PR | 79º ISS Itajai | 210º ISS Itajai | 25º ISS Pinhais | 1492º SEFAZ MG | 799º ISS Guarulhos
+Danilo Tadachi Nishida,106.0,12.0,0.0,118.0,300º(Pcd),300,False,False,-47,4,0,1,26º SEFAZ AC | 1º SEFAZ SE 25 | 1º SEFAZ SE 25 | 962º RFB
+Bruno Gustavo De Oliveira,105.6,12.4,0.0,118.0,301º(Ampla),301,False,False,-46,2,0,0,984º SEFAZ SP 2025 | 736º SEFAZ MG
+Camilla Rezende Otoni,103.6,14.4,0.0,118.0,302º(Ampla),302,False,False,-45,5,0,0,1396º SEFAZ SP 2025 | 81º SEFAZ SE 25 | 95º SEFAZ PR Agente Fazendario | 1865º SEFAZ MG | 352º ISS Rio de Janeiro
+Gustavo Lins Freire,105.2,12.8,0.0,118.0,303º(Ampla),303,False,False,-44,8,2,1,322º SEFAZ PE | 67º SEFAZ AP | 104º SEFAZ PI 25 | 34º SEFAZ SE 25 | 67º ISS Mossoro | 433º SEFAZ BA 22 | 1369º SEFAZ MG | 146º SEFAZ MT
+Mariana Ramos Malheiros,105.2,12.8,0.0,118.0,304º(Ampla),304,False,False,-43,5,2,2,8º ISS Dourados | 94º SEFAZ MG | 239º ISS Uberlandia | 78º CGE MS | 69º TCM SP 20
+Marina Fernandes Monteiro Campos,105.0,13.0,0.0,118.0,305º(Ampla),305,False,False,-42,7,0,0,267º SEFAZ RJ 25 | 76º ISS Contagem | 607º SEFAZ MG | 423º ISS Belo Horizonte | 82º CAGE RS | 18º ISS Belo Horizonte | 250º ISS Rio de Janeiro
+Jefferson Ordecio Camargo Dos Santos Silva,103.0,14.8,0.0,117.8,306º(Afro),306,False,False,-41,4,0,0,1173º SEFAZ SP 2025 | 2285º SEFAZ MG | 291º ISS Porto Alegre 25 | 27º ISS Porto Alegre 25
+Alex Rivelino Alcantara Da Silva Junior,103.8,14.0,0.0,117.8,307º(Ampla),307,False,False,-40,3,0,0,26º SEFAZ RJ | 4º MPU 25 | 7º ISS SEPLAG Niteroi
+Cesar Henrique Mondini,105.8,10.5,1.5,117.8,308º(Ampla),308,False,False,-39,5,0,1,79º SEFAZ SP 2025 | 2464º SEFAZ MG | 578º RFB | 468º ISS Rio de Janeiro | 455º ISS Belo Horizonte
+Guilherme Mastrange Dos Santos Silveira,100.8,14.0,3.0,117.8,309º(Ampla),309,False,False,-38,3,0,0,277º SEFAZ SP 2025 | 304º SEFAZ RJ 25 | 64º ALERJ 2025
+Rubens Cavilha De Souza,104.8,13.0,0.0,117.8,310º(Ampla),310,False,False,-37,6,1,0,63º SEFAZ SC 21 | 497º SEFAZ SP 2025 | 36º SEFAZ MT | 63º ISS Guarulhos | 308º ISS Rio de Janeiro | 20º ISS Cuiaba
+Estevão Peixoto San Pedro,104.8,13.0,0.0,117.8,311º(Ampla),311,False,False,-36,6,0,0,1563º SEFAZ SP 2025 | 75º ISS Itajai | 376º SEFAZ AM 22 | 1116º SEFAZ MG | 348º ISS Rio de Janeiro | 203º ISS Porto Alegre 25
+Henrique Chacra Sabino,107.2,10.5,0.0,117.7,312º(Ampla),312,False,False,-35,7,2,1,91º SEFAZ AP | 1020º SEFAZ SP 2025 | 6º Camara Municipal Maceio | 391º ISS Rio de Janeiro | 61º ISS Sao Bernardo do Campo | 732º ISS Osasco | 17º ISS Cuiaba
+Hugo Lourenco Santana,105.2,12.5,0.0,117.7,313º(Ampla),313,False,False,-34,6,0,0,63º SEFAZ SP 2025 | 14º SEFAZ SE 25 | 107º MPO | 534º ISS Rio de Janeiro | 45º TCE GO 23 | 45º TCE GO 24
+João Vítor De Queiroz Vasconcelos,103.2,14.5,0.0,117.7,314º(Ampla),314,False,False,-33,2,0,0,67º SEFAZ AC | 644º SEFAZ PE Apoio
+Agnaldo De Oliveira Borges,104.6,13.0,0.0,117.6,315º(Afro),315,False,False,-32,8,0,1,160º CGM SP | 121º SEFAZ SP 2025 | 247º TCE SP 25 | 16º TCE SP 25 | 120º TCE RS 25 | 19º TCE RS 25 | 257º ISS Porto Alegre 25 | 23º ISS Porto Alegre 25
+Renan Ferreira Da Silva,102.6,15.0,0.0,117.6,316º(Afro),316,False,False,-31,5,0,0,563º SEFAZ SP 2025 | 14º SEFAZ PR Agente Fazendario | 1º SEFAZ PR Agente Fazendario | 16º MP PR 24 | 3º MP PR 24
+Ana Patrícia Maia Allain Teixeira,104.6,13.0,0.0,117.6,317º(Ampla),317,False,False,-30,7,0,0,1195º SEFAZ SP 2025 | 3º SEFAZ PR Agente Fazendario | 8º ISS Mossoro | 60º TCE PE 25 | 106º TCE PE 25 | 84º ISS Nova Iguaçu | 18º ISS Nova Iguaçu
+Fernanda Ronssani De Figueiredo,100.6,12.0,5.0,117.6,318º(Ampla),318,False,False,-29,12,1,0,453º SEFAZ SC 21 | 332º TRF 4 | 995º SEFAZ SP 2025 | 59º SEFAZ SE 25 | 28º TCE RS 25 | 33º TRF 4 2026 | 650º TRF 4 2026 | 28º TJ RS 2025 | 412º RFB | 83º MPU 25 | 59º ALERS | 229º ISS Porto Alegre 25
+Larissa Barroso Dos Santos,102.8,11.8,3.0,117.6,319º(Ampla),319,False,False,-28,3,0,0,285º SEFAZ SP 2025 | 46º Câmara dos Deputados 2025 NS | 109º EPE ENERGÉTICA
+Lucas Henriques Félix Nascimento,102.8,14.8,0.0,117.6,320º(Ampla),320,False,False,-27,8,1,0,2238º SEFAZ SP 2025 | 802º SEFAZ RS TEC 18 | 128º SEFAZ AC | 293º SEFAZ BA 22 | 12º CNU | 1294º SEFAZ MG | 492º ISS Uberlandia | 343º ISS Cuiaba
+Marcelo Sena Da Silva,104.6,13.0,0.0,117.6,321º(Ampla),321,False,False,-26,2,0,0,157º SEFAZ SP 2025 | 226º ALERJ 2025
+Matheus Muzzo De Oliveira,103.8,13.8,0.0,117.6,322º(Ampla),322,False,False,-25,5,1,0,342º SEFAZ SP 2025 | 441º SEFAZ MG | 127º ISS Belo Horizonte | 376º ISS Guarulhos | 34º ISS Osasco
+Pedro Guimarães Marchi,105.6,12.0,0.0,117.6,323º(Ampla),323,False,False,-24,7,0,1,117º SEFAZ SP 2025 | 28º TRT 15 Campinas | 482º SEFAZ PI 25 | 495º TRF 3 | 1400º TSE Unificado | 102º TCE PE 25 | 173º ISS Cuiaba
+Débora Cristina Pires De Miranda,103.8,13.7,0.0,117.5,324º(Afro),324,False,False,-23,3,0,0,738º SEFAZ SP 2025 | 1019º SEFAZ MG | 41º ISS Cuiaba
+Herbert Ferreira Conceição,105.0,12.5,0.0,117.5,325º(Afro),325,False,False,-22,15,0,1,144º SEFAZ SP 2025 | 58º ISS Paraty | 14º ISS Florianopolis | 24º SEFAZ RJ 25 | 24º SEFAZ RJ 25 | 40º STM | 39º DPF 25 | 348º ISS Ribeirao Preto | 46º ISS Campos dos Goytacazes | 85º ISS Sao Bernardo do Campo | 10º ISS Nova Iguaçu | 2º ISS Nova Iguaçu | 130º ISS Porto Alegre 25 | 14º ISS Porto Alegre 25 | 1º ISS Macaé
+Helder Alves Da Silva,102.6,14.9,0.0,117.5,326º(Ampla),326,False,False,-21,6,0,0,2492º SEFAZ SP 2025 | 75º ISS Ribeirao Preto | 706º RFB | 343º ISS Rio de Janeiro | 51º TCE GO 23 | 51º TCE GO 24
+Rafael Maia Araújo,104.8,12.7,0.0,117.5,327º(Ampla),327,False,False,-20,8,0,0,59º SEFAZ PI 25 | 317º SEFAZ PI 25 | 615º SEFAZ RS 18 | 148º ISS Mossoro | 382º SEFAZ AM 22 | 605º SEFAZ MG | 125º ISS Cuiaba | 190º ISS Salvador
+Renato Ladeira De Carvalho,103.6,13.9,0.0,117.5,328º(Ampla),328,False,False,-19,4,0,1,47º SEFAZ PR Agente Fazendario | 17º MP PR 24 | 56º ALEP | 95º ALEP
+Daniel Kenji Sakaue,104.4,13.0,0.0,117.4,329º(Ampla),329,False,False,-18,5,0,0,42º SEFAZ SP 2025 | 199º SEFAZ AC | 1326º SEFAZ MG | 66º SEFAZ MT | 48º ISS Criciúma
+Lucas Garavaglia Cova,104.4,13.0,0.0,117.4,330º(Ampla),330,False,False,-17,0,0,0,
+Mário Da Silva Santos Neto,105.2,12.2,0.0,117.4,331º(Ampla),331,False,False,-16,4,0,0,319º SEFAZ SP 2025 | 43º SEFAZ SE 25 | 142º SEFAZ RJ 25 | 181º ISS Rio de Janeiro
+Robson Alves Desmoni De Sousa,104.4,13.0,0.0,117.4,332º(Ampla),332,False,False,-15,10,0,1,460º SEFAZ PE | 326º SEFAZ MA | 28º SEFAZ PI 25 | 35º ISS Jaboatao dos Guararapes | 20º SEFAZ SE 25 | 13º SEFAZ AC | 149º SEFAZ RS TEC 18 | 617º SEFAZ RS 18 | 828º SEFAZ MG | 142º ISS Rio de Janeiro
+Tassila Nakata Sunakozawa,105.4,12.0,0.0,117.4,333º(Ampla),333,False,False,-14,5,1,0,272º SEFAZ SP 2025 | 18º ISS Florianopolis | 87º ISS Ribeirao Preto | 1487º SEFAZ MG | 4º ISS Porto Alegre 25
+Rodrigo Martins Da Silva Santos,105.0,12.3,0.0,117.3,334º(Afro),334,False,False,-13,7,1,1,63º SEFAZ SP 2025 | 529º TCE SP 25 | 2º ISS INDAIATUBA SP 25 | 852º SEFAZ MG | 59º CGE SP 25 | 26º ISS Araras | 141º ISS Rio de Janeiro
+Amanda Saldanha Lima,106.8,10.5,0.0,117.3,335º(Ampla),335,False,False,-12,7,0,0,1332º SEFAZ SP 2025 | 420º SEFAZ RJ 25 | 1470º SEFAZ MG | 600º ISS Rio de Janeiro | 228º ISS Sao Bernardo do Campo | 95º ISS Nova Iguaçu | 239º ISS Porto Alegre 25
+André De Souza Duarte,102.8,14.5,0.0,117.3,336º(Ampla),336,False,False,-11,9,1,1,331º SEFAZ SC 21 | 545º SEFAZ MA | 115º ISS S.J. Rio Preto | 712º SEFAZ RS 18 | 194º RFB | 852º ISS Rio de Janeiro | 153º ISS Osasco | 228º SEFIN RO | 103º ISS Salvador
+Adna Paula Severino Rosa,105.8,11.5,0.0,117.3,337º(Ampla),337,False,False,-10,15,0,0,11º STM | 67º TCE PR | 142º TCE RS 25 | 20º TCE MG 25 | 342º STM | 27º TRF 6 | 21º TSE Unificado | 14º TRF 6 | 12º AL MG | 351º SEFAZ AM 22 | 961º SEFAZ MG | 112º ISS Belo Horizonte | 151º CAGE RS | 12º MPU 25 | 182º ISS Porto Alegre 25
+Leonardo Brasil Santos De Almeida,105.8,11.4,0.0,117.2,338º(Ampla),338,False,False,-9,5,0,0,601º SEFAZ RR | 238º SEFAZ RJ 25 | 2836º SEFAZ MG | 303º ISS Rio de Janeiro | 78º SEFIN RO
+Marco Antonio Toresan,103.2,14.0,0.0,117.2,339º(Ampla),339,False,False,-8,3,1,0,2º ISS Florianopolis | 3º ISS Biguaçu | 204º CAGE RS
+Ewerson Lima Fagundes,106.6,10.5,0.0,117.1,340º(Ampla),340,False,False,-7,3,0,0,444º SEFAZ SP 2025 | 361º ISS Cuiaba | 8º TRF 1 24
+Isabel Farias Szajman,106.6,10.5,0.0,117.1,341º(Ampla),341,False,False,-6,6,1,1,32º SEFAZ SC 21 | 336º SEFAZ SP 2025 | 20º ISS Florianopolis | 11º Polícia PCISC | 152º CAGE RS | 21º ISS Porto Alegre 25
+Jonatas Marques De Freitas,104.6,12.5,0.0,117.1,342º(Ampla),342,False,False,-5,0,0,0,
+Murillo Hideyoshi Nishimura Gishifu,105.6,11.5,0.0,117.1,343º(Ampla),343,False,False,-4,1,0,0,278º SEFAZ SP 2025
+Suellen Costa Wargas,103.6,12.0,1.5,117.1,344º(Ampla),344,False,False,-3,5,1,0,842º SEFAZ SP 2025 | 81º SEFAZ RJ 25 | 247º ISS Rio de Janeiro | 24º CVM | 166º ISS Nova Iguaçu
+Wilson Dos Santos Batista Junior,101.6,12.5,3.0,117.1,345º(Ampla),345,False,False,-2,2,0,1,835º SEFAZ SP 2025 | 30º RFB
+Almiro Backes Neto,105.2,11.9,0.0,117.1,346º(Ampla),346,False,False,-1,6,0,0,17º SEAD PI | 97º SEFAZ PI 25 | 537º SEFAZ SP 2025 | 157º SEFAZ AC | 1079º SEFAZ AM 22 | 414º SEFAZ MG
+Thiago Galdino Cavalcanti,104.2,12.8,0.0,117.0,347º(Afro),347,True,False,0,1,0,1,252º PRF
+Edmar Leonardo Nagayama,103.2,13.8,0.0,117.0,348º(Ampla),348,False,False,1,5,0,0,441º SEFAZ SP 2025 | 1057º PC DF 24 | 1372º SEPLAN DF | 690º RFB | 645º ISS Rio de Janeiro
+Julio Cesar Simões Filho,104.2,12.8,0.0,117.0,349º(Ampla),349,False,False,2,11,0,0,59º CGM SP | 343º SEFAZ PI 25 | 797º SEFAZ SP 2025 | 392º TCE SP 25 | 149º TCE SP 25 | 68º SEFAZ RJ 25 | 80º SEFAZ AC | 2947º SEFAZ MG | 328º CGE SC | 285º ISS Cuiaba | 143º ISS Porto Alegre 25
+Guilherme Monteiro Vieira,102.4,14.5,0.0,116.9,350º(Afro),350,False,False,3,2,0,1,933º SEFAZ SP 2025 | 8º PF 2018
+Alvaro Mares Ribeiro,103.8,13.1,0.0,116.9,351º(Ampla),351,False,False,4,8,0,0,1825º SEFAZ SP 2025 | 460º SEFAZ RJ 25 | 154º SEFAZ AC | 1181º AL MG | 265º SEFAZ MG | 375º CNU 2025 | 188º ISS Belo Horizonte | 182º ISS Cuiaba
+Augusto Oliveira Balcone,103.6,13.3,0.0,116.9,352º(Ampla),352,False,False,5,6,1,0,349º SEFAZ PI 25 | 694º SEFAZ SP 2025 | 392º ISS Paraty | 59º ISS GUARUJA | 643º RFB | 44º ISS Porto Alegre 25
+Johnathan Lucas Da Silva Botelho,104.2,12.7,0.0,116.9,353º(Ampla),353,False,False,6,1,0,0,1023º SEFAZ SP 2025
+Marco Antônio Gandra Bernardes Moreira,103.4,13.5,0.0,116.9,354º(Ampla),354,False,False,7,3,0,0,688º SEFAZ SP 2025 | 34º ISS Ribeirao Preto | 965º SEFAZ MG
+Matheus De Moraes Felisardo,105.4,11.5,0.0,116.9,355º(Ampla),355,False,False,8,6,1,3,9º SEFAZ SP 2025 | 20º SEFAZ SE 25 | 14º DPF | 235º PC DF 24 | 312º TSE Unificado | 1º ISS Francisco Morato
+Tiago Lauschner Araujo,105.8,11.1,0.0,116.9,356º(Ampla),356,False,False,9,6,0,0,485º SEFAZ SP 2025 | 23º TCE RS 25 | 5º TSE Unificado | 88º TCM SP 20 | 88º CAGE RS | 83º ISS Porto Alegre 25
+Juliana Valois Mota Bezerra,105.4,11.5,0.0,116.9,357º(Ampla),357,False,False,10,4,1,0,2º TSE Unificado | 53º SEFAZ AM 22 | 134º SEFAZ AM 22 | 136º SEFAZ AM 22
+Pedro Felipe Alves Rocha,102.2,14.6,0.0,116.8,358º(Afro),358,False,False,11,0,0,0,
+Karina Cecilia Manhães Pereira Dos Santos,103.8,13.0,0.0,116.8,359º(Ampla),359,False,False,12,9,1,0,314º SEFAZ SP 2025 | 27º SEFAZ RJ | 258º SEFAZ RJ 25 | 148º SEFAZ MT | 690º ISS Rio de Janeiro | 43º ISS Sao Bernardo do Campo | 8º ISS Sao José dos Campos | 31º ISS Nova Iguaçu | 10º ISS Nova Iguaçu
+Paulo Sandro Gomes De Lacerda Filho,104.6,12.2,0.0,116.8,360º(Ampla),360,False,False,13,6,1,1,28º SEFAZ PI 25 | 365º SEFAZ SP 2025 | 47º SEFAZ SE 25 | 625º PRF | 285º DPF 25 | 11º ISS Cuiaba
+Vanessa Breunig,101.8,15.0,0.0,116.8,361º(Ampla),361,False,False,14,4,0,0,1978º SEFAZ SP 2025 | 3218º SEFAZ MG | 77º ISS Criciúma | 212º ISS Porto Alegre 25
+Karina Simone Sass,99.4,12.3,5.0,116.7,362º(Pcd),362,False,False,15,1,0,0,106º SEFAZ SP 2025
+Rafael Mateus Carvalho De Paiva,103.2,13.5,0.0,116.7,363º(Ampla),363,False,False,16,4,0,0,52º SEFAZ PI 25 | 239º SEFAZ PI 25 | 162º SEFAZ RJ 25 | 2484º SEFAZ MG
+Camila Magna Almeida Rodrigues,106.0,10.6,0.0,116.6,364º(Ampla),364,False,False,17,3,0,0,446º SEFAZ SP 2025 | 289º ISS Ribeirao Preto | 691º ISS Rio de Janeiro
+Davi Garcia Silva,104.2,12.4,0.0,116.6,365º(Ampla),365,False,False,18,7,0,1,52º SEFAZ SP 2025 | 1069º TRF 3 | 34º ISS Florianopolis | 389º SEFAZ RJ 25 | 37º ISS Uberlândia 25 | 359º ISS Cuiaba | 248º ISS Porto Alegre 25
+Gabriela Maria Muller,103.6,13.0,0.0,116.6,366º(Ampla),366,False,False,19,3,0,0,525º SEFAZ SP 2025 | 375º ALEGO | 72º ISS Uberlândia 25
+Lucca Gentil Arruda Dantas,103.8,12.8,0.0,116.6,367º(Ampla),367,False,False,20,4,0,1,13º SEFAZ PI 25 | 52º SEFAZ PI 25 | 255º SEFAZ SP 2025 | 134º CVM
+Ronan De Moraes Sousa,103.8,12.8,0.0,116.6,368º(Ampla),368,False,False,21,7,1,1,86º SEFAZ SP 2025 | 18º SEFAZ RJ | 200º SEFAZ RJ 25 | 479º RFB | 137º CAGE RS | 696º ISS Rio de Janeiro | 52º CVM
+Francismarta Pereira Da Costa,101.8,14.8,0.0,116.6,369º(Ampla),369,False,False,22,6,0,0,76º SEFAZ SE 25 | 123º SEFAZ AC | 298º SEFAZ AM 22 | 547º SEFAZ MG | 529º ISS Rio de Janeiro | 266º ISS Campina Grande
+Rafael Lançoni,103.6,13.0,0.0,116.6,370º(Ampla),370,False,False,23,4,1,0,233º SEFAZ SP 2025 | 162º SEFAZ SC 21 | 26º MP PR 24 | 781º SEFAZ MG
+Bráulio Gomes Lopes,103.8,12.8,0.0,116.6,371º(Ampla),371,False,False,24,7,0,0,810º SEFAZ SP 2025 | 27º TCE PR | 215º SEFAZ AM 22 | 1031º SEFAZ MG | 224º ISS Guarulhos | 51º MPU 25 | 71º ISS Cuiaba
+Cainã Cunha Oliveira,106.0,10.6,0.0,116.6,372º(Ampla),372,False,False,25,9,0,0,1590º SEFAZ SP 2025 | 85º SEFAZ AC | 178º ISS Ribeirao Preto | 607º SEFAZ AM 22 | 1238º SEFAZ MG | 36º ISS Uberlândia 25 | 305º ISS Rio de Janeiro | 1327º MPU 25 | 264º ISS Porto Alegre 25
+Andre Cleriston Albuquerque Bezerra,104.8,11.8,0.0,116.6,373º(Ampla),373,False,False,26,7,0,0,1167º SEFAZ SP 2025 | 515º SEFAZ RR | 336º SEFAZ AM 22 | 753º ISS Rio de Janeiro | 1º DNIT | 5º TCE RR | 63º SEFAZ RR
+Hamilton Ferreira Da Silva Júnior,102.0,14.5,0.0,116.5,374º(Afro),374,False,False,27,8,0,0,453º SEFAZ MA | 227º SEFAZ PE | 232º SEFAZ RR | 58º SEFAZ BA 22 | 2724º SEFAZ MG | 88º ISS Petrolina | 687º ISS Guarulhos | 116º ISS Rio de Janeiro
+Nicolas Moreira Dourado,105.8,10.7,0.0,116.5,375º(Afro),375,False,False,28,5,0,0,826º SEFAZ SP 2025 | 459º SEFAZ MG | 521º ISS Rio de Janeiro | 103º ISS Porto Alegre 25 | 10º ISS Porto Alegre 25
+Alexandre Raymundo De Jesus,104.2,12.3,0.0,116.5,376º(Ampla),376,False,False,29,5,2,1,678º SEFAZ SC 21 | 343º SEFAZ MG | 19º CGE SP 25 | 19º CAGE RS | 475º ISS Rio de Janeiro
+Marcus Vinícius Ulhôa Silva,104.0,12.5,0.0,116.5,377º(Ampla),377,False,False,30,1,0,0,2479º SEFAZ MG
+Diego Fernando Uchôa De Oliveira,102.6,13.8,0.0,116.4,378º(Ampla),378,False,False,31,4,0,0,70º SEFAZ PI 25 | 335º SEFAZ PI 25 | 1065º SEFAZ SP 2025 | 140º ISS Porto Alegre 25
+Eduardo Luz Barbosa,103.4,13.0,0.0,116.4,379º(Ampla),379,False,False,32,4,0,1,3º SEFAZ PI 25 | 283º MP PI 2025 | 137º SEFAZ PI 25 | 253º CVM
+Gabriel Turolla Valente,104.6,11.8,0.0,116.4,380º(Ampla),380,False,False,33,5,0,0,435º SEFAZ SP 2025 | 15º SEFAZ SE 25 | 673º ISS Rio de Janeiro | 149º ISS Sao Bernardo do Campo | 55º ISS Porto Alegre 25
+Guilherme Fonseca Sales,102.6,13.8,0.0,116.4,381º(Ampla),381,False,False,34,3,0,0,132º SEFAZ PI 25 | 757º SEFAZ SP 2025 | 3676º SEFAZ MG
+Jose Marcio Rodrigues De Amorim,103.6,12.8,0.0,116.4,382º(Ampla),382,False,False,35,4,0,0,39º CGM SP | 1442º SEFAZ SP 2025 | 180º ISS Ribeirao Preto | 120º ISS Nova Iguaçu
+Raisa Lima De Berrêdo Martins,101.6,14.8,0.0,116.4,383º(Ampla),383,False,False,36,3,0,0,422º SEFAZ SP 2025 | 50º ISS Ribeirao Preto | 50º ISS Cuiaba
+Vinícius Pontes E Silva,102.4,14.0,0.0,116.4,384º(Ampla),384,False,False,37,3,0,0,270º SEFAZ SP 2025 | 76º ISS Belo Horizonte | 10º ISS Porto Alegre 25
+João Vítor Profeta Alves,102.6,13.7,0.0,116.3,385º(Afro),385,False,False,38,11,1,3,27º SEFAZ PI 25 | 10º SEFAZ SP 2025 | 12º SEFAZ SE 25 | 18º SEFAZ SE 25 | 2º TCE PE 25 | 10º SEFAZ AM 22 | 10º SEFAZ AM 22 | 4º SEFAZ AM 22 | 6º SEFAZ BA 22 | 574º SEFAZ MG | 128º ISS Cuiaba
+Fábio Da Silva Neves,103.8,12.5,0.0,116.3,386º(Ampla),386,False,False,39,4,1,0,249º SEFAZ SC 21 | 899º SEFAZ SP 2025 | 805º SEFAZ MG | 156º ISS Porto Alegre 25
+Guilherme De Aguiar Senger,100.0,11.3,5.0,116.3,387º(Ampla),387,False,False,40,1,0,1,65º SEFAZ SP 2025
+Yuri Rosendo De Miranda Silva,103.4,12.9,0.0,116.3,388º(Ampla),388,False,False,41,5,0,0,222º SEFAZ MA | 1064º SEFAZ MG | 28º SEFAZ MT | 631º ISS Guarulhos | 83º ISS Rio de Janeiro
+Roney Ribeiro Do Nascimento,103.8,12.5,0.0,116.3,389º(Ampla),389,False,False,42,7,0,0,1438º SEFAZ SP 2025 | 35º ISS Itatiba | 1032º SEFAZ AM 22 | 3461º SEFAZ MG | 1165º RFB | 32º ISS INDAIATUBA SP 25 | 584º ISS Rio de Janeiro
+Pedro Henrique Santos Vieira,102.2,14.0,0.0,116.2,390º(Ampla),390,False,False,43,3,0,0,1618º SEFAZ SP 2025 | 54º DPF 25 | 1409º SEFAZ MG
+Virna Yumi Suda,100.4,12.8,3.0,116.2,391º(Ampla),391,False,False,44,5,0,0,861º SEFAZ SP 2025 | 971º SEFAZ MG | 76º ISS Serra ES | 137º ISS Rio de Janeiro | 70º CVM
+João Paulo Da Silva,104.4,11.8,0.0,116.2,392º(Ampla),392,False,False,45,15,0,0,677º DPE SP | 696º DPE SP | 1044º CONAB | 63º FUNPRESP EXE | 285º Telebrás 2026 | 2º TRF 6 | 29º Câmara dos Deputados 2025 NS | 2303º EMBRAPA | 84º CRECI DF | 358º CRECI DF | 1068º SEFAZ MG | 6861º ALERJ 2025 | 229º ISS Rio de Janeiro | 182º CODERN PORTO DE MACEIÓ | 8º ISS Muriau
+Agostinho Lopes Junior,105.0,11.1,0.0,116.1,393º(Ampla),393,False,False,46,3,2,0,82º SEFAZ BA 22 | 321º SEFAZ MG | 80º ISS Porto Alegre 25
+Estevão Smach,103.6,12.5,0.0,116.1,394º(Ampla),394,False,False,47,2,0,0,192º SEFAZ SP 2025 | 799º RFB
+Leonardo Augusto Leda Lopes,103.8,12.3,0.0,116.1,395º(Ampla),395,False,False,48,1,0,0,590º SEFAZ SP 2025
+Paulo Henrique De Oliveira Barros,103.6,12.4,0.0,116.0,396º(Ampla),396,False,False,49,2,0,1,62º SEFAZ SP 2025 | 2405º SEFAZ MG
+Alexsandro Santos De Moraes,103.0,13.0,0.0,116.0,397º(Ampla),397,False,False,50,9,1,0,521º SEFAZ SC 21 | 1154º SEFAZ SP 2025 | 125º SEFAZ AC | 57º TCE RS 25 | 524º SEFAZ AM 22 | 216º ISS Itajai | 2080º SEFAZ MG | 220º TJ RS 2025 | 64º ISS Criciúma
+Diogo Souza De Almeida,103.4,12.5,0.0,115.9,398º(Afro),398,False,False,51,8,0,0,24º SEFAZ SP 2025 | 400º TCE SP 25 | 31º TCE SP 25 | 11º SEFAZ SE 25 | 17º SEFAZ SE 25 | 248º ISS Cuiaba | 222º ISS Porto Alegre 25 | 21º ISS Porto Alegre 25
+Allan Hoy Yonekura,105.4,10.5,0.0,115.9,399º(Ampla),399,False,False,52,2,0,0,89º CGM SP | 459º CGE SP 25
+Gisele Gonçalves Carvalho,105.4,10.5,0.0,115.9,400º(Ampla),400,False,False,53,2,0,0,1635º SEFAZ SP 2025 | 1495º RFB
+Marcus Vinícius Maciel Gil,101.2,14.7,0.0,115.9,401º(Ampla),401,False,False,54,6,1,0,246º SEFAZ SC 21 | 1055º SEFAZ MG | 92º CAGE RS | 126º SEFAZ MT | 275º ISS Rio de Janeiro | 71º ISS Criciúma
+Nathalia Mota Simões Melo,104.4,11.5,0.0,115.9,402º(Ampla),402,False,False,55,4,0,0,19º CNU | 1250º SEFAZ MG | 13º ISS Sao Bernardo do Campo | 161º ISS Porto Alegre 25
+Paulo Gomes Da Costa Filho,102.0,13.9,0.0,115.9,403º(Ampla),403,False,False,56,7,0,0,435º SEFAZ PE | 14º SEAD PI | 9º SEFAZ PI 25 | 68º SEFAZ PI 25 | 1325º SEFAZ SP 2025 | 130º ISS Fortaleza | 1567º SEFAZ MG
+Ricardo Eguchi,101.6,12.8,1.5,115.9,404º(Ampla),404,False,False,57,5,0,0,613º SEFAZ SP 2025 | 131º SEFAZ AC | 263º ISS Ribeirao Preto | 3278º SEFAZ MG | 190º ISS Cuiaba
+Vitor Miniati Dolorico,104.4,11.5,0.0,115.9,405º(Ampla),405,False,False,58,8,0,0,798º SEFAZ SP 2025 | 84º SEFAZ RJ 25 | 97º SEFAZ SE 25 | 1217º DPF | 54º DPF 25 | 2650º SEFAZ MG | 358º ISS Rio de Janeiro | 28º ISS Nova Iguaçu
+William De Jesus Kremes,99.6,11.3,5.0,115.9,406º(Ampla),406,False,False,59,3,0,0,825º SEFAZ SP 2025 | 71º SEFAZ PR Agente Fazendario | 524º ALERJ 2025
+Igor Vinicius Fornazieri Ferri,103.4,12.5,0.0,115.9,407º(Ampla),407,False,False,60,6,0,0,751º SEFAZ SP 2025 | 184º SEFAZ AC | 279º SEFAZ AM 22 | 918º SEFAZ MG | 129º ISS Cuiaba | 31º ISS Criciúma
+Christiano De Albuquerque Amorim,103.8,12.0,0.0,115.8,408º(Ampla),408,False,False,61,8,0,0,903º SEFAZ SP 2025 | 118º SEFAZ AC | 79º SEFAZ SE 25 | 40º TJ GO | 194º ISS Serra ES | 11º ALEGO | 170º ISS Belo Horizonte | 206º ISS Porto Alegre 25
+Gabriela Prócida Raggio,103.8,12.0,0.0,115.8,409º(Ampla),409,False,False,62,14,1,0,8º ISS Paraty | 27º ISS Valinhos | 979º SEFAZ RS TEC 18 | 83º ISS Ribeirao Preto | 48º ISS Sao Caetano do Sul | 172º Alesp | 66º ISS Belo Horizonte | 123º TRF 2 | 983º ISS Guarulhos | 1098º TRF 2 | 380º ISS Rio de Janeiro | 380º ISS Osasco | 9º ISS Nova Iguaçu | 6º ISS Macaé
+João Paulo Silva Amado,102.8,13.0,0.0,115.8,410º(Ampla),410,False,False,63,6,1,0,2100º SEFAZ SP 2025 | 160º SEFAZ AC | 25º SEAD SE | 2726º SEFAZ MG | 466º ISS Rio de Janeiro | 207º ISS Cuiaba
+Paulo Eduardo Honorio Raquel,103.8,12.0,0.0,115.8,411º(Ampla),411,False,False,64,4,1,2,31º SEFAZ SP 2025 | 27º TCE PR | 15º SEFAZ MG | 156º CGE SC
+Claudielio Moreira Da Costa,101.8,14.0,0.0,115.8,412º(Ampla),412,False,False,65,14,0,0,12º ISS Varginha | 776º SEFAZ RR | 191º SEFAZ AC | 58º TCE MG 25 | 11º TCE MG 25 | 138º TCE RS 25 | 12º TCE RS 25 | 27º ISS Corumba | 119º ISS Ribeirao Preto | 983º SEFAZ AM 22 | 1273º SEFAZ MG | 242º ISS Sao Bernardo do Campo | 57º ISS Sao José dos Campos | 137º ISS Cuiaba
+Fernando Mauro Alcantara,103.8,11.9,0.0,115.7,413º(Ampla),413,False,False,66,4,0,1,579º SEFAZ SC 21 | 69º SEFAZ SP 2025 | 68º SEFAZ SE 25 | 75º SEFAZ BA 22
+Larissa Matos Scarpelini,104.4,11.3,0.0,115.7,414º(Ampla),414,False,False,67,5,1,0,67º SEFAZ SC 21 | 209º SEFAZ RR | 598º SEFAZ MG | 142º ISS Uberlandia | 142º ISS Osasco
+Pablo Guilherme Silvestrini,104.2,11.5,0.0,115.7,415º(Ampla),415,False,False,68,2,0,1,595º SEFAZ SP 2025 | 114º PF 2018
+Luiz Augusto Ribeiro Menardi,100.8,14.9,0.0,115.7,416º(Ampla),416,False,False,69,6,1,0,107º SEFAZ MA | 205º SEFAZ SP 2025 | 261º SEFAZ RR | 74º SEFAZ RJ 25 | 190º SEFAZ AM 22 | 530º SEFAZ MG
+Thiago De Aguiar Leao,102.0,13.7,0.0,115.7,417º(Ampla),417,False,False,70,5,0,0,1138º SEFAZ SP 2025 | 1453º SEFAZ SP 13 | 487º TCE RS 25 | 169º ISS Porto Alegre 25 | 16º ISS Porto Alegre 25
+Thais Coimbra Nina,99.6,13.0,3.0,115.6,418º(Pcd),418,False,False,71,5,0,1,3º ISS Manaus | 2º ISS Curitiba | 16º TC DF | 1º TCE AM | 162º SEFAZ AM 22
+Rodrigo De Souza Neves,102.6,13.0,0.0,115.6,419º(Afro),419,False,False,72,6,0,0,2472º SEFAZ SP 2025 | 3º TCE PR | 67º TCE PE 25 | 7º SEFAZ BA 22 | 196º SEFAZ BA 22 | 1834º SEFAZ MG
+Thomas Martins,102.6,13.0,0.0,115.6,420º(Afro),420,False,False,73,5,0,0,161º SEFAZ SP 2025 | 1075º SEFAZ MG | 11º TJ PR | 11º TJ PR | 250º ISS Osasco
+Lucas Vieira De Almeida,103.6,12.0,0.0,115.6,421º(Ampla),421,False,False,74,3,1,0,89º SEFAZ SC 21 | 980º SEFAZ SP 2025 | 127º ISS Ribeirao Preto
+Gabriel Cardoso Alves,102.6,13.0,0.0,115.6,422º(Ampla),422,False,False,75,21,2,0,136º CGM SP | 490º SEFAZ SP 2025 | 222º TCE SP 25 | 13º TCE SP 25 | 286º TCE SP 25 | 18º TCE SP 25 | 6º ISS Itatiba | 358º SEFAZ RR | 561º TCE PE 17 | 954º DPF 25 | 33º ISS Suzano | 1º ISS Suzano | 88º ISS Ribeirao Preto | 20º ISS Cotia | 756º SEFAZ AM 22 | 361º SEFAZ MG | 487º ISS Guarulhos | 17º ISS Sao Bernardo do Campo | 14º ISS Sao José dos Campos | 52º ISS Campina Grande | 93º ISS Cuiaba
+Celso Rodrigo Da Costa Cruz,104.8,10.8,0.0,115.6,423º(Ampla),423,False,False,76,9,1,0,1412º SEFAZ SP 2025 | 740º SEFAZ RR | 134º SEFAZ AC | 127º STM | 9º TSE Unificado | 1135º SEFAZ AM 22 | 593º SEFAZ BA 22 | 801º SEFAZ MG | 138º ISS Campina Grande
+Andre Recher De Freitas,102.2,13.4,0.0,115.6,424º(Ampla),424,False,False,77,8,0,0,73º SEFAZ SP 2025 | 905º SEFAZ RS 18 | 52º MPO | 71º MP PR 24 | 329º SEFAZ MG | 294º Senado | 1094º RFB | 33º ISS Cuiaba
+Erick Jonathan Prado Melo,100.6,15.0,0.0,115.6,425º(Ampla),425,False,False,78,7,0,2,132º SEFAZ AP | 1302º SEFAZ SP 2025 | 164º SEFAZ PE | 37º ISS Mossoro | 824º SEFAZ AM 22 | 10º ISS Campos dos Goytacazes | 234º ISS Rio de Janeiro
+Fabricio Alves De Souza Freitas Lomboni,102.8,12.7,0.0,115.5,426º(Ampla),426,False,False,79,4,1,0,225º SEFAZ SP 2025 | 55º ISS Paraty | 370º SEFAZ RJ 25 | 125º ISS Campos dos Goytacazes
+Rafael Dos Santos Modesto,103.0,12.5,0.0,115.5,427º(Ampla),427,False,False,80,1,0,0,283º SEFAZ SP 2025
+Daniel Fabrício Mathias Pinto,102.8,12.6,0.0,115.4,428º(Pcd),428,False,False,81,11,1,1,2º SEFAZ SC 21 | 48º SEFAZ SP 2025 | 50º ISS Florianopolis | 15º SEFAZ AL 19 | 4º ISS Itajai | 1º ISS Itajai | 1º ISS Joinville | 64º SEFAZ MG | 13º ISS Rio de Janeiro | 1º ISS Blumenau | 316º ISS Cuiaba
+Breno Garcia Carvalho,101.6,13.8,0.0,115.4,429º(Ampla),429,False,False,82,6,0,1,126º SEFAZ SP 2025 | 18º ISS Jaboatao dos Guararapes | 59º ISS Ribeirao Preto | 949º SEFAZ MG | 184º ISS Rio de Janeiro | 7º ISS Porto Alegre 25
+Marcio Bersani Nogueira,103.6,11.8,0.0,115.4,430º(Ampla),430,False,False,83,1,0,0,591º SEFAZ SP 2025
+Oscar Vareda Moreira Neto,103.2,12.2,0.0,115.4,431º(Ampla),431,False,False,84,9,0,0,146º SEFAZ PE | 54º ISS Florianopolis | 589º SEFAZ RR | 103º SEFAZ AC | 170º MPO | 628º SEFAZ AM 22 | 2482º SEFAZ MG | 200º ISS Porto Alegre 25 | 5º TRF 1 24
+Carlos Frederico Rozsa Kalman,103.4,11.9,0.0,115.3,432º(Ampla),432,False,False,85,13,0,0,572º SEFAZ SC 21 | 647º SEFAZ SP 2025 | 1247º SEFAZ RS TEC 18 | 93º ISS Muriau | 25º ISS Santos | 1082º SEFAZ MG | 256º ISS Uberlandia | 63º ISS Maua | 45º ISS Itajai | 76º ISS Itajai | 446º ISS Rio de Janeiro | 140º ISS Osasco | 41º ISS Criciúma
+Diego Henrique Lima Martins,100.8,14.5,0.0,115.3,433º(Ampla),433,False,False,86,2,0,0,1218º SEFAZ SP 2025 | 1669º SEFAZ MG
+Edvaldo Lopes Da Silva Filho,102.8,12.5,0.0,115.3,434º(Ampla),434,False,False,87,1,0,0,3º SEFAZ SE 25
+Guilherme Dal Castel De Moura,103.8,11.5,0.0,115.3,435º(Ampla),435,False,False,88,8,1,0,25º ISS Florianopolis | 128º SEFAZ RJ 25 | 3º ISS Joinville | 29º CAGE RS | 82º ISS Sao Bernardo do Campo | 19º ISS Sao José dos Campos | 59º ISS Criciúma | 82º ISS Porto Alegre 25
+Lucas De Castro Freitas,102.0,13.3,0.0,115.3,436º(Ampla),436,False,False,89,4,1,0,1247º SEFAZ SP 2025 | 315º SEFAZ BA 22 | 1880º SEFAZ MG | 304º ISS Campina Grande
+Thiago Wadhy Campos,103.6,11.7,0.0,115.3,437º(Ampla),437,False,False,90,7,0,0,226º SEFAZ SP 2025 | 112º ISS Contagem | 1200º SEFAZ MG | 178º ISS Belo Horizonte | 643º ISS Rio de Janeiro | 177º ISS Belo Horizonte | 20º ISS Porto Alegre 25
+Joao Leonardo Pinelli Milhan,101.4,13.9,0.0,115.3,438º(Ampla),438,False,False,91,8,2,1,3º ISS Dourados | 18º ISS Sorocaba | 5º ISS Ponta Grossa | 83º SEFAZ AM 22 | 2º ISS Pinhais | 386º SEFAZ MG | 7º ISS Blumenau | 82º SEFAZ ES
+Bruno Wellberty Deip E Silva,104.0,11.2,0.0,115.2,439º(Ampla),439,False,False,92,4,0,0,651º SEFAZ SP 2025 | 3837º PRF | 461º DPF 25 | 179º TSE Unificado
+Fernando Hidekazu Omoto Takeda,102.2,13.0,0.0,115.2,440º(Ampla),440,False,False,93,6,1,0,1716º SEFAZ SP 2025 | 2º TRF 4 | 17º SEFAZ PR Agente Fazendario | 2º TRF 4 2026 | 2º TRF 4 2026 | 136º ISS Londrina
+Marcos Lubas,103.2,12.0,0.0,115.2,441º(Ampla),441,False,False,94,1,1,1,22º SEFAZ MG
+Mariane Sampaio Silva,104.6,10.6,0.0,115.2,442º(Ampla),442,False,False,95,5,2,1,68º SEFAZ AP | 299º SEFAZ PE | 61º ISS Mossoro | 295º SEFAZ BA 22 | 679º RFB
+Paulo Henrique Comassetto,103.2,12.0,0.0,115.2,443º(Ampla),443,False,False,96,8,0,0,298º SEFAZ SP 2025 | 5º TCE PR | 482º SEFAZ RS 18 | 2124º SEFAZ MG | 78º CGE SC | 45º CGE SP 25 | 331º RFB | 73º CAGE RS
+Rafael Henrique Piassa,104.2,11.0,0.0,115.2,444º(Ampla),444,False,False,97,3,0,1,750º SEFAZ SP 2025 | 279º RFB | 575º ISS Guarulhos
+Rodrigo Loureiro Pinto,103.4,11.8,0.0,115.2,445º(Ampla),445,False,False,98,3,0,0,2014º SEFAZ SP 2025 | 915º SEFAZ MG | 644º ISS Rio de Janeiro
+Sávio Pedro Cavalcante Sousa,100.8,14.4,0.0,115.2,446º(Ampla),446,False,False,99,4,0,0,311º SEFAZ PI 25 | 1562º SEFAZ SP 2025 | 240º SEFAZ RJ 25 | 2493º SEFAZ MG
+Luciano Soares Da Silva,103.6,11.6,0.0,115.2,447º(Ampla),447,False,False,100,10,0,0,57º SEFAZ AL 21 | 71º ISS Fortaleza | 205º SEFAZ AC | 89º TRT 10 DF | 76º TRT 10 DF | 548º TSE Unificado | 172º SEFAZ AM 22 | 924º SEFAZ MG | 501º ISS Rio de Janeiro | 240º ISS Campina Grande
+Douglas Mendes De Carvalho,102.2,13.0,0.0,115.2,448º(Ampla),448,False,False,101,8,0,1,23º ISS Jaboatao dos Guararapes | 462º SEFAZ SP 2025 | 54º TCE PE 25 | 851º SEFAZ AM 22 | 394º ISS Belo Horizonte | 467º SEFAZ MG | 8º CAGE RS | 27º ISS Sao José dos Campos
+Carolina Terumi Kurita,103.8,11.3,0.0,115.1,449º(Ampla),449,False,False,102,3,1,0,278º ISS Ribeirao Preto | 341º SEFAZ BA 22 | 2274º SEFAZ MG
+Evandro Rodrigues França,104.8,10.3,0.0,115.1,450º(Ampla),450,False,False,103,6,0,0,660º SEFAZ SP 2025 | 16º PC ES 2025 | 945º SEFAZ MG | 104º ISS Serra ES | 421º ISS Belo Horizonte | 298º ISS Cuiaba
+Gibran Hoelzle Alves Da Costa,103.8,11.3,0.0,115.1,451º(Ampla),451,False,False,104,7,0,0,1963º SEFAZ SP 2025 | 29º ISS Uberlândia 25 | 72º ISS Ouro Branco | 490º ISS Belo Horizonte | 1363º SEFAZ MG | 67º ISS Belo Horizonte | 165º ISS Cuiaba
+Ricardo José De Andrade,101.8,13.3,0.0,115.1,452º(Ampla),452,False,False,105,3,0,0,986º SEFAZ SP 2025 | 621º SEFAZ MG | 446º ISS Belo Horizonte
+Stephanie Campos Fraga,104.0,11.1,0.0,115.1,453º(Ampla),453,False,False,106,9,2,0,133º SEFAZ RJ 25 | 74º SEFAZ BA 22 | 665º SEFAZ MG | 64º SEFAZ MT | 370º ISS Rio de Janeiro | 74º TCE BA | 64º CVM | 5º CGM Cuiabá | 75º ISS Cuiaba
+Felipe Dos Santos Pereira,101.0,14.0,0.0,115.0,454º(Ampla),454,False,False,107,4,0,0,1304º SEFAZ SP 2025 | 124º SEFAZ RJ 25 | 915º DPF 25 | 44º CAGE RS
+Gabriel Machado De Figueiredo,101.0,14.0,0.0,115.0,455º(Ampla),455,False,False,108,1,0,0,428º ISS Cuiaba
+Rodrigo Do Nascimento Silva,100.2,14.8,0.0,115.0,456º(Ampla),456,False,False,109,6,0,0,1450º SEFAZ SP 2025 | 30º ISS Jaboatao dos Guararapes | 104º ISS Ribeirao Preto | 410º ISS Rio de Janeiro | 110º ISS Sao Bernardo do Campo | 95º ISS Porto Alegre 25
+Felipe Leme,102.4,12.5,0.0,114.9,457º(Afro),457,False,False,110,11,2,0,58º TRT 12 SC | 805º SEFAZ SP 2025 | 100º TRT 12 SC | 8º TCE RS 25 | 2º TCE RS 25 | 27º TCE PR | 94º ALESC | 36º ALEP | 7º ALEP | 106º ISS Porto Alegre 25 | 11º ISS Porto Alegre 25
+Caio Torres Fernandes,102.4,12.5,0.0,114.9,458º(Ampla),458,False,False,111,6,0,0,725º SEFAZ SP 2025 | 2º ISS Varginha | 1013º SEFAZ MG | 354º ISS Rio de Janeiro | 18º ISS Sao Bernardo do Campo | 25º ISS Porto Alegre 25
+Jhonattan Cassiano Ribeiro Goldberg,103.6,11.3,0.0,114.9,459º(Ampla),459,False,False,112,2,0,0,318º SEFAZ SP 2025 | 678º SEFAZ RJ 25
+Luciano Gonçalves Motta,102.4,12.5,0.0,114.9,460º(Ampla),460,False,False,113,5,0,0,235º SEFAZ SP 2025 | 976º TSE Unificado | 2094º SEFAZ MG | 262º ISS Cuiaba | 157º ISS Porto Alegre 25
+Breno Philipe Da Silva Severino,101.8,13.0,0.0,114.8,461º(Afro),461,False,False,114,4,0,0,1174º SEFAZ SP 2025 | 269º TJM MG 2021 | 1617º SEFAZ MG | 115º ISS Rio de Janeiro
+Fernanda Lima Kogachi,101.8,13.0,0.0,114.8,462º(Ampla),462,False,False,115,5,1,0,1597º SEFAZ SP 2025 | 253º SEFAZ AC | 575º DPF | 476º SEFAZ BA 22 | 681º ISS Rio de Janeiro
+Laura Beatriz Lersch,101.8,13.0,0.0,114.8,463º(Ampla),463,False,False,116,8,1,0,197º SEFAZ SP 2025 | 13º TCE RS 25 | 76º SEFAZ AC | 1207º SEFAZ MG | 173º CAGE RS | 332º ISS Rio de Janeiro | 59º ISS Cuiaba | 69º ISS Porto Alegre 25
+Andréia Corrêa Prado,102.2,12.5,0.0,114.7,464º(Pcd),464,False,False,117,3,0,0,44º SEFAZ SP 2025 | 23º ISS Varginha | 691º SEFAZ MG
+Bruno Tancledo De Paula,101.0,13.7,0.0,114.7,465º(Afro),465,False,False,118,6,0,0,26º SEFAZ PI 25 | 240º SEFAZ SP 2025 | 95º SEFAZ AC | 892º ISS Rio de Janeiro | 30º ISS Nova Iguaçu | 47º ISS Cuiaba
+Paula Mathias Correia,102.4,12.3,0.0,114.7,466º(Afro),466,False,False,119,2,0,0,1548º SEFAZ MG | 201º ISS Rio de Janeiro
+Evander Tiago Da Cruz,103.2,11.5,0.0,114.7,467º(Ampla),467,False,False,120,9,1,0,1250º SEFAZ SP 2025 | 70º TRT 4 RS 2022 | 19º ISS Biguaçu | 22º ISS SANTOS | 10º SEFAZ PR Agente Fazendario | 21º ISS GUARUJA | 4º ISS Francisco Morato | 181º ISS Sao Bernardo do Campo | 211º ISS Porto Alegre 25
+Urbanno Pereira De Siqueira Leite,100.2,11.5,3.0,114.7,468º(Ampla),468,False,False,121,7,0,0,6º SEFAZ PI 25 | 7º SEFAZ SE 25 | 5º TCE PE 25 | 3º TCE PE 25 | 2543º SEFAZ MG | 1443º RFB | 210º SEFAZ MT
+Rodrigo Solano Correa De Oliveira,100.0,14.7,0.0,114.7,469º(Ampla),469,False,False,122,7,0,0,114º SEFAZ PI 25 | 1256º SEFAZ SP 2025 | 308º SEFAZ AM 22 | 534º SEFAZ MG | 57º SEFAZ MT | 28º ISS Cuiaba | 198º ISS Porto Alegre 25
+Wanderson Martins Barauna,101.2,13.4,0.0,114.6,470º(Afro),470,False,False,123,10,0,0,179º SEFAZ PE | 393º TRT 5 BA 2023 | 57º SEFAZ PI 25 | 560º SEFAZ SP 2025 | 15º SEFAZ SE 25 | 271º MPO | 14º TSE Unificado | 2º TSE Unificado | 25º SEFAZ BA 22 | 76º TCE BA
+Evandro Dias Del Campo,103.6,11.0,0.0,114.6,471º(Ampla),471,False,False,124,4,0,0,253º SEFAZ SP 2025 | 981º RFB | 120º CAGE RS | 414º ISS Rio de Janeiro
+Guilherme Barduchi De Lima,103.8,10.8,0.0,114.6,472º(Ampla),472,False,False,125,2,0,0,881º SEFAZ SP 2025 | 372º RFB
+Hugo Felipe Gequelim,103.4,11.2,0.0,114.6,473º(Ampla),473,False,False,126,0,0,0,
+Marcos Rafael Nascimento Dos Santos,101.8,12.8,0.0,114.6,474º(Ampla),474,False,False,127,7,0,0,544º SEFAZ SP 2025 | 604º SEFAZ RJ 25 | 23º TCE PE 25 | 47º TCE PE 25 | 42º ISS Garanhuns | 364º ISS Rio de Janeiro | 38º ISS Cuiaba
+Matheus Guidoni Pereira,103.6,11.0,0.0,114.6,475º(Ampla),475,False,False,128,10,1,0,218º SEFAZ SP 2025 | 116º SEFAZ SC 21 | 84º SEFAZ PI 25 | 3164º PRF | 168º ISS Governador Valadares | 752º SEFAZ MG | 35º ISS Serra ES | 539º ISS Rio de Janeiro | 18º ISS Cuiaba | 34º ISS Criciúma
+Raphaela Lopes Magalhaes,100.6,14.0,0.0,114.6,476º(Ampla),476,False,False,129,3,0,0,1419º SEFAZ SP 2025 | 1316º SEFAZ MG | 146º CAGE RS
+Valquiria Silva Pereira,100.2,14.4,0.0,114.6,477º(Ampla),477,False,False,130,1,0,0,1665º SEFAZ MG
+Vitor Merli De Azevedo,100.6,14.0,0.0,114.6,478º(Ampla),478,False,False,131,8,1,0,170º SEFAZ SP 2025 | 22º ISS Valinhos | 359º ISS Ribeirao Preto | 1138º RFB | 5º ISS Uberlândia 25 | 308º ISS Sao Bernardo do Campo | 13º ISS Cuiaba | 16º ISS Londrina
+Francisco De Assis Alves Da Silva Filho,99.6,14.9,0.0,114.5,479º(Afro),479,False,False,132,2,0,0,108º SEFAZ BA 22 | 1478º SEFAZ MG
+Alexandre Graeff Silverio,101.4,13.1,0.0,114.5,480º(Ampla),480,False,False,133,0,0,0,
+Beatriz Soares Quaresma,101.0,13.5,0.0,114.5,481º(Ampla),481,False,False,134,5,1,0,1524º SEFAZ SP 2025 | 998º SEFAZ RJ 25 | 5º SEFAZ PR Agente Fazendario | 1610º SEFAZ MG | 89º ISS Londrina
+Danilo Jacques Peixoto Costa,103.2,11.3,0.0,114.5,482º(Ampla),482,False,False,135,2,0,1,20º SEFAZ SP 2025 | 409º RFB
+Débora Vaz Ferreira,102.0,12.5,0.0,114.5,483º(Ampla),483,False,False,136,6,1,1,48º SEFAZ SC 21 | 344º SEFAZ SP 2025 | 155º ISS Itajai | 712º SEFAZ MG | 312º ISS Rio de Janeiro | 71º ISS Porto Alegre 25
+Sabrina Castro Silva,104.4,10.1,0.0,114.5,484º(Ampla),484,False,False,137,5,0,0,513º SEFAZ SP 2025 | 53º ISS Itajai | 86º ISS Itajai | 870º ISS Guarulhos | 16º ISS Campinas
+Vinicius Hyandrei Mendes Arruda Santos,101.0,13.5,0.0,114.5,485º(Ampla),485,False,False,138,1,0,0,82º TRT 12 SC
+Rodrigo Amamia Okabayashi,102.8,11.7,0.0,114.5,486º(Ampla),486,False,False,139,3,1,0,2536º SEFAZ SP 2025 | 98º ISS Sao Bernardo do Campo | 74º ISS Londrina
+Oscar Haruo Miyake,104.0,10.5,0.0,114.5,487º(Ampla),487,False,False,140,9,0,0,408º SEFAZ SC 21 | 1589º SEFAZ SP 2025 | 678º SEFAZ SP 13 | 147º SEFAZ RJ 25 | 242º SEFAZ MG | 255º Senado | 453º RFB | 129º Camara dos Deputados | 1º TCM SP 20
+Aleff Vasconcelos Sousa,102.4,12.0,0.0,114.4,488º(Ampla),488,False,False,141,5,0,0,1862º SEFAZ SP 2025 | 403º SEFAZ PI 25 | 39º SEFAZ SE 25 | 1334º SEFAZ MG | 1º TRF 1 24
+Carla Nunes De Oliveira Nicoleit,99.8,11.6,3.0,114.4,489º(Ampla),489,False,False,142,3,0,0,692º SEFAZ SP 2025 | 977º RFB | 79º ISS Nova Iguaçu
+Fábio Henrique Valença Neves,100.6,13.8,0.0,114.4,490º(Ampla),490,False,False,143,3,0,0,416º SEFAZ PE | 17º ISS Fortaleza | 664º ISS Rio de Janeiro
+Gabriel Cetsuo Nogueira Nonaka,101.4,13.0,0.0,114.4,491º(Ampla),491,False,False,144,2,0,0,1261º SEFAZ SP 2025 | 774º SEFAZ RJ 25
+Gabriel Coura De Araujo,104.4,10.0,0.0,114.4,492º(Ampla),492,False,False,145,5,0,0,148º SEFAZ SP 2025 | 1528º SEFAZ MG | 338º ISS Rio de Janeiro | 311º ISS Belo Horizonte | 242º ISS Porto Alegre 25
+Jonatas Douglas Almeida Santos,100.0,14.4,0.0,114.4,493º(Ampla),493,False,False,146,3,0,0,36º TCE MG 25 | 107º Banco Central | 28º CGE SP 25
+Ramiro Távora Viana,102.4,12.0,0.0,114.4,494º(Ampla),494,False,False,147,5,1,0,72º ISS Fortaleza | 158º TRF 5 24 | 867º RFB | 353º ISS Campina Grande | 19º Camara Municipal de Fortaleza
+Ana Cristina Quaresma Amaral,102.4,12.0,0.0,114.4,495º(Ampla),495,False,False,148,10,0,0,966º SEFAZ RR | 430º SEFAZ RJ 25 | 105º FINEP 23 | 41º SEFAZ ES Consultor | 2371º SEFAZ MG | 122º CAGE RS | 205º ISS Rio de Janeiro | 19º ISS Sao Bernardo do Campo | 69º ISS Nova Iguaçu | 3º EPE ENERGÉTICA
+Airton César Tavares De Souza,102.8,11.5,0.0,114.3,496º(Ampla),496,False,False,149,11,1,1,189º SEFAZ PE | 49º SEFAZ PI 25 | 39º ISS Jaboatao dos Guararapes | 84º SEFAZ AC | 393º SEFAZ PE Apoio | 20º ISS Garanhuns | 134º TCE PE 25 | 185º TCE PE 25 | 9º SEFAZ PE Apoio | 542º SEFAZ BA 22 | 51º ISS Cuiaba
+Eduly De Lima Pinheiro,101.4,12.9,0.0,114.3,497º(Ampla),497,False,False,150,5,0,0,730º SEFAZ SP 2025 | 31º ISS Jaboatao dos Guararapes | 36º ISS Mossoro | 10º TCE PR | 12º CVM
+Lalita Midori Ueda,100.8,13.5,0.0,114.3,498º(Ampla),498,False,False,151,3,1,0,231º SEFAZ SC 21 | 2310º SEFAZ SP 2025 | 631º RFB
+Raimundo Martins Chaves Neto,100.0,14.3,0.0,114.3,499º(Ampla),499,False,False,152,6,0,0,2236º SEFAZ SP 2025 | 26º TSE Unificado | 30º Alesp | 2485º SEFAZ MG | 47º ISS Criciúma | 217º ISS Porto Alegre 25
+Roberval Souza Cunha,100.2,14.0,0.0,114.2,500º(Afro),500,False,False,153,4,0,0,10º SEFAZ PI 25 | 2805º SEFAZ MG | 30º SEFAZ MT | 15º ISS Rio de Janeiro
+Carolina Silva Tristao Moreira,101.4,12.8,0.0,114.2,501º(Ampla),501,False,False,154,5,0,1,837º SEFAZ SP 2025 | 88º SEFAZ RJ 25 | 350º RFB | 1º ISS Campos dos Goytacazes | 204º ISS Rio de Janeiro
+Diogo Mariani Gonçalves,103.0,11.2,0.0,114.2,502º(Ampla),502,False,False,155,8,2,1,244º SEFAZ MA | 83º TCE PR | 327º SEFAZ RS TEC 18 | 685º SEFAZ RS 18 | 6º ISS Curitiba | 851º ISS Guarulhos | 36º SEFIN RO | 4º ISS Cuiaba
+Erika Arduino Von Linsingen,101.2,13.0,0.0,114.2,503º(Ampla),503,False,False,156,3,0,0,101º TCE PR | 113º SEFAZ PR Agente Fazendario | 8º IBAMA 25
+Fabio Rodrigo Ribeiro De Almeida,100.2,14.0,0.0,114.2,504º(Ampla),504,False,False,157,2,0,0,522º ISS Rio de Janeiro | 27º ISS Porto Alegre 25
+Francielly Cristina Gonçalves Barbosa,99.2,15.0,0.0,114.2,505º(Ampla),505,False,False,158,6,0,0,906º SEFAZ SP 2025 | 102º SEFAZ RJ 25 | 19º SEFAZ SE 25 | 2430º SEFAZ MG | 895º RFB | 89º ISS Sao Bernardo do Campo
+Mariane Christo,101.2,13.0,0.0,114.2,506º(Ampla),506,False,False,159,2,1,1,207º PRF | 467º ISS Cuiaba
+Paulo Roberto Maia Caires Junior,99.6,14.6,0.0,114.2,507º(Ampla),507,False,False,160,5,0,0,8º ISS Corumba | 1505º SEFAZ MG | 165º SEFAZ MT | 387º ISS Rio de Janeiro | 160º ISS Cuiaba
+Pedro De Almeida Elias Junior,101.2,13.0,0.0,114.2,508º(Ampla),508,False,False,161,3,0,0,6º SEFAZ PR Agente Fazendario | 762º RFB | 420º ISS Rio de Janeiro
+Leon Egidio De Mattos,101.6,12.5,0.0,114.1,509º(Ampla),509,False,False,162,8,0,0,1324º SEFAZ SP 2025 | 181º ISS Ribeirao Preto | 2683º SEFAZ MG | 1415º ISS Serra ES | 177º ISS Sao Bernardo do Campo | 13º ISS Uberaba | 129º ISS Nova Iguaçu | 233º ISS Porto Alegre 25
+Matheus Vieira Fortini Toscano,103.6,10.5,0.0,114.1,510º(Ampla),510,False,False,163,7,1,0,477º SEFAZ PE | 992º DPF 25 | 158º ISS Ribeirao Preto | 1266º SEFAZ MG | 142º ISS Sao Bernardo do Campo | 19º ISS Londrina | 102º ISS Porto Alegre 25
+Carlos Aurélio Serra Neto,101.0,13.0,0.0,114.0,511º(Ampla),511,False,False,164,1,0,0,1039º SEFAZ SP 2025
+João Daniel Guimarães De Oliveira,101.0,13.0,0.0,114.0,512º(Ampla),512,False,False,165,6,1,0,13º SEFAZ SP 2025 | 222º SEFAZ RJ 25 | 1557º SEFAZ MG | 158º ISS Campina Grande | 167º CVM | 161º ISS Cuiaba
+José Luiz De Souza Filho,102.2,11.8,0.0,114.0,513º(Ampla),513,False,False,166,5,0,0,387º SEFAZ PI 25 | 17º CNU PE 2026 | 1837º SEFAZ SP 2025 | 7º Hemobras | 13º Hemobras
+Lucas Da Cruz Gouveia Neto De Mendonça,101.6,12.4,0.0,114.0,514º(Ampla),514,False,False,167,8,2,0,351º SEFAZ SC 21 | 405º SEFAZ PE | 17º ISS Jaboatao dos Guararapes | 1798º SEFAZ SP 2025 | 496º SEFAZ PE Apoio | 238º SEFAZ BA 22 | 2074º SEFAZ MG | 246º ISS Rio de Janeiro
+Maíza Souza Conrado,101.8,12.2,0.0,114.0,515º(Ampla),515,False,False,168,6,0,0,138º AL MG | 12º AL MG | 551º SEFAZ MG | 156º MPMG 2022 | 542º ISS Rio de Janeiro | 214º ISS Belo Horizonte
+Marcony Vinicius Gomes De Oliveira,100.0,14.0,0.0,114.0,516º(Ampla),516,False,False,169,9,1,2,104º TRT 6 PE | 57º SEFAZ RJ 25 | 1874º PC DF 24 | 284º PRF | 72º TCE PE 25 | 983º SEFAZ MG | 6º CAGE RS | 197º ISS Rio de Janeiro | 75º ISS Porto Alegre 25
+Thiago De Oliveira Silvino,103.2,10.8,0.0,114.0,517º(Ampla),517,False,False,170,3,0,0,247º SEFAZ PI 25 | 516º SEFAZ SP 2025 | 27º SEFAZ SE 25
+Thiago Stockler,103.0,11.0,0.0,114.0,518º(Ampla),518,False,False,171,2,0,1,135º SEFAZ SP 2025 | 12º ISS Florianopolis
+Gabriel Rocha De Oliveira,101.8,12.2,0.0,114.0,519º(Ampla),519,False,False,172,5,1,0,78º SEFAZ PI 25 | 1329º DPE SP | 2º ANM Ag. Nac. Mineracao | 1º ANM Ag. Nac. Mineracao | 414º ALEAM 25
+Bruna Maria De Moura Fragozo,100.2,13.8,0.0,114.0,520º(Ampla),520,False,False,173,9,0,0,3º TRT 20 SE | 4º TRT 2 SP | 4º SEFAZ PR Agente Fazendario | 4º MP SP 2025 | 207º ISS Ribeirao Preto | 61º TCE AL | 33º SEFAZ AM 22 | 2460º SEFAZ MG | 256º ISS Campos dos Goytacazes
+Bruno Lins E Mello De Figueirêdo,100.2,13.7,0.0,113.9,521º(Ampla),521,False,False,174,4,0,0,468º SEFAZ PE | 145º TCE PE 25 | 198º TCE PE 25 | 3º CNU
+Darcson Vieira De Freitas,98.4,10.5,5.0,113.9,522º(Ampla),522,False,False,175,5,0,0,433º SEFAZ SP 2025 | 827º SEFAZ MG | 45º SEFAZ MT | 464º ISS Rio de Janeiro | 37º ISS Nova Iguaçu
+Lucas Odilon De Souza,101.4,12.5,0.0,113.9,523º(Ampla),523,False,False,176,13,0,0,773º SEFAZ SP 2025 | 9º TRF 4 | 33º TCE MS 2025 | 102º TCE PR | 76º SEFAZ PR Agente Fazendario | 99º STM | 96º STM | 4º TSE Unificado | 115º ISS Curitiba | 288º ISS Itajai | 894º RFB | 11º TRF 4 2026 | 15º TRF 4 2026
+Russan Wagner Rosa Correia,102.2,11.7,0.0,113.9,524º(Ampla),524,False,False,177,3,0,0,113º ISS Mossoro | 518º DPF 25 | 59º MPU 25
+Leonardo Lehmkuhl,100.6,13.3,0.0,113.9,525º(Ampla),525,False,False,178,17,4,1,576º SEFAZ SP 2025 | 35º ANM Ag. Nac. Mineracao | 282º SEFAZ RJ 25 | 17º ICMBio | 77º ISS Ribeirao Preto | 96º TCE PE 25 | 27º TCE PE 25 | 53º CNU | 20º CAGE RS | 218º SEFAZ MT | 242º TRF 2 | 64º ISS Rio de Janeiro | 81º ISS Sao Bernardo do Campo | 21º ISS Sao José dos Campos | 14º CVM | 7º ISS Londrina | 123º TRF 1 24
+José Joaquim Da Silva Korb,102.6,11.3,0.0,113.9,526º(Ampla),526,False,False,179,3,0,0,823º SEFAZ SP 2025 | 1309º SEFAZ SP 13 | 606º SEFAZ RS 18
+Héber Lucas Maffi,99.2,14.6,0.0,113.8,527º(Pcd),527,False,False,180,1,0,0,6º SEFAZ AC
+Henrique Cesar Fernandes De Freitas,99.8,14.0,0.0,113.8,528º(Pcd),528,False,False,181,1,0,0,10º SEFAZ MG
+Danilo Bruno De Lima,100.8,13.0,0.0,113.8,529º(Afro),529,False,False,182,5,1,0,2383º SEFAZ SP 2025 | 2613º SEFAZ MG | 22º CGE SP 25 | 715º ISS Guarulhos | 639º ISS Osasco
+Danillo Ferreira Do Nascimento,101.8,12.0,0.0,113.8,530º(Ampla),530,False,False,183,6,0,0,71º SEFAZ SP 2025 | 1205º DPF 25 | 14º ISS Sao Caetano do Sul | 13º CGE SP 25 | 104º ISS Sao Bernardo do Campo | 43º ISS Porto Alegre 25
+Douglas Sugahara,103.0,10.8,0.0,113.8,531º(Ampla),531,False,False,184,5,0,0,70º SEFAZ SP 2025 | 235º ISS Ribeirao Preto | 1698º SEFAZ MG | 169º CGE SP 25 | 53º TCE SP 23
+Gabriel De Souza Basson,99.0,11.8,3.0,113.8,532º(Ampla),532,False,False,185,6,0,0,1315º SEFAZ SP 2025 | 668º SEFAZ RJ 25 | 1077º PC DF 24 | 1371º PRF | 1184º DPF 25 | 118º PC RS 2025
+Mayara Ferreira Da Silva,96.0,14.8,3.0,113.8,533º(Ampla),533,False,False,186,5,0,0,94º CGM SP | 1385º SEFAZ SP 2025 | 234º CGE SP 25 | 158º Hemobras | 70º ISS Sao José dos Campos
+Pablo Fernando Wolhmuth,101.0,12.8,0.0,113.8,534º(Ampla),534,False,False,187,2,0,0,650º SEFAZ SP 2025 | 54º ISS Cuiaba
+Thamires Giacomelli,100.8,13.0,0.0,113.8,535º(Ampla),535,False,False,188,4,0,0,971º SEFAZ SP 2025 | 2865º SEFAZ MG | 955º ISS Rio de Janeiro | 12º ISS Criciúma
+Cristiano Ferreira De Carvalho,103.4,10.4,0.0,113.8,536º(Ampla),536,False,False,189,1,0,0,2º MP PR 24
+Thiago De Alencar Sousa,99.2,11.5,3.0,113.7,537º(Afro),537,False,False,190,3,0,0,66º SEFAZ PR Agente Fazendario | 4º SEFAZ PR Agente Fazendario | 243º ISS Porto Alegre 25
+Gabriel Martin Alves,100.6,13.1,0.0,113.7,538º(Ampla),538,False,False,191,5,0,1,210º SEFAZ SP 2025 | 6º SEFAZ AC | 44º ISS Mossoro | 106º ISS Ribeirao Preto | 251º ISS Cuiaba
+Igor Dockhorn Freitas,102.4,11.3,0.0,113.7,539º(Ampla),539,False,False,192,1,0,0,944º SEFAZ SP 2025
+Everson Silva Crescencio,100.6,13.0,0.0,113.6,540º(Afro),540,False,False,193,8,0,0,84º SEFAZ PI 25 | 21º SEFAZ SE 25 | 32º SEFAZ BA 22 | 872º SEFAZ BA 22 | 1246º SEFAZ MG | 21º TCE BA | 2º TRF 1 24 | 6º TRF 1 24
+Bruci De Paula Cabrera,98.8,11.8,3.0,113.6,541º(Ampla),541,False,False,194,1,0,0,2145º SEFAZ SP 2025
+Bruno Alves Novais,99.4,14.2,0.0,113.6,542º(Ampla),542,False,False,195,1,0,0,2504º SEFAZ MG
+Henrique Seiji Ono Martins,101.6,12.0,0.0,113.6,543º(Ampla),543,False,False,196,7,0,0,392º SEFAZ SC 21 | 936º SEFAZ SP 2025 | 973º TSE Unificado | 96º TSE Unificado | 402º ISS Ribeirao Preto | 2203º SEFAZ MG | 152º ISS Rio de Janeiro
+Vanessa Alaine Zankanol,100.6,13.0,0.0,113.6,544º(Ampla),544,False,False,197,7,0,0,3º SEFAZ SE 25 | 11º ISS Ponta Grossa | 314º SEFAZ AM 22 | 788º SEFAZ MG | 158º ISS Itajai | 191º ISS Rio de Janeiro | 190º ISS Campinas
+Guilherme Amaral Diniz,101.4,12.2,0.0,113.6,545º(Ampla),545,False,False,198,10,0,0,414º SEFAZ SC 21 | 1116º SEFAZ SP 2025 | 261º SEFAZ PI 25 | 323º SEFAZ RR | 467º SEFAZ AM 22 | 1428º SEFAZ MG | 401º ISS Rio de Janeiro | 91º ISS Cuiaba | 83º ISS Criciúma | 266º ISS Porto Alegre 25
+Caio César Santana Barbosa Da Silva,100.4,13.2,0.0,113.6,546º(Ampla),546,False,False,199,11,2,0,1661º SEFAZ SP 2025 | 15º TCE SP 25 | 116º TCE RS 25 | 20º TCE PR | 20º STM | 21º MP PR 24 | 79º BNDES | 587º CGE SP 25 | 90º CAGE RS | 7º CAGE RS | 64º CVM
+Diogo Favaro Wunderlich,102.0,11.5,0.0,113.5,547º(Ampla),547,False,False,200,1,0,1,112º SEFAZ SP 2025
+Felipe Menezes Dos Santos,101.4,12.1,0.0,113.5,548º(Ampla),548,False,False,201,4,1,0,1494º SEFAZ SP 2025 | 409º SEFAZ PI 25 | 741º SEFAZ BA 22 | 113º MP BA
+Francisco Henrique Brito Dos Santos,100.0,10.5,3.0,113.5,549º(Ampla),549,False,False,202,2,0,0,2008º SEFAZ SP 2025 | 59º ISS Nova Iguaçu
+Rebeca Teixeira De Carvalho,100.0,13.5,0.0,113.5,550º(Ampla),550,False,False,203,6,1,0,157º SEFAZ RJ 25 | 830º SEFAZ RS 18 | 98º ISS Ribeirao Preto | 54º ISS Curitiba | 84º ISS SP | 310º ISS Rio de Janeiro
+Thiago Guimarães Dos Reis,100.8,12.7,0.0,113.5,551º(Ampla),551,False,False,204,10,0,0,696º SEFAZ SC 21 | 785º SEFAZ SP 2025 | 62º ISS Florianopolis | 13º ISS Biguaçu | 669º SEFAZ RS 18 | 854º SEFAZ RS TEC 18 | 18º ISS Joinville | 13º ISS Uberlândia 25 | 1293º SEFAZ MG | 28º ISS Criciúma
+Carlos Takebayashi,99.2,14.3,0.0,113.5,552º(Ampla),552,False,False,205,15,4,0,427º SEFAZ MA | 129º SEFAZ SC 21 | 581º SEFAZ SP 2025 | 106º ISS S.J. Rio Preto | 77º SEFAZ RR | 1177º DPF | 362º Alesp | 58º SEFAZ AM 22 | 49º SEFAZ AM 22 | 94º SEFAZ AM 22 | 698º SEFAZ MG | 12º ISS Diadema | 95º ISS Guarulhos | 71º ISS Osasco | 47º CVM
+Andréia Ayumi Fantan Une,101.4,12.0,0.0,113.4,553º(Ampla),553,False,False,206,1,0,0,790º RFB
+Igor Bittencourt Knust,99.4,14.0,0.0,113.4,554º(Ampla),554,False,False,207,9,1,1,673º SEFAZ SP 2025 | 37º ISS Florianopolis | 19º ISS Araras | 38º ISS Ribeirao Preto | 2388º SEFAZ MG | 7º ISS Campos dos Goytacazes | 223º ISS Rio de Janeiro | 49º ISS Porto Alegre 25 | 48º ISS Macaé
+Luiza Andreiolo Velloso,101.4,12.0,0.0,113.4,555º(Ampla),555,False,False,208,2,0,0,1568º SEFAZ SP 2025 | 2635º SEFAZ MG
+Roberto Camilo Marques Castro,102.4,11.0,0.0,113.4,556º(Ampla),556,False,False,209,5,2,2,259º SEFAZ SP 2025 | 131º DPF | 356º PRF | 1205º SEFAZ MG | 102º ISS Cuiaba
+Thiago Campos Monteiro,96.8,11.6,5.0,113.4,557º(Ampla),557,False,False,210,3,0,0,891º SEFAZ SP 2025 | 191º SEFAZ RJ 25 | 1233º RFB
+Thiago Luan Lima Marciano,101.6,11.8,0.0,113.4,558º(Ampla),558,False,False,211,2,0,0,404º SEFAZ SP 2025 | 99º ISS Sao Bernardo do Campo
+Victor Mark Pontes Dos Santos,100.2,10.2,3.0,113.4,559º(Ampla),559,False,False,212,8,0,1,70º SEFAZ AP | 669º SEFAZ RR | 1141º CG DF | 1019º SEPLAD DF | 3592º SEFAZ MG | 1178º RFB | 522º ISS Belo Horizonte | 395º ISS Cuiaba
+Sergio Bernardo Fleck Da Silva Abreu,102.8,10.6,0.0,113.4,560º(Ampla),560,False,False,213,6,0,0,879º SEFAZ SP 2025 | 118º ISS Ribeirao Preto | 863º SEFAZ AM 22 | 2494º SEFAZ MG | 564º ISS Osasco | 335º ISS Cuiaba
+Marcelo Ramon Duarte Vicenti,101.8,11.5,0.0,113.3,561º(Pcd),561,False,False,214,4,0,0,511º SEFAZ RS 18 | 7º SEFAZ CE | 39º RFB | 3º ISS Belo Horizonte
+Jose Ribamar Barros Netto,98.8,14.5,0.0,113.3,562º(Afro),562,False,False,215,3,0,1,110º SEFAZ SP 2025 | 54º SEFAZ PI 25 | 85º ISS Cuiaba
+Mariana Gonçalves Pereira,99.8,13.5,0.0,113.3,563º(Afro),563,False,False,216,4,0,1,890º SEFAZ RJ 25 | 158º SEFAZ RJ 25 | 3º SEFAZ ES Consultor | 96º ISS Serra ES
+Alvaro De Oliveira Maia,100.8,12.5,0.0,113.3,564º(Ampla),564,False,False,217,1,0,0,1199º SEFAZ SP 2025
+Daiane Elis De Almeida,99.4,13.9,0.0,113.3,565º(Ampla),565,False,False,218,5,0,0,61º ISS Biguaçu | 2º SEFAZ PR Agente Fazendario | 1º SEFAZ PR Agente Fazendario | 64º ISS Pinhais | 3919º SEFAZ MG
+Rodrigo Gomes Lemos,97.6,12.7,3.0,113.3,566º(Ampla),566,False,False,219,2,0,0,212º SEFAZ SP 2025 | 346º SEFAZ RJ 25
+Pedro Henrique Gonçalves Silveira,101.4,11.9,0.0,113.3,567º(Ampla),567,False,False,220,9,1,0,1989º SEFAZ SP 2025 | 37º ISS Ouro Branco | 407º AL MG | 529º SEFAZ AM 22 | 139º SEFAZ AM 22 | 147º SEFAZ AM 22 | 47º ISS Uberlândia 25 | 787º SEFAZ MG | 252º ISS Rio de Janeiro
+Rafael Oliveira Da Silva,101.2,12.0,0.0,113.2,568º(Afro),568,False,False,221,4,0,1,59º SEFAZ SP 2025 | 792º SEFAZ MG | 389º ISS Belo Horizonte | 1º CVM
+Thiago Marques Esteves Povoa,98.2,12.0,3.0,113.2,569º(Afro),569,False,False,222,6,0,0,147º SEFAZ PI 25 | 1068º SEFAZ SP 2025 | 22º SEFAZ SE 25 | 694º SEFAZ RJ 25 | 123º SEFAZ RJ 25 | 36º FINEP 23
+Ana Lauren Cano Ronzani Pereira,100.2,13.0,0.0,113.2,570º(Ampla),570,False,False,223,1,0,0,372º SEFAZ MG
+Carlos Eugênio Vasconcelos Neves,99.8,13.4,0.0,113.2,571º(Ampla),571,False,False,224,4,0,1,2º SEFAZ PI 25 | 39º SEFAZ PI 25 | 33º SEPLAG CE | 1º TRF 1 24
+João Batista Santana Ferreira Da Cruz,100.8,12.4,0.0,113.2,572º(Ampla),572,False,False,225,12,2,1,211º SEFAZ MA | 419º SEFAZ SP 2025 | 83º ISS Manaus | 111º SEFAZ RS 17 | 97º SEFAZ ES | 2327º SEFAZ MG | 351º ISS Belo Horizonte | 5º ALERO | 206º SEFAZ MT | 118º ISS Rio de Janeiro | 19º SEFIN RO | 42º SEFIN RO
+Renata Callegaro,97.2,13.0,3.0,113.2,573º(Ampla),573,False,False,226,7,0,0,544º SEFAZ SC 21 | 1517º SEFAZ SP 2025 | 188º SEFAZ RJ 25 | 831º SEFAZ RS 18 | 758º SEFAZ RS TEC 18 | 63º ISS Criciúma | 241º ISS Porto Alegre 25
+Francisco Marcelo Almeida Andrade Júnior,100.2,13.0,0.0,113.2,574º(Ampla),574,False,False,227,4,0,0,31º ISS Mossoro | 425º SEFAZ AM 22 | 513º SEFAZ MG | 117º ISS Campina Grande
+Marcos Gabriel Ferreira Tomaz,98.8,14.3,0.0,113.1,575º(PCD/Negro),575,False,False,228,9,0,0,25º SEFAZ SP 2025 | 196º SEFAZ PE Apoio | 391º SEFAZ PE Apoio | 403º SEFAZ AM 22 | 2º TCE PE 25 | 61º SEFAZ BA 22 | 526º SEFAZ MG | 76º TJ RN 23 | 20º ISS Campina Grande
+Marcos Gabriel Ferreira Tomaz,98.8,14.3,0.0,113.1,575º(Pcd),575,False,False,228,9,0,0,25º SEFAZ SP 2025 | 196º SEFAZ PE Apoio | 391º SEFAZ PE Apoio | 403º SEFAZ AM 22 | 2º TCE PE 25 | 61º SEFAZ BA 22 | 526º SEFAZ MG | 76º TJ RN 23 | 20º ISS Campina Grande
+Vinicius Jose Severino Catulino,100.6,12.5,0.0,113.1,576º(Afro),576,False,False,229,8,1,1,496º SEFAZ SC 21 | 454º SEFAZ SP 2025 | 3º ISS SANTOS | 139º Alesp | 1247º SEFAZ MG | 8º ISS SP | 89º ISS Rio de Janeiro | 156º TCM SP 20
+Felipe Mafra De Paiva,100.6,12.5,0.0,113.1,577º(Ampla),577,False,False,230,4,0,0,1163º SEFAZ SP 2025 | 1361º SEFAZ MG | 74º ISS Sao Bernardo do Campo | 266º ISS Belo Horizonte
+Guilherme Cômodo Ribeiro,102.6,10.5,0.0,113.1,578º(Ampla),578,False,False,231,2,0,1,118º SEFAZ SP 2025 | 77º MPU 25
+Livia De Mello E Silva,100.6,12.5,0.0,113.1,579º(Ampla),579,False,False,232,3,0,0,1141º SEFAZ SP 2025 | 510º ISS Rio de Janeiro | 33º ISS Sao Bernardo do Campo
+Lourival Vianna Silva Júnior,101.6,11.5,0.0,113.1,580º(Ampla),580,False,False,233,4,0,0,3º TCE PR | 160º CGE SP 25 | 566º RFB | 486º ISS Rio de Janeiro
+Pablo De Andrade Roos,102.8,10.3,0.0,113.1,581º(Ampla),581,False,False,234,3,1,0,222º SEFAZ SC 21 | 21º ISS Criciúma | 41º ISS Porto Alegre 25
+Ciro Sergilow Gomes Lugao Da Costa Lima,99.0,14.0,0.0,113.0,582º(Ampla),582,False,False,235,2,0,0,564º SEFAZ SP 2025 | 615º SEFAZ RJ 25
+Renan Agustinho Bigonha,101.0,12.0,0.0,113.0,583º(Ampla),583,False,False,236,2,0,0,181º SEFAZ SP 2025 | 8º SEFAZ PR Agente Fazendario
+Guilherme Machado Ribeiro,100.2,12.7,0.0,112.9,584º(Ampla),584,False,False,237,5,0,0,218º ISS Paraty | 1035º SEFAZ SP 2025 | 697º SEFAZ RJ 25 | 63º ISS Ribeirao Preto | 43º ISS Nova Iguaçu
+Eduarda Zangrandi Silva,98.4,14.5,0.0,112.9,585º(Ampla),585,False,False,238,3,0,1,71º ISS Paraty | 2º ISS Itatiba | 2º SEFAZ SE 25
+Stephanie Yuri Takano,99.4,13.5,0.0,112.9,586º(Ampla),586,False,False,239,3,1,0,126º SEFAZ PR Agente Fazendario | 248º SEFAZ MG | 36º ISS Londrina
+Mauricio Itikawa,99.4,10.5,3.0,112.9,587º(Ampla),587,False,False,240,3,0,0,1021º SEFAZ SP 2025 | 800º SEFAZ AM 22 | 2295º SEFAZ MG
+Lucas Watanabe Silva,102.4,10.5,0.0,112.9,588º(Ampla),588,False,False,241,12,1,0,2350º SEFAZ SP 2025 | 15º ISS Itatiba | 161º SEFAZ RR | 543º ISS Ribeirao Preto | 64º ISS Sao Caetano do Sul | 613º SEFAZ AM 22 | 20º ISS Diadema | 917º RFB | 49º ISS Sao Bernardo do Campo | 497º ISS Belo Horizonte | 285º ISS Porto Alegre 25 | 39º ISS Suzano
+Bruno Henrique Barbosa,101.2,11.6,0.0,112.8,589º(Afro),589,False,False,242,5,0,0,1025º SEFAZ SP 2025 | 7º ISS Uberlândia 25 | 794º TRF 6 | 728º ISS Ribeirao Preto | 4476º SEFAZ MG
+Allan Santana Gracindo Marques,99.2,13.6,0.0,112.8,590º(Ampla),590,False,False,243,5,0,0,2037º SEFAZ SP 2025 | 39º SEFAZ RJ 25 | 3108º SEFAZ MG | 83º CAGE RS | 367º ISS Rio de Janeiro
+Fernando Akira Otake,98.8,14.0,0.0,112.8,591º(Ampla),591,False,False,244,1,0,0,493º SEFAZ SP 2025
+Gabriel Barbosa Moreira,99.2,13.6,0.0,112.8,592º(Ampla),592,False,False,245,6,0,1,338º SEFAZ RJ 25 | 1808º TCE PE 17 | 419º SEFAZ MG | 19º SEFAZ MT | 85º ISS Rio de Janeiro | 43º TCE BA
+Gabriel Felipe De Freitas,97.8,15.0,0.0,112.8,593º(Ampla),593,False,False,246,2,0,1,49º SEFAZ SP 2025 | 84º TRE SP 2016
+Juliana Suzuki Chiba,99.0,13.8,0.0,112.8,594º(Ampla),594,False,False,247,10,1,0,973º SEFAZ SP 2025 | 101º SEFAZ SC 21 | 1602º DPF | 72º ISS Itajai | 185º ISS Itajai | 228º ISS Belo Horizonte | 668º SEFAZ MG | 830º ISS Guarulhos | 83º ISS Osasco | 126º ISS Cuiaba
+Maria Clara Fernandes De Andrade,97.8,12.0,3.0,112.8,595º(Ampla),595,False,False,248,2,0,0,107º SEFAZ AC | 638º RFB
+Thiago Albert Busse,100.8,12.0,0.0,112.8,596º(Ampla),596,False,False,249,9,0,0,29º CGM SP | 851º SEFAZ SP 2025 | 27º TCE PR | 10º TCE ES SECONT | 423º Petrobras | 717º SEFAZ MG | 138º CAGE RS | 665º ISS Rio de Janeiro | 68º ISS Sao Bernardo do Campo
+Vinicius Gonçalves,98.8,14.0,0.0,112.8,597º(Ampla),597,False,False,250,12,0,0,386º SEFAZ SP 2025 | 68º TRF 4 | 16º TRF 4 | 201º TRE SP 2016 | 84º ISS Itatiba | 74º PF 2018 | 41º ISS Suzano | 251º ISS Ribeirao Preto | 53º TRF 4 2026 | 1007º TRF 4 2026 | 2º TJ PR | 178º ISS Porto Alegre 25
+Cristiane Regina Turcatto,99.8,13.0,0.0,112.8,598º(Ampla),598,False,False,251,7,0,0,2506º SEFAZ SP 2025 | 72º TCE SP 25 | 92º TCE SP 25 | 8º TCE PR | 14º FINEP 23 | 12º MP PR 24 | 591º RFB
+Pedro Henrique Carvalho De Souza,100.8,11.9,0.0,112.7,599º(Pcd),599,False,False,252,4,0,0,14º SEFAZ AL 21 | 20º SEFAZ SE 25 | 46º SEFAZ MG | 18º ISS Rio de Janeiro
+Nataniel Almeida Pereira,100.2,12.5,0.0,112.7,600º(Afro),600,False,False,253,4,0,0,69º SEFAZ AC | 210º SEFAZ AM 22 | 830º SEFAZ MG | 44º ISS Cuiaba
+Luca Dutra Signorelli,101.2,11.5,0.0,112.7,601º(Ampla),601,False,False,254,4,0,1,52º ISS Florianopolis | 24º BNDES | 132º RFB | 79º ISS Cuiaba
+Rodrigo Pereira Thiesen Lima,102.2,10.5,0.0,112.7,602º(Ampla),602,False,False,255,2,0,0,1251º SEFAZ SP 2025 | 121º ISS Cuiaba
+Jonathan Diogo Souza,101.2,11.5,0.0,112.7,603º(Ampla),603,False,False,256,6,0,0,359º SEFAZ SP 2025 | 60º SEFAZ AL 21 | 1088º SEFAZ RS 18 | 547º SEFAZ AM 22 | 540º ISS Uberlandia | 367º SEFAZ MG
+Daniel Souza Rebouças,100.8,11.8,0.0,112.6,604º(Ampla),604,False,False,257,4,0,0,768º SEFAZ SP 2025 | 74º SEFAZ AC | 1266º ISS Serra ES | 478º ISS Rio de Janeiro
+Hugo Vítor Da Costa André,98.8,13.8,0.0,112.6,605º(Ampla),605,False,False,258,2,1,1,2541º SEFAZ SP 2025 | 2º PRF
+Otávio Henrique Oliveira Landi,99.6,13.0,0.0,112.6,606º(Ampla),606,False,False,259,7,1,0,148º SEFAZ PI 25 | 528º SEFAZ SP 2025 | 315º SEFAZ RJ 25 | 121º RFB | 108º CAGE RS | 93º ISS Rio de Janeiro | 1º Camara dos Deputados Consultor
+Sílvia Helena Rêgo De Oliveira,101.8,10.8,0.0,112.6,607º(Ampla),607,False,False,260,7,0,0,123º ISS Mossoro | 240º ISS Ribeirao Preto | 3777º SEFAZ MG | 987º ISS Rio de Janeiro | 10º DATAPREV 2024 | 73º ISS Sao Bernardo do Campo | 254º ISS Porto Alegre 25
+Nicolas Gomes Evangelista,99.2,13.3,0.0,112.5,608º(Pcd),608,False,False,261,3,0,0,29º SEFAZ SP 2025 | 263º ISS Cuiaba | 11º SEFAZ RR
+Davi Da Silva Teixeira,100.0,12.5,0.0,112.5,609º(Afro),609,False,False,262,5,0,0,5º SEFAZ RJ 25 | 5º SEFAZ RJ 25 | 40º ISS Rio de Janeiro | 4º ISS Nova Iguaçu | 4º ISS Macaé
+Jhony Fernandes Ferreira,97.2,12.3,3.0,112.5,610º(Ampla),610,False,False,263,7,1,0,440º SEFAZ PI 25 | 570º SEFAZ RJ 25 | 1957º SEFAZ MG | 604º ISS Rio de Janeiro | 290º Camara dos Deputados | 117º CVM | 53º ISS Cuiaba
+Sebastião José De Souza Barros,98.4,14.0,0.0,112.4,611º(Afro),611,False,False,264,3,1,1,1333º SEFAZ SP 2025 | 71º SEFAZ PI 25 | 119º DPF
+Debora Falcomer Novacki,95.4,14.0,3.0,112.4,612º(Ampla),612,False,False,265,3,0,0,266º ISS Ribeirao Preto | 38º ISS Uberlândia 25 | 1460º SEFAZ MG
+Denise Castilho Pinheiro,100.6,11.8,0.0,112.4,613º(Ampla),613,False,False,266,1,0,1,131º RFB
+Douglas Poluden Pertile,101.2,11.2,0.0,112.4,614º(Ampla),614,False,False,267,1,0,0,34º TCE RS 25
+Thadeu Argolo De Andrade,99.0,13.4,0.0,112.4,615º(Ampla),615,False,False,268,9,0,4,13º SEFAZ SP 2025 | 3º SEFAZ PI 25 | 67º TCU TI 2025 | 17º TCE PE 25 | 16º SEFAZ MG | 9º CGE SC | 77º Senado | 93º Camara dos Deputados | 10º ISS Cuiaba
+Viviane Maria Mello Vieira,101.4,11.0,0.0,112.4,616º(Ampla),616,False,False,269,2,0,0,531º SEFAZ SC 21 | 668º ISS Rio de Janeiro
+Guilherme Cavalcante Vieira,97.6,11.7,3.0,112.3,617º(Ampla),617,False,False,270,2,0,0,813º SEFAZ SP 2025 | 6º SEAD SE
+Mauricio Miranda Lobo Leite,100.4,11.9,0.0,112.3,618º(Ampla),618,False,False,271,9,1,0,61º SEFAZ SP 2025 | 69º TCE SP 25 | 196º SEFAZ RJ 25 | 13º MPO | 354º ISS Belo Horizonte | 60º ISS Ribeirao Preto | 37º ISS Paulinia | 628º SEFAZ MG | 7º ISS Cuiaba
+Bárbara Chaves,100.0,12.3,0.0,112.3,619º(Ampla),619,False,False,272,6,1,0,466º SEFAZ SC 21 | 987º SEFAZ SP 2025 | 44º TCE RS 25 | 860º SEFAZ AM 22 | 2660º SEFAZ MG | 315º ISS Porto Alegre 25
+Bruna Lima Rodrigues Moitinho,99.6,12.6,0.0,112.2,620º(Ampla),620,False,False,273,1,1,0,242º SEFAZ BA 22
+Guilherme Candal Bublitz,100.4,11.8,0.0,112.2,621º(Ampla),621,False,False,274,5,1,0,847º SEFAZ SP 2025 | 58º TCE RS 25 | 36º ISS Serra ES | 28º MP RS 2025 | 78º ISS Porto Alegre 25
+Michele Do Amaral Duarte Prebianca,99.8,12.4,0.0,112.2,622º(Ampla),622,False,False,275,6,0,0,1084º SEFAZ SP 2025 | 72º TCU | 42º TJDFT 2022 | 75º CGE SC | 113º Senado | 109º ALESC
+Raphael Halim Khai Ming Lie,100.0,12.2,0.0,112.2,623º(Ampla),623,False,False,276,5,0,0,1194º SEFAZ SP 2025 | 2640º SEFAZ MG | 445º RFB | 307º ISS Belo Horizonte | 75º CVM
+João Pedro Carmo De Melo,98.6,13.5,0.0,112.1,624º(Pcd),624,False,False,277,5,1,0,47º SEFAZ SP 2025 | 730º SEFAZ AM 22 | 163º SEFAZ AM 22 | 158º SEFAZ AM 22 | 705º SEFAZ MG
+Luiz Francisco Nascimento Junior,99.6,12.5,0.0,112.1,625º(Afro),625,False,False,278,9,0,0,70º SEFAZ PI 25 | 4º SEFAZ SE 25 | 4º SEFAZ SE 25 | 2234º SEFAZ MG | 48º ISS Rio de Janeiro | 4º Camara dos Deputados Consultor | 282º ISS Cuiaba | 113º ISS Porto Alegre 25 | 12º ISS Porto Alegre 25
+Diego Martins Coutinho,100.8,11.3,0.0,112.1,626º(Ampla),626,False,False,279,6,0,1,367º SEFAZ PE | 59º SEFAZ PI 25 | 40º SEFAZ AC | 288º SEFAZ RR | 186º ISS Petrolina | 177º ISS Cuiaba
+Marlon Stafin,99.4,12.7,0.0,112.1,627º(Ampla),627,False,False,280,7,1,0,19º TCE PR | 331º Petrobras | 119º ISS Itajai | 64º ISS Curitiba | 31º MP PR 24 | 155º CGE SC | 188º CAGE RS
+Felipe Daniel Cardoso,98.0,12.5,1.5,112.0,628º(Ampla),628,False,False,281,4,0,0,317º SEFAZ PI 25 | 416º SEFAZ SP 2025 | 263º SEFAZ RJ 25 | 914º DPF 25
+Greici Ribeiro Cosman,99.2,12.8,0.0,112.0,629º(Ampla),629,False,False,282,7,0,0,51º TRT 4 RS 2022 | 290º CG DF | 292º SEPLAD DF | 73º CNMP | 66º CGE SC | 32º CAGE RS | 160º ISS Rio de Janeiro
+Rodnei Rosa Farto,100.2,11.8,0.0,112.0,630º(Ampla),630,False,False,283,1,0,0,1624º SEFAZ SP 2025
+Vitor Fonseca Azevedo,101.4,10.6,0.0,112.0,631º(Ampla),631,False,False,284,2,0,0,491º SEFAZ SP 2025 | 1464º RFB
+Rafael De Oliveira Ribeiro,97.0,12.0,3.0,112.0,632º(Ampla),632,False,False,285,4,1,0,1515º SEFAZ SP 2025 | 533º RFB | 2385º MPU 25 | 75º ISS Londrina
+Talita Ferreira Gomes,101.8,10.2,0.0,112.0,633º(Ampla),633,False,False,286,1,1,0,48º ISS Londrina
+Raphael Carlos Ferreira Do Fundo,100.4,11.5,0.0,111.9,634º(Ampla),634,False,False,287,14,0,0,79º SEFAZ PI 25 | 271º SEFAZ SP 2025 | 83º CGE RJ | 286º SEFAZ RJ 25 | 1082º DPF 25 | 214º ISS Ribeirao Preto | 1424º SEFAZ MG | 337º ISS Belo Horizonte | 101º SMF RJ | 316º ISS Rio de Janeiro | 122º ISS Sao Bernardo do Campo | 25º ISS Nova Iguaçu | 49º ISS Cuiaba | 158º ISS Porto Alegre 25
+Renan Bambini Moreira,95.8,13.1,3.0,111.9,635º(Ampla),635,False,False,288,4,0,0,7º TSE Unificado | 1279º RFB | 222º SEFAZ MT | 74º TRF 2
+Samuel Mielke,98.6,13.3,0.0,111.9,636º(Ampla),636,False,False,289,0,0,0,
+Bento Forte De Oliveira Neto,100.4,11.5,0.0,111.9,637º(Ampla),637,False,False,290,4,0,0,117º ISS Mossoro | 5º ANM Ag. Nac. Mineracao | 6º TCE PE 25 | 320º ISS Porto Alegre 25
+Jairo Barbosa Da Silva Junior,97.2,11.6,3.0,111.8,638º(Afro),638,False,False,291,4,0,0,758º SEFAZ SP 2025 | 60º ISS Florianopolis | 204º ISS Porto Alegre 25 | 20º ISS Porto Alegre 25
+Vinícius Bravo Da Silva,99.0,12.8,0.0,111.8,639º(Afro),639,False,False,292,6,0,0,411º SEFAZ SP 2025 | 2303º SEFAZ MG | 161º ISS Rio de Janeiro | 28º ISS Belo Horizonte | 5º ISS Nova Iguaçu | 78º ISS Cuiaba
+Igor Tureta Zanchetta,101.2,10.6,0.0,111.8,640º(Ampla),640,False,False,293,1,0,0,1106º SEFAZ SP 2025
+Jônatas Menezes Costa,97.8,14.0,0.0,111.8,641º(Ampla),641,False,False,294,6,0,0,1045º SEFAZ SP 2025 | 86º SEFAZ SE 25 | 294º ISS Ribeirao Preto | 107º ISS Sao Bernardo do Campo | 85º ISS Nova Iguaçu | 150º ISS Porto Alegre 25
+Rebeca Mendes Carrijo,97.8,14.0,0.0,111.8,642º(Ampla),642,False,False,295,1,0,0,1401º SEFAZ SP 2025
+Walisson Klayton Ferreira De Oliveira,97.2,13.0,1.5,111.7,643º(Afro),643,False,False,296,1,0,0,2420º SEFAZ MG
+Adalberto Gregório Back,92.4,14.3,5.0,111.7,644º(Ampla),644,False,False,297,5,0,0,893º SEFAZ SP 2025 | 76º FINEP 23 | 121º ISS Ribeirao Preto | 90º ISS Maua | 935º SEFAZ MG
+William Souza Paulillo,99.2,12.5,0.0,111.7,645º(Ampla),645,False,False,298,7,0,0,1258º SEFAZ SP 2025 | 453º SEFAZ RS 18 | 262º ISS Uberlandia | 2186º SEFAZ MG | 354º RFB | 141º SEFAZ MT | 288º ISS Guarulhos
+Alan Wolner Da Silva Leandro,100.4,11.3,0.0,111.7,646º(Ampla),646,False,False,299,10,2,0,318º SEFAZ PE | 63º SEFAZ PI 25 | 27º SEFAZ PR Agente Fazendario | 355º SEFAZ RS TEC 18 | 229º SEFAZ AC | 192º SEFAZ AM 22 | 181º SEFAZ AM 22 | 36º SEFAZ AM 22 | 564º SEFAZ BA 22 | 1841º SEFAZ MG
+Braulio Jose Cardoso,98.2,13.5,0.0,111.7,647º(Ampla),647,False,False,300,6,1,0,229º SEFAZ SC 21 | 353º SEFAZ AM 22 | 549º SEFAZ MG | 106º SEFAZ MT | 368º ISS Rio de Janeiro | 177º ISS Porto Alegre 25
+Roberta Karla Alves Do Nascimento,98.0,10.7,3.0,111.7,648º(Ampla),648,False,False,301,3,0,0,1º IPM PB | 9º CNU | 2595º SEFAZ MG
+Lucas Fernandes Aquino,101.0,10.6,0.0,111.6,649º(Ampla),649,False,False,302,6,1,2,23º SEFAZ SP 2025 | 50º SEFAZ RJ 25 | 10º SEFAZ SE 25 | 845º PC DF 24 | 211º PRF | 680º ISS Rio de Janeiro
+Paulo Roberto De Albuquerque Filho,97.6,14.0,0.0,111.6,650º(Ampla),650,False,False,303,6,1,0,189º SEFAZ SC 21 | 163º SEFAZ SP 2025 | 6º DPF 25 | 674º SEFAZ MG | 188º SEFAZ MT | 36º ISS Cuiaba
+Ricardo Rain Schmidt,97.6,14.0,0.0,111.6,651º(Ampla),651,False,False,304,1,0,0,293º SEFAZ SP 2025
+Saulo Barbosa Coelho,100.6,11.0,0.0,111.6,652º(Ampla),652,False,False,305,13,0,0,214º SEFAZ PI 25 | 770º SEFAZ SP 2025 | 404º CG DF | 591º SEPLAD DF | 73º CG DF | 72º SEPLAD DF | 137º Câmara dos Deputados 2025 NS | 46º ISS Ouro Branco | 19º ISS Ouro Preto | 2966º SEFAZ MG | 82º CGE SP 25 | 131º CAGE RS | 447º ISS Belo Horizonte
+Thiago Guedes Barros,98.2,13.4,0.0,111.6,653º(Ampla),653,False,False,306,5,0,0,401º SEFAZ PI 25 | 492º SEFAZ SP 2025 | 314º SEFAZ AC | 2066º SEFAZ MG | 65º ISS Cuiaba
+Humberto Mallmann Horst Bezuska,99.6,12.0,0.0,111.6,654º(Ampla),654,False,False,307,6,0,0,73º TCE PR | 69º TSE Unificado | 19º MP PR 24 | 117º ALESC | 2º MPU 25 | 17º MPU 25
+Rafael Gomes Da Silva,99.2,12.3,0.0,111.5,655º(Afro),655,False,False,308,15,0,0,236º EMBRAPA | 1340º TRF 3 | 1517º TRT 2 SP | 64º AGSUS CCE 2025 | 34º AGSUS CCE 2025 | 690º AGSUS RIO DOCE 2026 | 93º TCE PR | 94º SEFAZ AC | 59º SEFAZ RS TEC 18 | 962º TSE Unificado | 10º TSE Unificado | 595º ISS Uberlandia | 673º TJ RJ 2026 | 14º Manaus SEMAD EDUCAÇÃO | 11º TRF 4 2026
+David Dos Santos Araújo Junior,98.0,13.5,0.0,111.5,656º(Ampla),656,False,False,309,5,1,0,32º SEFAZ RJ 25 | 252º ISS Ribeirao Preto | 151º ISS Rio de Janeiro | 27º ISS Nova Iguaçu | 11º ISS Macaé
+Diego Palmorio Da Silva,101.0,10.5,0.0,111.5,657º(Ampla),657,False,False,310,2,0,0,917º SEFAZ SP 2025 | 31º ISS Sorocaba
+Emanuel Lucas Rodrigues Moura,99.0,12.5,0.0,111.5,658º(Ampla),658,False,False,311,6,0,0,151º EMBRAPA | 541º SEFAZ SP 2025 | 11º SEFAZ SE 25 | 13º IBAMA 25 | 72º TJ RS 2025 | 219º MPU 25
+Laize Lordelo Silva Rocha,99.0,12.5,0.0,111.5,659º(Ampla),659,False,False,312,2,0,0,1444º SEFAZ SP 2025 | 332º ISS Cuiaba
+Lea Sandiny Dos Santos Evangelista,98.4,13.0,0.0,111.4,660º(Afro),660,False,False,313,5,0,0,996º SEFAZ SP 2025 | 629º DPF 25 | 60º SEFAZ BA 22 | 638º SEFAZ MG | 152º ISS Campina Grande
+Eduardo Deoracki,101.4,10.0,0.0,111.4,661º(Ampla),661,False,False,314,4,0,0,277º TRF 4 | 261º PC SC 2025 | 167º TRF 4 2026 | 938º TRF 4 2026
+Humberto Dorneles Breunig,100.0,11.4,0.0,111.4,662º(Ampla),662,False,False,315,4,1,0,64º TCE RS 25 | 562º TSE Unificado | 39º ALERS | 249º ISS Porto Alegre 25
+Nicolas Figueira Perruci Arruda,100.6,10.8,0.0,111.4,663º(Ampla),663,False,False,316,5,0,0,1193º SEFAZ SP 2025 | 202º MPO | 67º ISS Fortaleza | 360º Petrobras | 1187º SEFAZ MG
+Daniel De Souza Rosa,100.4,11.0,0.0,111.4,664º(Ampla),664,False,False,317,17,1,0,154º SEFAZ AP | 20º TCE SP 25 | 210º SEFAZ AC | 14º ANTT | 434º SEFAZ RR | 170º ISS Mossoro | 94º SUSEP | 41º ISS Corumba | 5º TSE Unificado | 839º SEFAZ AM 22 | 689º SEFAZ BA 22 | 1111º SEFAZ MG | 76º SEPLAN DF | 52º ISS Cuiaba | 72º ISS Criciúma | 21º TCE PA | 29º SEFAZ RR
+Danilo Marti Nascimento,99.4,12.0,0.0,111.4,665º(Ampla),665,False,False,318,10,0,0,2086º SEFAZ SP 2025 | 16º TRT 15 Campinas | 23º TCE SP 25 | 50º TCE PR | 125º TCE RS 25 | 11º MP SP 2025 | 17º ISS Sorocaba | 559º SEFAZ AM 22 | 1526º SEFAZ MG | 657º ISS Osasco
+Lucas Diogo Bernardi Santana,97.6,13.7,0.0,111.3,666º(Pcd),666,False,False,319,2,0,1,678º SEFAZ AM 22 | 16º SEFAZ MG
+Robson Jonathan Bittencourt,98.4,12.9,0.0,111.3,667º(Afro),667,False,False,320,2,1,1,274º SEFAZ RR | 5º CAGE RS
+Alexandre Wesley Fazolli Do Nascimento,97.6,13.7,0.0,111.3,668º(Ampla),668,False,False,321,1,0,0,931º SEFAZ SP 2025
+Paula Castilho Soares,99.8,11.5,0.0,111.3,669º(Ampla),669,False,False,322,6,0,0,1200º SEFAZ SP 2025 | 2403º SEFAZ MG | 674º ISS Uberlandia | 461º ISS Belo Horizonte | 166º CVM | 168º TCM SP 20
+Amanda Albuquerque Moraes Lopes,99.4,11.8,0.0,111.2,670º(Ampla),670,False,False,323,7,0,1,963º SEFAZ SP 2025 | 422º SEFAZ RR | 66º SEFAZ RJ 25 | 848º SEFAZ MG | 377º SMF RJ | 108º ISS Rio de Janeiro | 5º ISS Nova Iguaçu
+Camila Menezes De Mendonça,98.6,12.6,0.0,111.2,671º(Ampla),671,False,False,324,5,0,0,149º SEFAZ AC | 268º TCE AM | 794º TJ AP | 77º RFB | 36º ALERO
+Matheus Gomes Carmo,98.2,13.0,0.0,111.2,672º(Ampla),672,False,False,325,2,0,0,639º SEFAZ PI 25 | 197º ISS Cuiaba
+Tomaz Rocha Gonçalves,100.2,11.0,0.0,111.2,673º(Ampla),673,False,False,326,3,0,0,1140º SEFAZ SP 2025 | 75º ISS Mossoro | 1159º SEFAZ MG
+Tiago Roberto Lopes Das Neves,94.2,13.9,3.0,111.1,674º(Afro),674,False,False,327,2,0,0,140º SEFAZ PI 25 | 1770º SEFAZ SP 2025
+Antônio Robson Vasconcelos Araujo,97.8,13.3,0.0,111.1,675º(Ampla),675,False,False,328,2,0,0,366º SEFAZ PI 25 | 483º RFB
+Cláudio Henrique Da Silva Sabino,96.6,14.5,0.0,111.1,676º(Ampla),676,False,False,329,7,0,0,1676º TRE PB | 216º SEFAZ PE | 76º ISS Fortaleza | 32º TSE Unificado | 2566º SEFAZ MG | 1095º RFB | 154º CAGE RS
+Daniel Prezense Sasaki,100.0,11.1,0.0,111.1,677º(Ampla),677,False,False,330,0,0,0,
+Danilo Araujo Carvalho,98.6,12.5,0.0,111.1,678º(Ampla),678,False,False,331,3,0,0,241º SEFAZ SP 2025 | 34º ISS Mossoro | 588º ISS Rio de Janeiro
+Marcelo Augusto Magalhães Viana,100.4,10.7,0.0,111.1,679º(Ampla),679,False,False,332,2,0,0,2739º SEFAZ MG | 196º ISS Belo Horizonte
+Tomás Henrique Lima Mendes,100.6,10.5,0.0,111.1,680º(Ampla),680,False,False,333,3,1,1,272º SEFAZ PE | 69º SEFAZ SE 25 | 103º PRF
+Isadora Tajra Miranda,99.8,11.2,0.0,111.0,681º(Ampla),681,False,False,334,9,0,1,5º SEFAZ PI 25 | 17º SEFAZ PI 25 | 228º MP PI 2025 | 506º SEFAZ RJ 25 | 1365º SEFAZ MG | 286º ISS Belo Horizonte | 397º ISS Rio de Janeiro | 55º ISS Sao Bernardo do Campo | 129º ISS Porto Alegre 25
+Kleber Miranda De Araujo,98.0,13.0,0.0,111.0,682º(Ampla),682,False,False,335,13,1,0,366º SEFAZ PE | 152º SEFAZ AP | 199º SEFAZ SP 2025 | 121º TCE SP 25 | 321º TCE SP 25 | 36º SEFAZ SE 25 | 287º SEFAZ RJ 25 | 64º ISS Fortaleza | 24º ISS Mossoro | 1419º SEFAZ MG | 506º ISS Rio de Janeiro | 39º CVM | 30º ISS Cuiaba
+Marcos Henrique De Santana,98.4,12.5,0.0,110.9,683º(Afro),683,False,False,336,5,0,0,150º SEFAZ PI 25 | 1669º SEFAZ SP 2025 | 395º SEFAZ RR | 3505º SEFAZ MG | 295º ISS Cuiaba
+Alan Carlos Silveira Pinto,98.4,12.5,0.0,110.9,684º(Ampla),684,False,False,337,4,2,0,219º SEFAZ SC 21 | 100º ISS Fortaleza | 493º SEFAZ BA 22 | 1373º SEFAZ MG
+Honn Way Chao,98.0,12.9,0.0,110.9,685º(Ampla),685,False,False,338,4,1,1,548º SEFAZ RR | 18º SEFAZ AM 22 | 2433º SEFAZ MG | 173º SEFAZ MT
+Lais Faria De Oliveira,96.4,11.5,3.0,110.9,686º(Ampla),686,False,False,339,2,0,0,374º SEFAZ RJ 25 | 1083º RFB
+Felipe Ribeiro Nascimento,99.6,11.3,0.0,110.9,687º(Ampla),687,False,False,340,5,2,1,2º ISS Corumba | 326º SEFAZ AM 22 | 333º SEFAZ BA 22 | 1217º SEFAZ MG | 141º ISS Cuiaba
+Adriano Dantas De Carvalho Junior,97.2,13.6,0.0,110.8,688º(Ampla),688,False,False,341,3,0,0,550º SEFAZ PI 25 | 16º ISS Mossoro | 29º DPF ADM 25
+Angieli Bonam,98.0,12.8,0.0,110.8,689º(Ampla),689,False,False,342,3,0,0,390º SEFAZ SC 21 | 6º SEFAZ PR Agente Fazendario | 328º ISS Itajai
+Fellipe Barbosa De Lima,99.2,11.6,0.0,110.8,690º(Ampla),690,False,False,343,7,0,0,1249º SEFAZ SP 2025 | 3240º SEFAZ RJ 25 | 346º ISS Ribeirao Preto | 1001º SEFAZ MG | 733º ISS Rio de Janeiro | 23º ISS Sao José dos Campos | 196º ISS Porto Alegre 25
+Vinicius Azevedo De Prosdocimi,100.0,10.8,0.0,110.8,691º(Ampla),691,False,False,344,3,1,1,2570º SEFAZ SP 2025 | 1756º PRF | 223º DPF
+Danilo Ramos Correa De Menezes,96.2,11.5,3.0,110.7,692º(Ampla),692,False,False,345,5,1,1,1357º SEFAZ SP 2025 | 209º Alesp | 814º SEFAZ MG | 926º ISS Guarulhos | 1º ISS Sao Bernardo do Campo
+Leonardo Fernando Bertuol,100.2,10.5,0.0,110.7,693º(Ampla),693,False,False,346,2,0,0,722º SEFAZ SP 2025 | 448º RFB
+Tassio Matos Santos,99.4,11.3,0.0,110.7,694º(Ampla),694,False,False,347,4,1,0,261º SEFAZ BA 22 | 1258º SEFAZ MG | 177º ISS Governador Valadares | 340º ISS Belo Horizonte
+Hidelbrando Oliveira Da Rocha,99.2,11.5,0.0,110.7,695º(Ampla),695,False,False,348,4,0,1,417º SEFAZ RR | 31º SEFAZ AC | 491º SEFAZ AM 22 | 1175º SEFAZ MG
+Jardel Pereira De Lira,97.0,13.7,0.0,110.7,696º(Ampla),696,False,False,349,4,1,0,56º SEFAZ RR | 5º TSE Unificado | 400º SEFAZ AM 22 | 803º SEFAZ MG
+Ismael Cavalcante Maciel Junior,97.8,11.3,1.5,110.6,697º(Afro),697,False,False,350,4,0,0,117º SEFAZ PI 25 | 1491º SEFAZ SP 2025 | 4053º SEFAZ MG | 175º ISS Cuiaba
+Alex Teylor Diehl,96.0,14.6,0.0,110.6,698º(Ampla),698,False,False,351,5,0,0,249º SEFAZ SP 2025 | 97º SEFAZ AL 19 | 504º SEFAZ RS TEC 18 | 897º DPF | 722º ISS Guarulhos
+Diego De Mello Almeida,98.8,11.8,0.0,110.6,699º(Ampla),699,False,False,352,6,2,2,255º SEFAZ PE | 600º SEFAZ SC 21 | 60º SEFAZ AP | 1º ISS Corumba | 110º SEFAZ MT | 94º ISS Cuiaba
+Jun Sakakibara,98.6,12.0,0.0,110.6,700º(Ampla),700,False,False,353,2,2,0,337º SEFAZ SC 21 | 289º SEFAZ MG
+Yuri Barbosa Lemos,98.8,11.8,0.0,110.6,701º(Ampla),701,False,False,354,2,0,0,14º ISS Mossoro | 16º SEFAZ PR Agente Fazendario
+Camilla Corrent Mansano,98.6,12.0,0.0,110.6,702º(Ampla),702,False,False,355,1,1,0,66º ISS Londrina
+Leonardo Bitencourt Rocha,97.8,12.8,0.0,110.6,703º(Ampla),703,False,False,356,15,2,0,753º SEFAZ SC 21 | 29º ISS Paraty | 307º SEFAZ PI 25 | 816º SEFAZ SP 2025 | 288º SEFAZ RJ 25 | 127º SEFAZ AC | 483º SEFAZ AM 22 | 65º SEFAZ BA 22 | 1973º SEFAZ MG | 415º SMF RJ | 43º ISS Sao José dos Campos | 55º ISS Nova Iguaçu | 64º ISS Cuiaba | 24º ISS Criciúma | 5º ISS Macaé
+Hamilton Da Silva Oliveira,98.6,11.9,0.0,110.5,704º(Ampla),704,False,False,357,3,0,0,1232º SEFAZ SP 2025 | 765º RFB | 327º ISS Guarulhos
+Ravi Sanabio Santos,96.0,14.5,0.0,110.5,705º(Ampla),705,False,False,358,4,0,0,834º SEFAZ RS TEC 18 | 3202º SEFAZ MG | 489º ISS Rio de Janeiro | 205º ISS Porto Alegre 25
+Karine Koller,99.0,11.5,0.0,110.5,706º(Ampla),706,False,False,359,3,1,0,716º SEFAZ SP 2025 | 663º ISS Rio de Janeiro | 49º ISS Londrina
+Otávio Jamal Urt,96.0,14.5,0.0,110.5,707º(Ampla),707,False,False,360,5,0,0,6º TRF 4 | 232º SEFAZ AC | 619º SEFAZ AM 22 | 1778º SEFAZ MG | 11º TRT 24 MS
+Rafael Felipe Santos Ribeiro,98.0,12.5,0.0,110.5,708º(Ampla),708,False,False,361,18,0,0,527º SEFAZ SC 21 | 143º CGM SP | 445º SEFAZ SP 2025 | 67º SEFAZ SE 25 | 269º SEFAZ RJ 25 | 64º SEFAZ AC | 1831º TSE Unificado | 56º ISS Sao Caetano do Sul | 34º ISS Ribeirao das Neves | 112º ISS Ribeirao Preto | 461º SEFAZ AM 22 | 892º SEFAZ MG | 558º CGE SP 25 | 355º ISS Belo Horizonte | 27º ISS Belo Horizonte | 274º ISS Rio de Janeiro | 114º ISS Sao Bernardo do Campo | 206º ISS Cuiaba
+Beatriz Benicio Pizapio Wiltner,97.4,13.0,0.0,110.4,709º(Ampla),709,False,False,362,1,0,0,586º RFB
+Gabriel Del Corso,99.6,10.8,0.0,110.4,710º(Ampla),710,False,False,363,4,0,0,1919º SEFAZ SP 2025 | 10º ISS Varginha | 9º ISS Paraty | 102º SEFAZ MG
+Gabriel Freire Luiz,97.4,13.0,0.0,110.4,711º(Ampla),711,False,False,364,2,0,0,236º SEFAZ SP 2025 | 170º SEFAZ RJ 25
+Yrlane Santos Araújo,96.6,13.8,0.0,110.4,712º(Ampla),712,False,False,365,3,0,0,33º SEFAZ PI 25 | 174º SEFAZ PI 25 | 192º ISS Cuiaba
+Otavio Augusto Araujo Ribeiro,100.2,10.2,0.0,110.4,713º(Ampla),713,False,False,366,6,0,0,303º SEFAZ PI 25 | 930º SEFAZ SP 2025 | 317º SEFAZ AM 22 | 836º RFB | 85º CAGE RS | 371º ISS Rio de Janeiro
+Henrique Mezzomo,95.0,12.3,3.0,110.3,714º(Pcd),714,False,False,367,1,0,0,337º SEFAZ RS TEC 18
+Diogo Hendy Nishimura,100.0,10.3,0.0,110.3,715º(Ampla),715,False,False,368,2,0,0,190º ISS Itajai | 181º ISS Porto Alegre
+Felipe Batista Silva,99.8,10.5,0.0,110.3,716º(Ampla),716,False,False,369,2,0,0,1764º SEFAZ SP 2025 | 54º ISS Uberlândia 25
+Leandro Araujo De Sousa,96.8,13.5,0.0,110.3,717º(Ampla),717,False,False,370,6,0,0,1218º DPF | 21º SEFAZ ES Consultor | 2834º SEFAZ MG | 583º ISS Uberlandia | 21º ALERJ 2025 | 459º ISS Rio de Janeiro
+Victor Vargas Pereira De Souza,99.8,10.5,0.0,110.3,718º(Ampla),718,False,False,371,3,1,0,2256º SEFAZ SP 2025 | 3593º SEFAZ MG | 35º CGE SP 25
+Vinicius Magaroti Fernandes Braga,97.8,12.5,0.0,110.3,719º(Ampla),719,False,False,372,8,0,0,159º SEFAZ MA | 812º SEFAZ SP 2025 | 866º CGE SP 25 | 78º ISS Suzano | 159º ISS Nova Iguaçu | 5º ISS Nova Iguaçu | 138º ISS Cuiaba | 99º ISS Porto Alegre 25
+Raimundo José Cruz De Oliveira,99.4,10.8,0.0,110.2,720º(Afro),720,False,False,373,6,2,2,78º SEFAZ AP | 57º SEFAZ PE | 84º SEFAZ AP | 154º SEFAZ RR | 99º SEFAZ AM 22 | 1226º SEFAZ MG
+Fernanda Ferreira Ângelo Grossi,99.2,11.0,0.0,110.2,721º(Ampla),721,False,False,374,2,0,0,580º SEFAZ PI 25 | 1187º SEFAZ SP 2025
+Jonas De Oliveira Dos Santos,98.2,12.0,0.0,110.2,722º(Ampla),722,False,False,375,3,0,0,1144º SEFAZ SP 2025 | 2461º PRF | 131º ISS Porto Alegre 25
+Murilo De Barros Passos,96.2,14.0,0.0,110.2,723º(Ampla),723,False,False,376,5,0,0,27º ISS Florianopolis | 5º MP SP 2025 | 129º ISS Ribeirao Preto | 18º Alesp | 389º ISS Guarulhos
+Richeli Arantes Dias,98.4,11.8,0.0,110.2,724º(Ampla),724,False,False,377,12,0,0,18º CGM SP | 59º TCE SP 25 | 990º SEFAZ RS 18 | 120º CG DF | 175º SEPLAD DF | 87º TC DF | 13º Alesp | 529º SEFAZ MG | 745º CGE SC | 43º CAGE RS | 108º CVM | 59º TCM SP 20
+Raylso Nahim Pereira,98.2,12.0,0.0,110.2,725º(Ampla),725,False,False,378,7,0,0,532º SEFAZ SC 21 | 382º SEFAZ RR | 122º SEFAZ AC | 272º SEFAZ AM 22 | 2592º SEFAZ MG | 10º ALEAM 25 | 116º Manaus CGM SEMMAS
+Mauri Kirchmaier Júnior,97.6,12.5,0.0,110.1,726º(Pcd),726,False,False,379,2,0,0,82º SEFAZ SP 2025 | 10º ISS Uberlândia 25
+Bark Heves Capistrano Dias Cardoso Bueno,97.6,12.5,0.0,110.1,727º(Ampla),727,False,False,380,4,0,0,2363º SEFAZ SP 2025 | 79º TSE Unificado | 11º ISS Cuiaba | 63º TRF 1 24
+Claudio Ives De Sousa Rodrigues,98.6,11.5,0.0,110.1,728º(Ampla),728,False,False,381,6,0,0,161º SEFAZ PE | 50º ISS Fortaleza | 220º TCE PE 17 | 51º TCE PE 25 | 88º TCE PE 25 | 1480º SEFAZ MG
+Lucas Klein Draghetti,98.6,11.5,0.0,110.1,729º(Ampla),729,False,False,382,2,0,0,439º RFB | 28º CAGE RS
+Thales Lopes De Freitas,99.4,10.7,0.0,110.1,730º(Ampla),730,False,False,383,2,0,0,1011º SEFAZ SP 2025 | 1267º MPU 25
+Luiz Joaquim Da Silva Neto,99.6,10.4,0.0,110.0,731º(Afro),731,False,False,384,1,0,0,369º TRF 3
+Aline Alvares Da Silva Costa,93.2,13.8,3.0,110.0,732º(Ampla),732,False,False,385,5,0,0,1501º SEFAZ SP 2025 | 1014º TCE PE 17 | 1103º SEFAZ MG | 342º ISS Belo Horizonte | 806º ISS Guarulhos
+Ana Silvia De Souza Giorni,95.0,15.0,0.0,110.0,733º(Ampla),733,False,False,386,5,0,0,360º SEFAZ SP 2025 | 45º ISS Florianopolis | 220º Petrobras | 52º ISS Sao José dos Campos | 77º ISS Porto Alegre 25
+Julia Furtado Guerini,99.8,10.2,0.0,110.0,734º(Ampla),734,False,False,387,3,1,1,1264º SEFAZ SP 2025 | 237º SEFAZ BA 22 | 89º RFB
+Rayane Basquera Andrade Santos,96.0,14.0,0.0,110.0,735º(Ampla),735,False,False,388,3,0,1,62º CNU | 185º CAGE RS | 28º ALEP
+Vinicius Todt,95.0,15.0,0.0,110.0,736º(Ampla),736,False,False,389,7,1,0,895º SEFAZ SP 2025 | 36º ISS Florianopolis | 38º ISS Biguaçu | 69º SEFAZ PR Agente Fazendario | 667º SEPLAN DF | 84º ISS Londrina | 207º ISS Porto Alegre 25
+Reginaldo Nunes De Souza,93.0,12.0,5.0,110.0,737º(Ampla),737,False,False,390,2,1,0,557º ISS Rio de Janeiro | 51º ISS Londrina
+Arthur Aktemis Lacerda Alves,97.6,12.3,0.0,109.9,738º(Afro),738,False,False,391,4,0,0,1242º SEFAZ SP 2025 | 280º TC DF | 593º DPF 25 | 113º TCU TEFC
+Leomar Helton Andrade Ribeiro,96.4,13.5,0.0,109.9,739º(Afro),739,False,False,392,2,0,1,1089º SEFAZ SP 2025 | 37º DPF
+Bruno Batista,99.4,10.5,0.0,109.9,740º(Ampla),740,False,False,393,0,0,0,
+Duanny Drayton Pinto Neves,95.4,14.5,0.0,109.9,741º(Ampla),741,False,False,394,1,0,0,414º SEFAZ SP 2025
+Hiroshi Wilson Yonemoto,92.4,12.5,5.0,109.9,742º(Ampla),742,False,False,395,5,0,0,2094º SEFAZ SP 2025 | 37º TSE Unificado | 134º TSE Unificado | 28º ALESC | 123º SEFAZ MT
+Samuel Levy Bastos Sousa,98.4,11.5,0.0,109.9,743º(Ampla),743,False,False,396,5,1,1,1603º SEFAZ SP 2025 | 25º SEFAZ PI 25 | 25º ISS Mossoro | 103º DPF | 260º ISS Porto Alegre 25
+Tobias Pereira Molossi,97.4,12.5,0.0,109.9,744º(Ampla),744,False,False,397,0,0,0,
+José Paulo Baptista De Menezes Neto,98.0,11.8,0.0,109.8,745º(Pcd),745,False,False,398,6,0,0,22º SEFAZ SP 2025 | 1242º RFB | 481º ISS Belo Horizonte | 500º ISS Rio de Janeiro | 271º ISS Porto Alegre 25 | 7º ISS Porto Alegre 25
+Matheus Daniel Duque Freire,97.8,12.0,0.0,109.8,746º(Afro),746,False,False,399,8,0,0,68º SEFAZ PI 25 | 62º ISS Dourados | 219º ISS Ribeirao Preto | 806º SEFAZ AM 22 | 2960º SEFAZ MG | 184º ISS Sao Bernardo do Campo | 36º CGM Cuiabá | 223º ISS Cuiaba
+Marcio Shiko Touma,96.8,13.0,0.0,109.8,747º(Ampla),747,False,False,400,11,2,0,313º SEFAZ SC 21 | 128º ISS Ribeirao Preto | 148º Alesp | 188º Alesp | 336º ISS Belo Horizonte | 57º CGU | 225º SEFAZ BA 22 | 637º ISS Uberlandia | 461º SEFAZ MG | 58º ISS Maua | 188º ISS Osasco
+Rodrigo Perrotta Sampaio,95.4,14.4,0.0,109.8,748º(Ampla),748,False,False,401,4,0,0,1341º SEFAZ SP 2025 | 386º RFB | 764º ISS Guarulhos | 152º ISS Osasco
+Ronald Burity Verri Filho,97.8,12.0,0.0,109.8,749º(Ampla),749,False,False,402,0,0,0,
+Tiago Mesquita De Godoy,97.6,12.2,0.0,109.8,750º(Ampla),750,False,False,403,1,0,0,722º RFB
+Alberto De Oliveira Lima,97.8,12.0,0.0,109.8,751º(Ampla),751,False,False,404,13,0,1,175º TRT 6 PE | 120º TSE Unificado | 138º TCE PE 25 | 103º TCE PE 25 | 3º SEFAZ PE Apoio | 20º SEFAZ AM 22 | 38º SEFAZ BA 22 | 3472º SEFAZ MG | 17º TRT 13 PB | 756º ISS Rio de Janeiro | 1º Hemobras | 37º TCE GO 23 | 37º TCE GO 24
+Gabriel Dias Aquino,96.2,13.6,0.0,109.8,752º(Ampla),752,False,False,405,14,0,0,111º CGM SP | 390º SEFAZ PI 25 | 1133º SEFAZ SP 2025 | 407º SEFAZ RR | 40º ANM Ag. Nac. Mineracao | 428º SEFAZ AM 22 | 2574º SEFAZ MG | 937º ISS Uberlandia | 562º RFB | 128º CAGE RS | 6º ALEGO | 415º ISS Rio de Janeiro | 342º ISS Cuiaba | 235º ISS Porto Alegre 25
+Amanda Valadares Cordeiro Soares,97.4,12.4,0.0,109.8,753º(Ampla),753,False,False,406,8,0,0,1560º SEFAZ SP 2025 | 48º SEFAZ AC | 796º SEFAZ RR | 565º AL MG | 595º SEFAZ AM 22 | 1135º SEFAZ MG | 179º ISS Belo Horizonte | 828º ISS Rio de Janeiro
+Breno Anderson Carvalho Viana,95.2,14.5,0.0,109.7,754º(Ampla),754,False,False,407,6,0,0,2º SEAD PI | 3º SEAD PI | 29º SEFAZ PI 25 | 86º TCE PE 25 | 34º CNU | 13º TCE PI 2024
+Danilo Barbosa Rezende,97.2,12.5,0.0,109.7,755º(Ampla),755,False,False,408,2,0,0,95º ISS Ribeirao Preto | 196º ISS Cuiaba
+Lindberg Melo Da Silva Neto,99.2,10.5,0.0,109.7,756º(Ampla),756,False,False,409,3,0,0,984º SEFAZ RR | 18º TCE RR | 32º SEFAZ RR
+João Vitor Bardini Gonçalves,97.2,11.0,1.5,109.7,757º(Ampla),757,False,False,410,16,0,0,1518º SEFAZ SP 2025 | 195º TCE SP 25 | 451º CG DF | 897º SEPLAD DF | 86º TC DF | 392º TSE Unificado | 320º TSE Unificado | 44º SEFAZ AM 22 | 1411º SEFAZ MG | 734º SEPLAN DF | 573º CGE SP 25 | 163º CAGE RS | 325º ISS Rio de Janeiro | 344º ISS Cuiaba | 63º TRF 1 24 | 231º TRF 1 24
+Murilo Ribeiro Martins,97.6,12.0,0.0,109.6,758º(Afro),758,False,False,411,6,2,1,741º SEFAZ MG | 34º ISS Guarulhos | 86º ISS Rio de Janeiro | 1º ISS Criciúma | 3º ISS Porto Alegre 25 | 1º ISS Porto Alegre 25
+Camila Cassola Assunção Sposito,93.6,11.0,5.0,109.6,759º(Ampla),759,False,False,412,2,0,0,1845º SEFAZ SP 2025 | 13º TCE SP 25
+Daniel Kummer De Oliveira,96.8,12.8,0.0,109.6,760º(Ampla),760,False,False,413,3,0,0,927º SEFAZ SP 2025 | 261º SEFAZ RJ 25 | 49º CVM
+Gustavo Campanha Fernandes,97.8,11.8,0.0,109.6,761º(Ampla),761,False,False,414,4,0,0,1378º SEFAZ SP 2025 | 575º ISS Ribeirao Preto | 186º ISS Nova Iguaçu | 509º ISS Cuiaba
+Henrique Carneiro Caputo,97.8,11.8,0.0,109.6,762º(Ampla),762,False,False,415,3,0,1,34º SEFAZ SP 2025 | 67º SEFAZ RJ | 636º SEFAZ RJ 25
+Tiago Melo De Barros Souto,97.6,12.0,0.0,109.6,763º(Ampla),763,False,False,416,8,0,1,24º ISS Florianopolis | 344º SEFAZ RR | 82º SEFAZ AC | 293º SEFAZ AM 22 | 1341º SEFAZ MG | 4º ISS Campos dos Goytacazes | 238º ISS Rio de Janeiro | 105º ISS Sao Bernardo do Campo
+Bárbara Valente Castro,95.0,14.5,0.0,109.5,764º(Ampla),764,False,False,417,8,0,0,760º SEFAZ SP 2025 | 81º SEFAZ RJ | 369º SEFAZ RJ 25 | 624º TRF 6 | 1330º SEFAZ MG | 370º ISS Belo Horizonte | 174º ISS Belo Horizonte | 212º ISS Rio de Janeiro
+Carlos Eduardo Moreira Rodrigues,93.0,11.5,5.0,109.5,765º(Ampla),765,False,False,418,1,0,0,180º SEFAZ MT
+Carlos Renato Vieira De Freitas,97.2,12.3,0.0,109.5,766º(Ampla),766,False,False,419,1,0,0,83º ISS Serra ES
+Fernando Debossan Elias Mota,96.8,12.7,0.0,109.5,767º(Ampla),767,False,False,420,1,0,0,3307º SEFAZ MG
+Guilherme De Castro Ribeiro,99.2,10.3,0.0,109.5,768º(Ampla),768,False,False,421,2,0,0,1639º SEFAZ SP 2025 | 719º SEFAZ RS 18
+Jannaina Ribeiro Da Cunha,98.0,11.5,0.0,109.5,769º(Ampla),769,False,False,422,0,0,0,
+Sony Martins,99.0,10.5,0.0,109.5,770º(Ampla),770,False,False,423,1,0,0,1671º SEFAZ SP 2025
+Luiz Gustavo Manarin Espindola,98.0,11.5,0.0,109.5,771º(Ampla),771,False,False,424,7,0,0,1987º SEFAZ SP 2025 | 653º TSE Unificado | 44º TSE Unificado | 27º MP PR 24 | 831º RFB | 77º ALESC | 42º ALEP
+Daniel De Paula Ferreira,98.0,11.4,0.0,109.4,772º(Afro),772,False,False,425,8,0,0,474º SEFAZ SP 2025 | 522º SEFAZ RR | 23º SEFAZ CE | 192º SEFAZ AM 22 | 1147º SEFAZ MG | 26º SEFAZ MT | 16º ISS Rio de Janeiro | 135º ISS Cuiaba
+Caroline Marques Castanho,97.6,11.8,0.0,109.4,773º(Ampla),773,False,False,426,3,0,0,107º ISS Uberlândia 25 | 373º ISS Sao Bernardo do Campo | 295º ISS Porto Alegre 25
+Leonardo Esteves Cortes Salvio,98.4,11.0,0.0,109.4,774º(Ampla),774,False,False,427,3,0,0,1º SEFAZ RJ 2025 | 467º ISS Belo Horizonte | 58º CVM
+Alana Pituco,97.8,11.5,0.0,109.3,775º(Ampla),775,False,False,428,5,0,0,717º SEFAZ SP 2025 | 2188º SEFAZ MG | 450º ISS Rio de Janeiro | 39º PC RS 2025 | 37º ISS Criciúma
+Fabiana Normann Schwengber,95.4,13.9,0.0,109.3,776º(Ampla),776,False,False,429,2,0,0,901º ISS Rio de Janeiro | 92º ISS Criciúma
+Juan Fonteles Soares,97.2,12.1,0.0,109.3,777º(Ampla),777,False,False,430,7,1,0,1078º SEFAZ SP 2025 | 296º SEFAZ PI 25 | 15º SEFAZ SE 25 | 696º SEFAZ BA 22 | 1960º SEFAZ MG | 101º MPU 25 | 294º ISS Cuiaba
+Rafael Oliveira Monteiro,95.2,14.1,0.0,109.3,778º(Ampla),778,False,False,431,4,0,0,148º SEFAZ PI 25 | 214º SEFAZ SP 2025 | 210º SEFAZ RJ 25 | 107º Manaus SEMAD EDUCAÇÃO
+Caio Foglia Santucci,97.8,11.4,0.0,109.2,779º(Ampla),779,False,False,432,7,0,0,19º ISS Valinhos | 54º SEFAZ RJ | 756º SEFAZ RJ 25 | 468º ISS Ribeirao Preto | 16º ISS Sao Caetano do Sul | 126º ISS Sao Bernardo do Campo | 358º ISS Cuiaba
+Caroline Carvalho Fontao,99.0,10.2,0.0,109.2,780º(Ampla),780,False,False,433,1,0,0,220º CVM
+Jhonny Zamberlan,97.4,11.8,0.0,109.2,781º(Ampla),781,False,False,434,4,0,0,385º SEFAZ SP 2025 | 881º CGE SP 25 | 443º ISS Sao Bernardo do Campo | 308º ISS Porto Alegre 25
+Lucas David Fernandes,97.4,11.8,0.0,109.2,782º(Ampla),782,False,False,435,3,0,0,1916º SEFAZ SP 2025 | 231º TRE SP 2016 | 938º RFB
+Lucas Rossetto Agra,98.0,11.2,0.0,109.2,783º(Ampla),783,False,False,436,2,0,1,96º SEFAZ SP 2025 | 32º ISS Porto Alegre 25
+Priscila Fagnani Trevisan,95.2,14.0,0.0,109.2,784º(Ampla),784,False,False,437,2,0,0,461º SEFAZ SP 2025 | 389º SEFAZ SC 21
+Clodoaldo Schueng,99.0,10.1,0.0,109.1,785º(Pcd),785,False,False,438,4,0,0,86º TCE PR | 23º SEFAZ SE 25 | 17º TSE Unificado | 479º ISS Belo Horizonte
+Fabio Cardoso Pasquini,95.6,13.5,0.0,109.1,786º(Ampla),786,False,False,439,3,0,0,12º EMBRAPA | 2009º SEFAZ SP 2025 | 1º CFP CONS. FED. PSI.
+Gabriel Milanezi Amorim,98.6,10.5,0.0,109.1,787º(Ampla),787,False,False,440,5,0,1,10º SEFAZ SP 2025 | 4º SEFAZ PI 25 | 140º SEFAZ RJ 25 | 1194º DPF 25 | 9º CGE SP 25
+Guilherme Gomes Vilaça,96.6,12.5,0.0,109.1,788º(Ampla),788,False,False,441,3,0,1,514º SEFAZ SP 2025 | 175º SEFAZ RJ 25 | 73º PF 2018
+Pâmela Weber Barbosa,95.6,10.5,3.0,109.1,789º(Ampla),789,False,False,442,1,0,0,36º CGE SC
+Priscila Silva Romero,98.0,11.1,0.0,109.1,790º(Ampla),790,False,False,443,6,1,0,298º SEFAZ SC 21 | 18º ISS Itajai | 197º ISS Itajai | 2105º SEFAZ MG | 233º ALESC | 185º ISS Porto Alegre 25
+Paulo Guilherme De França Alcantara,94.4,11.7,3.0,109.1,791º(Ampla),791,False,False,444,7,0,0,1360º SEFAZ SP 2025 | 589º SEFAZ RJ 25 | 103º SEFAZ RJ 25 | 651º TSE Unificado | 99º IPM PB | 65º CONAB | 1502º ISS Serra ES
+Milena Cristina Oswald,96.8,12.3,0.0,109.1,792º(Ampla),792,False,False,445,5,0,0,476º SEFAZ SC 21 | 926º SEFAZ RS TEC 18 | 444º SEFAZ AM 22 | 10º ISS Pinhais | 2692º SEFAZ MG
+Aline Pozzetti De Barros Costa,97.0,12.0,0.0,109.0,793º(Ampla),793,False,False,446,3,0,1,2980º SEFAZ MG | 17º ALEAM 25 | 321º RFB
+Francisco Singulani Castanon,92.0,12.0,5.0,109.0,794º(Ampla),794,False,False,447,4,0,0,2045º SEFAZ SP 2025 | 12º SEFAZ PR Agente Fazendario | 1049º SEFAZ MG | 136º SEFAZ MT
+Leonardo Bernardi,96.8,12.2,0.0,109.0,795º(Ampla),795,False,False,448,0,0,0,
+Rafael Carneiro De Brito,95.0,14.0,0.0,109.0,796º(Ampla),796,False,False,449,3,0,0,1016º SEFAZ SP 2025 | 2213º PRF | 151º ISS Porto Alegre 25
+Thiago De Almeida Netto,98.0,11.0,0.0,109.0,797º(Ampla),797,False,False,450,7,0,0,359º CG DF | 176º SEPLAD DF | 860º TC DF | 124º TSE Unificado | 188º TCE GO 23 | 188º TCE GO 24 | 97º TRF 1 24
+Vinicius Lima Vieira Rocha Dos Reis,95.8,13.1,0.0,108.9,798º(Afro),798,False,False,451,6,0,0,21º SEFAZ PI 25 | 74º SEFAZ PI 25 | 13º TSE Unificado | 12º TSE Unificado | 12º TJ MA | 6º TJ MA
+Andréia Henrique Duarte,96.6,12.3,0.0,108.9,799º(Ampla),799,False,False,452,5,0,0,748º SEFAZ MA | 60º ISS Contagem | 43º ISS Ouro Branco | 824º SEFAZ MG | 56º ISS Belo Horizonte
+Gabriel Cadenassi Aguado,94.8,14.1,0.0,108.9,800º(Ampla),800,False,False,453,5,1,1,2416º SEFAZ SP 2025 | 83º AL MG | 92º CGU | 201º TCM SP 20 | 286º RFB
+Marlon Rosa,96.4,12.5,0.0,108.9,801º(Ampla),801,False,False,454,2,0,0,663º SEFAZ SC 21 | 8º ISS Ponta Grossa
+Renan Ferreira Mota Da Silva,97.6,11.3,0.0,108.9,802º(Ampla),802,False,False,455,0,0,0,
+Gabriel Lopes Possamai,96.4,12.5,0.0,108.9,803º(Ampla),803,False,False,456,7,1,0,497º SEFAZ PE | 204º PF 2018 | 135º ISS Ribeirao Preto | 2623º SEFAZ MG | 1317º ISS Serra ES | 58º ISS Sao José dos Campos | 32º ISS Londrina
+Fabio Henrique Mazzo Miorim,96.8,12.0,0.0,108.8,804º(Ampla),804,False,False,457,5,0,0,2527º SEFAZ SP 2025 | 3051º PRF | 1009º RFB | 100º SEFAZ MT | 321º ISS Cuiaba
+Gustavo Cordovil Freitas De Araujo,93.8,15.0,0.0,108.8,805º(Ampla),805,False,False,458,7,0,0,539º SEFAZ SP 2025 | 63º ISS Paraty | 12º ISS Itatiba | 75º SEFAZ SE 25 | 43º ISS Campos dos Goytacazes | 252º ISS Sao Bernardo do Campo | 22º ISS Nova Iguaçu
+Paulo Boaventura Rocha Filho,95.8,13.0,0.0,108.8,806º(Ampla),806,False,False,459,1,0,0,240º PC ES 2025
+Aristeu De Jesus Santos Neto,97.2,11.5,0.0,108.7,807º(Ampla),807,False,False,460,2,0,0,1565º SEFAZ SP 2025 | 256º ISS Cuiaba
+Luiz Carlos Martins Junior,93.2,12.5,3.0,108.7,808º(Ampla),808,False,False,461,4,0,0,249º SEFAZ SP 2025 | 1580º TSE Unificado | 19º CNU | 139º ALESC
+Marcelo Carsten Amaral,95.0,13.7,0.0,108.7,809º(Ampla),809,False,False,462,2,0,0,736º SEFAZ SP 2025 | 245º ISS Porto Alegre 25
+Nayara Vivian Huve Musskopf,96.2,12.5,0.0,108.7,810º(Ampla),810,False,False,463,2,0,0,473º SEFAZ SP 2025 | 150º SEFAZ PI 25
+Matheus Pereira Oliveira,97.2,11.5,0.0,108.7,811º(Ampla),811,False,False,464,3,2,0,122º SEFAZ SC 21 | 145º SEFAZ AM 22 | 333º SEFAZ MG
+Marcus Vinicius Garcia Cabral,96.6,12.0,0.0,108.6,812º(Pcd),812,False,False,465,3,0,0,43º SEFAZ SP 2025 | 11º SEGER ES | 5º CGE SC
+Eduardo Nóbrega Elali,97.8,10.8,0.0,108.6,813º(Ampla),813,False,False,466,0,0,0,
+Luis Phelipe Maiolini Santos,94.6,14.0,0.0,108.6,814º(Ampla),814,False,False,467,2,0,0,99º SEFAZ PI 25 | 2632º SEFAZ MG
+Guilherme Davi Lousada Pontes,97.6,11.0,0.0,108.6,815º(Ampla),815,False,False,468,7,1,0,305º SEFAZ SP 2025 | 276º SEFAZ RR | 694º SEFAZ RS 18 | 411º SEFAZ AM 22 | 382º SEFAZ BA 22 | 1244º SEFAZ MG | 203º SEFIN RO
+Jean Carlos Fernandes Alves,96.0,12.5,0.0,108.5,816º(Afro),816,False,False,469,5,0,0,2168º SEFAZ SP 2025 | 898º SEFAZ RJ 25 | 160º SEFAZ RJ 25 | 3564º SEFAZ MG | 246º ISS Cuiaba
+Luiz Henrique Gonsalves Giribone,95.8,12.7,0.0,108.5,817º(Afro),817,False,False,470,7,0,0,48º SEFAZ PI 25 | 98º ISS Mossoro | 96º SEFAZ AC | 519º ISS Rio de Janeiro | 447º ISS Campina Grande | 164º ISS Cuiaba | 124º ISS Porto Alegre 25
+Sandro De Almeida Batista,96.2,12.3,0.0,108.5,818º(Afro),818,False,False,471,5,0,0,953º SEFAZ RJ 25 | 175º SEFAZ RJ 25 | 33º ALERJ 2025 | 112º ALERJ 2025 | 104º ISS Rio de Janeiro
+Eduardo Almeida Osterkamp,96.6,11.9,0.0,108.5,819º(Ampla),819,False,False,472,1,0,0,1110º SEFAZ SP 2025
+Felipe Bezerra Barbosa,98.0,10.5,0.0,108.5,820º(Ampla),820,False,False,473,6,0,0,467º TCE SP 25 | 307º SEFAZ RJ 25 | 215º ISS Ribeirao Preto | 55º ISS Sao Caetano do Sul | 173º ISS Sao Bernardo do Campo | 14º ISS Suzano
+Kilmer De Souza E Silva,98.2,10.3,0.0,108.5,821º(Ampla),821,False,False,474,2,0,1,8º SEFAZ AC | 14º SEFAZ SE 25
+Lohanne Ferreira Hubner,96.0,12.5,0.0,108.5,822º(Ampla),822,False,False,475,4,1,0,404º ISS Rio de Janeiro | 124º ISS Nova Iguaçu | 27º ISS Nova Iguaçu | 28º ISS Macaé
+Michelle De Almeida Araujo Leal,96.0,12.5,0.0,108.5,823º(Ampla),823,False,False,476,0,0,0,
+Fabio Rodrigues Mendes,98.0,10.5,0.0,108.5,824º(Ampla),824,False,False,477,4,0,0,1994º SEFAZ SP 2025 | 2814º CONAB | 947º SEFAZ AM 22 | 1030º RFB
+Francisco De Assis Sarmento Furtado,96.0,12.5,0.0,108.5,825º(Ampla),825,False,False,478,5,0,0,77º ISS Mossoro | 156º SEFAZ AC | 884º SEFAZ AM 22 | 3735º SEFAZ MG | 312º TRT 13 PB
+Michael Santos Ribeiro,96.6,11.8,0.0,108.4,826º(Afro),826,False,False,479,3,0,1,119º SEFAZ PI 25 | 41º PRF | 56º ISS Cuiaba
+Bruna Vieira Rodrigues,94.8,10.6,3.0,108.4,827º(Ampla),827,False,False,480,7,1,1,64º TCE PE 25 | 100º SEFAZ BA 22 | 1034º SEFAZ MG | 61º TCE BA | 159º ISS Cuiaba | 2º TCE PA | 2º TRF 1 24
+Filipe Aquino Das Neves,96.4,12.0,0.0,108.4,828º(Ampla),828,False,False,481,7,1,0,69º CGM SP | 328º SEFAZ PI 25 | 400º SEFAZ SP 2025 | 202º TCE SP 25 | 521º Prefeitura São Paulo | 106º CVM | 5º ISS Cuiaba
+Geraldo Henrique Da Silva Resende,93.8,14.6,0.0,108.4,829º(Ampla),829,False,False,482,6,0,0,2º ISS Uberlândia 25 | 332º TSE Unificado | 177º TSE Unificado | 2032º SEFAZ MG | 2147º MPMG 2022 | 231º ISS Rio de Janeiro
+Guilherme Henrique Moreira Kayanoki,98.2,10.2,0.0,108.4,830º(Ampla),830,False,False,483,7,1,0,1787º SEFAZ SP 2025 | 51º SEFAZ AC | 136º ISS Ribeirao Preto | 714º SEFAZ MG | 80º SEFAZ MT | 32º ISS Campinas | 3º ISS Sao José dos Campos
+Stephanie De Oliveira Souza Pereira,91.4,12.0,5.0,108.4,831º(Ampla),831,False,False,484,1,0,0,391º SEFAZ SP 2025
+Shelton Bonievisky Rodrigues De Oliveira,96.4,11.9,0.0,108.3,832º(Ampla),832,False,False,485,6,0,0,180º SEFAZ AC | 5º TSE Unificado | 253º TSE Unificado | 10º Manaus CGM SEMMAS | 8º TRF 1 24 | 33º TRF 1 24
+Victor Hugo Nogueira Rinaldi,96.6,11.7,0.0,108.3,833º(Ampla),833,False,False,486,9,0,0,379º SEFAZ PI 25 | 1643º SEFAZ SP 2025 | 58º ISS Dourados | 18º TCE MS 2025 | 35º ISS Corumba | 2241º SEFAZ MG | 606º RFB | 178º SEFAZ MT | 80º CGE MS
+Emanuel Couto Weiss,96.2,12.0,0.0,108.2,834º(Ampla),834,False,False,487,2,1,0,1328º SEFAZ RR | 169º ISS Londrina
+João Pedro Bittencourt Batista,93.2,12.0,3.0,108.2,835º(Ampla),835,False,False,488,1,0,0,88º SEFAZ SP 2025
+Thaisa Aloma De Souza Santos,96.2,12.0,0.0,108.2,836º(Ampla),836,False,False,489,2,0,0,56º SEFAZ PR Agente Fazendario | 14º ISS Ponta Grossa
+Leonardo Pereira Peon Diniz,98.0,10.2,0.0,108.2,837º(Ampla),837,False,False,490,4,1,0,1826º SEFAZ SP 2025 | 783º SEFAZ AM 22 | 3942º SEFAZ MG | 60º ISS Macaé
+Aline Regina Cararo,95.4,12.7,0.0,108.1,838º(Ampla),838,False,False,491,7,0,0,442º SEFAZ SC 21 | 54º SEFAZ PR Agente Fazendario | 20º ISS Joinville | 27º ISS Pinhais | 2551º SEFAZ MG | 305º ALEP | 188º ISS Porto Alegre 25
+Caio Ewerton Da Silva Ribeiro,96.8,11.3,0.0,108.1,839º(Ampla),839,False,False,492,3,0,0,215º ISS Cuiaba | 1º TRF 1 24 | 5º TRF 1 24
+Carlos Eduardo Gonçalves Fernandes,95.6,12.5,0.0,108.1,840º(Ampla),840,False,False,493,1,0,0,2630º SEFAZ SP 2025
+Jamir Gonçalves Dos Santos Júnior,95.2,12.9,0.0,108.1,841º(Ampla),841,False,False,494,2,0,0,408º SEFAZ AC | 521º ISS Cuiaba
+Manuela Colla Guedes De Oliveira,96.0,12.0,0.0,108.0,842º(Ampla),842,False,False,495,0,0,0,
+Mauro Borba Porto,97.0,11.0,0.0,108.0,843º(Ampla),843,False,False,496,4,0,0,806º SEFAZ SP 2025 | 367º TSE Unificado | 442º RFB | 290º ISS Rio de Janeiro
+Ricardo Lopes Thaumaturgo,96.2,11.8,0.0,108.0,844º(Ampla),844,False,False,497,6,1,0,898º SEFAZ SP 2025 | 27º SEFAZ AM 22 | 1597º SEFAZ MG | 270º ISS Rio de Janeiro | 295º ISS Osasco | 28º CVM
+Rodrigo Luiz Gilnek,95.0,13.0,0.0,108.0,845º(Ampla),845,False,False,498,1,0,0,1421º RFB
+Rosangela Santos Nodari,96.0,12.0,0.0,108.0,846º(Ampla),846,False,False,499,3,0,0,197º TCE RS 25 | 24º TSE Unificado | 1639º SEFAZ MG
+Simone Venturi Avelino,93.2,11.8,3.0,108.0,847º(Ampla),847,False,False,500,1,0,0,448º TSE Unificado
+Vanessa Tavares Monteiro,97.4,10.6,0.0,108.0,848º(Ampla),848,False,False,501,15,0,0,391º SEFAZ MA | 14º TRT 1 RJ | 385º SEFAZ RS TEC 18 | 236º TCE RS 25 | 79º STM | 8º TSE Unificado | 57º AL MG | 9º MP SP 2025 | 149º CGM RJ | 97º CGM RIO | 2452º SEFAZ MG | 238º ISS Belo Horizonte | 716º RFB | 28º ALERJ 2025 | 236º SMF RJ
+Felipe Farias De Jesus,94.6,13.4,0.0,108.0,849º(Ampla),849,False,False,502,10,0,0,691º SEFAZ SP 2025 | 293º TRF 4 | 447º SEFAZ AC | 189º ISS Ribeirao Preto | 15º TJ PR | 66º TRF 4 2026 | 986º TRF 4 2026 | 244º ISS Cuiaba | 88º ISS Londrina | 287º ISS Porto Alegre 25
+Eduardo Maenfeld Grutcki,95.4,12.5,0.0,107.9,850º(Ampla),850,False,False,503,5,0,1,106º SEFAZ SP 2025 | 153º TSE Unificado | 118º ALESC | 17º ALERS | 144º ISS Porto Alegre 25
+Elano Falcão Lima Filho,95.8,12.1,0.0,107.9,851º(Ampla),851,False,False,504,3,0,0,300º SEFAZ PI 25 | 1561º SEFAZ SP 2025 | 139º SEFAZ AC
+Frederico Garcia Cavalcante,91.4,13.5,3.0,107.9,852º(Ampla),852,False,False,505,5,0,0,202º SEFAZ SP 2025 | 25º SEFAZ RJ 25 | 66º SEFAZ SE 25 | 61º ISS Nova Iguaçu | 195º ISS Cuiaba
+George Barbosa Araujo,96.4,11.5,0.0,107.9,853º(Ampla),853,False,False,506,1,0,0,724º SEFAZ SP 2025
+Guilherme De Souza Silva,95.4,12.5,0.0,107.9,854º(Ampla),854,False,False,507,7,0,0,1150º SEFAZ SP 2025 | 193º ISS Itatiba | 51º SEFAZ PR Agente Fazendario | 118º TCE PR | 890º RFB | 545º ISS Rio de Janeiro | 42º ISS Sao Bernardo do Campo
+Leonardo Carréra Campos Leal,96.6,11.3,0.0,107.9,855º(Ampla),855,False,False,508,10,0,0,245º SEFAZ MA | 168º SEFAZ PE | 1295º TRE PB | 1542º SEFAZ SP 2025 | 433º TCE SP 25 | 113º TCE PE 17 | 90º SEFAZ PE Apoio | 2684º SEFAZ MG | 907º RFB | 160º ISS Petrolina
+Rafael Duarte Gouveia,95.4,12.5,0.0,107.9,856º(Ampla),856,False,False,509,1,0,0,61º TJ RN 23
+Sylvio Camillo Neto,97.4,10.5,0.0,107.9,857º(Ampla),857,False,False,510,5,1,0,284º SEFAZ SC 21 | 48º TRT 12 SC | 220º ISS Itajai | 181º CGE SC | 979º RFB
+Cristiane Harumi Sato,96.4,11.5,0.0,107.9,858º(Ampla),858,False,False,511,1,1,0,46º ISS Londrina
+Paulo Rafael Xavier,94.8,13.0,0.0,107.8,859º(Pcd),859,False,False,512,5,0,0,9º ISS Florianopolis | 206º CGE SC | 630º RFB | 6º SEFAZ MT | 29º ISS Rio de Janeiro
+Leonardo Soares Matos Cascudo,94.0,10.8,3.0,107.8,860º(Afro),860,False,False,513,5,1,0,610º SEFAZ RS 18 | 16º ISS Curitiba | 103º SEFAZ AM 22 | 288º ISS Belo Horizonte | 383º ISS Osasco
+Caique Hadad De Oliveira,96.8,11.0,0.0,107.8,861º(Ampla),861,False,False,514,1,0,0,1580º SEFAZ SP 2025
+Carolina Moraes Jost,95.0,12.8,0.0,107.8,862º(Ampla),862,False,False,515,1,0,0,798º ISS POA 25
+Jônatas Ferreira Ragazzi,95.4,12.4,0.0,107.8,863º(Ampla),863,False,False,516,3,1,0,1806º SEFAZ SP 2025 | 388º SEFAZ BA 22 | 59º ISS Campos dos Goytacazes
+Karla Daniely Soares Almeida,94.8,13.0,0.0,107.8,864º(Ampla),864,False,False,517,2,0,0,765º SEFAZ SP 2025 | 843º SEFAZ MG
+Lucimara Cristina Nakata Scaduto Santos,90.8,12.0,5.0,107.8,865º(Ampla),865,False,False,518,4,0,0,1642º SEFAZ SP 2025 | 62º TRT 15 Campinas | 9º TCE SP 25 | 688º RFB
+Luis Gustavo Siman Neto,96.4,11.4,0.0,107.8,866º(Ampla),866,False,False,519,6,2,1,23º SEFAZ SC 21 | 20º PGE PE | 239º SEFAZ BA 22 | 56º SEFAZ MG | 579º ISS Uberlandia | 177º ALESC
+Rosilane Aparecida Pimenta Ribeiro,96.2,11.6,0.0,107.8,867º(Ampla),867,False,False,520,9,0,0,2611º SEFAZ SP 2025 | 203º SEFAZ RJ 25 | 23º TCE PR | 364º TSE Unificado | 411º Petrobras | 1726º SEFAZ MG | 115º CAGE RS | 1005º ISS Rio de Janeiro | 17º CGM Belo Horizonte
+Olivia Aparecida Barbosa Martins,95.2,12.5,0.0,107.7,868º(Afro),868,False,False,521,5,0,0,404º SEFAZ SC 21 | 1935º SEFAZ SP 2025 | 821º SEFAZ RR | 862º SEFAZ AM 22 | 1051º SEFAZ MG
+Clodoaldo Ausec Ludwig,95.2,12.5,0.0,107.7,869º(Ampla),869,False,False,522,1,1,0,92º ISS Londrina
+Ernesto Mataran Neto,97.4,10.3,0.0,107.7,870º(Ampla),870,False,False,523,6,0,0,651º SEFAZ SC 21 | 24º ISS Dourados | 18º SEFAZ PR Agente Fazendario | 3613º SEFAZ MG | 987º RFB | 362º ISS Cuiaba
+Luiz Gustavo De Marchi Brito,94.4,13.3,0.0,107.7,871º(Ampla),871,False,False,524,10,0,0,25º SEFAZ PI 25 | 156º SEFAZ SP 2025 | 890º SEFAZ RS TEC 18 | 37º SEFAZ AM 22 | 198º ISS Governador Valadares | 2477º SEFAZ MG | 177º ISS Uberlandia | 42º ISS Serra ES | 20º TRF 2 | 5º EBSERH Nacional
+Felicio Carriço Dal Col,95.4,12.3,0.0,107.7,872º(Ampla),872,False,False,525,8,0,0,570º SEFAZ RR | 171º SEFAZ AC | 667º SEFAZ RJ 25 | 1013º SEFAZ AM 22 | 1037º ISS Rio de Janeiro | 29º ISS Nova Iguaçu | 101º ISS Nova Iguaçu | 378º ISS Cuiaba
+Fernanda Casemiro Pereira,96.2,11.5,0.0,107.7,873º(Ampla),873,False,False,526,15,1,0,2332º SEFAZ SP 2025 | 240º SEFAZ RR | 178º SEFAZ AC | 52º SEFAZ AM 22 | 91º SEFAZ BA 22 | 1749º SEFAZ MG | 38º ISS Campos dos Goytacazes | 517º ISS Guarulhos | 228º SMF RJ | 280º ISS Rio de Janeiro | 109º ISS Sao Bernardo do Campo | 112º ISS Nova Iguaçu | 8º ISS Nova Iguaçu | 20º SEFAZ RR | 32º ISS Macaé
+Marcelo Ferreira Freitas,97.4,10.3,0.0,107.7,874º(Ampla),874,False,False,527,9,1,1,125º SEFAZ AP | 372º SEFAZ RR | 4º CODEVASF | 129º CODEVASF | 116º SEFAZ AM 22 | 106º SEFAZ AM 22 | 42º SEFAZ AM 22 | 796º SEFAZ MG | 479º ISS Cuiaba
+Ronald De Carvalho Mendes Júnior,94.2,13.5,0.0,107.7,875º(Ampla),875,False,False,528,9,0,0,1532º SEFAZ SP 2025 | 456º SEFAZ MA | 154º SEFAZ PI 25 | 477º SEFAZ RR | 393º SEFAZ RJ 25 | 790º SEFAZ AM 22 | 993º SEFAZ MG | 168º ISS Rio de Janeiro | 303º ISS Cuiaba
+Luís Alberto Rodrigues De Assis,93.0,14.6,0.0,107.6,876º(Pcd),876,False,False,529,9,0,0,18º SEFAZ SP 2025 | 5º TC DF | 206º CG DF | 537º SEPLAD DF | 49º CG DF | 41º SEPLAD DF | 99º TC DF | 295º SEPLAN DF | 833º RFB
+Eduardo Pinho Vanderley Ferreira,94.6,13.0,0.0,107.6,877º(Afro),877,False,False,530,3,0,0,114º SEFAZ PI 25 | 918º SEFAZ SP 2025 | 58º SEFAZ RS TEC 18
+Matheus Bezerra Nunes,95.6,12.0,0.0,107.6,878º(Afro),878,False,False,531,10,0,0,380º SEFAZ SP 2025 | 6º ISS Paraty | 6º CÂMARA MUNICIPAL DE TATUÍ | 335º SEFAZ RJ 25 | 54º SEFAZ RJ 25 | 169º SEFAZ AC | 203º ISS Campos dos Goytacazes | 13º ISS Nova Iguaçu | 202º ISS Porto Alegre 25 | 19º ISS Porto Alegre 25
+Alex Sandro De Quadros,92.8,14.8,0.0,107.6,879º(Ampla),879,False,False,532,4,0,0,484º SEFAZ SC 21 | 2314º SEFAZ SP 2025 | 44º ISS Dourados | 1138º SEFAZ MG
+Daniel Gomes Da Costa,94.6,13.0,0.0,107.6,880º(Ampla),880,False,False,533,7,0,0,1694º SEFAZ SP 2025 | 24º ISS Varginha | 22º SEFAZ RJ | 16º SEFAZ PR Agente Fazendario | 181º ALERJ 2025 | 998º ISS Rio de Janeiro | 343º ISS Sao Bernardo do Campo
+Bianca Fuziki Akutagawa,97.2,10.3,0.0,107.5,881º(Ampla),881,False,False,534,1,0,0,2624º TSE Unificado
+Bruno Arai Mantovani,95.0,12.5,0.0,107.5,882º(Ampla),882,False,False,535,10,1,0,686º SEFAZ SP 2025 | 92º ISS S.J. Rio Preto | 573º SEFAZ RS 18 | 135º ISS Maua | 1122º SEFAZ MG | 90º ISS Uberlandia | 116º ISS GUARUJA | 258º ISS Guarulhos | 241º ISS Sao Bernardo do Campo | 209º ISS Osasco
+Emyle Osa Sofiati,94.0,13.5,0.0,107.5,883º(Ampla),883,False,False,536,5,0,0,22º TSE Unificado | 118º TCE RS 25 | 8º DPF 25 | 1º ALES 25 | 231º ISS Serra ES
+Marco Antonio Caseri Cardoso,93.0,14.5,0.0,107.5,884º(Ampla),884,False,False,537,8,0,0,558º SEFAZ SC 21 | 551º SEFAZ SP 2025 | 164º ISS Ribeirao Preto | 2586º SEFAZ MG | 20º ISS Sao José dos Campos | 160º ISS Maua | 217º ISS Cuiaba | 86º ISS Porto Alegre 25
+Mateus Rotiliano Azevedo,92.0,12.5,3.0,107.5,885º(Ampla),885,False,False,538,3,0,1,213º SEFAZ SP 2025 | 1º ISS Santos | 56º ISS Osasco
+Ryan Guedes Dos Santos Barros,97.0,10.5,0.0,107.5,886º(Ampla),886,False,False,539,1,0,0,1903º SEFAZ SP 2025
+Erick Neves Barcellos,94.2,13.2,0.0,107.4,887º(Afro),887,False,False,540,3,0,0,1139º SEFAZ SP 2025 | 770º SEFAZ RJ 25 | 135º SEFAZ RJ 25
+Hudson Hienrck Ventura Duarte,94.4,13.0,0.0,107.4,888º(Afro),888,False,False,541,3,0,0,608º PRF | 34º TSE Unificado | 424º ISS Cuiaba
+Mario Roberto Ribeiro Junior,94.4,13.0,0.0,107.4,889º(Afro),889,False,False,542,5,0,0,371º SEFAZ RR | 506º SEFAZ AM 22 | 2690º SEFAZ MG | 147º ISS Rio de Janeiro | 8º ISS Nova Iguaçu
+Yohrano Gomes Vieira,92.4,15.0,0.0,107.4,890º(Ampla),890,False,False,543,4,0,0,817º SEFAZ SP 2025 | 409º SEFAZ PI 25 | 2651º SEFAZ MG | 430º RFB
+Felipe Campos Duarte,94.8,12.5,0.0,107.3,891º(Ampla),891,False,False,544,8,1,0,1321º SEFAZ SP 2025 | 272º SEFAZ RR | 13º SEFAZ SE 25 | 125º STJ | 129º SEFAZ BA 22 | 427º SEFAZ MG | 337º ISS Rio de Janeiro | 168º ISS Porto Alegre 25
+Igor Vechiato Betoni,95.8,11.5,0.0,107.3,892º(Ampla),892,False,False,545,4,0,0,958º SEFAZ SP 2025 | 12º ANAC | 3867º SEFAZ MG | 60º CVM
+Rômulo Pereira Castro,95.4,11.8,0.0,107.2,893º(Pcd),893,False,False,546,7,0,0,411º SEFAZ RJ 25 | 15º SEFAZ RJ 25 | 144º ISS Mossoro | 4º ISS Mossoro | 5º DPF 25 | 23º DPF 25 | 4º ISS Garanhuns
+Marcos Roberto Nascimento Cerqueira,93.6,10.6,3.0,107.2,894º(Afro),894,False,False,547,8,1,0,145º TCU TI 2025 | 715º SEFAZ RJ 25 | 127º SEFAZ RJ 25 | 55º Câmara dos Deputados 2025 NS | 44º TCE PE 25 | 206º AGSUS SUS 2025 | 4º Camara dos Deputados Consultor | 121º CPRM Serviço Geológico do Brasil
+Gabriel Corrêa Lima Pereira,96.8,10.4,0.0,107.2,895º(Ampla),895,False,False,548,2,1,1,537º DPF | 3930º SEFAZ MG
+Lucas Euclides Florentino,96.2,11.0,0.0,107.2,896º(Ampla),896,False,False,549,3,0,0,1300º SEFAZ SP 2025 | 48º ISS Biguaçu | 123º ISS Porto Alegre 25
+Paula Batista Mattos Paoliello,96.6,10.5,0.0,107.1,897º(Ampla),897,False,False,550,2,0,0,2321º SEFAZ SP 2025 | 587º SEFAZ MG
+Raquel Garcia Normando,96.6,10.5,0.0,107.1,898º(Ampla),898,False,False,551,6,0,0,286º SEFAZ PE | 460º SEFAZ PI 25 | 108º ISS Mossoro | 30º ISS Fortaleza | 485º SEFAZ AM 22 | 955º RFB
+Francielly Basso Cordeiro Rodrigues,96.0,11.1,0.0,107.1,899º(Ampla),899,False,False,552,3,1,0,92º SEFAZ PR Agente Fazendario | 121º ISS Curitiba | 23º ISS Londrina
+Gustavo Bocchi,92.6,14.4,0.0,107.0,900º(Ampla),900,False,False,553,2,0,0,98º TCE RS 25 | 23º TJ RS 2025
+Josiel Francisco Alves,95.2,11.8,0.0,107.0,901º(Ampla),901,False,False,554,8,0,0,807º SEFAZ SP 2025 | 43º ISS Biguaçu | 1239º DPF 25 | 3753º PRF | 2631º SEFAZ MG | 222º ISS Cuiaba | 56º ISS Criciúma | 90º ISS Porto Alegre 25
+Marcelo Yuji Sato,95.0,12.0,0.0,107.0,902º(Ampla),902,False,False,555,5,1,0,1870º SEFAZ SP 2025 | 896º SEFAZ MG | 860º ISS Guarulhos | 38º ISS Osasco | 246º ISS Porto Alegre 25
+Marianny De Sousa Oliveira,96.2,10.8,0.0,107.0,903º(Ampla),903,False,False,556,8,0,0,84º SEFAZ PI 25 | 545º SEFAZ PI 25 | 1810º SEFAZ SP 2025 | 613º CG DF | 323º SEPLAD DF | 419º ISS Ribeirao Preto | 3387º SEFAZ MG | 416º ISS Sao Bernardo do Campo
+Niellys De Fátima Da Conceição Gonçalves Co,93.2,13.7,0.0,106.9,904º(Afro),904,False,False,557,0,0,0,
+Willian Cavalheiro Santos,95.4,11.5,0.0,106.9,905º(Afro),905,False,False,558,2,0,0,3º SEFAZ SE | 2706º SEFAZ MG
+Anderson Idalgo Da Rocha,95.6,11.3,0.0,106.9,906º(Ampla),906,False,False,559,2,0,0,458º SEFAZ SP 2025 | 310º ISS Cuiaba
+Carlos Guilherme Van Meegen Silva,95.4,11.5,0.0,106.9,907º(Ampla),907,False,False,560,3,0,0,167º SEFAZ AC | 1514º SEFAZ MG | 277º ISS Porto Alegre 25
+Marcus Vinicius Pinheiro Barbosa,96.2,10.7,0.0,106.9,908º(Ampla),908,False,False,561,5,0,0,119º SEFAZ PI 25 | 574º SEFAZ PI 25 | 824º SEFAZ SP 2025 | 342º SEFAZ RJ 25 | 618º CGE SP 25
+Melke Luís De Lima Mugarte,96.8,10.1,0.0,106.9,909º(Ampla),909,False,False,562,2,0,0,1921º SEFAZ SP 2025 | 69º ISS Florianopolis
+Rodrigo De Oliveira Rodrigues,94.4,12.5,0.0,106.9,910º(Ampla),910,False,False,563,1,0,0,584º SEFAZ SP 2025
+Tiago Limão De Oliveira,95.0,11.8,0.0,106.8,911º(Pcd),911,False,False,564,4,0,0,56º TRF 3 | 775º SEFAZ AM 22 | 106º TRF 1 24 | 24º TRF 1 24
+Hugo Gomes Alves Da Silva,95.8,11.0,0.0,106.8,912º(Afro),912,False,False,565,3,0,0,647º SEFAZ AM 22 | 1044º SEFAZ MG | 58º ISS Rio de Janeiro
+Diego Nunes Dantas,96.0,10.8,0.0,106.8,913º(Ampla),913,False,False,566,2,0,0,481º SEFAZ SP 2025 | 90º SEFAZ RJ 25
+Eduardo Neri De Oliveira Teixeira,96.2,10.6,0.0,106.8,914º(Ampla),914,False,False,567,1,0,0,143º SEFAZ SP 2025
+Fernando Grott De Carvalho,92.8,14.0,0.0,106.8,915º(Ampla),915,False,False,568,3,0,0,158º Senado | 39º Camara dos Deputados | 42º Camara dos Deputados
+Ismael Fonseca Barroso,91.8,15.0,0.0,106.8,916º(Ampla),916,False,False,569,4,0,1,1201º SEFAZ SP 2025 | 32º SEFAZ AC | 99º SEFAZ SE 25 | 689º SEFAZ MG
+João Victor Veltrini Fonzar,95.0,11.8,0.0,106.8,917º(Ampla),917,False,False,570,4,2,0,80º SEFAZ SC 21 | 901º SEFAZ SP 2025 | 300º SEFAZ MG | 90º SEFAZ MT
+Juliana Mayumi Matsuoka Dinelli,95.8,11.0,0.0,106.8,918º(Ampla),918,False,False,571,4,0,0,1062º SEFAZ SP 2025 | 24º ISS Ribeirao Preto | 1517º RFB | 105º ISS Cuiaba
+Leonardo Silva Pires,95.8,11.0,0.0,106.8,919º(Ampla),919,False,False,572,7,0,1,676º SEFAZ SC 21 | 55º ISS Florianopolis | 17º SEFAZ ES Consultor | 707º SEFAZ MG | 6º ISS Campos dos Goytacazes | 477º ISS Rio de Janeiro | 184º ISS Nova Iguaçu
+Mário Sergio Ribeiro Chiquito,93.4,13.4,0.0,106.8,920º(Ampla),920,False,False,573,3,0,0,302º SEFAZ SP 2025 | 479º TCE SP 25 | 22º ISS Ribeirao Preto
+Miguel Alves Dos Santos Neto,95.8,11.0,0.0,106.8,921º(Ampla),921,False,False,574,11,2,2,64º SEFAZ AP | 2º ISS Fortaleza | 109º SEFAZ RR | 42º SEPLAG CE | 82º TJ CE | 165º SEFAZ PE Apoio | 198º SEFAZ PE Apoio | 928º SEFAZ MG | 75º SEPLAN DF | 335º ISS Campina Grande | 17º TCE RR
+Mônica Forcelini Facin,94.0,12.8,0.0,106.8,922º(Ampla),922,False,False,575,7,1,0,82º TRF 4 2025 | 142º TRF 4 | 74º TCE PR | 15º TRF 4 2026 | 370º TRF 4 2026 | 23º TJ PR | 94º ISS Londrina
+Lívia Melanie De Santana Rodrigues,94.8,12.0,0.0,106.8,923º(Ampla),923,False,False,576,4,1,0,6º Camara Municipal Maceio | 98º SEAD SE | 823º SEFAZ AM 22 | 44º MPU 25
+Edson Soares Borges,95.0,11.8,0.0,106.8,924º(Ampla),924,False,False,577,7,0,0,503º SEFAZ MA | 838º SEFAZ RS 18 | 216º SEFAZ AM 22 | 2315º SEFAZ MG | 277º Camara dos Deputados | 16º Manaus CGM SEMMAS | 34º ISS Cuiaba
+André Secretti Paredes,96.2,10.5,0.0,106.7,925º(Ampla),925,False,False,578,1,0,0,25º CGE SP 25
+Cleverson Davi Schio,94.2,12.5,0.0,106.7,926º(Ampla),926,False,False,579,4,1,0,241º SEFAZ AC | 516º SEFAZ RS TEC 18 | 1379º SEFAZ MG | 177º SEFIN RO
+Vinicius Cabral De Castro Souza,92.2,14.5,0.0,106.7,927º(Ampla),927,False,False,580,3,0,0,490º SEFAZ PI 25 | 820º SEFAZ SP 2025 | 3840º SEFAZ MG
+Luan Da Silva De Souza,95.6,11.0,0.0,106.6,928º(PCD/Negro),928,False,False,581,7,0,3,475º SEFAZ RJ 25 | 19º SEFAZ RJ 25 | 80º SEFAZ RJ 25 | 30º ISS Rio de Janeiro | 2º ISS Nova Iguaçu | 1º ISS Nova Iguaçu | 1º ISS Nova Iguaçu
+Luan Da Silva De Souza,95.6,11.0,0.0,106.6,928º(Pcd),928,False,False,581,7,0,3,475º SEFAZ RJ 25 | 19º SEFAZ RJ 25 | 80º SEFAZ RJ 25 | 30º ISS Rio de Janeiro | 2º ISS Nova Iguaçu | 1º ISS Nova Iguaçu | 1º ISS Nova Iguaçu
+Jefferson Emanoel Soares Gama,93.6,13.0,0.0,106.6,929º(Afro),929,False,False,582,5,0,0,389º SEFAZ PE | 434º SEFAZ RJ 25 | 71º SEFAZ RJ 25 | 2326º SEFAZ MG | 670º ISS Rio de Janeiro
+Adari Rogério De Almeida,93.6,13.0,0.0,106.6,930º(Ampla),930,False,False,583,2,0,0,383º ISS Cuiaba | 312º ISS Porto Alegre 25
+Francisco Rogeano Sousa Beserra,93.8,12.8,0.0,106.6,931º(Ampla),931,False,False,584,3,0,0,719º SEFAZ MA | 431º SEFAZ RR | 1102º RFB
+Tatiane Marlei Defrein Rieger,95.6,11.0,0.0,106.6,932º(Ampla),932,False,False,585,0,0,0,
+Andrea Flavia Da Rosa,94.0,12.5,0.0,106.5,933º(Ampla),933,False,False,586,1,0,0,6º SEFAZ PR Agente Fazendario
+Francisco De Assis Jose Sales De Vasconcelos,94.0,12.5,0.0,106.5,934º(Ampla),934,False,False,587,1,0,0,2003º SEFAZ SP 2025
+Henrique Oliveira Penafieri,92.0,14.5,0.0,106.5,935º(Ampla),935,False,False,588,1,0,0,232º ISS Sao Bernardo do Campo
+Raul Pinheiro De Oliveira Rocha,95.8,10.7,0.0,106.5,936º(Ampla),936,False,False,589,4,0,0,999º SEFAZ SP 2025 | 2591º SEFAZ MG | 1041º ISS Rio de Janeiro | 460º ISS Cuiaba
+Tafarel Da Costa Ferreira,96.0,10.5,0.0,106.5,937º(Ampla),937,False,False,590,7,0,0,1399º PC DF 24 | 64º ISS Muriau | 574º DPF | 830º RFB | 120º ISS Campos dos Goytacazes | 803º ISS Rio de Janeiro | 48º ISS Nova Iguaçu
+Patricia Xavier Do Nascimento,92.2,14.3,0.0,106.5,938º(Ampla),938,False,False,591,6,0,0,136º SEFAZ AC | 212º SEFAZ AM 22 | 988º SEFAZ MG | 1010º ISS Rio de Janeiro | 997º ISS Osasco | 186º ISS Cuiaba
+Ícaro De Lima Ferreira,94.8,11.6,0.0,106.4,939º(Ampla),939,False,False,592,0,0,0,
+Andre Leandro Silva Dias,95.6,10.8,0.0,106.4,940º(Ampla),940,False,False,593,2,0,0,800º SEFAZ RS TEC 18 | 623º SEFAZ AM 22
+Caio Girão Rodrigues,94.4,12.0,0.0,106.4,941º(Ampla),941,False,False,594,17,3,2,2º TRT 2 SP | 2º PPSA PRÉ SAL PETRÓLEO S.A | 2º SEFAZ PI 25 | 12º TRT 2 SP | 346º SEFAZ PI 25 | 21º SEFAZ SP 2025 | 4º TRT 1 RJ | 51º SEFAZ RJ | 28º SEFAZ SE 25 | 299º SEFAZ RJ 25 | 2º Telebrás 2026 | 912º DPF 25 | 267º TSE Unificado | 117º MP RJ | 41º ALERJ 2025 | 44º CVM | 4º EPE ENERGÉTICA
+Murilo Vianna Baião,95.6,10.8,0.0,106.4,942º(Ampla),942,False,False,595,6,1,0,451º ISS Ribeirao Preto | 31º ISS GUARUJA | 64º ISS Uberlândia 25 | 634º SEFAZ AM 22 | 3273º SEFAZ MG | 1035º ISS Rio de Janeiro
+Ana Carolina Trindade De Sá,94.8,11.5,0.0,106.3,943º(Ampla),943,False,False,596,6,0,0,2333º SEFAZ SP 2025 | 44º SEFAZ RJ | 1090º SEFAZ RJ 25 | 77º APO RJ | 77º SMF RJ | 617º ISS Rio de Janeiro
+Carlos Andre Monteiro De Sousa,92.2,11.1,3.0,106.3,944º(Ampla),944,False,False,597,0,0,0,
+Gabriela Miniuk Pardal,93.4,12.9,0.0,106.3,945º(Ampla),945,False,False,598,3,0,0,9º SEFAZ PR Agente Fazendario | 291º CGE SC | 77º CAGE RS
+João Marcos Ferreira Rego,93.6,12.7,0.0,106.3,946º(Ampla),946,False,False,599,3,0,0,54º SEFAZ PI 25 | 275º SEFAZ PI 25 | 113º SEFAZ AC
+Josilene Brietzig Modesti,93.8,12.5,0.0,106.3,947º(Ampla),947,False,False,600,2,1,1,3º SEFAZ SC 21 | 1504º SEFAZ SP 2025
+Zilton Lages Villa,93.0,13.3,0.0,106.3,948º(Ampla),948,False,False,601,5,0,0,401º SEFAZ PI 25 | 696º SEFAZ SP 2025 | 12º SEFAZ SE 25 | 1334º RFB | 575º ISS Rio de Janeiro
+Jonathas Emmanuel Fernandes Menezes,96.0,10.2,0.0,106.2,949º(Ampla),949,False,False,602,2,0,0,526º SEFAZ SP 2025 | 40º TSE Unificado
+Rafael Sartarelli Nunes De Paula,94.4,11.8,0.0,106.2,950º(Ampla),950,False,False,603,4,0,0,385º SEFAZ SC 21 | 92º ISS Fortaleza | 1500º SEFAZ MG | 120º ISS Cuiaba
+Alan Marcos Silva,93.6,12.5,0.0,106.1,951º(Afro),951,False,False,604,1,0,0,308º ISS Ribeirao Preto
+Lucas Nathan De Vargas,92.8,13.3,0.0,106.1,952º(Afro),952,False,False,605,1,0,0,44º ISS Florianopolis
+Caroline Sarmento,94.6,11.5,0.0,106.1,953º(Ampla),953,False,False,606,8,0,0,1944º SEFAZ SP 2025 | 137º STM | 2275º SEFAZ MG | 157º CAGE RS | 321º ISS Belo Horizonte | 6º MP RS | 23º ISS Criciúma | 155º ISS Porto Alegre 25
+Frederico César Dias Martins,93.6,12.5,0.0,106.1,954º(Ampla),954,False,False,607,3,1,1,102º SEFAZ AC | 177º PRF | 10º ISS Cuiaba
+Gustavo Goulart Angelici Dos Santos,94.0,12.1,0.0,106.1,955º(Ampla),955,False,False,608,5,1,0,1482º SEFAZ SP 2025 | 599º SEFAZ RJ 25 | 693º SEFAZ BA 22 | 2939º SEFAZ MG | 686º ISS Rio de Janeiro
+Mauro Francisco De Almeida Junior,95.0,11.1,0.0,106.1,956º(Ampla),956,False,False,609,5,0,0,555º SEFAZ PI 25 | 124º Câmara dos Deputados 2025 NS | 22º TCE TO | 2691º SEFAZ MG | 124º ISS Cuiaba
+Victor Augusto Santos Faria De Oliveira,95.6,10.5,0.0,106.1,957º(Ampla),957,False,False,610,2,0,0,1712º SEFAZ MG | 26º ISS Uberlândia 25
+Genise Dos Santos De Castro,95.6,10.5,0.0,106.1,958º(Ampla),958,False,False,611,9,1,0,252º SEFAZ SC 21 | 117º SEFAZ RR | 440º SEFAZ RJ 25 | 78º SEFAZ AC | 432º SEFAZ AM 22 | 516º SEFAZ MG | 509º ISS Rio de Janeiro | 142º ISS Cuiaba | 293º ISS Porto Alegre 25
+Pedro Parada De Pret,92.2,13.8,0.0,106.0,959º(PCD/Negro),959,False,False,612,7,0,0,143º SEFAZ PI 25 | 143º SEFAZ PI 25 | 45º SEFAZ SP 2025 | 354º SEFAZ RJ 25 | 10º SEFAZ RJ 25 | 57º SEFAZ RJ 25 | 7º ISS Macaé
+Pedro Parada De Pret,92.2,13.8,0.0,106.0,959º(Pcd),959,False,False,612,7,0,0,143º SEFAZ PI 25 | 143º SEFAZ PI 25 | 45º SEFAZ SP 2025 | 354º SEFAZ RJ 25 | 10º SEFAZ RJ 25 | 57º SEFAZ RJ 25 | 7º ISS Macaé
+Raul Maroja Ferreira,93.6,12.4,0.0,106.0,960º(Afro),960,False,False,613,13,0,0,1074º SEFAZ SP 2025 | 1265º CG DF | 1073º SEPLAD DF | 614º STJ | 410º SEFAZ RJ 25 | 65º SEFAZ RJ 25 | 60º TCU TEFC | 422º DPF 25 | 1356º SEPLAN DF | 1371º RFB | 98º CVM | 35º TRF 1 24 | 268º TRF 1 24
+Ana Caroline Reis Mendes,95.4,10.6,0.0,106.0,961º(Ampla),961,False,False,614,3,1,0,265º SEFAZ BA 22 | 798º SEFAZ MG | 167º ISS Serra ES
+Eduardo De Leon Martins,95.8,10.2,0.0,106.0,962º(Ampla),962,False,False,615,3,0,1,507º SEFAZ RS TEC 18 | 1009º DPF | 91º RFB
+Vitor Ruivo Campos,91.0,15.0,0.0,106.0,963º(Ampla),963,False,False,616,14,0,0,652º SEFAZ SC 21 | 1610º SEFAZ SP 2025 | 26º ISS Valinhos | 20º CÂMARA MUNICIPAL DE TATUÍ | 93º TCE PR | 16º MP SP 2025 | 28º ISS INDAIATUBA SP 25 | 143º CGE SC | 46º TRF 3 23 | 46º TRF 3 23 | 67º ISS Sao Bernardo do Campo | 25º Camara Municipal SP | 23º CÂMARA MUNICIPAL DE SÃO PAULO 2023 | 82º ISS Criciúma
+Kim Zogby Ferrazza,95.4,10.5,0.0,105.9,964º(Ampla),964,False,False,617,1,0,0,344º ISS/Florianopolis
+Luana Ferreira Lima,93.2,12.7,0.0,105.9,965º(Ampla),965,False,False,618,2,0,0,2034º SEFAZ SP 2025 | 3076º SEFAZ MG
+Lucilia Cardoso Fernandes Rocha,93.4,12.5,0.0,105.9,966º(Ampla),966,False,False,619,2,0,0,1888º SEFAZ SP 2025 | 6º TCE SP 25
+Bruno Santos De Oliveira,93.8,12.0,0.0,105.8,967º(Afro),967,False,False,620,8,0,2,136º SEFAZ AP | 90º SEFAZ AP | 1215º SEFAZ SP 2025 | 12º ISS Sao Caetano do Sul | 1080º TJDFT 2022 | 8º CNU | 203º ISS GUARUJA | 399º ISS Sao Bernardo do Campo
+Lucas Vidigal Braga,94.8,11.0,0.0,105.8,968º(Ampla),968,False,False,621,1,0,0,143º ISS Cuiaba
+Luis Felipe Oliveira Fernandes,93.8,12.0,0.0,105.8,969º(Ampla),969,False,False,622,3,1,1,1416º SEFAZ SP 2025 | 392º DPF | 209º ISS Ribeirao Preto
+Rogério Bastos Júnior,93.6,12.2,0.0,105.8,970º(Ampla),970,False,False,623,4,1,0,258º SEFAZ AM 22 | 194º SEFAZ BA 22 | 2061º SEFAZ MG | 302º ISS Itajai
+Israel Joao Pereira Junior,95.2,10.5,0.0,105.7,971º(Afro),971,False,False,624,6,0,0,31º ISS Mossoro | 7º ISS Mossoro | 25º TSE Unificado | 3º TSE Unificado | 150º Petrobras | 28º TJ RN 23
+Amanda Schneider,93.2,12.5,0.0,105.7,972º(Ampla),972,False,False,625,1,0,0,1033º SEFAZ SP 2025
+Ana Laura Vieira De Oliveira,93.2,12.5,0.0,105.7,973º(Ampla),973,False,False,626,7,0,0,1544º SEFAZ SP 2025 | 1345º SEFAZ RS TEC 18 | 815º DPF 25 | 518º SEFAZ MG | 29º TRF 2 | 268º TRF 2 | 94º TRF 1 24
+Ary Jose Apolinario De Souza Junior,92.2,13.5,0.0,105.7,974º(Ampla),974,False,False,627,3,0,0,2185º SEFAZ SP 2025 | 1734º SEFAZ MG | 513º ISS Sao Bernardo do Campo
+Isadora Teixeira Raulino,93.6,12.1,0.0,105.7,975º(Ampla),975,False,False,628,4,0,0,83º SEFAZ PI 25 | 284º SEFAZ PI 25 | 847º ISS Rio de Janeiro | 174º ISS Sao Bernardo do Campo
+Rodrigo Raul Vilela Brandao,94.6,11.1,0.0,105.7,976º(Ampla),976,False,False,629,8,1,1,82º ISS Dourados | 18º ISS Corumba | 307º ISS Ribeirao Preto | 3030º SEFAZ MG | 29º ISS Campos dos Goytacazes | 308º ISS Itajai | 193º ISS Cuiaba | 42º ISS Londrina
+Bruno Rafael De Sousa Mesquita,92.0,13.6,0.0,105.6,977º(Ampla),977,False,False,630,2,1,0,492º ISS Cuiaba | 113º ISS Macaé
+Bruno Serafim Chaves,93.2,12.4,0.0,105.6,978º(Ampla),978,False,False,631,2,0,0,9º ISS Varginha | 1336º RFB
+Patricia Lima Melik De Carvalho,93.2,12.4,0.0,105.6,979º(Ampla),979,False,False,632,3,0,0,1863º SEFAZ SP 2025 | 543º ISS Uberlandia | 4110º SEFAZ MG
+Patrick Mendes Da Encarnação,93.6,12.0,0.0,105.6,980º(Ampla),980,False,False,633,4,0,0,1486º SEFAZ SP 2025 | 923º SEFAZ RJ 25 | 603º ISS Campos dos Goytacazes | 230º ISS Nova Iguaçu
+Pedro Henrique Abreu Davila Gonçalves,95.2,10.4,0.0,105.6,981º(Ampla),981,False,False,634,5,0,0,2375º SEFAZ SP 2025 | 971º RFB | 60º ISS Campos dos Goytacazes | 189º ISS Nova Iguaçu | 291º ISS Cuiaba
+Priscila Da Silva,93.2,12.4,0.0,105.6,982º(Ampla),982,False,False,635,8,0,0,515º SEFAZ SC 21 | 5476º TCE RS 25 | 45º TCE MS 2025 | 7º SEFAZ PR Agente Fazendario | 1434º TSE Unificado | 124º TSE Unificado | 1692º SEFAZ MG | 271º ISS Cuiaba
+Rodrigo Alves Melo,93.8,11.8,0.0,105.6,983º(Ampla),983,False,False,636,1,0,0,81º ISS Mossoro
+Thiago Decarli Ramos,93.6,12.0,0.0,105.6,984º(Ampla),984,False,False,637,3,0,0,815º SEFAZ SP 2025 | 465º CGE SC | 201º ISS Porto Alegre 25
+Wellington Vinicius Afonso Viana Filho,94.6,11.0,0.0,105.6,985º(Ampla),985,False,False,638,8,0,0,2203º SEFAZ SP 2025 | 397º TCE SP 25 | 739º SEFAZ RJ 25 | 719º CGE SP 25 | 419º SMF RJ | 631º ISS Cuiaba | 119º Prefeitura Niterói 2019 | 97º Prefeitura Niterói 2019
+André Luiz Oliveira Bastos,91.8,13.8,0.0,105.6,986º(Ampla),986,False,False,639,10,1,2,220º SEFAZ PE | 4º TRT 1 RJ | 23º TCE MG 25 | 226º TCE PE 17 | 12º CGM RJ | 30º CGM RIO | 548º RFB | 45º APO RJ | 45º SMF RJ | 165º ISS Rio de Janeiro
+Alessandra Inacio Garbo,95.0,10.5,0.0,105.5,987º(Ampla),987,False,False,640,4,1,0,1275º SEFAZ SP 2025 | 355º SEFAZ SC 21 | 353º SEFAZ RJ 25 | 211º ISS Uberlandia
+Pedro Henrique Machado Bariani,93.0,12.5,0.0,105.5,988º(Ampla),988,False,False,641,2,0,0,700º SEFAZ SP 2025 | 481º ISS Ribeirao Preto
+Bruno Christiano Correa Ruiz Zart,91.0,11.4,3.0,105.4,989º(Ampla),989,False,False,642,0,0,0,
+Gabriel Diniz Tormin,95.2,10.2,0.0,105.4,990º(Ampla),990,False,False,643,7,0,0,890º SEFAZ SP 2025 | 55º Petrobras | 139º SEFAZ MG | 217º SEFAZ MT | 105º Camara dos Deputados | 47º ISS Sao José dos Campos | 281º ISS Porto Alegre 25
+Igor Ramos Da Silva,93.4,12.0,0.0,105.4,991º(Ampla),991,False,False,644,3,0,0,1175º SEFAZ RS TEC 18 | 265º CGE SC | 74º ISS Criciúma
+Luan Torbe Ferreira,92.4,13.0,0.0,105.4,992º(Ampla),992,False,False,645,2,1,0,138º SEFAZ SC 21 | 149º SEFAZ MT
+Lucas Daniel Silva Ferreira,94.0,11.4,0.0,105.4,993º(Ampla),993,False,False,646,4,0,0,239º SEFAZ PI 25 | 1763º SEFAZ SP 2025 | 93º SEFAZ AC | 1472º RFB
+Marcondes Brito Ribeiro,91.0,14.4,0.0,105.4,994º(Ampla),994,False,False,647,6,0,0,101º SEFAZ PI 25 | 65º ISS Mossoro | 102º ISS Fortaleza | 6º MP CE | 77º SUSEP | 297º TSE Unificado
+Rafael De Castro Francisquini,93.4,12.0,0.0,105.4,995º(Ampla),995,False,False,648,4,0,0,141º SEFAZ RR | 46º SEFAZ BA 22 | 4111º SEFAZ MG | 213º SEFAZ MT
+Antonio Ailon De Sousa Tonhá,95.0,10.3,0.0,105.3,996º(Ampla),996,False,False,649,4,0,0,69º SEFAZ PI 25 | 239º SEFAZ PI 25 | 1623º SEFAZ SP 2025 | 59º TSE Unificado
+Breno Gonçalves Batista Carlos,92.2,13.1,0.0,105.3,997º(Ampla),997,False,False,650,5,0,0,664º SEFAZ SP 2025 | 489º TCE SP 25 | 52º ISS Paulinia | 3168º SEFAZ MG | 357º ALESC

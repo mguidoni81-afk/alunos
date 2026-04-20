@@ -1,0 +1,15 @@
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+dashboard_state/
+SEFAZ PR.txt
+output/*_data.json
+output/**/page_data.json
+output/sefaz_pr_auditor_fiscal/
