@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from html import escape
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote_plus
 
 import pandas as pd
 import plotly.express as px
@@ -161,6 +163,90 @@ def inject_styles() -> None:
             border-radius: 18px;
             background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
             margin: 0.2rem 0 1rem 0;
+        }
+        .acr-matrix-wrap {
+            overflow-x: auto;
+            border: 1px solid #dce6ef;
+            border-radius: 18px;
+            background: #0f1722;
+            padding: 0.35rem;
+            margin-top: 0.5rem;
+        }
+        table.acr-matrix {
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 1120px;
+            width: 100%;
+            color: #eef4fb;
+            font-size: 0.82rem;
+        }
+        .acr-matrix th,
+        .acr-matrix td {
+            padding: 0.55rem 0.6rem;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .acr-matrix thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: #111a27;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.72rem;
+            color: #9fb3c9;
+        }
+        .acr-matrix .group-head {
+            background: #0d1521;
+            color: #7fa1c2;
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .acr-matrix .sticky-col {
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            background: #111a27;
+        }
+        .acr-matrix .sticky-col-2 {
+            position: sticky;
+            left: 52px;
+            z-index: 3;
+            background: #111a27;
+        }
+        .acr-rank-col {
+            width: 52px;
+            text-align: center;
+            color: #8fa4ba;
+            font-weight: 700;
+        }
+        .acr-student-link,
+        .acr-contest-link {
+            color: #f4f8fd !important;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .acr-student-link:hover,
+        .acr-contest-link:hover {
+            text-decoration: underline;
+        }
+        .acr-contest-cell {
+            min-width: 124px;
+            border-radius: 12px;
+            padding: 0.42rem 0.5rem;
+            line-height: 1.15;
+            text-align: left;
+            color: #0f1722;
+            font-weight: 600;
+        }
+        .acr-contest-sub {
+            display: block;
+            font-size: 0.74rem;
+            opacity: 0.95;
+            margin-top: 0.12rem;
         }
         .acr-nav {
             padding: 0.4rem 0 0.6rem 0;
@@ -361,6 +447,39 @@ def band_count(entity_table: pd.DataFrame, band_name: str) -> int:
     return int(entity_table["best_band"].fillna("").eq(band_name).sum())
 
 
+def band_bg_color(label: str) -> str:
+    mapping = {
+        "Acima do corte": "#ffddcf",
+        "Muito perto": "#ffe6cf",
+        "Perto": "#fff0c9",
+        "Monitorar": "#dcecff",
+        "Forte sinal": "#d5e7fb",
+        "Ja nomeado": "#d9dfe5",
+    }
+    return mapping.get(label, "#edf2f6")
+
+
+def read_query_value(name: str) -> str | None:
+    value = st.query_params.get(name)
+    if value is None:
+        return None
+    if isinstance(value, list):
+        return str(value[0]) if value else None
+    return str(value)
+
+
+def sync_state_from_query_params() -> None:
+    view = read_query_value("view")
+    student = read_query_value("student")
+    contest = read_query_value("contest")
+    if view:
+        st.session_state["current_view"] = view
+    if student:
+        st.session_state["selected_entity_name"] = student
+    if contest:
+        st.session_state["selected_contest_value"] = contest
+
+
 def render_filter_chips(items: list[str]) -> None:
     if not items:
         return
@@ -383,6 +502,9 @@ def badge_class(label: str) -> str:
 def open_entity_view(display_name: str) -> None:
     st.session_state["selected_entity_name"] = display_name
     st.session_state["current_view"] = "Aluno"
+    st.query_params.clear()
+    st.query_params["view"] = "Aluno"
+    st.query_params["student"] = display_name
     st.rerun()
 
 
@@ -390,6 +512,9 @@ def open_contest_view(contest_value: str, contest_name: str) -> None:
     st.session_state["selected_contest_value"] = str(contest_value)
     st.session_state["selected_contest_name"] = contest_name
     st.session_state["current_view"] = "Concurso"
+    st.query_params.clear()
+    st.query_params["view"] = "Concurso"
+    st.query_params["contest"] = str(contest_value)
     st.rerun()
 
 
@@ -666,9 +791,130 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
     )
 
 
+def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.DataFrame, ui_mode: str) -> None:
+    if entity_table.empty or scored_opportunities.empty:
+        st.info("Sem dados suficientes para montar a matriz do ranking.")
+        return
+
+    top_n_default = 12 if ui_mode == "Simples" else 20
+    top_n = st.slider("Alunos no ranking matrix", 8, 30, top_n_default, 1, key="matrix_top_n")
+    top_entities = entity_table.head(top_n).copy()
+    top_keys = top_entities["identity_key"].tolist()
+    top_opps = scored_opportunities[scored_opportunities["identity_key"].isin(top_keys)].copy()
+
+    contest_stats = (
+        top_opps.groupby(["contest_value", "contest_name"], dropna=False)
+        .agg(
+            appearances=("identity_key", "nunique"),
+            avg_score=("proximity_score", "mean"),
+        )
+        .reset_index()
+        .sort_values(["appearances", "avg_score", "contest_name"], ascending=[False, False, True])
+    )
+    default_contests = contest_stats.head(6 if ui_mode == "Simples" else 8)
+    contest_options = contest_stats.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
+    default_labels = default_contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
+    selected_labels = st.multiselect(
+        "Concursos em coluna",
+        contest_options,
+        default=default_labels,
+        key="matrix_contests",
+        help="Escolha os concursos que viram colunas no ranking matrix.",
+    )
+    if not selected_labels:
+        selected_labels = default_labels
+    selected_values = [label.rsplit("[", 1)[-1].rstrip("]") for label in selected_labels]
+
+    matrix_opps = (
+        top_opps[top_opps["contest_value"].astype(str).isin(selected_values)]
+        .sort_values(["identity_key", "proximity_score", "delta_to_last_named"], ascending=[True, False, True], na_position="last")
+        .drop_duplicates(subset=["identity_key", "contest_value"], keep="first")
+    )
+
+    contest_lookup = (
+        matrix_opps[["contest_value", "contest_name"]]
+        .drop_duplicates()
+        .set_index("contest_value")["contest_name"]
+        .to_dict()
+    )
+
+    html = [
+        '<div class="acr-matrix-wrap">',
+        '<table class="acr-matrix">',
+        "<thead>",
+        "<tr>",
+        '<th class="group-head sticky-col" colspan="2">Ranking</th>',
+        '<th class="group-head" colspan="4">Radar atual</th>',
+        '<th class="group-head" colspan="3">Recente</th>',
+        f'<th class="group-head" colspan="{len(selected_values)}">Concursos</th>',
+        "</tr>",
+        "<tr>",
+        '<th class="sticky-col acr-rank-col">#</th>',
+        '<th class="sticky-col-2">Aluno</th>',
+        "<th>Faixa</th>",
+        "<th>Estado</th>",
+        "<th>Score</th>",
+        "<th>Dist.</th>",
+        "<th>2 anos</th>",
+        "<th>Nom. 2 anos</th>",
+        "<th>Perfil</th>",
+    ]
+    for contest_value in selected_values:
+        contest_name = str(contest_lookup.get(contest_value, contest_value))
+        html.append(f"<th>{escape(contest_name[:22])}</th>")
+    html.extend(["</tr>", "</thead>", "<tbody>"])
+
+    for rank, (_, entity) in enumerate(top_entities.iterrows(), start=1):
+        student_name = str(entity.get("display_name", ""))
+        student_link = f"?view=Aluno&student={quote_plus(student_name)}"
+        html.extend(
+            [
+                "<tr>",
+                f'<td class="sticky-col acr-rank-col">{rank}</td>',
+                f'<td class="sticky-col-2"><a class="acr-student-link" href="{student_link}">{escape(student_name)}</a></td>',
+                f'<td style="background:{band_bg_color(str(entity.get("best_band", "")))};color:#182635;font-weight:700;">{escape(str(entity.get("best_band", "")))}</td>',
+                f'<td>{escape(str(entity.get("entity_status", "")))}</td>',
+                f'<td>{float(entity.get("entity_proximity_score", 0)):.1f}</td>',
+                f'<td>{escape(format_number(entity.get("best_delta_current")))}</td>',
+                f'<td>{escape(format_number(entity.get("recent_2y_contest_count")))}</td>',
+                f'<td>{escape(format_number(entity.get("recent_2y_named_count")))}</td>',
+                f'<td>{escape(str(entity.get("recency_profile", "")))}</td>',
+            ]
+        )
+
+        entity_rows = matrix_opps[matrix_opps["identity_key"] == entity["identity_key"]]
+        entity_by_contest = {str(row["contest_value"]): row for _, row in entity_rows.iterrows()}
+        for contest_value in selected_values:
+            row = entity_by_contest.get(str(contest_value))
+            if row is None:
+                html.append('<td style="background:#162231;color:#6f8296;">-</td>')
+                continue
+            cell_label = str(row.get("near_pass_band", ""))
+            cell_color = band_bg_color(cell_label)
+            contest_link = f"?view=Concurso&contest={quote_plus(str(contest_value))}"
+            ranking = escape(str(row.get("ranking_text", "")))
+            delta = escape(format_number(row.get("delta_to_last_named")))
+            html.append(
+                "<td>"
+                f'<a class="acr-contest-link" href="{contest_link}">'
+                f'<div class="acr-contest-cell" style="background:{cell_color};">'
+                f"{escape(cell_label)}"
+                f'<span class="acr-contest-sub">{ranking}</span>'
+                f'<span class="acr-contest-sub">Delta {delta}</span>'
+                "</div></a></td>"
+            )
+        html.append("</tr>")
+
+    html.extend(["</tbody>", "</table>", "</div>"])
+    st.markdown("### Ranking matrix")
+    st.markdown("Cada coluna de concurso mostra o melhor contexto atual daquele aluno nesse ranking. Clique no nome do aluno ou no bloco do concurso para navegar.")
+    st.markdown("".join(html), unsafe_allow_html=True)
+
+
 def main_entity_tab(
     prepared: dict[str, pd.DataFrame],
     entity_table: pd.DataFrame,
+    scored_opportunities: pd.DataFrame,
     ui_mode: str,
     filter_summary: list[str],
     selected_radar_columns: list[str],
@@ -676,11 +922,10 @@ def main_entity_tab(
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
     render_primary_metrics(prepared, entity_table)
+    render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
 
     left, right = st.columns([1.65, 1.35], gap="large")
     with left:
-        st.markdown("### Top alunos do recorte")
-        render_top_entity_cards(entity_table, limit=4 if ui_mode == "Simples" else 6)
         st.markdown("### Tabela do radar")
         radar_table(entity_table, ui_mode, selected_radar_columns)
     with right:
@@ -1242,6 +1487,7 @@ def roadmap_tab() -> None:
 
 def main() -> None:
     inject_styles()
+    sync_state_from_query_params()
     st.title("Scout dos proximos aprovados pela Base do Aprovado")
     st.caption("Radar para enxergar quem esta realmente chegando perto da aprovacao.")
     if not require_password():
@@ -1274,10 +1520,18 @@ def main() -> None:
         default=st.session_state.get("current_view", "Radar"),
         key="current_view",
     )
+    current_query_view = read_query_value("view")
+    if current_query_view != current_view:
+        st.query_params.clear()
+        st.query_params["view"] = current_view
+        if current_view == "Aluno" and st.session_state.get("selected_entity_name"):
+            st.query_params["student"] = st.session_state["selected_entity_name"]
+        if current_view == "Concurso" and st.session_state.get("selected_contest_value"):
+            st.query_params["contest"] = st.session_state["selected_contest_value"]
     st.markdown("</div>", unsafe_allow_html=True)
 
     if current_view == "Radar":
-        main_entity_tab(prepared, entity_table, ui_mode, filter_summary, selected_radar_columns)
+        main_entity_tab(prepared, entity_table, scored_opportunities, ui_mode, filter_summary, selected_radar_columns)
     elif current_view == "Aluno":
         entity_detail_tab(entity_table, scored_opportunities, ui_mode)
     elif current_view == "Concurso":
