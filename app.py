@@ -56,6 +56,10 @@ PROXIMITY_PRESETS = {
         "history_elsewhere": 1.2,
         "contest_count": 0.8,
         "nomination_link": 0.3,
+        "recent_activity": 0.9,
+        "recent_competitiveness": 1.5,
+        "recent_named_penalty": 3.2,
+        "stale_peak_penalty": 1.5,
         "already_named_penalty": 3.0,
     },
 }
@@ -150,6 +154,37 @@ def inject_styles() -> None:
             color: #60758a;
             font-size: 0.84rem;
         }
+        .acr-list-card {
+            padding: 0.85rem 0.95rem;
+            border-radius: 14px;
+            border: 1px solid #e4ebf3;
+            background: #fff;
+            margin-bottom: 0.6rem;
+        }
+        .acr-list-title {
+            font-weight: 700;
+            color: #162739;
+            margin-bottom: 0.18rem;
+        }
+        .acr-list-subtitle {
+            color: #61768a;
+            font-size: 0.88rem;
+            margin-bottom: 0.45rem;
+        }
+        .acr-badge {
+            display: inline-block;
+            padding: 0.2rem 0.52rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-right: 0.35rem;
+            margin-bottom: 0.28rem;
+            border: 1px solid transparent;
+        }
+        .acr-badge-hot { background: #fff0ea; color: #a24522; border-color: #f2c0ae; }
+        .acr-badge-warm { background: #fff6df; color: #8a5d00; border-color: #eed89d; }
+        .acr-badge-cool { background: #edf6ff; color: #24517a; border-color: #cfe1f4; }
+        .acr-badge-muted { background: #f3f5f7; color: #536473; border-color: #dce3e8; }
         </style>
         """,
         unsafe_allow_html=True,
@@ -227,6 +262,43 @@ def render_filter_chips(items: list[str]) -> None:
         return
     chips = "".join(f'<span class="acr-chip">{item}</span>' for item in items)
     st.markdown(f'<div class="acr-chip-row">{chips}</div>', unsafe_allow_html=True)
+
+
+def badge_class(label: str) -> str:
+    if label in {"Muito perto", "Acima do corte", "Ativo e competitivo"}:
+        return "acr-badge-hot"
+    if label in {"Perto", "Acompanhar"}:
+        return "acr-badge-warm"
+    if label in {"Pico antigo", "Ativo, mas sem sinal forte recente"}:
+        return "acr-badge-cool"
+    return "acr-badge-muted"
+
+
+def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
+    if entity_table.empty:
+        return
+    for _, row in entity_table.head(limit).iterrows():
+        badges = [
+            row.get("best_band", ""),
+            row.get("entity_status", ""),
+        ]
+        badge_html = "".join(
+            f'<span class="acr-badge {badge_class(label)}">{label}</span>'
+            for label in badges
+            if label
+        )
+        delta = format_number(row.get("best_delta_current"))
+        st.markdown(
+            f"""
+            <div class="acr-list-card">
+                <div class="acr-list-title">{row.get("display_name", "")}</div>
+                <div class="acr-list-subtitle">{row.get("best_contest_name", "")}</div>
+                <div>{badge_html}</div>
+                <div class="acr-list-subtitle">Distancia do corte: {delta} | Score: {row.get("entity_proximity_score", 0):.2f}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 
 def sidebar_controls(prepared: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, pd.DataFrame, str, str, list[str]]:
@@ -393,6 +465,7 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
     base_columns = [
         "display_name",
         "best_band",
+        "entity_status",
         "best_contest_name",
         "best_delta_current",
         "best_rank_percentile_current",
@@ -405,6 +478,9 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
         "strong_signal_count",
         "very_strong_signal_count",
         "alias_count",
+        "recent_2y_contest_count",
+        "recent_2y_named_count",
+        "recency_profile",
     ]
     columns = base_columns if ui_mode == "Simples" else base_columns + advanced_columns
 
@@ -417,6 +493,7 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
             "best_delta_current": st.column_config.NumberColumn("Dist. corte"),
             "best_rank_percentile_current": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
             "contest_count": st.column_config.NumberColumn("Concursos"),
+            "entity_status": st.column_config.TextColumn("Estado recente", width="medium"),
             "best_contest_name": st.column_config.TextColumn("Concurso principal", width="large"),
         },
     )
@@ -460,9 +537,7 @@ def main_entity_tab(
         st.plotly_chart(fig_band, use_container_width=True)
 
         st.markdown("#### Leitura rapida")
-        quick_read = entity_table.head(10)[["display_name", "best_contest_name", "best_band"]].copy()
-        quick_read.columns = ["Aluno", "Concurso principal", "Faixa"]
-        st.dataframe(quick_read, use_container_width=True, hide_index=True)
+        render_top_entity_cards(entity_table)
 
     if ui_mode == "Avancado":
         with st.expander("Ver grafico avancado de proximidade ao corte"):
@@ -498,7 +573,7 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
     cols[0].metric("Faixa principal", selected_entity.get("best_band", ""))
     cols[1].metric("Concurso principal", selected_entity.get("best_contest_name", ""))
     cols[2].metric("Dist. do corte", format_number(selected_entity.get("best_delta_current")))
-    cols[3].metric("Aliases", format_number(selected_entity.get("alias_count") or 1))
+    cols[3].metric("Estado recente", selected_entity.get("entity_status", ""))
 
     st.markdown(
         f"""
@@ -506,7 +581,8 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
             <strong>Leitura curta:</strong> {selected_entity.get("display_name", "")} aparece melhor em
             <strong>{selected_entity.get("best_contest_name", "")}</strong>, na faixa
             <strong>{selected_entity.get("best_band", "")}</strong>, com ranking
-            <strong>{selected_entity.get("best_ranking_text", "")}</strong>.
+            <strong>{selected_entity.get("best_ranking_text", "")}</strong>. Leitura temporal:
+            <strong>{selected_entity.get("recency_profile", "")}</strong>.
         </div>
         """,
         unsafe_allow_html=True,
@@ -518,11 +594,19 @@ def entity_detail_tab(entity_table: pd.DataFrame, scored_opportunities: pd.DataF
         with left:
             st.write(f"**Familias em que aparece:** {selected_entity.get('families', '')}")
             st.write(f"**Aliases:** {selected_entity.get('alias_names', '')}")
+            st.write(f"**Estado recente:** {selected_entity.get('entity_status', '')}")
+            st.write(f"**Perfil temporal:** {selected_entity.get('recency_profile', '')}")
+            st.write(f"**Ultimo ano visto:** {format_number(selected_entity.get('latest_seen_year'))}")
+            st.write(f"**Ultimo ano nomeado:** {format_number(selected_entity.get('latest_named_year'))}")
             st.write(
                 f"**Sinais fortes:** {int(selected_entity.get('strong_signal_count', 0) or 0)} | "
                 f"**Sinais muito fortes:** {int(selected_entity.get('very_strong_signal_count', 0) or 0)}"
             )
         with right:
+            st.write(f"**Concursos nos ultimos 2 anos:** {format_number(selected_entity.get('recent_2y_contest_count'))}")
+            st.write(f"**Nomeacoes nos ultimos 2 anos:** {format_number(selected_entity.get('recent_2y_named_count'))}")
+            st.write(f"**Melhor rank % recente:** {selected_entity.get('recent_2y_best_rank_percentile', 1):.2f}")
+            st.write(f"**Anos desde melhor resultado:** {format_number(selected_entity.get('years_since_best_result'))}")
             if pd.notna(selected_entity.get("score")):
                 st.caption(selected_entity.get("score_breakdown", ""))
             st.caption(selected_entity.get("best_proximity_breakdown", ""))

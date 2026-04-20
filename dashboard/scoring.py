@@ -25,6 +25,10 @@ DEFAULT_PROXIMITY_WEIGHTS = {
     "history_elsewhere": 0.9,
     "contest_count": 0.5,
     "nomination_link": 0.2,
+    "recent_activity": 0.8,
+    "recent_competitiveness": 1.2,
+    "recent_named_penalty": 2.8,
+    "stale_peak_penalty": 1.2,
     "already_named_penalty": 3.0,
 }
 
@@ -98,6 +102,13 @@ def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, f
     )
     scored["metric_contest_count"] = _log_norm(scored["contest_count"].fillna(0))
     scored["metric_nomination_link"] = scored["has_nomination_link"].astype(int)
+    scored["metric_recent_activity"] = _log_norm(scored["recent_2y_contest_count"].fillna(0))
+    scored["metric_recent_competitiveness"] = (
+        _log_norm(scored["recent_2y_top_50_count"].fillna(0)) * 0.6
+        + (1 - scored["recent_2y_best_rank_percentile"].clip(lower=0, upper=1).fillna(1)) * 0.4
+    )
+    scored["metric_recent_named_penalty"] = scored["recent_named_override"].astype(int)
+    scored["metric_stale_peak_penalty"] = scored["stale_peak_flag"].astype(int)
     scored["metric_already_named_penalty"] = scored["named"].astype(int)
 
     scored["proximity_score"] = (
@@ -107,6 +118,10 @@ def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, f
         + scored["metric_history_elsewhere"] * weights["history_elsewhere"]
         + scored["metric_contest_count"] * weights["contest_count"]
         + scored["metric_nomination_link"] * weights["nomination_link"]
+        + scored["metric_recent_activity"] * weights["recent_activity"]
+        + scored["metric_recent_competitiveness"] * weights["recent_competitiveness"]
+        - scored["metric_recent_named_penalty"] * weights["recent_named_penalty"]
+        - scored["metric_stale_peak_penalty"] * weights["stale_peak_penalty"]
         - scored["metric_already_named_penalty"] * weights["already_named_penalty"]
     )
 
@@ -116,6 +131,10 @@ def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, f
         + " | gap_inside=" + scored["metric_delta_to_last_inside"].round(2).astype(str)
         + " | hist=" + scored["metric_history_elsewhere"].round(2).astype(str)
         + " | contests=" + scored["metric_contest_count"].round(2).astype(str)
+        + " | recent_act=" + scored["metric_recent_activity"].round(2).astype(str)
+        + " | recent_comp=" + scored["metric_recent_competitiveness"].round(2).astype(str)
+        + " | recent_named_pen=" + scored["metric_recent_named_penalty"].round(2).astype(str)
+        + " | stale_peak_pen=" + scored["metric_stale_peak_penalty"].round(2).astype(str)
     )
 
     return scored.sort_values(

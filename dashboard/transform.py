@@ -3,6 +3,7 @@ from __future__ import annotations
 import math
 import re
 import unicodedata
+from datetime import datetime
 from typing import Iterable
 
 import pandas as pd
@@ -78,6 +79,14 @@ def quota_category(value: str) -> str:
     if match:
         return clean_text(match.group(1))
     return "Sem categoria"
+
+
+def _reference_year(series: pd.Series) -> int:
+    known = pd.to_numeric(series, errors="coerce").dropna()
+    current_year = datetime.now().year
+    if known.empty:
+        return current_year
+    return max(int(known.max()), current_year)
 
 
 def _apply_text_cleanup(df: pd.DataFrame, columns: Iterable[str]) -> pd.DataFrame:
@@ -191,6 +200,9 @@ def prepare_snapshot_data(frames: dict[str, pd.DataFrame]) -> dict[str, pd.DataF
 
 
 def build_student_table(candidates: pd.DataFrame) -> pd.DataFrame:
+    reference_year = _reference_year(candidates["contest_year"])
+    recent_2y_min = reference_year - 2 + 1
+    recent_3y_min = reference_year - 3 + 1
     grouped = candidates.groupby("identity_key", dropna=False)
 
     summary = grouped.agg(
@@ -240,12 +252,60 @@ def build_student_table(candidates: pd.DataFrame) -> pd.DataFrame:
         .apply(lambda series: " | ".join(series.dropna().astype(str).drop_duplicates().head(5)))
         .reset_index(name="alias_names")
     )
+    latest_years = (
+        candidates.groupby("identity_key")["contest_year"]
+        .max()
+        .reset_index(name="latest_seen_year")
+    )
+    latest_named_years = (
+        candidates[candidates["named"]]
+        .groupby("identity_key")["contest_year"]
+        .max()
+        .reset_index(name="latest_named_year")
+    )
+    recent_2y = candidates[candidates["contest_year"].fillna(-1).ge(recent_2y_min)]
+    recent_3y = candidates[candidates["contest_year"].fillna(-1).ge(recent_3y_min)]
+    recent_2y_summary = (
+        recent_2y.groupby("identity_key")
+        .agg(
+            recent_2y_contest_count=("contest_value", "count"),
+            recent_2y_unique_contest_count=("contest_value", "nunique"),
+            recent_2y_named_count=("named", "sum"),
+            recent_2y_inside_count=("inside_vacancies", "sum"),
+            recent_2y_top_50_count=("top_50", "sum"),
+            recent_2y_best_rank_percentile=("rank_percentile", "min"),
+        )
+        .reset_index()
+    )
+    recent_3y_summary = (
+        recent_3y.groupby("identity_key")
+        .agg(
+            recent_3y_contest_count=("contest_value", "count"),
+            recent_3y_top_100_count=("top_100", "sum"),
+        )
+        .reset_index()
+    )
+    best_rows = (
+        candidates.sort_values(
+            ["identity_key", "rank_percentile", "ranking_position", "contest_year"],
+            ascending=[True, True, True, False],
+            na_position="last",
+        )
+        .groupby("identity_key", as_index=False)
+        .first()[["identity_key", "contest_year", "contest_name"]]
+        .rename(columns={"contest_year": "best_result_year", "contest_name": "best_result_contest"})
+    )
 
     students = (
         summary.merge(sample_contests, on="identity_key", how="left")
         .merge(sample_families, on="identity_key", how="left")
         .merge(quota_mix, on="identity_key", how="left")
         .merge(alias_names, on="identity_key", how="left")
+        .merge(latest_years, on="identity_key", how="left")
+        .merge(latest_named_years, on="identity_key", how="left")
+        .merge(recent_2y_summary, on="identity_key", how="left")
+        .merge(recent_3y_summary, on="identity_key", how="left")
+        .merge(best_rows, on="identity_key", how="left")
     )
 
     students["best_rank"] = students["best_rank"].fillna(999999)
@@ -254,12 +314,61 @@ def build_student_table(candidates: pd.DataFrame) -> pd.DataFrame:
     students["median_rank_percentile"] = students["median_rank_percentile"].fillna(1.0)
     students["best_final_score"] = students["best_final_score"].fillna(0.0)
     students["average_final_score"] = students["average_final_score"].fillna(0.0)
+    for column in [
+        "recent_2y_contest_count",
+        "recent_2y_unique_contest_count",
+        "recent_2y_named_count",
+        "recent_2y_inside_count",
+        "recent_2y_top_50_count",
+        "recent_3y_contest_count",
+        "recent_3y_top_100_count",
+    ]:
+        students[column] = students.get(column, 0).fillna(0)
+    students["recent_2y_best_rank_percentile"] = students.get("recent_2y_best_rank_percentile", 1.0).fillna(1.0)
     students["has_named_history"] = students["named_count"].gt(0)
     students["has_inside_history"] = students["inside_vacancies_count"].gt(0)
     students["consistency_index"] = students["top_50_count"] * 2 + students["top_100_count"] + students["inside_vacancies_count"] * 3
     students["market_signal_index"] = (
         students["contest_count"] + students["other_results_total"] / 10.0 + students["named_in_other_contests_total"] * 2
     )
+    students["latest_seen_year"] = students["latest_seen_year"].fillna(0)
+    students["latest_named_year"] = students["latest_named_year"].fillna(0)
+    students["best_result_year"] = students["best_result_year"].fillna(0)
+    students["years_since_latest_seen"] = students["latest_seen_year"].map(
+        lambda value: reference_year - int(value) if value and value > 0 else 999
+    )
+    students["years_since_best_result"] = students["best_result_year"].map(
+        lambda value: reference_year - int(value) if value and value > 0 else 999
+    )
+    students["recent_named_override"] = students["recent_2y_named_count"].gt(0)
+    students["recent_activity_signal"] = students["recent_2y_contest_count"].ge(2)
+    students["recent_competitive_signal"] = (
+        students["recent_2y_top_50_count"].gt(0)
+        | students["recent_2y_best_rank_percentile"].fillna(1.0).le(0.1)
+    )
+    students["stale_peak_flag"] = (
+        students["years_since_best_result"].ge(4)
+        & students["recent_2y_contest_count"].gt(0)
+        & students["recent_2y_best_rank_percentile"].fillna(1.0).gt(0.2)
+    )
+    students["recency_profile"] = "Historico sem leitura recente"
+    students.loc[students["recent_named_override"], "recency_profile"] = "Nomeado recentemente"
+    students.loc[
+        ~students["recent_named_override"]
+        & students["recent_activity_signal"]
+        & students["recent_competitive_signal"],
+        "recency_profile",
+    ] = "Ativo e competitivo"
+    students.loc[
+        ~students["recent_named_override"] & students["stale_peak_flag"],
+        "recency_profile",
+    ] = "Pico antigo"
+    students.loc[
+        ~students["recent_named_override"]
+        & students["recent_activity_signal"]
+        & ~students["recent_competitive_signal"],
+        "recency_profile",
+    ] = "Ativo, mas sem sinal forte recente"
     return students.sort_values(
         ["contest_count", "named_count", "inside_vacancies_count", "best_rank"],
         ascending=[False, False, False, True],
@@ -299,6 +408,20 @@ def build_opportunity_table(candidates: pd.DataFrame, students: pd.DataFrame) ->
                 "inside_vacancies_count",
                 "other_results_total",
                 "alias_names",
+                "latest_seen_year",
+                "latest_named_year",
+                "recent_2y_contest_count",
+                "recent_2y_named_count",
+                "recent_2y_inside_count",
+                "recent_2y_top_50_count",
+                "recent_2y_best_rank_percentile",
+                "years_since_latest_seen",
+                "years_since_best_result",
+                "recent_named_override",
+                "recent_activity_signal",
+                "recent_competitive_signal",
+                "stale_peak_flag",
+                "recency_profile",
             ]
         ].rename(
             columns={
@@ -346,6 +469,10 @@ def build_opportunity_table(candidates: pd.DataFrame, students: pd.DataFrame) ->
     opportunities["student_inside_elsewhere"] = (
         opportunities["student_inside_total"].fillna(0) - opportunities["inside_vacancies"].astype(int)
     )
+    opportunities["recent_named_override"] = opportunities["recent_named_override"].fillna(False)
+    opportunities["recent_activity_signal"] = opportunities["recent_activity_signal"].fillna(False)
+    opportunities["recent_competitive_signal"] = opportunities["recent_competitive_signal"].fillna(False)
+    opportunities["stale_peak_flag"] = opportunities["stale_peak_flag"].fillna(False)
     return opportunities
 
 
@@ -386,6 +513,19 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
             best_delta_to_last_named=("delta_to_last_named", "min"),
             student_named_elsewhere_max=("student_named_elsewhere", "max"),
             student_inside_elsewhere_max=("student_inside_elsewhere", "max"),
+            latest_seen_year=("latest_seen_year", "max"),
+            latest_named_year=("latest_named_year", "max"),
+            recent_2y_contest_count=("recent_2y_contest_count", "max"),
+            recent_2y_named_count=("recent_2y_named_count", "max"),
+            recent_2y_top_50_count=("recent_2y_top_50_count", "max"),
+            recent_2y_best_rank_percentile=("recent_2y_best_rank_percentile", "min"),
+            years_since_latest_seen=("years_since_latest_seen", "min"),
+            years_since_best_result=("years_since_best_result", "min"),
+            recent_named_override=("recent_named_override", "max"),
+            recent_activity_signal=("recent_activity_signal", "max"),
+            recent_competitive_signal=("recent_competitive_signal", "max"),
+            stale_peak_flag=("stale_peak_flag", "max"),
+            recency_profile=("recency_profile", lambda s: s.dropna().astype(str).head(1).iloc[0] if not s.dropna().empty else ""),
         )
         .reset_index()
     )
@@ -432,9 +572,30 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
         + entity["very_strong_signal_count"].fillna(0) * 0.35
         + entity["strong_signal_count"].fillna(0) * 0.15
         + entity["recent_contest_count"].clip(upper=12).fillna(0) * 0.04
+        + entity["recent_2y_contest_count"].clip(upper=8).fillna(0) * 0.06
+        + entity["recent_2y_top_50_count"].clip(upper=5).fillna(0) * 0.08
+        - entity["recent_2y_named_count"].clip(upper=3).fillna(0) * 0.55
+        - entity["stale_peak_flag"].astype(int) * 0.45
     )
     entity["best_rank_percentile_any"] = entity["best_rank_percentile_any"].fillna(1.0)
     entity["best_delta_to_last_named"] = entity["best_delta_to_last_named"].fillna(999999)
+    entity["entity_status"] = "Acompanhar"
+    entity.loc[entity["recent_named_override"], "entity_status"] = "Ja nomeado recentemente"
+    entity.loc[
+        ~entity["recent_named_override"]
+        & entity["recent_activity_signal"]
+        & entity["recent_competitive_signal"],
+        "entity_status",
+    ] = "Ativo e competitivo"
+    entity.loc[
+        ~entity["recent_named_override"] & entity["stale_peak_flag"],
+        "entity_status",
+    ] = "Pico antigo"
+    entity["entity_reading"] = (
+        "Faixa=" + entity["best_band"].fillna("")
+        + " | status=" + entity["entity_status"].fillna("")
+        + " | recency=" + entity["recency_profile"].fillna("")
+    )
     return entity.sort_values(
         ["entity_proximity_score", "very_strong_signal_count", "strong_signal_count", "best_delta_to_last_named"],
         ascending=[False, False, False, True],
