@@ -173,10 +173,23 @@ def inject_styles() -> None:
             padding: 0.35rem;
             margin-top: 0.5rem;
         }
+        .acr-matrix-toolbar {
+            padding: 0.75rem 0.85rem 0.45rem 0.85rem;
+            border: 1px solid #dce6ef;
+            border-radius: 16px;
+            background: #fbfdff;
+            margin: 0.5rem 0 0.65rem 0;
+        }
+        .acr-matrix-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.35rem;
+        }
         table.acr-matrix {
             border-collapse: separate;
             border-spacing: 0;
-            min-width: 1120px;
+            min-width: 980px;
             width: 100%;
             color: #eef4fb;
             font-size: 0.82rem;
@@ -188,6 +201,9 @@ def inject_styles() -> None:
             border-bottom: 1px solid rgba(255,255,255,0.05);
             vertical-align: middle;
             white-space: nowrap;
+        }
+        .acr-matrix tbody tr:hover td {
+            background-color: rgba(255,255,255,0.035);
         }
         .acr-matrix thead th {
             position: sticky;
@@ -235,9 +251,9 @@ def inject_styles() -> None:
             text-decoration: underline;
         }
         .acr-contest-cell {
-            min-width: 124px;
+            min-width: 98px;
             border-radius: 12px;
-            padding: 0.42rem 0.5rem;
+            padding: 0.38rem 0.45rem;
             line-height: 1.15;
             text-align: left;
             color: #0f1722;
@@ -248,6 +264,10 @@ def inject_styles() -> None:
             font-size: 0.74rem;
             opacity: 0.95;
             margin-top: 0.12rem;
+        }
+        .acr-contest-compact {
+            min-width: 74px;
+            text-align: center;
         }
         .acr-nav {
             padding: 0.4rem 0 0.6rem 0;
@@ -565,6 +585,17 @@ def detail_card(label: str, value: str) -> str:
     )
 
 
+def compact_contest_label(value: str) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return "-"
+    tokens = text.split()
+    if len(tokens) <= 3 and len(text) <= 18:
+        return text
+    short = " ".join(tokens[:3])
+    return short[:18].strip()
+
+
 def top_controls(
     snapshot_ids: list[str],
     selected_snapshot: str,
@@ -797,37 +828,103 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         st.info("Sem dados suficientes para montar a matriz do ranking.")
         return
 
-    top_n_default = 12 if ui_mode == "Simples" else 20
-    top_n = st.slider("Alunos no ranking matrix", 8, 30, top_n_default, 1, key="matrix_top_n")
-    top_entities = entity_table.head(top_n).copy()
-    top_keys = top_entities["identity_key"].tolist()
-    top_opps = scored_opportunities[scored_opportunities["identity_key"].isin(top_keys)].copy()
+    st.markdown("### Ranking matrix")
+    st.markdown(
+        """
+        <div class="acr-note">
+            Use a matrix para comparar rapidamente os top alunos contra um conjunto pequeno de concursos relevantes.
+            Clique no nome do aluno para abrir o perfil e no bloco do concurso para abrir o detalhe daquele ranking.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    default_top_n = 10 if ui_mode == "Simples" else 16
+    default_contest_n = 5 if ui_mode == "Simples" else 7
+    toolbar_row = st.columns([0.9, 1.1, 1.2, 1.1, 1.4], gap="small")
+    top_n = toolbar_row[0].slider("Top alunos", 6, 30, default_top_n, 1, key="matrix_top_n")
+    sort_mode = toolbar_row[1].selectbox(
+        "Ordenar por",
+        ["Score", "Mais perto do corte", "Mais quentes"],
+        index=0,
+        key="matrix_sort",
+    )
+    cell_mode = toolbar_row[2].segmented_control(
+        "Visual",
+        ["Compacta", "Detalhada"],
+        default="Compacta" if ui_mode == "Simples" else "Detalhada",
+        key="matrix_cell_mode",
+    )
+    preset_mode = toolbar_row[3].selectbox(
+        "Concursos",
+        ["Mais relevantes", "Mais quentes", "Escolha manual"],
+        index=0,
+        key="matrix_preset",
+    )
+    student_search = toolbar_row[4].text_input(
+        "Buscar aluno na matrix",
+        value="",
+        key="matrix_student_search",
+        placeholder="Digite parte do nome",
+    )
+
+    working_entities = entity_table.copy()
+    if student_search.strip():
+        query = student_search.strip().lower()
+        working_entities = working_entities[working_entities["display_name"].str.lower().str.contains(query, na=False)]
+
+    if sort_mode == "Mais perto do corte":
+        working_entities = working_entities.sort_values(
+            ["best_delta_current", "entity_proximity_score"],
+            ascending=[True, False],
+            na_position="last",
+        )
+    elif sort_mode == "Mais quentes":
+        working_entities = working_entities.sort_values(
+            ["best_band", "entity_proximity_score"],
+            ascending=[True, False],
+            na_position="last",
+        )
+
+    top_entities = working_entities.head(top_n).copy()
+    if top_entities.empty:
+        st.info("Nenhum aluno encontrado para esse filtro de busca na matrix.")
+        return
+
+    selected_keys = top_entities["identity_key"].tolist()
+    matrix_scope = scored_opportunities[scored_opportunities["identity_key"].isin(selected_keys)].copy()
 
     contest_stats = (
-        top_opps.groupby(["contest_value", "contest_name"], dropna=False)
+        matrix_scope.groupby(["contest_value", "contest_name"], dropna=False)
         .agg(
             appearances=("identity_key", "nunique"),
             avg_score=("proximity_score", "mean"),
+            hot_count=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
         )
         .reset_index()
-        .sort_values(["appearances", "avg_score", "contest_name"], ascending=[False, False, True])
+        .sort_values(["appearances", "hot_count", "avg_score", "contest_name"], ascending=[False, False, False, True])
     )
-    default_contests = contest_stats.head(6 if ui_mode == "Simples" else 8)
+    if preset_mode == "Mais quentes":
+        contest_stats = contest_stats.sort_values(["hot_count", "avg_score", "appearances"], ascending=[False, False, False])
+    default_contests = contest_stats.head(default_contest_n)
     contest_options = contest_stats.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
     default_labels = default_contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).tolist()
-    selected_labels = st.multiselect(
-        "Concursos em coluna",
-        contest_options,
-        default=default_labels,
-        key="matrix_contests",
-        help="Escolha os concursos que viram colunas no ranking matrix.",
-    )
+    if preset_mode == "Escolha manual":
+        selected_labels = st.multiselect(
+            "Concursos em coluna",
+            contest_options,
+            default=default_labels,
+            key="matrix_contests",
+            help="Escolha os concursos que viram colunas no ranking matrix.",
+        )
+    else:
+        selected_labels = default_labels
     if not selected_labels:
         selected_labels = default_labels
     selected_values = [label.rsplit("[", 1)[-1].rstrip("]") for label in selected_labels]
 
     matrix_opps = (
-        top_opps[top_opps["contest_value"].astype(str).isin(selected_values)]
+        matrix_scope[matrix_scope["contest_value"].astype(str).isin(selected_values)]
         .sort_values(["identity_key", "proximity_score", "delta_to_last_named"], ascending=[True, False, True], na_position="last")
         .drop_duplicates(subset=["identity_key", "contest_value"], keep="first")
     )
@@ -838,6 +935,12 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         .set_index("contest_value")["contest_name"]
         .to_dict()
     )
+
+    legend = "".join(
+        f'<span class="acr-chip" style="background:{band_bg_color(label)};color:#1a2a3a;border-color:transparent;">{label}</span>'
+        for label in ["Acima do corte", "Muito perto", "Perto", "Monitorar"]
+    )
+    st.markdown(f'<div class="acr-matrix-legend">{legend}</div>', unsafe_allow_html=True)
 
     html = [
         '<div class="acr-matrix-wrap">',
@@ -862,7 +965,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
     ]
     for contest_value in selected_values:
         contest_name = str(contest_lookup.get(contest_value, contest_value))
-        html.append(f"<th>{escape(contest_name[:22])}</th>")
+        html.append(f'<th title="{escape(contest_name)}">{escape(compact_contest_label(contest_name))}</th>')
     html.extend(["</tr>", "</thead>", "<tbody>"])
 
     for rank, (_, entity) in enumerate(top_entities.iterrows(), start=1):
@@ -895,20 +998,28 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
             contest_link = f"?view=Concurso&contest={quote_plus(str(contest_value))}"
             ranking = escape(str(row.get("ranking_text", "")))
             delta = escape(format_number(row.get("delta_to_last_named")))
-            html.append(
-                "<td>"
-                f'<a class="acr-contest-link" href="{contest_link}">'
-                f'<div class="acr-contest-cell" style="background:{cell_color};">'
+            cell_class = "acr-contest-cell acr-contest-compact" if cell_mode == "Compacta" else "acr-contest-cell"
+            cell_body = (
                 f"{escape(cell_label)}"
                 f'<span class="acr-contest-sub">{ranking}</span>'
                 f'<span class="acr-contest-sub">Delta {delta}</span>'
+            )
+            if cell_mode == "Compacta":
+                cell_body = (
+                    f"{ranking}"
+                    f'<span class="acr-contest-sub">{escape(cell_label)}</span>'
+                    f'<span class="acr-contest-sub">D {delta}</span>'
+                )
+            html.append(
+                "<td>"
+                f'<a class="acr-contest-link" href="{contest_link}">'
+                f'<div class="{cell_class}" style="background:{cell_color};">'
+                f"{cell_body}"
                 "</div></a></td>"
             )
         html.append("</tr>")
 
     html.extend(["</tbody>", "</table>", "</div>"])
-    st.markdown("### Ranking matrix")
-    st.markdown("Cada coluna de concurso mostra o melhor contexto atual daquele aluno nesse ranking. Clique no nome do aluno ou no bloco do concurso para navegar.")
     st.markdown("".join(html), unsafe_allow_html=True)
 
 
