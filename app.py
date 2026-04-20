@@ -76,7 +76,7 @@ RADAR_COLUMN_OPTIONS = {
 }
 
 BAND_COLOR_MAP = {
-    "Acima do corte": "#6f8f61",
+    "Nas vagas": "#6f8f61",
     "Muito perto": "#a66a43",
     "Perto": "#c09a5b",
     "Monitorar": "#9b8f7a",
@@ -189,7 +189,7 @@ def inject_styles() -> None:
         .acr-radar tr:nth-child(even) td {
             background: rgba(247, 250, 252, 0.55);
         }
-        .acr-radar-row-acima-do-corte td {
+        .acr-radar-row-nas-vagas td {
             border-left: 3px solid #6f8f61;
         }
         .acr-radar-row-muito-perto td {
@@ -530,7 +530,7 @@ def band_count(entity_table: pd.DataFrame, band_name: str) -> int:
 
 def band_bg_color(label: str) -> str:
     mapping = {
-        "Acima do corte": "#dfe9d7",
+        "Nas vagas": "#dfe9d7",
         "Muito perto": "#eddccd",
         "Perto": "#f2e6cf",
         "Monitorar": "#ebe3d6",
@@ -569,7 +569,7 @@ def render_filter_chips(items: list[str]) -> None:
 
 
 def badge_class(label: str) -> str:
-    if label == "Acima do corte":
+    if label == "Nas vagas":
         return "acr-badge-very-hot"
     if label in {"Muito perto", "Ativo e competitivo"}:
         return "acr-badge-hot"
@@ -614,7 +614,7 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
         )
         delta = format_number(row.get("best_delta_current"))
         card_class = "acr-list-card"
-        if row.get("best_band") == "Acima do corte":
+        if row.get("best_band") == "Nas vagas":
             card_class += " acr-list-card-very-hot"
         elif row.get("best_band") == "Muito perto":
             card_class += " acr-list-card-hot"
@@ -845,7 +845,7 @@ def render_primary_metrics(prepared: dict[str, pd.DataFrame], entity_table: pd.D
             format_number(
                 band_count(entity_table, "Perto")
                 + band_count(entity_table, "Monitorar")
-                + band_count(entity_table, "Acima do corte")
+                + band_count(entity_table, "Nas vagas")
             ),
             "Perfis que ainda merecem acompanhamento, mesmo que nem todos sejam abordagem imediata.",
         ),
@@ -954,7 +954,7 @@ def render_band_context(entity_table: pd.DataFrame) -> None:
         st.info("Sem entidades para resumir no recorte atual.")
         return
 
-    order = ["Acima do corte", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"]
+    order = ["Nas vagas", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"]
     counts = (
         entity_table["best_band"]
         .fillna("Sem faixa")
@@ -992,7 +992,7 @@ def render_top_contests_panel(entity_table: pd.DataFrame, scored_opportunities: 
         .agg(
             alunos=("identity_key", "nunique"),
             media_score=("proximity_score", "mean"),
-            quentes=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
+            quentes=("near_pass_band", lambda s: s.isin(["Nas vagas", "Muito perto"]).sum()),
         )
         .reset_index()
         .sort_values(["quentes", "alunos", "media_score"], ascending=[False, False, False])
@@ -1034,7 +1034,7 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str, selected_radar_columns
     )
     selected_bands = toolbar[1].multiselect(
         "Faixas",
-        ["Acima do corte", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"],
+        ["Nas vagas", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"],
         default=[],
         key="radar_band_filter",
         help="Restringe o ranking detalhado a uma ou mais faixas de proximidade.",
@@ -1245,7 +1245,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         .agg(
             appearances=("identity_key", "nunique"),
             avg_score=("proximity_score", "mean"),
-            hot_count=("near_pass_band", lambda s: s.isin(["Acima do corte", "Muito perto"]).sum()),
+            hot_count=("near_pass_band", lambda s: s.isin(["Nas vagas", "Muito perto"]).sum()),
         )
         .reset_index()
         .sort_values(["contest_year", "hot_count", "avg_score", "appearances", "contest_name"], ascending=[False, False, False, False, True])
@@ -1279,7 +1279,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
 
     legend = "".join(
         f'<span class="acr-chip" style="background:{band_bg_color(label)};color:#1a2a3a;border-color:transparent;">{label}</span>'
-        for label in ["Acima do corte", "Muito perto", "Perto", "Monitorar"]
+        for label in ["Nas vagas", "Muito perto", "Perto", "Monitorar"]
     )
     st.markdown(f'<div class="acr-matrix-legend">{legend}</div>', unsafe_allow_html=True)
 
@@ -1375,10 +1375,11 @@ def main_entity_tab(
 ) -> None:
     st.subheader("Quem esta proximo de passar?")
     render_filter_chips(filter_summary)
+    render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
     st.markdown(
         """
         <div class="acr-note">
-            Leitura principal das faixas: <strong>Acima do corte</strong> significa que o aluno ja esta dentro das
+            Leitura principal das faixas: <strong>Nas vagas</strong> significa que o aluno ja esta dentro das
             vagas imediatas observadas. <strong>Ja nomeado</strong> so aparece quando existe marcacao explicita de nomeacao
             na base ou nos ajustes manuais.
         </div>
@@ -1386,40 +1387,6 @@ def main_entity_tab(
         unsafe_allow_html=True,
     )
     render_primary_metrics(prepared, entity_table)
-    st.markdown("### Destaques imediatos")
-    highlight_controls = st.columns([1.05, 0.95], gap="small")
-    highlight_limit = highlight_controls[0].slider(
-        "Quantos destaques mostrar",
-        4,
-        12,
-        6,
-        1,
-        key="highlight_limit",
-        help="Controla quantos alunos aparecem nos destaques quentes.",
-    )
-    highlight_mode = highlight_controls[1].selectbox(
-        "Destacar por",
-        ["Score calibrado", "Mais recentes", "Mais perto das vagas"],
-        index=0,
-        key="highlight_mode",
-        help="Escolhe o foco dos cards de destaque.",
-    )
-    highlight_entities = entity_table.copy()
-    if highlight_mode == "Mais recentes":
-        highlight_entities = highlight_entities.sort_values(
-            ["recent_2y_contest_count", "recent_2y_best_rank_percentile", "calibrated_radar_score"],
-            ascending=[False, True, False],
-            na_position="last",
-        )
-    elif highlight_mode == "Mais perto das vagas":
-        highlight_entities = highlight_entities.sort_values(
-            ["best_delta_current", "calibrated_radar_score"],
-            ascending=[True, False],
-            na_position="last",
-        )
-    render_top_entity_cards(highlight_entities, limit=highlight_limit)
-
-    render_ranking_matrix(entity_table, scored_opportunities, ui_mode)
 
     st.markdown("### Radar detalhado")
     st.markdown(

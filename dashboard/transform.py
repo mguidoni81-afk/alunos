@@ -473,7 +473,7 @@ def build_opportunity_table(candidates: pd.DataFrame, students: pd.DataFrame) ->
         opportunities["is_open_opportunity"]
         & (opportunities["inside_vacancies"] | opportunities["delta_to_immediate_vacancies"].le(0)),
         "near_pass_band",
-    ] = "Acima do corte"
+    ] = "Nas vagas"
     opportunities.loc[
         opportunities["is_open_opportunity"] & opportunities["delta_to_immediate_vacancies"].between(1, 30, inclusive="both"),
         "near_pass_band",
@@ -538,8 +538,15 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
         if column not in working.columns:
             working[column] = _series_or_default(working, column, default)
 
-    working["strong_signal"] = working["near_pass_band"].isin(["Acima do corte", "Muito perto", "Perto"])
-    working["very_strong_signal"] = working["near_pass_band"].isin(["Acima do corte", "Muito perto"])
+    working["is_inside_vacancies_signal"] = working["delta_to_immediate_vacancies"].le(0).fillna(False)
+    working["signal_priority"] = 2
+    working.loc[working["is_inside_vacancies_signal"], "signal_priority"] = 0
+    working.loc[
+        ~working["is_inside_vacancies_signal"] & working["delta_to_immediate_vacancies"].between(1, 999999, inclusive="both"),
+        "signal_priority",
+    ] = 1
+    working["strong_signal"] = working["near_pass_band"].isin(["Nas vagas", "Muito perto", "Perto"])
+    working["very_strong_signal"] = working["near_pass_band"].isin(["Nas vagas", "Muito perto"])
     working["open_signal"] = working["is_open_opportunity"].fillna(False)
 
     if "proximity_score" not in working.columns:
@@ -547,8 +554,8 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
 
     best_rows = (
         working.sort_values(
-            ["identity_key", "proximity_score", "delta_to_immediate_vacancies", "rank_percentile"],
-            ascending=[True, False, True, True],
+            ["identity_key", "signal_priority", "contest_year", "delta_to_immediate_vacancies", "proximity_score", "rank_percentile"],
+            ascending=[True, True, False, True, False, True],
             na_position="last",
         )
         .groupby("identity_key", as_index=False)
