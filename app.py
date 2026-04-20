@@ -7,6 +7,13 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from dashboard.adjustments_store import (
+    apply_manual_adjustments,
+    load_manual_years,
+    load_nomination_overrides,
+    upsert_manual_year,
+    upsert_nomination_override,
+)
 from dashboard.data_loader import discover_snapshots, load_all_snapshots_history, load_snapshot_frames
 from dashboard.scoring import (
     DEFAULT_PROXIMITY_WEIGHTS,
@@ -28,6 +35,8 @@ from dashboard.transform import (
 ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = ROOT / "output"
 SHORTLIST_PATH = ROOT / "dashboard_state" / "shortlist.csv"
+MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
+NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
 
 STUDENT_SCORE_PRESETS = {
     "Equilibrado": DEFAULT_WEIGHTS,
@@ -75,7 +84,7 @@ TIME_HORIZONS = {
 
 
 st.set_page_config(
-    page_title="Alunos Consultoria Ranking",
+    page_title="Scout dos proximos aprovados pela Base do Aprovado",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -202,6 +211,11 @@ def load_prepared_snapshot(snapshot_id: str) -> dict[str, pd.DataFrame]:
     snapshot = snapshots[snapshot_id]
     frames = load_snapshot_frames(snapshot)
     prepared = prepare_snapshot_data(frames)
+    prepared = apply_manual_adjustments(
+        prepared,
+        load_manual_years(MANUAL_YEAR_PATH),
+        load_nomination_overrides(NOMINATION_OVERRIDE_PATH),
+    )
     prepared["students"] = build_student_table(prepared["candidates"])
     prepared["opportunities"] = build_opportunity_table(prepared["candidates"], prepared["students"])
     prepared["quality"] = build_quality_tables(prepared["candidates"], prepared["contest_pages"])
@@ -790,6 +804,100 @@ def quality_tab(prepared: dict[str, pd.DataFrame]) -> None:
         )
 
 
+def adjustments_tab(prepared: dict[str, pd.DataFrame]) -> None:
+    st.subheader("Ajustes")
+    st.caption("Aqui ficam correcoes operacionais que alimentam o calculo do radar sem precisar editar os CSVs na mao.")
+
+    contest_pages = prepared["contest_pages"].copy()
+    manual_years = load_manual_years(MANUAL_YEAR_PATH)
+    nomination_overrides = load_nomination_overrides(NOMINATION_OVERRIDE_PATH)
+
+    year_tab, named_tab = st.tabs(["Ano manual dos concursos", "Indicador manual de nomeacoes"])
+
+    with year_tab:
+        st.markdown(
+            """
+            <div class="acr-note">
+                Liste os concursos sem ano detectado e salve o ano correto. Assim o horizonte temporal passa a filtrar melhor.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        missing_year = contest_pages[contest_pages["contest_year"].isna()][["contest_value", "contest_name"]].drop_duplicates()
+        st.write(f"**Concursos sem ano detectado:** {format_number(len(missing_year))}")
+        st.dataframe(missing_year.head(500), use_container_width=True, hide_index=True)
+
+        if not missing_year.empty:
+            options = missing_year.sort_values("contest_name").apply(
+                lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1
+            ).tolist()
+            selected_label = st.selectbox("Concurso para informar ano", options, key="manual_year_contest")
+            selected_row = missing_year.loc[
+                missing_year.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).eq(selected_label)
+            ].iloc[0]
+            with st.form("manual_year_form"):
+                manual_year = st.number_input("Ano do concurso", min_value=2000, max_value=2100, value=2025, step=1)
+                submitted_year = st.form_submit_button("Salvar ano manual")
+                if submitted_year:
+                    upsert_manual_year(
+                        MANUAL_YEAR_PATH,
+                        str(selected_row["contest_value"]),
+                        str(selected_row["contest_name"]),
+                        int(manual_year),
+                    )
+                    st.cache_data.clear()
+                    st.success("Ano manual salvo. Recarregue a pagina se quiser ver tudo imediatamente atualizado.")
+
+        st.markdown("#### Anos manuais ja cadastrados")
+        st.dataframe(manual_years.sort_values("updated_at", ascending=False), use_container_width=True, hide_index=True)
+
+    with named_tab:
+        st.markdown(
+            """
+            <div class="acr-note">
+                Defina manualmente o ultimo nomeado. Se voce informar 50, o sistema entende que as posicoes 1 a 50 estao nomeadas naquele concurso.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        options_df = contest_pages[["contest_value", "contest_name", "named_count", "contest_year"]].drop_duplicates()
+        option_labels = options_df.sort_values("contest_name").apply(
+            lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1
+        ).tolist()
+        selected_label = st.selectbox("Concurso para ajustar nomeacoes", option_labels, key="manual_named_contest")
+        selected_row = options_df.loc[
+            options_df.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).eq(selected_label)
+        ].iloc[0]
+
+        st.write(
+            f"**Concurso atual:** {selected_row['contest_name']} | "
+            f"**Ano:** {format_number(selected_row['contest_year'])} | "
+            f"**Nomeados marcados hoje:** {format_number(selected_row['named_count'])}"
+        )
+
+        contest_candidates = prepared["candidates"][prepared["candidates"]["contest_value"].astype(str).eq(str(selected_row["contest_value"]))].copy()
+        preview = contest_candidates[
+            ["ranking_position", "name", "ranking_text", "named"]
+        ].sort_values("ranking_position", na_position="last").head(80)
+        st.dataframe(preview, use_container_width=True, hide_index=True)
+
+        with st.form("nomination_override_form"):
+            last_named_position = st.number_input("Ultimo nomeado manual", min_value=1, max_value=10000, value=50, step=1)
+            submitted_named = st.form_submit_button("Salvar indicador de nomeacao")
+            if submitted_named:
+                upsert_nomination_override(
+                    NOMINATION_OVERRIDE_PATH,
+                    str(selected_row["contest_value"]),
+                    str(selected_row["contest_name"]),
+                    int(last_named_position),
+                )
+                st.cache_data.clear()
+                st.success("Indicador manual salvo. Recarregue a pagina se quiser ver o radar imediatamente atualizado.")
+
+        st.markdown("#### Indicadores manuais ja cadastrados")
+        st.dataframe(nomination_overrides.sort_values("updated_at", ascending=False), use_container_width=True, hide_index=True)
+
+
 def roadmap_tab() -> None:
     st.subheader("Proximo nivel")
     improvements = [
@@ -822,7 +930,7 @@ def roadmap_tab() -> None:
 
 def main() -> None:
     inject_styles()
-    st.title("Alunos Consultoria Ranking")
+    st.title("Scout dos proximos aprovados pela Base do Aprovado")
     st.caption("Pergunta central: quem esta proximo de passar?")
 
     snapshot_ids = list_snapshots()
@@ -836,7 +944,7 @@ def main() -> None:
     filtered_opportunities, filtered_students, proximity_preset, ui_mode, filter_summary = sidebar_controls(prepared)
     entity_table, scored_opportunities = compute_views(prepared, filtered_opportunities, filtered_students, proximity_preset)
 
-    tabs = st.tabs(["Radar Principal", "Aluno", "Timeline", "Operacao", "Qualidade", "Proximo Nivel"])
+    tabs = st.tabs(["Radar Principal", "Aluno", "Timeline", "Operacao", "Ajustes", "Qualidade", "Proximo Nivel"])
     with tabs[0]:
         main_entity_tab(prepared, entity_table, ui_mode, filter_summary)
     with tabs[1]:
@@ -846,8 +954,10 @@ def main() -> None:
     with tabs[3]:
         shortlist_tab(entity_table)
     with tabs[4]:
-        quality_tab(prepared)
+        adjustments_tab(prepared)
     with tabs[5]:
+        quality_tab(prepared)
+    with tabs[6]:
         roadmap_tab()
 
 

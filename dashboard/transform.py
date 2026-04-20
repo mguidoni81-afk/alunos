@@ -97,6 +97,12 @@ def _apply_text_cleanup(df: pd.DataFrame, columns: Iterable[str]) -> pd.DataFram
     return cleaned
 
 
+def _series_or_default(frame: pd.DataFrame, column: str, default: object) -> pd.Series:
+    if column in frame.columns:
+        return frame[column]
+    return pd.Series([default] * len(frame), index=frame.index)
+
+
 def prepare_snapshot_data(frames: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
     selector_contests = _apply_text_cleanup(
         frames["selector_contests"],
@@ -478,6 +484,42 @@ def build_opportunity_table(candidates: pd.DataFrame, students: pd.DataFrame) ->
 
 def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
     working = opportunities.copy()
+    defaults = {
+        "display_name": "",
+        "alias_names": "",
+        "families": "",
+        "alias_count": 1,
+        "contest_value": "",
+        "rank_percentile": 1.0,
+        "delta_to_last_named": pd.NA,
+        "student_named_elsewhere": 0,
+        "student_inside_elsewhere": 0,
+        "latest_seen_year": 0,
+        "latest_named_year": 0,
+        "recent_2y_contest_count": 0,
+        "recent_2y_named_count": 0,
+        "recent_2y_top_50_count": 0,
+        "recent_2y_best_rank_percentile": 1.0,
+        "years_since_latest_seen": 999,
+        "years_since_best_result": 999,
+        "recent_named_override": False,
+        "recent_activity_signal": False,
+        "recent_competitive_signal": False,
+        "stale_peak_flag": False,
+        "recency_profile": "",
+        "contest_name": "",
+        "contest_family": "",
+        "contest_year": 0,
+        "near_pass_band": "",
+        "ranking_text": "",
+        "ranking_position": pd.NA,
+        "delta_to_last_inside": pd.NA,
+        "proximity_breakdown": "",
+    }
+    for column, default in defaults.items():
+        if column not in working.columns:
+            working[column] = _series_or_default(working, column, default)
+
     working["strong_signal"] = working["near_pass_band"].isin(["Acima do corte", "Muito perto", "Perto"])
     working["very_strong_signal"] = working["near_pass_band"].isin(["Acima do corte", "Muito perto"])
     working["open_signal"] = working["is_open_opportunity"].fillna(False)
