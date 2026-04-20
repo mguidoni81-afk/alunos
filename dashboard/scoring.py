@@ -43,6 +43,12 @@ def _log_norm(series: pd.Series) -> pd.Series:
     return series.fillna(0).map(lambda value: math.log1p(value) / math.log1p(max_value))
 
 
+def _series_or_default(frame: pd.DataFrame, column: str, default: float | int | bool = 0) -> pd.Series:
+    if column in frame.columns:
+        return frame[column]
+    return pd.Series([default] * len(frame), index=frame.index)
+
+
 def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) -> pd.DataFrame:
     scored = students.copy()
     scored["metric_contest_count"] = _log_norm(scored["contest_count"])
@@ -85,31 +91,45 @@ def compute_student_scores(students: pd.DataFrame, weights: dict[str, float]) ->
 
 def compute_opportunity_scores(opportunities: pd.DataFrame, weights: dict[str, float]) -> pd.DataFrame:
     scored = opportunities.copy()
-    scored["metric_rank_percentile"] = 1 - scored["rank_percentile"].clip(lower=0, upper=1).fillna(1)
+    rank_percentile = _series_or_default(scored, "rank_percentile", 1.0)
+    delta_to_last_named = _series_or_default(scored, "delta_to_last_named", pd.NA)
+    delta_to_last_inside = _series_or_default(scored, "delta_to_last_inside", pd.NA)
+    student_named_elsewhere = _series_or_default(scored, "student_named_elsewhere", 0)
+    student_inside_elsewhere = _series_or_default(scored, "student_inside_elsewhere", 0)
+    contest_count = _series_or_default(scored, "contest_count", 0)
+    has_nomination_link = _series_or_default(scored, "has_nomination_link", False)
+    recent_2y_contest_count = _series_or_default(scored, "recent_2y_contest_count", 0)
+    recent_2y_top_50_count = _series_or_default(scored, "recent_2y_top_50_count", 0)
+    recent_2y_best_rank_percentile = _series_or_default(scored, "recent_2y_best_rank_percentile", 1.0)
+    recent_named_override = _series_or_default(scored, "recent_named_override", False)
+    stale_peak_flag = _series_or_default(scored, "stale_peak_flag", False)
+    named = _series_or_default(scored, "named", False)
 
-    positive_named_gap = scored["delta_to_last_named"].where(scored["delta_to_last_named"] > 0)
+    scored["metric_rank_percentile"] = 1 - rank_percentile.clip(lower=0, upper=1).fillna(1)
+
+    positive_named_gap = delta_to_last_named.where(delta_to_last_named > 0)
     scored["metric_delta_to_last_named"] = 1 - (positive_named_gap.fillna(9999).clip(upper=100) / 100.0)
-    scored.loc[scored["delta_to_last_named"].le(0), "metric_delta_to_last_named"] = 1.0
+    scored.loc[delta_to_last_named.le(0).fillna(False), "metric_delta_to_last_named"] = 1.0
     scored["metric_delta_to_last_named"] = scored["metric_delta_to_last_named"].clip(lower=0, upper=1)
 
-    positive_inside_gap = scored["delta_to_last_inside"].where(scored["delta_to_last_inside"] > 0)
+    positive_inside_gap = delta_to_last_inside.where(delta_to_last_inside > 0)
     scored["metric_delta_to_last_inside"] = 1 - (positive_inside_gap.fillna(9999).clip(upper=50) / 50.0)
-    scored.loc[scored["delta_to_last_inside"].le(0), "metric_delta_to_last_inside"] = 1.0
+    scored.loc[delta_to_last_inside.le(0).fillna(False), "metric_delta_to_last_inside"] = 1.0
     scored["metric_delta_to_last_inside"] = scored["metric_delta_to_last_inside"].clip(lower=0, upper=1)
 
     scored["metric_history_elsewhere"] = _log_norm(
-        scored["student_named_elsewhere"].fillna(0) + scored["student_inside_elsewhere"].fillna(0)
+        student_named_elsewhere.fillna(0) + student_inside_elsewhere.fillna(0)
     )
-    scored["metric_contest_count"] = _log_norm(scored["contest_count"].fillna(0))
-    scored["metric_nomination_link"] = scored["has_nomination_link"].astype(int)
-    scored["metric_recent_activity"] = _log_norm(scored["recent_2y_contest_count"].fillna(0))
+    scored["metric_contest_count"] = _log_norm(contest_count.fillna(0))
+    scored["metric_nomination_link"] = has_nomination_link.astype(int)
+    scored["metric_recent_activity"] = _log_norm(recent_2y_contest_count.fillna(0))
     scored["metric_recent_competitiveness"] = (
-        _log_norm(scored["recent_2y_top_50_count"].fillna(0)) * 0.6
-        + (1 - scored["recent_2y_best_rank_percentile"].clip(lower=0, upper=1).fillna(1)) * 0.4
+        _log_norm(recent_2y_top_50_count.fillna(0)) * 0.6
+        + (1 - recent_2y_best_rank_percentile.clip(lower=0, upper=1).fillna(1)) * 0.4
     )
-    scored["metric_recent_named_penalty"] = scored["recent_named_override"].astype(int)
-    scored["metric_stale_peak_penalty"] = scored["stale_peak_flag"].astype(int)
-    scored["metric_already_named_penalty"] = scored["named"].astype(int)
+    scored["metric_recent_named_penalty"] = recent_named_override.astype(int)
+    scored["metric_stale_peak_penalty"] = stale_peak_flag.astype(int)
+    scored["metric_already_named_penalty"] = named.astype(int)
 
     scored["proximity_score"] = (
         scored["metric_rank_percentile"] * weights["rank_percentile"]
