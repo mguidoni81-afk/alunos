@@ -489,6 +489,15 @@ def load_score_calibration(snapshot_id: str, candidates: pd.DataFrame) -> dict[s
     return calibrate_student_score_weights(candidates)
 
 
+def ensure_opportunity_columns(opportunities: pd.DataFrame) -> pd.DataFrame:
+    fixed = opportunities.copy()
+    if "delta_to_immediate_vacancies" not in fixed.columns:
+        inside_gap = fixed["delta_to_last_inside"] if "delta_to_last_inside" in fixed.columns else pd.Series(pd.NA, index=fixed.index)
+        named_gap = fixed["delta_to_last_named"] if "delta_to_last_named" in fixed.columns else pd.Series(pd.NA, index=fixed.index)
+        fixed["delta_to_immediate_vacancies"] = inside_gap.where(inside_gap.notna(), named_gap)
+    return fixed
+
+
 def apply_time_horizon(
     opportunities: pd.DataFrame,
     horizon_years: int | None,
@@ -657,7 +666,7 @@ def top_controls(
     selected_snapshot: str,
     prepared: dict[str, pd.DataFrame],
 ) -> tuple[str, pd.DataFrame, pd.DataFrame, str, str, list[str], list[str]]:
-    opportunities = prepared["opportunities"]
+    opportunities = ensure_opportunity_columns(prepared["opportunities"])
     students = prepared["students"]
     available_years = sorted(
         {int(year) for year in opportunities["contest_year"].dropna().astype(int).tolist()},
