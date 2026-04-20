@@ -40,6 +40,7 @@ SHORTLIST_PATH = ROOT / "dashboard_state" / "shortlist.csv"
 MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
 NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
 APP_PASSWORD = "flamengo"
+APP_BUILD = "build 2026-04-20 / 11873da"
 
 STUDENT_SCORE_PRESETS = {
     "Equilibrado": DEFAULT_WEIGHTS,
@@ -1490,6 +1491,7 @@ def main() -> None:
     sync_state_from_query_params()
     st.title("Scout dos proximos aprovados pela Base do Aprovado")
     st.caption("Radar para enxergar quem esta realmente chegando perto da aprovacao.")
+    st.caption(APP_BUILD)
     if not require_password():
         return
 
