@@ -1881,7 +1881,9 @@ def adjustments_tab(prepared: dict[str, pd.DataFrame]) -> None:
     st.caption("Aqui ficam correcoes operacionais que alimentam o calculo do radar sem precisar editar os CSVs na mao.")
 
     contest_pages = prepared["contest_pages"].copy()
+    seed_manual_years = pd.read_csv(SEED_MANUAL_YEAR_PATH) if SEED_MANUAL_YEAR_PATH.exists() else pd.DataFrame()
     manual_years = load_manual_years(MANUAL_YEAR_PATH)
+    effective_manual_years = pd.concat([seed_manual_years, manual_years], ignore_index=True, sort=False)
     nomination_overrides = load_nomination_overrides(NOMINATION_OVERRIDE_PATH)
 
     year_tab, named_tab = st.tabs(["Ano manual dos concursos", "Indicador manual de nomeacoes"])
@@ -1895,30 +1897,52 @@ def adjustments_tab(prepared: dict[str, pd.DataFrame]) -> None:
             """,
             unsafe_allow_html=True,
         )
+        all_contests = contest_pages[["contest_value", "contest_name", "contest_year"]].drop_duplicates().copy()
+        effective_year_lookup = (
+            effective_manual_years.dropna(subset=["contest_name"])
+            .drop_duplicates(subset=["contest_value", "contest_name"], keep="last")
+            [["contest_value", "contest_name", "manual_year"]]
+            .rename(columns={"manual_year": "manual_year_saved"})
+        )
+        all_contests = all_contests.merge(effective_year_lookup, on=["contest_value", "contest_name"], how="left")
+        all_contests["current_year"] = all_contests["manual_year_saved"].fillna(all_contests["contest_year"])
+        all_contests["year_source"] = "Inferido da base"
+        all_contests.loc[all_contests["manual_year_saved"].notna(), "year_source"] = "Manual"
+
         missing_year = contest_pages[contest_pages["contest_year"].isna()][["contest_value", "contest_name"]].drop_duplicates()
         st.write(f"**Concursos sem ano detectado:** {format_number(len(missing_year))}")
         st.dataframe(missing_year.head(500), use_container_width=True, hide_index=True)
 
-        if not missing_year.empty:
-            options = missing_year.sort_values("contest_name").apply(
-                lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1
-            ).tolist()
-            selected_label = st.selectbox("Concurso para informar ano", options, key="manual_year_contest")
-            selected_row = missing_year.loc[
-                missing_year.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).eq(selected_label)
-            ].iloc[0]
-            with st.form("manual_year_form"):
-                manual_year = st.number_input("Ano do concurso", min_value=2000, max_value=2100, value=2025, step=1)
-                submitted_year = st.form_submit_button("Salvar ano manual")
-                if submitted_year:
-                    upsert_manual_year(
-                        MANUAL_YEAR_PATH,
-                        str(selected_row["contest_value"]),
-                        str(selected_row["contest_name"]),
-                        int(manual_year),
-                    )
-                    st.cache_data.clear()
-                    st.success("Ano manual salvo. Recarregue a pagina se quiser ver tudo imediatamente atualizado.")
+        options = all_contests.sort_values(["contest_name", "contest_value"]).apply(
+            lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1
+        ).tolist()
+        selected_label = st.selectbox(
+            "Concurso para corrigir ano",
+            options,
+            key="manual_year_contest",
+            help="Permite corrigir o ano mesmo quando a base ja inferiu algum valor.",
+        )
+        selected_row = all_contests.loc[
+            all_contests.apply(lambda row: f"{row['contest_name']} [{row['contest_value']}]", axis=1).eq(selected_label)
+        ].iloc[0]
+        st.write(
+            f"**Concurso atual:** {selected_row['contest_name']} | "
+            f"**Ano em uso:** {format_number(selected_row['current_year'])} | "
+            f"**Origem:** {selected_row['year_source']}"
+        )
+        with st.form("manual_year_form"):
+            default_year = int(selected_row["current_year"]) if pd.notna(selected_row["current_year"]) else 2025
+            manual_year = st.number_input("Ano do concurso", min_value=2000, max_value=2100, value=default_year, step=1)
+            submitted_year = st.form_submit_button("Salvar ano manual")
+            if submitted_year:
+                upsert_manual_year(
+                    MANUAL_YEAR_PATH,
+                    str(selected_row["contest_value"]),
+                    str(selected_row["contest_name"]),
+                    int(manual_year),
+                )
+                st.cache_data.clear()
+                st.success("Ano manual salvo. Recarregue a pagina se quiser ver tudo imediatamente atualizado.")
 
         st.markdown("#### Anos manuais ja cadastrados")
         st.dataframe(manual_years.sort_values("updated_at", ascending=False), use_container_width=True, hide_index=True)
