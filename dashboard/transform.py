@@ -12,6 +12,22 @@ import pandas as pd
 MOJIBAKE_MARKERS = ("Ã", "Â", "�")
 NAME_STOPWORDS = {"de", "da", "do", "das", "dos", "e"}
 
+BAND_NAS_VAGAS = "Dentro do corte"
+BAND_QUASE_VARIOS = "Quase em vários"
+BAND_MUITO_PERTO = "Muito perto"
+BAND_PERTO = "Perto"
+BAND_FORTE_SINAL = "Forte sinal"
+BAND_MONITORAR = "Monitorar"
+BAND_NOMEADO = "Já nomeado"
+
+OPEN_SIGNAL_BANDS = (
+    BAND_NAS_VAGAS,
+    BAND_MUITO_PERTO,
+    BAND_PERTO,
+    BAND_FORTE_SINAL,
+)
+VERY_STRONG_BANDS = (BAND_NAS_VAGAS, BAND_MUITO_PERTO)
+
 
 def fix_mojibake(value: object) -> object:
     if not isinstance(value, str):
@@ -30,6 +46,11 @@ def clean_text(value: object) -> str:
         return ""
     value = fix_mojibake(str(value))
     return re.sub(r"\s+", " ", value).strip()
+
+
+def has_unfixed_mojibake(value: object) -> bool:
+    text = clean_text(value)
+    return bool(re.search(r"(?:Ã[ƒ‚‡§©‰ªº¡¢£]|Â|�|ï¿½)", text))
 
 
 def normalize_name(value: str) -> str:
@@ -467,27 +488,27 @@ def build_opportunity_table(candidates: pd.DataFrame, students: pd.DataFrame) ->
     opportunities["is_open_opportunity"] = ~opportunities["named"]
     opportunities["is_near_named_cutoff"] = opportunities["delta_to_last_named"].between(1, 30, inclusive="both")
     opportunities["is_near_inside_cutoff"] = opportunities["delta_to_immediate_vacancies"].between(1, 20, inclusive="both")
-    opportunities["near_pass_band"] = "Monitorar"
-    opportunities.loc[opportunities["named"], "near_pass_band"] = "Já nomeado"
+    opportunities["near_pass_band"] = BAND_MONITORAR
+    opportunities.loc[opportunities["named"], "near_pass_band"] = BAND_NOMEADO
     opportunities.loc[
         opportunities["is_open_opportunity"]
         & (opportunities["inside_vacancies"] | opportunities["delta_to_immediate_vacancies"].le(0)),
         "near_pass_band",
-    ] = "Nas vagas"
+    ] = BAND_NAS_VAGAS
     opportunities.loc[
         opportunities["is_open_opportunity"] & opportunities["delta_to_immediate_vacancies"].between(1, 30, inclusive="both"),
         "near_pass_band",
-    ] = "Perto"
+    ] = BAND_PERTO
     opportunities.loc[
         opportunities["is_open_opportunity"] & opportunities["delta_to_immediate_vacancies"].between(1, 10, inclusive="both"),
         "near_pass_band",
-    ] = "Muito perto"
+    ] = BAND_MUITO_PERTO
     opportunities.loc[
         opportunities["is_open_opportunity"]
         & opportunities["delta_to_last_named"].isna()
         & opportunities["rank_percentile"].fillna(1).le(0.05),
         "near_pass_band",
-    ] = "Forte sinal"
+    ] = BAND_FORTE_SINAL
     opportunities["student_named_elsewhere"] = opportunities["student_named_total"].fillna(0) - opportunities["named"].astype(int)
     opportunities["student_inside_elsewhere"] = (
         opportunities["student_inside_total"].fillna(0) - opportunities["inside_vacancies"].astype(int)
@@ -545,8 +566,8 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
         ~working["is_inside_vacancies_signal"] & working["delta_to_immediate_vacancies"].between(1, 999999, inclusive="both"),
         "signal_priority",
     ] = 1
-    working["strong_signal"] = working["near_pass_band"].isin(["Nas vagas", "Muito perto", "Perto"])
-    working["very_strong_signal"] = working["near_pass_band"].isin(["Nas vagas", "Muito perto"])
+    working["strong_signal"] = working["near_pass_band"].isin((BAND_NAS_VAGAS, BAND_MUITO_PERTO, BAND_PERTO))
+    working["very_strong_signal"] = working["near_pass_band"].isin(VERY_STRONG_BANDS)
     working["open_signal"] = working["is_open_opportunity"].fillna(False)
 
     if "proximity_score" not in working.columns:
@@ -649,7 +670,7 @@ def build_entity_proximity_table(opportunities: pd.DataFrame) -> pd.DataFrame:
     entity["best_rank_percentile_any"] = entity["best_rank_percentile_any"].fillna(1.0)
     entity["best_delta_to_last_named"] = entity["best_delta_to_last_named"].fillna(999999)
     entity["entity_status"] = "Acompanhar"
-    entity.loc[entity["recent_named_override"], "entity_status"] = "Ja nomeado recentemente"
+    entity.loc[entity["recent_named_override"], "entity_status"] = "Já nomeado recentemente"
     entity.loc[
         ~entity["recent_named_override"]
         & entity["recent_activity_signal"]
@@ -701,10 +722,12 @@ def prepare_history_frames(frames: dict[str, pd.DataFrame]) -> dict[str, pd.Data
 
 
 def build_quality_tables(candidates: pd.DataFrame, contest_pages: pd.DataFrame) -> dict[str, pd.DataFrame]:
-    suspicious_names = candidates[
-        candidates["name"].str.contains("Ã|Â|�", regex=True, na=False)
-        | candidates["contest_name"].str.contains("Ã|Â|�", regex=True, na=False)
-    ][["contest_name", "name", "ranking_text"]].drop_duplicates()
+    suspicious_mask = (
+        candidates["name"].map(has_unfixed_mojibake)
+        | candidates["contest_name"].map(has_unfixed_mojibake)
+        | candidates["ranking_text"].map(has_unfixed_mojibake)
+    )
+    suspicious_names = candidates.loc[suspicious_mask, ["contest_name", "name", "ranking_text"]].drop_duplicates()
 
     repeated_exact = (
         candidates.groupby("name")

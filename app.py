@@ -20,6 +20,27 @@ from dashboard.calibration import (
     blend_entity_with_student_backtest,
     calibrate_student_score_weights,
 )
+from dashboard.cockpit import (
+    ANALYSIS_MODES,
+    ANALYSIS_QUASE_VARIOS,
+    CONTEST_SIGNAL_INSIDE_CUTOFF,
+    CONTEST_SIGNAL_MONITOR,
+    CONTEST_SIGNAL_NEAR_10,
+    CONTEST_SIGNAL_NEAR_30,
+    CONTEST_SIGNAL_STRONG_TOP,
+    CockpitFilters,
+    STUDENT_STATE_CLOSE,
+    STUDENT_STATE_INSIDE_CUTOFF,
+    STUDENT_STATE_MONITOR,
+    STUDENT_STATE_RECURRENT,
+    STUDENT_STATE_RECENT_NAMED,
+    STUDENT_STATE_STALE,
+    STUDENT_STATE_STRONG_WITHOUT_CUTOFF,
+    STUDENT_STATE_VERY_CLOSE,
+    build_cockpit_model,
+    discover_legacy_sources,
+    format_gap,
+)
 from dashboard.data_loader import discover_snapshots, load_all_snapshots_history, load_snapshot_frames
 from dashboard.scoring import (
     DEFAULT_PROXIMITY_WEIGHTS,
@@ -29,6 +50,13 @@ from dashboard.scoring import (
 )
 from dashboard.shortlist_store import load_shortlist, upsert_shortlist
 from dashboard.transform import (
+    BAND_FORTE_SINAL,
+    BAND_MONITORAR,
+    BAND_MUITO_PERTO,
+    BAND_NAS_VAGAS,
+    BAND_NOMEADO,
+    BAND_PERTO,
+    BAND_QUASE_VARIOS,
     build_entity_proximity_table,
     build_opportunity_table,
     build_quality_tables,
@@ -44,7 +72,7 @@ SHORTLIST_PATH = ROOT / "dashboard_state" / "shortlist.csv"
 MANUAL_YEAR_PATH = ROOT / "dashboard_state" / "manual_contest_years.csv"
 NOMINATION_OVERRIDE_PATH = ROOT / "dashboard_state" / "nomination_overrides.csv"
 SEED_MANUAL_YEAR_PATH = ROOT / "dashboard" / "manual_contest_years_seed.csv"
-APP_BUILD = "build 2026-04-20 / calibrated-score-radar-polish"
+APP_BUILD = "build 2026-04-21 / integrated-ranking-evidence"
 
 PROXIMITY_PRESET_NAME = "Quem esta mais perto"
 PROXIMITY_PRESETS = {
@@ -75,12 +103,13 @@ RADAR_COLUMN_OPTIONS = {
 }
 
 BAND_COLOR_MAP = {
-    "Nas vagas": "#6f8f61",
-    "Muito perto": "#a66a43",
-    "Perto": "#c09a5b",
-    "Monitorar": "#9b8f7a",
-    "Forte sinal": "#8d9a67",
-    "Ja nomeado": "#a79e95",
+    BAND_QUASE_VARIOS: "#b85835",
+    BAND_NAS_VAGAS: "#5f8a68",
+    BAND_MUITO_PERTO: "#a66a43",
+    BAND_PERTO: "#c09a5b",
+    BAND_FORTE_SINAL: "#8d9a67",
+    BAND_MONITORAR: "#9b8f7a",
+    BAND_NOMEADO: "#a79e95",
     "Sem faixa": "#d8d0c6",
 }
 
@@ -438,6 +467,107 @@ def inject_styles() -> None:
             background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
             margin: 2rem auto 0 auto;
         }
+        .acr-legend-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            align-items: center;
+            padding: 0.55rem 0.65rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: #475569;
+            font-size: 0.84rem;
+            margin: 0.35rem 0 0.8rem 0;
+        }
+        .acr-ranking-table {
+            width: 100%;
+            min-width: 1120px;
+            border-collapse: collapse;
+            color: #1f2937;
+        }
+        .acr-ranking-table th,
+        .acr-ranking-table td {
+            padding: 0.62rem 0.7rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+            font-size: 0.84rem;
+        }
+        .acr-ranking-table th {
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .acr-student-cell {
+            min-width: 210px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .acr-muted-text {
+            color: #64748b;
+            font-size: 0.78rem;
+            margin-top: 0.15rem;
+        }
+        .acr-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            border-radius: 999px;
+            padding: 0.22rem 0.52rem;
+            border: 1px solid transparent;
+            font-size: 0.76rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .acr-state-recurrent { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+        .acr-state-inside { background: #ecfdf5; color: #166534; border-color: #bbf7d0; }
+        .acr-state-very-close { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+        .acr-state-close { background: #eef2ff; color: #3730a3; border-color: #c7d2fe; }
+        .acr-state-strong { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+        .acr-state-stale { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+        .acr-state-monitor { background: #f8fafc; color: #64748b; border-color: #e2e8f0; }
+        .acr-evidence-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            max-width: 520px;
+        }
+        .acr-evidence-chip {
+            border-radius: 8px;
+            padding: 0.38rem 0.45rem;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            min-width: 116px;
+            line-height: 1.16;
+        }
+        .acr-evidence-title {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 0.76rem;
+        }
+        .acr-evidence-meta {
+            color: #64748b;
+            font-size: 0.72rem;
+            margin-top: 0.12rem;
+        }
+        .acr-signal-inside { border-color: #bbf7d0; background: #f0fdf4; }
+        .acr-signal-near10 { border-color: #fed7aa; background: #fff7ed; }
+        .acr-signal-near30 { border-color: #fde68a; background: #fffbeb; }
+        .acr-signal-top { border-color: #bfdbfe; background: #eff6ff; }
+        .acr-signal-monitor { border-color: #e2e8f0; background: #f8fafc; }
+        .acr-detail-panel {
+            padding: 0.8rem 0.9rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #ffffff;
+            margin-top: 0.7rem;
+        }
         </style>
         """,
         unsafe_allow_html=True,
@@ -462,7 +592,7 @@ def load_prepared_snapshot(snapshot_id: str) -> dict[str, pd.DataFrame]:
         manual_years,
         load_nomination_overrides(NOMINATION_OVERRIDE_PATH),
     )
-    prepared["students"] = build_student_table(prepared["candidates"])
+    prepared["students"] = build_student_table(prepared["candidates"], lightweight=True)
     prepared["opportunities"] = build_opportunity_table(prepared["candidates"], prepared["students"])
     prepared["quality"] = build_quality_tables(prepared["candidates"], prepared["contest_pages"])
     return prepared
@@ -540,12 +670,13 @@ def band_count(entity_table: pd.DataFrame, band_name: str) -> int:
 
 def band_bg_color(label: str) -> str:
     mapping = {
-        "Nas vagas": "#dfe9d7",
-        "Muito perto": "#eddccd",
-        "Perto": "#f2e6cf",
-        "Monitorar": "#ebe3d6",
-        "Forte sinal": "#e5ead8",
-        "Ja nomeado": "#ece7e1",
+        BAND_QUASE_VARIOS: "#f5d0c2",
+        BAND_NAS_VAGAS: "#dfe9d7",
+        BAND_MUITO_PERTO: "#eddccd",
+        BAND_PERTO: "#f2e6cf",
+        BAND_MONITORAR: "#ebe3d6",
+        BAND_FORTE_SINAL: "#e5ead8",
+        BAND_NOMEADO: "#ece7e1",
     }
     return mapping.get(label, "#edf2f6")
 
@@ -578,16 +709,212 @@ def render_filter_chips(items: list[str]) -> None:
     st.markdown(f'<div class="acr-chip-row">{chips}</div>', unsafe_allow_html=True)
 
 
+def compact_panel(label: str):
+    if hasattr(st, "popover"):
+        try:
+            return st.popover(label, use_container_width=True)
+        except TypeError:
+            return st.popover(label)
+    return st.expander(label, expanded=False)
+
+
+def render_contest_coverage_panel(model: dict[str, pd.DataFrame]) -> None:
+    coverage = model.get("coverage_summary", pd.DataFrame())
+    if coverage.empty:
+        st.info("Nenhum concurso ficou abrangido pelos filtros atuais.")
+        return
+
+    total_contests = len(coverage)
+    visible_contests = int(coverage["alunos_no_ranking"].gt(0).sum()) if "alunos_no_ranking" in coverage.columns else 0
+    after_filter_contests = int(coverage["alunos_apos_filtros"].gt(0).sum()) if "alunos_apos_filtros" in coverage.columns else 0
+
+    cols = st.columns([0.33, 0.67], gap="small")
+    with cols[0]:
+        with compact_panel(f"Concursos abrangidos ({total_contests})"):
+            st.caption(
+                "Escopo = anos/familias/concursos/busca. Apos filtros = rank %, gap, nomeados e atividade. No ranking = alunos que passaram tambem pelo modo de analise."
+            )
+            controls = st.columns([1.4, 1.0, 1.0], gap="small")
+            query = controls[0].text_input(
+                "Buscar concurso",
+                value="",
+                key="coverage_contest_search",
+                placeholder="Ex.: SEFAZ SP 2025",
+            )
+            only_ranking = controls[1].toggle("So no ranking", value=False, key="coverage_only_ranking")
+            only_narrowed = controls[2].toggle("Com corte", value=False, key="coverage_only_narrowed")
+
+            working = coverage.copy()
+            if query.strip():
+                query_lower = query.strip().lower()
+                working = working[
+                    working["contest_name"].astype(str).str.lower().str.contains(query_lower, regex=False, na=False)
+                    | working["contest_value"].astype(str).str.lower().str.contains(query_lower, regex=False, na=False)
+                ]
+            if only_ranking:
+                working = working[working["alunos_no_ranking"].gt(0)]
+            if only_narrowed:
+                working = working[
+                    working["alunos_cortados_pelos_filtros"].gt(0)
+                    | working["alunos_fora_do_ranking"].gt(0)
+                ]
+
+            if working.empty:
+                st.info("Nenhum concurso encontrado dentro desse recorte.")
+                return
+
+            summary_cols = st.columns(3, gap="small")
+            summary_cols[0].metric("No escopo", format_number(len(working)))
+            summary_cols[1].metric("Apos filtros", format_number(int(working["alunos_apos_filtros"].sum())))
+            summary_cols[2].metric("No ranking", format_number(int(working["alunos_no_ranking"].sum())))
+
+            view = working.copy()
+            view["menor_gap"] = view["menor_gap_apos_filtros"].map(format_gap)
+            display_columns = [
+                "contest_name",
+                "contest_year",
+                "contest_family",
+                "candidates_count",
+                "teto_rank_percentual",
+                "alunos_no_escopo",
+                "alunos_apos_filtros",
+                "alunos_no_ranking",
+                "quase_apos_filtros",
+                "dentro_do_corte_apos_filtros",
+                "menor_gap",
+                "leitura_do_recorte",
+            ]
+            st.dataframe(
+                view[[column for column in display_columns if column in view.columns]].head(500),
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "contest_name": st.column_config.TextColumn("Concurso", width="large"),
+                    "contest_year": st.column_config.NumberColumn("Ano", format="%d"),
+                    "contest_family": st.column_config.TextColumn("Familia"),
+                    "candidates_count": st.column_config.NumberColumn("Candidatos base"),
+                    "teto_rank_percentual": st.column_config.NumberColumn("Teto Rank %"),
+                    "alunos_no_escopo": st.column_config.NumberColumn("Alunos no escopo"),
+                    "alunos_apos_filtros": st.column_config.NumberColumn("Apos filtros"),
+                    "alunos_no_ranking": st.column_config.NumberColumn("No ranking"),
+                    "quase_apos_filtros": st.column_config.NumberColumn("Quase"),
+                    "dentro_do_corte_apos_filtros": st.column_config.NumberColumn("Dentro corte"),
+                    "menor_gap": st.column_config.TextColumn("Menor gap"),
+                    "leitura_do_recorte": st.column_config.TextColumn("Diagnostico", width="large"),
+                },
+            )
+    with cols[1]:
+        st.caption(
+            f"{format_number(total_contests)} concursos no escopo; "
+            f"{format_number(after_filter_contests)} ainda tem alunos apos filtros; "
+            f"{format_number(visible_contests)} contribuem com o ranking visivel."
+        )
+
+
 def badge_class(label: str) -> str:
-    if label == "Nas vagas":
+    if label in {BAND_QUASE_VARIOS, BAND_NAS_VAGAS}:
         return "acr-badge-very-hot"
-    if label in {"Muito perto", "Ativo e competitivo"}:
+    if label in {BAND_MUITO_PERTO, "Ativo e competitivo"}:
         return "acr-badge-hot"
-    if label in {"Perto", "Acompanhar"}:
+    if label in {BAND_PERTO, "Acompanhar"}:
         return "acr-badge-warm"
     if label in {"Pico antigo", "Ativo, mas sem sinal forte recente"}:
         return "acr-badge-cool"
     return "acr-badge-muted"
+
+
+def state_class(label: str) -> str:
+    mapping = {
+        STUDENT_STATE_RECURRENT: "acr-state-recurrent",
+        STUDENT_STATE_INSIDE_CUTOFF: "acr-state-inside",
+        STUDENT_STATE_VERY_CLOSE: "acr-state-very-close",
+        STUDENT_STATE_CLOSE: "acr-state-close",
+        STUDENT_STATE_STRONG_WITHOUT_CUTOFF: "acr-state-strong",
+        STUDENT_STATE_RECENT_NAMED: "acr-state-stale",
+        STUDENT_STATE_STALE: "acr-state-stale",
+        STUDENT_STATE_MONITOR: "acr-state-monitor",
+    }
+    return mapping.get(label, "acr-state-monitor")
+
+
+def signal_class(label: str) -> str:
+    mapping = {
+        CONTEST_SIGNAL_INSIDE_CUTOFF: "acr-signal-inside",
+        CONTEST_SIGNAL_NEAR_10: "acr-signal-near10",
+        CONTEST_SIGNAL_NEAR_30: "acr-signal-near30",
+        CONTEST_SIGNAL_STRONG_TOP: "acr-signal-top",
+        CONTEST_SIGNAL_MONITOR: "acr-signal-monitor",
+    }
+    return mapping.get(label, "acr-signal-monitor")
+
+
+def format_percent(value: object) -> str:
+    if value is None or pd.isna(value):
+        return "N/A"
+    return f"{float(value) * 100:.1f}%"
+
+
+def sort_evidence_rows(rows: pd.DataFrame, mode: str) -> pd.DataFrame:
+    if rows.empty:
+        return rows
+    working = rows.copy()
+    if mode == "Ano":
+        return working.sort_values(
+            ["contest_year", "contest_signal_rank", "proximity_score"],
+            ascending=[False, True, False],
+            na_position="last",
+        )
+    if mode == "Família":
+        return working.sort_values(
+            ["contest_family", "contest_signal_rank", "proximity_score", "contest_year"],
+            ascending=[True, True, False, False],
+            na_position="last",
+        )
+    if mode == "Concurso":
+        return working.sort_values(
+            ["contest_name", "contest_signal_rank", "proximity_score"],
+            ascending=[True, True, False],
+            na_position="last",
+        )
+    return working.sort_values(
+        ["contest_signal_rank", "proximity_score", "delta_to_immediate_vacancies", "contest_year"],
+        ascending=[True, False, True, False],
+        na_position="last",
+    )
+
+
+def render_evidence_chips(rows: pd.DataFrame, limit: int, sort_mode: str) -> str:
+    if rows.empty:
+        return '<span class="acr-muted-text">Sem evidências no recorte</span>'
+    ordered = sort_evidence_rows(rows, sort_mode).head(limit)
+    chips: list[str] = ['<div class="acr-evidence-list">']
+    for _, row in ordered.iterrows():
+        contest_name = compact_contest_label(str(row.get("contest_name", "")))
+        year = format_number(row.get("contest_year"))
+        signal = str(row.get("contest_signal", CONTEST_SIGNAL_MONITOR))
+        ranking = escape(str(row.get("ranking_text", "")))
+        gap = escape(format_gap(row.get("delta_to_immediate_vacancies")))
+        chips.append(
+            f'<div class="acr-evidence-chip {signal_class(signal)}" title="{escape(str(row.get("contest_name", "")))}">'
+            f'<div class="acr-evidence-title">{escape(contest_name)}</div>'
+            f'<div class="acr-evidence-meta">{escape(year)} · {ranking} · {gap}</div>'
+            f'<div class="acr-evidence-meta">{escape(signal)}</div>'
+            "</div>"
+        )
+    if len(rows) > limit:
+        chips.append(f'<span class="acr-pill acr-state-monitor">+{len(rows) - limit}</span>')
+    chips.append("</div>")
+    return "".join(chips)
+
+
+def summarize_history(rows: pd.DataFrame) -> str:
+    if rows.empty:
+        return ""
+    years = rows["contest_year"].dropna().astype(int).value_counts().sort_index(ascending=False)
+    families = rows["contest_family"].dropna().astype(str).value_counts().head(3)
+    year_text = ", ".join(f"{year}: {count}" for year, count in years.head(4).items())
+    family_text = ", ".join(f"{family}: {count}" for family, count in families.items())
+    return f"Anos {year_text} | Famílias {family_text}"
 
 
 def open_entity_view(display_name: str) -> None:
@@ -624,9 +951,9 @@ def render_top_entity_cards(entity_table: pd.DataFrame, limit: int = 6) -> None:
         )
         delta = format_number(row.get("best_delta_current"))
         card_class = "acr-list-card"
-        if row.get("best_band") == "Nas vagas":
+        if row.get("best_band") == BAND_NAS_VAGAS:
             card_class += " acr-list-card-very-hot"
-        elif row.get("best_band") == "Muito perto":
+        elif row.get("best_band") == BAND_MUITO_PERTO:
             card_class += " acr-list-card-hot"
         st.markdown(
             f"""
@@ -846,15 +1173,15 @@ def render_primary_metrics(prepared: dict[str, pd.DataFrame], entity_table: pd.D
         ),
         (
             "Muito perto",
-            format_number(band_count(entity_table, "Muito perto")),
+            format_number(band_count(entity_table, BAND_MUITO_PERTO)),
             "Perfis mais quentes do recorte atual, ja muito proximos das vagas imediatas observadas.",
         ),
         (
             "Monitorar",
             format_number(
-                band_count(entity_table, "Perto")
-                + band_count(entity_table, "Monitorar")
-                + band_count(entity_table, "Nas vagas")
+                band_count(entity_table, BAND_PERTO)
+                + band_count(entity_table, BAND_MONITORAR)
+                + band_count(entity_table, BAND_NAS_VAGAS)
             ),
             "Perfis que ainda merecem acompanhamento, mesmo que nem todos sejam abordagem imediata.",
         ),
@@ -963,7 +1290,7 @@ def render_band_context(entity_table: pd.DataFrame) -> None:
         st.info("Sem entidades para resumir no recorte atual.")
         return
 
-    order = ["Nas vagas", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"]
+    order = [BAND_QUASE_VARIOS, BAND_NAS_VAGAS, BAND_MUITO_PERTO, BAND_PERTO, BAND_FORTE_SINAL, BAND_MONITORAR, BAND_NOMEADO]
     counts = (
         entity_table["best_band"]
         .fillna("Sem faixa")
@@ -1001,7 +1328,7 @@ def render_top_contests_panel(entity_table: pd.DataFrame, scored_opportunities: 
         .agg(
             alunos=("identity_key", "nunique"),
             media_score=("proximity_score", "mean"),
-            quentes=("near_pass_band", lambda s: s.isin(["Nas vagas", "Muito perto"]).sum()),
+            quentes=("near_pass_band", lambda s: s.isin([BAND_NAS_VAGAS, BAND_MUITO_PERTO]).sum()),
         )
         .reset_index()
         .sort_values(["quentes", "alunos", "media_score"], ascending=[False, False, False])
@@ -1048,7 +1375,7 @@ def radar_table(entity_table: pd.DataFrame, ui_mode: str) -> None:
     )
     selected_bands = toolbar[1].multiselect(
         "Faixas",
-        ["Nas vagas", "Muito perto", "Perto", "Monitorar", "Forte sinal", "Ja nomeado"],
+        [BAND_NAS_VAGAS, BAND_MUITO_PERTO, BAND_PERTO, BAND_MONITORAR, BAND_FORTE_SINAL, BAND_NOMEADO],
         default=[],
         key="radar_band_filter",
         help="Restringe o ranking detalhado a uma ou mais faixas de proximidade.",
@@ -1175,11 +1502,11 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         st.info("Sem dados suficientes para montar a matriz do ranking.")
         return
 
-    st.markdown("### Ranking matrix")
+    st.markdown("### Matriz aluno x concurso")
     st.markdown(
         """
         <div class="acr-note">
-            Use a matrix para comparar rapidamente os top alunos contra um conjunto pequeno de concursos relevantes.
+            Use a matriz para comparar rapidamente os top alunos contra um conjunto pequeno de concursos relevantes.
             Clique no nome do aluno para abrir o perfil e no bloco do concurso para abrir o detalhe daquele ranking.
             Quando a coluna de vagas ficar negativa, isso quer dizer que o aluno esta dentro das vagas imediatas observadas.
         </div>
@@ -1207,7 +1534,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         30,
         5,
         key="matrix_top_n",
-        help="Define quantos alunos entram na matrix comparativa.",
+        help="Define quantos alunos entram na matriz comparativa.",
     )
     sort_primary = toolbar_row[1].selectbox(
         "Ordenacao principal",
@@ -1230,14 +1557,14 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         key="matrix_cell_mode",
     )
     matrix_years = toolbar_row[4].multiselect(
-        "Anos da matrix",
+        "Anos da matriz",
         available_years,
         default=default_matrix_years,
         key="matrix_years",
         help="Primeiro escolha os anos; depois a lista de concursos abaixo mostra apenas esses anos.",
     )
     student_search = toolbar_row[5].text_input(
-        "Buscar aluno na matrix",
+        "Buscar aluno na matriz",
         value="",
         key="matrix_student_search",
         placeholder="Digite parte do nome",
@@ -1261,7 +1588,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
 
     top_entities = working_entities.head(top_n).copy()
     if top_entities.empty:
-        st.info("Nenhum aluno encontrado para esse filtro de busca na matrix.")
+        st.info("Nenhum aluno encontrado para esse filtro de busca na matriz.")
         return
 
     selected_keys = top_entities["identity_key"].tolist()
@@ -1269,7 +1596,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
     if matrix_years:
         matrix_scope = matrix_scope[matrix_scope["contest_year"].fillna(-1).astype(int).isin(matrix_years)]
     if matrix_scope.empty:
-        st.info("Nenhum concurso aparece na matrix para os anos escolhidos.")
+        st.info("Nenhum concurso aparece na matriz para os anos escolhidos.")
         return
 
     contest_stats = (
@@ -1277,7 +1604,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
         .agg(
             appearances=("identity_key", "nunique"),
             avg_score=("proximity_score", "mean"),
-            hot_count=("near_pass_band", lambda s: s.isin(["Nas vagas", "Muito perto"]).sum()),
+            hot_count=("near_pass_band", lambda s: s.isin([BAND_NAS_VAGAS, BAND_MUITO_PERTO]).sum()),
         )
         .reset_index()
         .sort_values(["contest_year", "hot_count", "avg_score", "appearances", "contest_name"], ascending=[False, False, False, False, True])
@@ -1294,15 +1621,15 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
     current_selected = [label for label in current_selected if label in valid_options]
     if not current_selected:
         current_selected = default_labels
+    st.session_state["matrix_contests"] = current_selected
     if previous_signature != matrix_year_signature:
         st.session_state["matrix_contests_year_signature"] = matrix_year_signature
-        st.session_state["matrix_contests"] = current_selected
     selected_labels = st.multiselect(
         "Concursos em coluna",
         contest_options,
-        default=st.session_state.get("matrix_contests", default_labels),
+        default=current_selected,
         key="matrix_contests",
-        help="Depois de escolher os anos, selecione quais concursos viram colunas na matrix.",
+        help="Depois de escolher os anos, selecione quais concursos viram colunas na matriz.",
     )
     if not selected_labels:
         selected_labels = default_labels
@@ -1323,7 +1650,7 @@ def render_ranking_matrix(entity_table: pd.DataFrame, scored_opportunities: pd.D
 
     legend = "".join(
         f'<span class="acr-chip" style="background:{band_bg_color(label)};color:#1a2a3a;border-color:transparent;">{label}</span>'
-        for label in ["Nas vagas", "Muito perto", "Perto", "Monitorar"]
+        for label in [BAND_NAS_VAGAS, BAND_MUITO_PERTO, BAND_PERTO, BAND_MONITORAR]
     )
     st.markdown(f'<div class="acr-matrix-legend">{legend}</div>', unsafe_allow_html=True)
 
@@ -1422,7 +1749,7 @@ def main_entity_tab(
         """
         <div class="acr-note">
             Leitura principal das faixas: <strong>Nas vagas</strong> significa que o aluno ja esta dentro das
-            vagas imediatas observadas. <strong>Ja nomeado</strong> so aparece quando existe marcacao explicita de nomeacao
+            vagas imediatas observadas. <strong>Já nomeado</strong> só aparece quando existe marcação explícita de nomeação
             na base ou nos ajustes manuais.
         </div>
         """,
@@ -1436,7 +1763,7 @@ def main_entity_tab(
         <div class="acr-note">
             Melhorias ativas no radar detalhado: busca por aluno, filtro por faixa, ordenacao customizavel,
             limite de linhas e colunas extras personalizaveis. Esses controles ficam juntos aqui embaixo para nao
-            competir com a matrix. O ranking mistura a proximidade atual com o score
+            competir com a matriz. O ranking mistura a proximidade atual com o score
             calibrado pelo historico, reduzindo o peso de picos antigos sem sustentacao recente.
         </div>
         """,
@@ -1998,8 +2325,8 @@ def contest_listing_tab(prepared: dict[str, pd.DataFrame], scored_opportunities:
         .agg(
             alunos_no_recorte=("identity_key", "nunique"),
             linhas_no_recorte=("contest_value", "count"),
-            quentes=("near_pass_band", lambda s: s.isin(["Nas vagas", "Muito perto"]).sum()),
-            nas_vagas=("near_pass_band", lambda s: s.eq("Nas vagas").sum()),
+            quentes=("near_pass_band", lambda s: s.isin([BAND_NAS_VAGAS, BAND_MUITO_PERTO]).sum()),
+            nas_vagas=("near_pass_band", lambda s: s.eq(BAND_NAS_VAGAS).sum()),
             melhor_delta_vagas=("delta_to_immediate_vacancies", "min"),
             nomeados_no_recorte=("named", "sum"),
         )
@@ -2120,11 +2447,585 @@ def roadmap_tab() -> None:
             st.write(body)
 
 
+def cockpit_controls(
+    snapshot_ids: list[str],
+    selected_snapshot: str,
+    prepared: dict[str, pd.DataFrame],
+) -> tuple[str, CockpitFilters, list[str]]:
+    opportunities = ensure_opportunity_columns(prepared["opportunities"])
+    available_years = sorted(
+        {int(year) for year in opportunities["contest_year"].dropna().astype(int).tolist()},
+        reverse=True,
+    )
+    available_families = sorted(opportunities["contest_family"].dropna().astype(str).unique().tolist())
+    st.markdown('<div class="acr-toolbar">', unsafe_allow_html=True)
+    row1 = st.columns([1.15, 1.25, 0.9, 0.9, 0.9], gap="small")
+    selected_snapshot_new = row1[0].selectbox(
+        "Base",
+        snapshot_ids,
+        index=snapshot_ids.index(selected_snapshot),
+        help="Coleta canônica usada no cockpit.",
+    )
+    analysis_mode = row1[1].segmented_control(
+        "Modo",
+        list(ANALYSIS_MODES),
+        default=st.session_state.get("cockpit_analysis_mode", ANALYSIS_QUASE_VARIOS),
+        help="Quase em vários é o padrão para achar quem aparece perto em mais de um concurso.",
+    )
+    max_rank_percentile = row1[2].slider(
+        "Rank % max",
+        0.01,
+        1.0,
+        float(st.session_state.get("cockpit_rank_percentile", 0.20)),
+        0.01,
+        help="Corta colocações pouco competitivas.",
+    )
+    max_gap = row1[3].slider(
+        "Gap max",
+        0,
+        500,
+        int(st.session_state.get("cockpit_max_gap", 100)),
+        1,
+        help="Gap máximo para o corte de vagas/nomeação observado.",
+    )
+    min_near_contests = row1[4].slider(
+        "Mín. recorrência",
+        1,
+        6,
+        int(st.session_state.get("cockpit_min_near", 2)),
+        1,
+        help="Quantidade mínima de concursos perto do corte para entrar como quase em vários.",
+    )
+
+    row2 = st.columns([0.95, 1.25, 1.0, 1.55, 1.0], gap="small")
+    window_mode = row2[0].selectbox(
+        "Janela",
+        ["Últimos 2 anos", "Últimos 3 anos", "Todos os anos", "Personalizada"],
+        index=1,
+        key="cockpit_window_mode",
+        help="Controla o horizonte sem alargar o ranking.",
+    )
+    if window_mode == "Últimos 2 anos":
+        default_years = available_years[:2]
+    elif window_mode == "Últimos 3 anos":
+        default_years = available_years[:3]
+    elif window_mode == "Todos os anos":
+        default_years = available_years
+    else:
+        stored_years = st.session_state.get("cockpit_years", available_years[:3])
+        default_years = [year for year in stored_years if year in available_years] or available_years[:3]
+    selected_years = row2[1].multiselect(
+        "Anos",
+        available_years,
+        default=default_years,
+        help="Usa os anos já corrigidos por ajustes manuais.",
+    )
+    stored_families = st.session_state.get("cockpit_families", [])
+    if not isinstance(stored_families, list):
+        stored_families = []
+    stored_families = [family for family in stored_families if family in available_families]
+    selected_families = row2[2].multiselect(
+        "Famílias",
+        available_families,
+        default=stored_families,
+        help="Filtra famílias como SEFAZ, ISS, RFB.",
+    )
+    contest_option_scope = opportunities.copy()
+    if selected_years:
+        contest_option_scope = contest_option_scope[
+            contest_option_scope["contest_year"].fillna(-1).astype(int).isin([int(year) for year in selected_years])
+        ]
+    if selected_families:
+        contest_option_scope = contest_option_scope[
+            contest_option_scope["contest_family"].astype(str).isin([str(family) for family in selected_families])
+        ]
+    contest_options = (
+        contest_option_scope[["contest_value", "contest_name", "contest_year"]]
+        .drop_duplicates()
+        .sort_values(["contest_year", "contest_name"], ascending=[False, True], na_position="last")
+    )
+    contest_labels = contest_options.apply(
+        lambda row: f"{row['contest_name']} - {format_number(row['contest_year'])} [{row['contest_value']}]",
+        axis=1,
+    ).tolist()
+    contest_value_by_label = {
+        label: str(value)
+        for label, value in zip(contest_labels, contest_options["contest_value"].astype(str).tolist())
+    }
+    stored_contests = st.session_state.get("cockpit_contests", [])
+    if not isinstance(stored_contests, list):
+        stored_contests = []
+    stored_contests = [label for label in stored_contests if label in contest_value_by_label]
+    selected_contest_labels = row2[3].multiselect(
+        "Concursos",
+        contest_labels,
+        default=stored_contests,
+        help="Opcional: restringe o cockpit a concursos específicos.",
+    )
+    search_text = row2[4].text_input(
+        "Buscar",
+        value=st.session_state.get("cockpit_search", ""),
+        placeholder="Aluno ou concurso",
+    )
+
+    row3 = st.columns([0.9, 0.95, 1.05, 2.2], gap="small")
+    exclude_named = row3[0].toggle(
+        "Excluir nomeados",
+        value=bool(st.session_state.get("cockpit_exclude_named", True)),
+        help="Padrão operacional: tirar quem já aparece como nomeado.",
+    )
+    show_inside_open = row3[1].toggle(
+        "Incluir dentro do corte",
+        value=bool(st.session_state.get("cockpit_show_inside", True)),
+        help="Mantém alunos com algum resultado dentro do corte, sem transformar isso em estado dominante.",
+    )
+    only_recent_active = row3[2].toggle(
+        "Somente ativos recentes",
+        value=bool(st.session_state.get("cockpit_recent_only", True)),
+        help="Usa os últimos 2 anos disponíveis na base, não o ano do sistema.",
+    )
+    row3[3].caption(
+        "O ranking separa estado do aluno, sinais por concurso e evidências. Dentro do corte é sinal de concurso, não faixa global."
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    st.session_state["cockpit_analysis_mode"] = analysis_mode
+    st.session_state["cockpit_rank_percentile"] = max_rank_percentile
+    st.session_state["cockpit_max_gap"] = max_gap
+    st.session_state["cockpit_min_near"] = min_near_contests
+    st.session_state["cockpit_years"] = selected_years
+    st.session_state["cockpit_families"] = selected_families
+    st.session_state["cockpit_contests"] = selected_contest_labels
+    st.session_state["cockpit_search"] = search_text
+    st.session_state["cockpit_exclude_named"] = exclude_named
+    st.session_state["cockpit_show_inside"] = show_inside_open
+    st.session_state["cockpit_recent_only"] = only_recent_active
+
+    filters = CockpitFilters(
+        analysis_mode=analysis_mode,
+        selected_years=tuple(int(year) for year in selected_years),
+        selected_families=tuple(str(family) for family in selected_families),
+        selected_contests=tuple(contest_value_by_label[label] for label in selected_contest_labels if label in contest_value_by_label),
+        search_text=search_text,
+        max_gap=int(max_gap),
+        max_rank_percentile=float(max_rank_percentile),
+        min_near_contests=int(min_near_contests),
+        exclude_named=bool(exclude_named),
+        show_inside_open=bool(show_inside_open),
+        only_recent_active=bool(only_recent_active),
+    )
+    chips = [
+        f"Modo: {analysis_mode}",
+        f"Rank até {max_rank_percentile:.0%}",
+        f"Gap até {max_gap}",
+        f"{min_near_contests}+ recorrências",
+        f"Janela: {window_mode}",
+    ]
+    if selected_years:
+        chips.append(f"{len(selected_years)} ano(s)")
+    if selected_families:
+        chips.append("Famílias: " + ", ".join(selected_families[:4]))
+    if exclude_named:
+        chips.append("Nomeados fora")
+    if only_recent_active:
+        chips.append("Ativos recentes")
+    return selected_snapshot_new, filters, chips
+
+
+def render_cockpit_metrics(model: dict[str, pd.DataFrame]) -> None:
+    entity_table = model["entity_table"]
+    contest_summary = model["contest_signal_summary"]
+    almost_count = int(entity_table["student_state"].eq(STUDENT_STATE_RECURRENT).sum()) if not entity_table.empty else 0
+    inside_count = int(entity_table["inside_open_contest_count"].gt(0).sum()) if not entity_table.empty else 0
+    very_close_count = int(entity_table["student_state"].eq(STUDENT_STATE_VERY_CLOSE).sum()) if not entity_table.empty else 0
+    active_contests = int(contest_summary["sinais"].gt(0).sum()) if not contest_summary.empty else 0
+    cols = st.columns(4)
+    metrics = [
+        ("Quase recorrentes", format_number(almost_count), "2+ concursos entre +1 e +30 posições do corte."),
+        ("Dentro do corte", format_number(inside_count), "Alunos com algum resultado dentro do corte observado."),
+        ("Muito perto", format_number(very_close_count), "Menor gap entre +1 e +10 sem recorrência suficiente."),
+        ("Concursos com sinal", format_number(active_contests), "Concursos que concentram alunos úteis no recorte."),
+    ]
+    for col, (label, value, help_text) in zip(cols, metrics):
+        col.markdown(
+            f"""
+            <div class="acr-kpi">
+                <div class="acr-kpi-label">{label}</div>
+                <div class="acr-kpi-value">{value}</div>
+                <div class="acr-kpi-help">{help_text}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
+def render_cockpit_ranking(entity_table: pd.DataFrame, opportunity_table: pd.DataFrame) -> None:
+    st.markdown("### Ranking principal")
+    if entity_table.empty:
+        st.info("Nenhum aluno atende aos filtros atuais.")
+        return
+
+    st.markdown(
+        """
+        <div class="acr-legend-panel">
+            <strong>Estado do aluno</strong> é a síntese operacional da pessoa.
+            <strong>Sinal do concurso</strong> é uma evidência individual dentro dos chips.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    controls = st.columns([0.7, 1.0, 1.1, 0.9, 1.0, 1.0], gap="small")
+    row_limit = controls[0].slider("Linhas", 20, 250, 80, 10, key="cockpit_rank_rows")
+    sort_mode = controls[1].selectbox(
+        "Ordenar por",
+        ["Estado", "Score", "Mais recorrência", "Menor gap"],
+        index=0,
+        key="cockpit_rank_sort",
+    )
+    lane_filter = controls[2].multiselect(
+        "Estado do aluno",
+        [
+            STUDENT_STATE_RECURRENT,
+            STUDENT_STATE_INSIDE_CUTOFF,
+            STUDENT_STATE_VERY_CLOSE,
+            STUDENT_STATE_CLOSE,
+            STUDENT_STATE_STRONG_WITHOUT_CUTOFF,
+            STUDENT_STATE_STALE,
+            STUDENT_STATE_MONITOR,
+        ],
+        default=[],
+        key="cockpit_lane_filter",
+    )
+    evidence_limit = controls[3].selectbox("Top evidências", [3, 4, 5, 8], index=1, key="cockpit_evidence_limit")
+    evidence_sort = controls[4].selectbox(
+        "Agrupar por",
+        ["Relevância", "Ano", "Família", "Concurso"],
+        index=0,
+        key="cockpit_evidence_sort",
+    )
+    show_history_summary = controls[5].toggle("Resumo histórico", value=False, key="cockpit_history_summary")
+
+    working = entity_table.copy()
+    if lane_filter:
+        working = working[working["student_state"].isin(lane_filter)]
+    if sort_mode == "Score":
+        working = working.sort_values(["calibrated_radar_score", "state_rank", "evidence_count"], ascending=[False, True, False])
+    elif sort_mode == "Mais recorrência":
+        working = working.sort_values(["near_contest_count", "calibrated_radar_score", "best_open_gap"], ascending=[False, False, True])
+    elif sort_mode == "Menor gap":
+        working = working.sort_values(["best_open_gap", "calibrated_radar_score"], ascending=[True, False], na_position="last")
+    else:
+        working = working.sort_values(
+            ["state_rank", "calibrated_radar_score", "evidence_count", "best_open_gap"],
+            ascending=[True, False, False, True],
+            na_position="last",
+        )
+
+    display_rows = working.head(row_limit).copy()
+    if display_rows.empty:
+        st.info("Nenhum aluno atende ao filtro de estado escolhido.")
+        return
+
+    rows_by_identity = {
+        str(identity): frame.copy()
+        for identity, frame in opportunity_table.groupby("identity_key", dropna=False)
+    }
+    html = ['<div class="acr-radar-wrap"><table class="acr-ranking-table"><thead><tr>']
+    headers = [
+        "#",
+        "Aluno",
+        "Estado do aluno",
+        "Como classificamos",
+        "Quase recorrente",
+        "Dentro do corte",
+        "Menor gap ao corte",
+        "Evidências",
+        "Concurso de maior evidência",
+        "Evidências por concurso",
+    ]
+    for header in headers:
+        html.append(f"<th>{escape(header)}</th>")
+    html.append("</tr></thead><tbody>")
+
+    for rank, (_, row) in enumerate(display_rows.iterrows(), start=1):
+        identity_key = str(row.get("identity_key", ""))
+        evidence_rows = rows_by_identity.get(identity_key, pd.DataFrame())
+        state = str(row.get("student_state", STUDENT_STATE_MONITOR))
+        state_html = f'<span class="acr-pill {state_class(state)}">{escape(state)}</span>'
+        score = row.get("calibrated_radar_score")
+        score_text = f"{float(score):.3f}" if pd.notna(score) else "N/A"
+        history_text = summarize_history(evidence_rows) if show_history_summary else ""
+        html.extend(
+            [
+                "<tr>",
+                f"<td><span class=\"acr-rank-pill\">{rank}</span></td>",
+                f'<td class="acr-student-cell">{escape(str(row.get("display_name", "")))}'
+                f'<div class="acr-muted-text">Score {escape(score_text)} · {escape(str(row.get("recency_profile", "")))}</div>'
+                f'<div class="acr-muted-text">{escape(history_text)}</div>' if history_text else f'<td class="acr-student-cell">{escape(str(row.get("display_name", "")))}'
+                f'<div class="acr-muted-text">Score {escape(score_text)} · {escape(str(row.get("recency_profile", "")))}</div>',
+                "</td>",
+                f"<td>{state_html}</td>",
+                f"<td>{escape(str(row.get('how_classified', row.get('why_ranked', ''))))}</td>",
+                f"<td>{format_number(row.get('near_contest_count'))}</td>",
+                f"<td>{format_number(row.get('inside_open_contest_count'))}</td>",
+                f"<td>{escape(format_gap(row.get('best_open_gap')))}</td>",
+                f"<td>{format_number(row.get('evidence_count'))}</td>",
+                f"<td>{escape(str(row.get('best_contest_name', '')))}<div class=\"acr-muted-text\">{escape(str(row.get('best_ranking_text', '')))}</div></td>",
+                f"<td>{render_evidence_chips(evidence_rows, int(evidence_limit), evidence_sort)}</td>",
+                "</tr>",
+            ]
+        )
+    html.append("</tbody></table></div>")
+    st.markdown("".join(html), unsafe_allow_html=True)
+
+
+def render_cockpit_details(model: dict[str, pd.DataFrame]) -> None:
+    entity_table = model["entity_table"]
+    opportunity_table = model["opportunity_table"]
+    st.markdown("### Detalhe vertical do aluno")
+    if entity_table.empty:
+        st.info("Sem alunos para detalhar no recorte atual.")
+        return
+
+    selected_name = st.selectbox(
+        "Aluno em foco",
+        entity_table["display_name"].head(1000).tolist(),
+        key="cockpit_detail_student",
+        help="O detalhe abaixo mostra os concursos do aluno em linhas, evitando uma matriz horizontal gigante.",
+    )
+    selected_entity = entity_table[entity_table["display_name"].eq(selected_name)].iloc[0]
+    opp_rows = opportunity_table[opportunity_table["identity_key"].eq(selected_entity["identity_key"])].copy()
+
+    st.markdown(
+        '<div class="acr-detail-panel">'
+        + '<div class="acr-detail-grid">'
+        + detail_card("Estado do aluno", str(selected_entity.get("student_state", "")))
+        + detail_card("Quase recorrente", format_number(selected_entity.get("near_contest_count")))
+        + detail_card("Dentro do corte", format_number(selected_entity.get("inside_open_contest_count")))
+        + detail_card("Menor gap ao corte", format_gap(selected_entity.get("best_open_gap")))
+        + detail_card("Concurso de maior evidência", str(selected_entity.get("best_contest_name", "")))
+        + detail_card("Perfil temporal", str(selected_entity.get("recency_profile", "")))
+        + "</div>"
+        + f'<div class="acr-muted-text">{escape(str(selected_entity.get("how_classified", "")))}</div>'
+        + "</div>",
+        unsafe_allow_html=True,
+    )
+
+    if opp_rows.empty:
+        st.info("Sem concursos para este aluno no recorte atual.")
+        return
+
+    controls = st.columns([1.1, 1.1, 1.1, 0.8], gap="small")
+    available_signals = sorted(opp_rows["contest_signal"].dropna().astype(str).unique().tolist())
+    available_families = sorted(opp_rows["contest_family"].dropna().astype(str).unique().tolist())
+    signal_filter = controls[0].multiselect("Sinal do concurso", available_signals, default=[], key="detail_signal_filter")
+    family_filter = controls[1].multiselect("Família", available_families, default=[], key="detail_family_filter")
+    detail_sort = controls[2].selectbox("Ordenar detalhe", ["Relevância", "Ano", "Gap"], index=0, key="detail_sort")
+    detail_limit = controls[3].slider("Linhas", 10, 200, 80, 10, key="detail_limit")
+
+    detail_rows = opp_rows.copy()
+    if signal_filter:
+        detail_rows = detail_rows[detail_rows["contest_signal"].isin(signal_filter)]
+    if family_filter:
+        detail_rows = detail_rows[detail_rows["contest_family"].isin(family_filter)]
+    if detail_sort == "Ano":
+        detail_rows = sort_evidence_rows(detail_rows, "Ano")
+    elif detail_sort == "Gap":
+        detail_rows = detail_rows.sort_values(["delta_to_immediate_vacancies", "proximity_score"], ascending=[True, False], na_position="last")
+    else:
+        detail_rows = sort_evidence_rows(detail_rows, "Relevância")
+
+    detail_rows = detail_rows.head(detail_limit).copy()
+    detail_rows["gap_ao_corte"] = detail_rows["delta_to_immediate_vacancies"].map(format_gap)
+    detail_columns = [
+        "contest_name",
+        "contest_year",
+        "contest_family",
+        "contest_signal",
+        "ranking_text",
+        "gap_ao_corte",
+        "rank_percentile",
+        "proximity_score",
+    ]
+    st.dataframe(
+        detail_rows[[column for column in detail_columns if column in detail_rows.columns]],
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "contest_name": st.column_config.TextColumn("Concurso", width="large"),
+            "contest_year": st.column_config.NumberColumn("Ano", format="%d"),
+            "contest_family": st.column_config.TextColumn("Família"),
+            "contest_signal": st.column_config.TextColumn("Sinal do concurso"),
+            "ranking_text": st.column_config.TextColumn("Colocação"),
+            "gap_ao_corte": st.column_config.TextColumn("Gap ao corte"),
+            "rank_percentile": st.column_config.ProgressColumn("Rank %", min_value=0.0, max_value=1.0),
+            "proximity_score": st.column_config.NumberColumn("Score", format="%.2f"),
+        },
+    )
+
+
+def render_contest_explain_panel(model: dict[str, pd.DataFrame]) -> None:
+    contest_summary = model["contest_signal_summary"]
+    st.markdown("### Concursos que explicam o ranking")
+    if contest_summary.empty:
+        st.info("Sem concursos com sinal no recorte atual.")
+        return
+    view = contest_summary.head(20).copy()
+    visible_columns = [
+        "contest_name",
+        "contest_year",
+        "contest_family",
+        "alunos_no_recorte",
+        "quase",
+        "dentro_do_corte",
+        "sinais",
+        "melhor_delta_vagas",
+        "score_medio",
+    ]
+    st.dataframe(
+        view[[column for column in visible_columns if column in view.columns]],
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "contest_name": st.column_config.TextColumn("Concurso", width="large"),
+            "contest_year": st.column_config.NumberColumn("Ano", format="%d"),
+            "contest_family": st.column_config.TextColumn("Família"),
+            "alunos_no_recorte": st.column_config.NumberColumn("Alunos"),
+            "quase": st.column_config.NumberColumn("Quase recorrente"),
+            "dentro_do_corte": st.column_config.NumberColumn("Dentro do corte"),
+            "sinais": st.column_config.NumberColumn("Evidências"),
+            "melhor_delta_vagas": st.column_config.NumberColumn("Menor gap"),
+            "score_medio": st.column_config.NumberColumn("Score médio", format="%.2f"),
+        },
+    )
+
+
+def render_cockpit_shortlist(entity_table: pd.DataFrame) -> None:
+    with st.expander("Fila de ação", expanded=False):
+        shortlist = load_shortlist(SHORTLIST_PATH)
+        if entity_table.empty:
+            st.info("Sem alunos para adicionar à fila com os filtros atuais.")
+            return
+
+        selected_name = st.selectbox("Aluno para fila", entity_table["display_name"].tolist(), key="cockpit_shortlist_entity")
+        selected_entity = entity_table[entity_table["display_name"].eq(selected_name)].iloc[0]
+        shortlist_row = shortlist[
+            (shortlist["identity_key"].astype(str) == str(selected_entity["identity_key"]))
+            & (shortlist["contest_value"].astype(str) == str(selected_entity["best_contest_value"]))
+        ]
+        default_status = SHORTLIST_STATUS[0]
+        default_priority = SHORTLIST_PRIORITY[0]
+        default_owner = ""
+        default_notes = ""
+        if not shortlist_row.empty:
+            row = shortlist_row.iloc[0]
+            default_status = row.get("status", default_status)
+            default_priority = row.get("priority", default_priority)
+            default_owner = row.get("owner", "")
+            default_notes = row.get("notes", "")
+
+        with st.form("cockpit_shortlist_form"):
+            cols = st.columns([1, 1, 1.2], gap="small")
+            status = cols[0].selectbox("Status", SHORTLIST_STATUS, index=SHORTLIST_STATUS.index(default_status))
+            priority = cols[1].selectbox("Prioridade", SHORTLIST_PRIORITY, index=SHORTLIST_PRIORITY.index(default_priority))
+            owner = cols[2].text_input("Responsável", value=default_owner)
+            notes = st.text_area("Notas", value=default_notes)
+            submitted = st.form_submit_button("Salvar na fila")
+            if submitted:
+                upsert_shortlist(
+                    SHORTLIST_PATH,
+                    {
+                        "identity_key": selected_entity["identity_key"],
+                        "display_name": selected_entity["display_name"],
+                        "contest_name": selected_entity["best_contest_name"],
+                        "contest_value": selected_entity["best_contest_value"],
+                        "status": status,
+                        "priority": priority,
+                        "owner": owner,
+                        "notes": notes,
+                    },
+                )
+                st.success("Fila atualizada.")
+
+        shortlist = load_shortlist(SHORTLIST_PATH)
+        if not shortlist.empty:
+            st.dataframe(shortlist.sort_values("updated_at", ascending=False), use_container_width=True, hide_index=True)
+
+
+def render_cockpit_quality_panel(prepared: dict[str, pd.DataFrame], model: dict[str, pd.DataFrame], legacy_sources: pd.DataFrame) -> None:
+    with st.expander("Qualidade, fontes e ajustes manuais", expanded=False):
+        st.markdown("#### Saúde da base")
+        st.dataframe(model["quality_summary"], use_container_width=True, hide_index=True)
+        if not legacy_sources.empty:
+            st.markdown("#### Fontes legadas fora do cockpit")
+            st.dataframe(legacy_sources, use_container_width=True, hide_index=True)
+
+        quality = prepared["quality"]
+        show_tables = st.toggle("Ver tabelas técnicas de qualidade", value=False, key="cockpit_show_quality_tables")
+        if show_tables:
+            st.markdown("#### Texto suspeito")
+            st.dataframe(quality["suspicious_text"].head(250), use_container_width=True, hide_index=True)
+            st.markdown("#### Aliases possíveis")
+            st.dataframe(quality["aliases"].head(250), use_container_width=True, hide_index=True)
+            st.markdown("#### Concursos esparsos")
+            sparse_columns = ["contest_name", "contest_family", "contest_year", "candidates_count", "named_count", "inside_vacancies_count"]
+            st.dataframe(quality["sparse_contests"][[column for column in sparse_columns if column in quality["sparse_contests"].columns]].head(250), use_container_width=True, hide_index=True)
+
+        st.markdown("#### Ajustes manuais")
+        adjustments_tab(prepared)
+
+
+def render_cockpit_score_panel(snapshot_id: str, prepared: dict[str, pd.DataFrame]) -> None:
+    with st.expander("Score e backtest", expanded=False):
+        st.caption("O cockpit abre com pesos padrão para ficar rápido. A calibração histórica pode ser calculada sob demanda e fica em cache.")
+        key = f"score_weights_{snapshot_id}"
+        if key in st.session_state:
+            st.success("Pesos calibrados estão ativos para este snapshot.")
+        if st.button("Calcular calibração histórica", key="cockpit_calibrate_score"):
+            calibration = load_score_calibration(snapshot_id, prepared["candidates"])
+            st.session_state[key] = calibration.get("weights", DEFAULT_WEIGHTS)
+            st.session_state[f"score_calibration_{snapshot_id}"] = calibration
+            st.rerun()
+        calibration = st.session_state.get(f"score_calibration_{snapshot_id}")
+        if calibration:
+            render_calibration_panel(calibration, "Avancado")
+
+
+def render_cockpit(
+    snapshot_ids: list[str],
+    selected_snapshot: str,
+    prepared: dict[str, pd.DataFrame],
+) -> None:
+    selected_snapshot_new, filters, filter_summary = cockpit_controls(snapshot_ids, selected_snapshot, prepared)
+    if selected_snapshot_new != selected_snapshot:
+        st.session_state["selected_snapshot"] = selected_snapshot_new
+        st.rerun()
+
+    legacy_sources = discover_legacy_sources(OUTPUT_DIR)
+    score_weights = st.session_state.get(f"score_weights_{selected_snapshot_new}", DEFAULT_WEIGHTS)
+    model = build_cockpit_model(
+        prepared,
+        filters,
+        score_weights=score_weights,
+        legacy_sources=legacy_sources,
+    )
+
+    render_filter_chips(filter_summary)
+    render_contest_coverage_panel(model)
+    render_cockpit_metrics(model)
+    render_cockpit_ranking(model["entity_table"], model["opportunity_table"])
+    render_cockpit_details(model)
+    render_contest_explain_panel(model)
+    render_cockpit_shortlist(model["entity_table"])
+    render_cockpit_quality_panel(prepared, model, legacy_sources)
+    render_cockpit_score_panel(selected_snapshot_new, prepared)
+
+
 def main() -> None:
     inject_styles()
-    sync_state_from_query_params()
-    st.title("Scout dos proximos aprovados pela Base do Aprovado")
-    st.caption("Radar para enxergar quem esta realmente chegando perto da aprovacao.")
+    st.title("Cockpit dos próximos aprovados")
+    st.caption("Uma visão única para responder quem está no quase em vários concursos.")
     st.caption(APP_BUILD)
     if not require_password():
         return
@@ -2138,54 +3039,7 @@ def main() -> None:
     if selected_snapshot not in snapshot_ids:
         selected_snapshot = snapshot_ids[0]
     prepared = load_prepared_snapshot(selected_snapshot)
-    selected_snapshot_new, filtered_opportunities, filtered_students, proximity_preset, current_view, filter_summary = top_controls(
-        snapshot_ids,
-        selected_snapshot,
-        prepared,
-    )
-    ui_mode = "Avancado"
-    st.session_state["ui_mode_current"] = ui_mode
-    st.session_state["current_view"] = current_view
-    if selected_snapshot_new != selected_snapshot:
-        st.session_state["selected_snapshot"] = selected_snapshot_new
-        st.rerun()
-    score_calibration = load_score_calibration(selected_snapshot_new, prepared["candidates"])
-    entity_table, scored_opportunities = compute_views(
-        prepared,
-        filtered_opportunities,
-        filtered_students,
-        proximity_preset,
-        score_calibration,
-    )
-
-    current_query_view = read_query_value("view")
-    if current_query_view != current_view:
-        st.query_params.clear()
-        st.query_params["view"] = current_view
-        if current_view == "Aluno" and st.session_state.get("selected_entity_name"):
-            st.query_params["student"] = st.session_state["selected_entity_name"]
-        if current_view == "Concurso" and st.session_state.get("selected_contest_value"):
-            st.query_params["contest"] = st.session_state["selected_contest_value"]
-
-    if current_view == "Radar":
-        main_entity_tab(
-            prepared,
-            entity_table,
-            scored_opportunities,
-            score_calibration,
-            ui_mode,
-            filter_summary,
-        )
-    elif current_view == "Aluno":
-        entity_detail_tab(entity_table, scored_opportunities, ui_mode)
-    elif current_view == "Concurso":
-        contest_detail_tab(prepared)
-    elif current_view == "Ajustes":
-        adjustments_tab(prepared)
-    elif current_view == "Concursos":
-        contest_listing_tab(prepared, scored_opportunities)
-    else:
-        quality_tab(prepared)
+    render_cockpit(snapshot_ids, selected_snapshot, prepared)
 
 
 if __name__ == "__main__":
